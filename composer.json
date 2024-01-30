@@ -1,0 +1,36 @@
+{
+    "name": "tdwesten/statamic-builder",
+    "autoload": {
+        "psr-4": {
+            "Tdwesten\\StatamicBuilder\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic Builder",
+            "description": "Statamic Builder addon"
+        },
+        "laravel": {
+            "providers": [
+                "Tdwesten\\StatamicBuilder\\ServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^10.0",
+        "laravel/framework": "^10.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.33",
+        "laravel/pint": "^1.7",
+        "orchestra/testbench": "^8.0",
+        "pestphp/pest-plugin-laravel": "^2.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "pixelfear/composer-dist-plugin": true
+        }
+    }
+}
