@@ -117,3 +117,17 @@ test('A group can have a group', function () {
 
     expect($group->toArray())->toBe($expected);
 });
+
+test('Can set to fullscreen', function () {
+
+    $group = Group::make('cta', [
+        Text::make('label')
+            ->displayName('Label')
+            ->instructionsPosition('above')
+            ->visibility('visible')
+            ->listable()
+            ->width(33),
+    ])->displayName('Call to Action')->fullscreen();
+
+    expect($group->toArray()['field']['fullscreen'])->toBe(true);
+});

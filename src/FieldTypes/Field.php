@@ -9,6 +9,8 @@ class Field implements Renderable
 {
     protected $handle;
 
+    protected $prefix;
+
     protected $type = 'text';
 
     protected $displayName;
@@ -35,12 +37,14 @@ class Field implements Renderable
 
     protected $width;
 
+    protected $customAttributes;
+
     /**
      * @var Collection
      */
     protected $validate;
 
-    public function __construct($handle, $type = null)
+    public function __construct($handle)
     {
         $this->handle = $handle;
         $this->type = $this->getType();
@@ -62,10 +66,12 @@ class Field implements Renderable
     {
         $fieldDefaults = $this->fieldDefaults();
 
-        $field = $fieldDefaults->merge($this->fieldToArray());
+        $field = $fieldDefaults
+            ->merge($this->fieldToArray())
+            ->merge($this->customAttributes ?? []);
 
         $content = collect([
-            'handle' => $this->handle,
+            'handle' => $this->getHandle(),
             'field' => $field,
         ]);
 
@@ -79,8 +85,6 @@ class Field implements Renderable
         // Sort keys
         $content['field'] = collect($content['field'])->sortKeys()->all();
 
-        ray($content->toArray())->label('Field '.$this->type);
-
         return $content->toArray();
     }
 
@@ -91,6 +95,7 @@ class Field implements Renderable
             'display' => $this->displayName,
             'duplicate' => $this->duplicate,
             'hide_display' => $this->hideDisplay,
+            'icon' => $this->icon,
             'instructions' => $this->instructions,
             'instructions_position' => $this->instructionsPosition,
             'listable' => $this->listable,
@@ -113,9 +118,28 @@ class Field implements Renderable
         return $this->validate->toArray();
     }
 
+    public function withAttributes(array $attributes)
+    {
+        $this->customAttributes = $attributes;
+
+        return $this;
+
+    }
+
     public function getHandle()
     {
+        if ($this->prefix) {
+            return $this->prefix.'.'.$this->handle;
+        }
+
         return $this->handle;
+    }
+
+    public function prefix($prefix)
+    {
+        $this->prefix = $prefix;
+
+        return $this;
     }
 
     public function getType()
@@ -240,5 +264,13 @@ class Field implements Renderable
         $this->width = $width;
 
         return $this;
+    }
+
+    public function type(string $type)
+    {
+        $this->type = $type;
+
+        return $this;
+
     }
 }
