@@ -1,3 +1,5 @@
+[![Tests](https://github.com/tdwesten/statamic-builder/actions/workflows/tests.yml/badge.svg)](https://github.com/tdwesten/statamic-builder/actions/workflows/tests.yml)
+
 # Statamic Builder
 
 > Statamic Builder is a Statamic addon that does something pretty neat.
@@ -14,7 +16,7 @@ This addon does:
 
 You can search for this addon in the `Tools > Addons` section of the Statamic control panel and click **install**, or run the following command from your project root:
 
-``` bash
+```bash
 composer require tdwesten/statamic-builder
 ```
 
