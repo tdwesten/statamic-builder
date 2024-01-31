@@ -5,38 +5,113 @@ use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
 test('Renders a group to array', function () {
 
-    $group = new Group('Call to action', [
+    $group = Group::make('cta', [
         Text::make('label')
             ->displayName('Label')
-            ->required()
             ->instructionsPosition('above')
             ->visibility('visible')
             ->listable()
             ->width(33),
-    ]);
+    ])->displayName('Call to Action');
 
     $expected = [
-        'title' => 'Call to action',
-        'fields' => [
-            [
-                'handle' => 'label',
-                'field' => [
-                    'display' => 'Label',
-                    'type' => 'text',
-                    'validate' => [
-                        'required',
+        'handle' => 'cta',
+        'field' => [
+            'antlers' => false,
+            'display' => 'Call to Action',
+            'duplicate' => true,
+            'fields' => [
+                [
+                    'handle' => 'label',
+                    'field' => [
+                        'antlers' => false,
+                        'display' => 'Label',
+                        'duplicate' => true,
+                        'hide_display' => false,
+                        'input_type' => 'text',
+                        'instructions_position' => 'above',
+                        'listable' => true,
+                        'replicator_preview' => true,
+                        'type' => 'text',
+                        'visibility' => 'visible',
+                        'width' => 33,
                     ],
-                    'instructions_position' => 'above',
-                    'required' => true,
-                    'visibility' => 'visible',
-                    'listable' => true,
-                    'replicator_preview' => true,
-                    'duplicate' => true,
-                    'antlers' => false,
-                    'hide_display' => false,
-                    'width' => 33,
                 ],
             ],
+            'fullscreen' => true,
+            'hide_display' => false,
+            'instructions_position' => 'above',
+            'listable' => 'hidden',
+            'replicator_preview' => true,
+            'type' => 'group',
+            'visibility' => 'visible',
+        ],
+    ];
+
+    expect($group->toArray())->toBe($expected);
+});
+
+test('A group can have a group', function () {
+
+    $group = Group::make('counties', [
+        Group::make('states', [
+            Text::make('label')
+                ->displayName('Label')
+                ->instructionsPosition('above')
+                ->visibility('visible')
+                ->listable()
+                ->width(33),
+        ])->displayName('Call to Action'),
+    ])->displayName('Call to Action');
+
+    $expected = [
+        'handle' => 'counties',
+        'field' => [
+            'antlers' => false,
+            'display' => 'Call to Action',
+            'duplicate' => true,
+            'fields' => [
+                [
+                    'handle' => 'states',
+                    'field' => [
+                        'antlers' => false,
+                        'display' => 'Call to Action',
+                        'duplicate' => true,
+                        'fields' => [
+                            [
+                                'handle' => 'label',
+                                'field' => [
+                                    'antlers' => false,
+                                    'display' => 'Label',
+                                    'duplicate' => true,
+                                    'hide_display' => false,
+                                    'input_type' => 'text',
+                                    'instructions_position' => 'above',
+                                    'listable' => true,
+                                    'replicator_preview' => true,
+                                    'type' => 'text',
+                                    'visibility' => 'visible',
+                                    'width' => 33,
+                                ],
+                            ],
+                        ],
+                        'fullscreen' => true,
+                        'hide_display' => false,
+                        'instructions_position' => 'above',
+                        'listable' => 'hidden',
+                        'replicator_preview' => true,
+                        'type' => 'group',
+                        'visibility' => 'visible',
+                    ],
+                ],
+            ],
+            'fullscreen' => true,
+            'hide_display' => false,
+            'instructions_position' => 'above',
+            'listable' => 'hidden',
+            'replicator_preview' => true,
+            'type' => 'group',
+            'visibility' => 'visible',
         ],
     ];
 

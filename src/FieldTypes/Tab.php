@@ -1,6 +1,6 @@
 <?php
 
-namespace Tdwesten\StatamicBuilder\Fields;
+namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 class Tab
 {
@@ -45,15 +45,18 @@ class Tab
 
     public function sectionsToArray(): ?array
     {
-        return $this->content->map(function ($section) {
-            return $section->toArray();
-        })->toArray();
-
+        if ($this->content->first() instanceof Section) {
+            return $this->content->map(function (Section $section) {
+                return $section->toArray();
+            })->toArray();
+        } else {
+            return null;
+        }
     }
 
     public function fieldsToArray(): array
     {
-        return $this->content->map(function ($field) {
+        return $this->content->map(function (Field $field) {
             return [$field->getHandle() => $field->toArray()];
         })->toArray();
     }

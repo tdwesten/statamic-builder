@@ -2,7 +2,9 @@
 
 namespace Tdwesten\StatamicBuilder\Contracts;
 
+use Illuminate\Support\Collection;
+
 interface Renderable
 {
-    public function fieldToArray(): array;
+    public function fieldToArray(): Collection;
 }

@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Listen for XDebug on valet",
+      "type": "php",
+      "request": "launch",
+      "port": 9003,
+      "ignore": ["**/vendor/**/*"],
+      "log": false
+    }
+  ]
+}

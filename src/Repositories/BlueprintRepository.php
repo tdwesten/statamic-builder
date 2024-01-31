@@ -53,17 +53,6 @@ class BlueprintRepository extends FieldsBlueprintRepository
         return new $registeredBlueprints[$namespace][$handle]($handle);
     }
 
-    // protected function getNamespaceAndHandle($blueprint)
-    // {
-    //     $blueprint = str_replace('/', '.', $blueprint);
-    //     $parts = explode('.', $blueprint);
-    //     $handle = array_pop($parts);
-    //     $namespace = implode('.', $parts);
-    //     $namespace = empty($namespace) ? null : $namespace;
-
-    //     return [$namespace, $handle];
-    // }
-
     protected function makeBlueprintFromFile($path, $namespace = null)
     {
 

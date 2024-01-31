@@ -9,7 +9,7 @@ class Field implements Renderable
 {
     protected $handle;
 
-    protected $type;
+    protected $type = 'text';
 
     protected $displayName;
 
@@ -43,7 +43,7 @@ class Field implements Renderable
     public function __construct($handle, $type = null)
     {
         $this->handle = $handle;
-        $this->type = $type;
+        $this->type = $this->getType();
         $this->validate = new Collection([]);
     }
 
@@ -60,42 +60,52 @@ class Field implements Renderable
 
     public function toArray()
     {
-        $content = [
+        $fieldDefaults = $this->fieldDefaults();
+
+        $field = $fieldDefaults->merge($this->fieldToArray());
+
+        $content = collect([
             'handle' => $this->handle,
-            'field' => [
-                'display' => $this->displayName,
-                'type' => $this->type,
-                'validate' => $this->validateToArray(),
-                'instructions' => $this->instructions,
-                'instructions_position' => $this->instructionsPosition,
-                'required' => $this->required,
-                'visibility' => $this->visibility,
-                'listable' => $this->listable,
-                'replicator_preview' => $this->replicatorPreview,
-                'duplicate' => $this->duplicate,
-                'antlers' => $this->antlers,
-                'hide_display' => $this->hideDisplay,
-                'width' => $this->width,
-                'icon' => $this->icon,
-            ],
-        ];
+            'field' => $field,
+        ]);
 
-        $field = $this->fieldToArray();
-
-        $content['field'] = array_merge($content['field'], $field);
-
-        $content['field'] = array_filter($content['field'], function ($item) {
+        // Remove empty values
+        $content['field'] = collect($content['field'])->filter(function ($item) {
             return is_array($item)
                 ? ! empty($item)
                 : ! in_array($item, [null, ''], true);
-        });
+        })->all();
 
-        return $content;
+        // Sort keys
+        $content['field'] = collect($content['field'])->sortKeys()->all();
+
+        ray($content->toArray())->label('Field '.$this->type);
+
+        return $content->toArray();
     }
 
-    public function fieldToArray(): array
+    public function fieldDefaults(): Collection
     {
-        return [];
+        return collect([
+            'antlers' => $this->antlers,
+            'display' => $this->displayName,
+            'duplicate' => $this->duplicate,
+            'hide_display' => $this->hideDisplay,
+            'instructions' => $this->instructions,
+            'instructions_position' => $this->instructionsPosition,
+            'listable' => $this->listable,
+            'replicator_preview' => $this->replicatorPreview,
+            'required' => $this->required,
+            'type' => $this->type,
+            'visibility' => $this->visibility,
+            'validate' => $this->validate->toArray(),
+            'width' => $this->width,
+        ]);
+    }
+
+    public function fieldToArray(): Collection
+    {
+        return collect([]);
     }
 
     public function validateToArray(): array
@@ -106,6 +116,11 @@ class Field implements Renderable
     public function getHandle()
     {
         return $this->handle;
+    }
+
+    public function getType()
+    {
+        return $this->type;
     }
 
     public function displayName($displayName)
@@ -132,20 +147,22 @@ class Field implements Renderable
     public function required()
     {
         $this->required = true;
-
-        $this->validate('required');
+        $this->validate->push('required');
 
         return $this;
     }
 
-    public function validate($rules): self
+    public function sometimes()
+    {
+        $this->validate->push('sometimes');
+
+        return $this;
+    }
+
+    public function validate(array $rules = []): self
     {
         if ($this->validate === null) {
             $this->validate = new Collection([]);
-        }
-
-        if (is_string($rules)) {
-            $this->validate->push($rules);
         }
 
         $rules = $this->validate->merge($rules)->unique();

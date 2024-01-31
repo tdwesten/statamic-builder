@@ -2,9 +2,10 @@
 
 namespace Tdwesten\StatamicBuilder;
 
-use Tdwesten\StatamicBuilder\Fields\Tab;
+use Tdwesten\StatamicBuilder\Contracts\Blueprint as BlueprintInterface;
+use Tdwesten\StatamicBuilder\FieldTypes\Tab;
 
-class Blueprint
+class Blueprint implements BlueprintInterface
 {
     protected $tabs;
 
@@ -27,22 +28,13 @@ class Blueprint
         return new static($handle);
     }
 
-    public function register()
-    {
-        // Silence is golden
-    }
-
     public function toArray()
     {
-        $array = [
+        return [
             'title' => $this->title,
             'hide' => $this->hidden,
             'tabs' => $this->tabsToArray(),
         ];
-
-        ray($array);
-
-        return $array;
     }
 
     public function tabsToArray()
@@ -51,18 +43,14 @@ class Blueprint
             return [$tab->getHandle() => $tab->toArray()];
         })->toArray();
 
-        ray($tabs);
-
         return $tabs;
     }
 
-    /**
-     * Add a tab to the blueprint.
-     *
-     * @param  string  $handle
-     * @param  callable<Tab>  $callback
-     * @return \Illuminate\Support\Collection
-     */
+    public function register()
+    {
+        // (placeholder) Silence is golden
+    }
+
     public function addTab($handle, $content = [], $displayName = null)
     {
         $tab = new Tab($handle, $content);
@@ -81,19 +69,16 @@ class Blueprint
         return $this->handle;
     }
 
-    public function getTabs()
-    {
-        return $this->tabs;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
     public function title(string $title)
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function hidden(bool $hidden = true)
+    {
+        $this->hidden = $hidden;
 
         return $this;
     }

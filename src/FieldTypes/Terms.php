@@ -2,12 +2,17 @@
 
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
+use Illuminate\Support\Collection;
+
 class Terms extends Field
 {
     protected $type = 'terms';
 
     protected $maxItems;
 
+    /**
+     * @var Collection
+     */
     protected $taxonomies;
 
     protected $mode = 'default';
@@ -23,15 +28,14 @@ class Terms extends Field
         parent::__construct($handle, 'text');
     }
 
-    public function fieldToArray(): array
+    public function fieldToArray(): Collection
     {
-        return [
-            'type' => 'terms',
+        return collect([
             'max_items' => $this->maxItems,
-            'taxonomies' => $this->taxonomies,
+            'taxonomies' => $this->taxonomies->toArray(),
             'mode' => $this->mode,
             'create' => $this->create,
-        ];
+        ]);
     }
 
     public static function make($handle): self
@@ -48,7 +52,7 @@ class Terms extends Field
 
     public function taxonomies(array $taxonomies): self
     {
-        $this->taxonomies = $taxonomies;
+        $this->taxonomies = collect($taxonomies);
 
         return $this;
     }

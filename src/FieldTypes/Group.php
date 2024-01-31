@@ -2,6 +2,7 @@
 
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
+use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
 
 class Group extends Field implements Renderable
@@ -10,29 +11,19 @@ class Group extends Field implements Renderable
 
     protected $fullscreen = true;
 
-    protected $type = 'group';
-
-    public function __construct($handle, $fields = [])
+    public function __construct(string $handle, $fields = [])
     {
         parent::__construct($handle);
 
         $this->type = 'group';
         $this->fields = $fields;
+
+        return $this;
     }
 
-    public static function make($handle = null, $fields = []): self
+    public static function make($handle, $fields = []): self
     {
         return new static($handle, $fields);
-    }
-
-    public function toArray()
-    {
-        $content = parent::toArray();
-
-        $content['field']['fields'] = $this->fieldsToArray();
-
-        return $content;
-
     }
 
     public function fullscreen(bool $fullscreen = true): self
@@ -40,6 +31,14 @@ class Group extends Field implements Renderable
         $this->fullscreen = $fullscreen;
 
         return $this;
+    }
+
+    public function fieldToArray(): Collection
+    {
+        return collect([
+            'fullscreen' => $this->fullscreen,
+            'fields' => $this->fieldsToArray(),
+        ]);
     }
 
     public function fieldsToArray()
