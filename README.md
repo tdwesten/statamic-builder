@@ -1,4 +1,4 @@
-[![Tests](https://github.com/tdwesten/statamic-builder/actions/workflows/tests.yml/badge.svg)](https://github.com/tdwesten/statamic-builder/actions/workflows/tests.yml)
+[![CI](https://github.com/tdwesten/statamic-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/tdwesten/statamic-builder/actions/workflows/ci.yml)
 
 # Statamic Builder
 
