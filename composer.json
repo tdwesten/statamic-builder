@@ -16,6 +16,14 @@
             ]
         }
     },
+    "scripts": {
+        "test": [
+            "./vendor/bin/pest"
+        ],
+        "generate": [
+            "php field-generator/Generator.php"
+        ]
+    },
     "require": {
         "php": "^8.2",
         "illuminate/support": "^10.0",
