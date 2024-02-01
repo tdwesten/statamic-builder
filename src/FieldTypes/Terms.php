@@ -3,9 +3,12 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
+use Tdwesten\StatamicBuilder\Contracts\Makeble;
 
 class Terms extends Field
 {
+    use Makeble;
+
     protected $type = 'terms';
 
     protected $maxItems;
@@ -36,11 +39,6 @@ class Terms extends Field
             'mode' => $this->mode,
             'create' => $this->create,
         ]);
-    }
-
-    public static function make($handle): self
-    {
-        return new self($handle);
     }
 
     public function maxItems(int $count): self

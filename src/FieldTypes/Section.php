@@ -14,7 +14,7 @@ class Section extends Field
         $this->fields = collect($fields);
     }
 
-    public static function make($displayName, $fields = [])
+    public static function make($displayName, array $fields = []): self
     {
         return new static($displayName, $fields);
     }

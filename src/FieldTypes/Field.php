@@ -3,10 +3,13 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
+use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
 
 class Field implements Renderable
 {
+    use Makeble;
+
     protected $handle;
 
     protected $prefix;
@@ -49,17 +52,6 @@ class Field implements Renderable
         $this->handle = $handle;
         $this->type = $this->getType();
         $this->validate = new Collection([]);
-    }
-
-    /**
-     * Make a new field.
-     *
-     * @param  string  $handle
-     * @return Field
-     */
-    public static function make($handle)
-    {
-        return new static($handle);
     }
 
     public function toArray()
@@ -259,7 +251,7 @@ class Field implements Renderable
         return $this;
     }
 
-    public function width($width)
+    public function width($width): self
     {
         $this->width = $width;
 
