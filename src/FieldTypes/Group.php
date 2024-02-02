@@ -4,6 +4,7 @@ namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
+use Tdwesten\StatamicBuilder\Fieldset;
 
 class Group extends Field implements Renderable
 {
@@ -43,8 +44,24 @@ class Group extends Field implements Renderable
 
     public function fieldsToArray()
     {
+        $this->parseFieldsets();
+
         return collect($this->fields)->map(function ($field) {
             return $field->toArray();
         })->all();
+    }
+
+    public function parseFieldsets()
+    {
+        $this->fields = collect($this->fields)->map(function ($field) {
+            if ($field instanceof Fieldset) {
+                /** @var Fieldset */
+                $fieldset = $field;
+
+                return $fieldset->toArray();
+            }
+
+            return $field;
+        })->flatten();
     }
 }

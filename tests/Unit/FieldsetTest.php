@@ -1,5 +1,6 @@
 <?php
 
+use Tdwesten\StatamicBuilder\FieldTypes\Group;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 use Tests\Helpers\TestFieldset;
 
@@ -23,16 +24,32 @@ it('can be converted to an array', function () {
 });
 
 test('A fieldset can be used in a blueprint', function () {
-    $fieldset = TestFieldset::make('test');
     $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('school');
     $blueprint
         ->title('School')
         ->addTab('main', [
             Text::make('name')->displayName('Name'),
-            $fieldset,
+            TestFieldset::make('test'),
         ], 'Main');
 
     $fields = $blueprint->toArray();
+
+    expect($fields)->toBeArray();
+});
+
+test('A fieldset can be used in group', function () {
+    $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('school');
+    $blueprint
+        ->title('School')
+        ->addTab('main', [
+            Text::make('name')->displayName('Name'),
+            Group::make('test', [
+                TestFieldset::make('test'),
+            ]),
+        ], 'Main');
+
+    $fields = $blueprint->toArray();
+    ray($fields);
 
     expect($fields)->toBeArray();
 });
