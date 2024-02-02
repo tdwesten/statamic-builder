@@ -19,8 +19,6 @@ it('can be converted to an array', function () {
     $fieldset = TestFieldset::make('test');
     $fields = $fieldset->toArray();
 
-    ray($fields);
-
     expect($fields)->toBeArray();
 });
 
@@ -35,8 +33,6 @@ test('A fieldset can be used in a blueprint', function () {
         ], 'Main');
 
     $fields = $blueprint->toArray();
-
-    ray($fields);
 
     expect($fields)->toBeArray();
 });
