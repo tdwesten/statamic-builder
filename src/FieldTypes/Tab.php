@@ -2,6 +2,8 @@
 
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
+use Tdwesten\StatamicBuilder\Fieldset;
+
 class Tab
 {
     protected $handle;
@@ -56,9 +58,26 @@ class Tab
 
     public function fieldsToArray(): array
     {
+        $this->parseFieldsets();
+
         return $this->content->map(function (Field $field) {
             return [$field->getHandle() => $field->toArray()];
         })->toArray();
+    }
+
+    public function parseFieldsets()
+    {
+        $this->content = $this->content->map(function ($field) {
+            if ($field instanceof Fieldset) {
+
+                /** @var Fieldset */
+                $fieldset = $field;
+
+                return $fieldset->toArray();
+            }
+
+            return $field;
+        })->flatten();
     }
 
     public function toArray()

@@ -134,8 +134,6 @@ test('Fields in sections are renderd', function () {
             ]),
         ], 'Meta');
 
-    ray($blueprint->toArray());
-
     $expected = [
         'title' => 'School',
         'hide' => false,
