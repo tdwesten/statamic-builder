@@ -41,28 +41,28 @@ class Terms extends Field
         ]);
     }
 
-    public function maxItems(int $count): self
+    public function maxItems(int $count)
     {
         $this->maxItems = $count;
 
         return $this;
     }
 
-    public function taxonomies(array $taxonomies): self
+    public function taxonomies(array $taxonomies)
     {
         $this->taxonomies = collect($taxonomies);
 
         return $this;
     }
 
-    public function mode(string $mode): self
+    public function mode(string $mode)
     {
         $this->mode = $mode;
 
         return $this;
     }
 
-    public function create(bool $create): self
+    public function create(bool $create)
     {
         $this->create = $create;
 

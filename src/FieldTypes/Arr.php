@@ -33,14 +33,14 @@ class Arr extends Field
         ]);
     }
 
-    public function mode(ArrayModeOption $mode): self
+    public function mode(ArrayModeOption $mode)
     {
         $this->mode = $mode;
 
         return $this;
     }
 
-    public function keys(array $keys): self
+    public function keys(array $keys)
     {
         $this->keys = $keys;
 

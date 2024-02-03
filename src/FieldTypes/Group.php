@@ -22,12 +22,12 @@ class Group extends Field implements Renderable
         return $this;
     }
 
-    public static function make($handle, $fields = []): self
+    public static function make($handle, $fields = [])
     {
         return new static($handle, $fields);
     }
 
-    public function fullscreen(bool $fullscreen = true): self
+    public function fullscreen(bool $fullscreen = true)
     {
         $this->fullscreen = $fullscreen;
 

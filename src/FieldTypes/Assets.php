@@ -55,70 +55,70 @@ class Assets extends Field
         ]);
     }
 
-    public function maxFiles(int $maxFiles): self
+    public function maxFiles(int $maxFiles)
     {
         $this->max_files = $maxFiles;
 
         return $this;
     }
 
-    public function minFiles(int $minFiles): self
+    public function minFiles(int $minFiles)
     {
         $this->min_files = $minFiles;
 
         return $this;
     }
 
-    public function mode(AssetsUIModeOption $mode): self
+    public function mode(AssetsUIModeOption $mode)
     {
         $this->mode = $mode;
 
         return $this;
     }
 
-    public function container(string $container): self
+    public function container(string $container)
     {
         $this->container = $container;
 
         return $this;
     }
 
-    public function folder(string $folder): self
+    public function folder(string $folder)
     {
         $this->folder = $folder;
 
         return $this;
     }
 
-    public function restrict(): self
+    public function restrict()
     {
         $this->restrict = true;
 
         return $this;
     }
 
-    public function allowUploads(): self
+    public function allowUploads()
     {
         $this->allow_uploads = true;
 
         return $this;
     }
 
-    public function showFilename(): self
+    public function showFilename()
     {
         $this->show_filename = true;
 
         return $this;
     }
 
-    public function showSetAlt(): self
+    public function showSetAlt()
     {
         $this->show_set_alt = true;
 
         return $this;
     }
 
-    public function queryScopes(array $queryScopes): self
+    public function queryScopes(array $queryScopes)
     {
         $this->query_scopes = $queryScopes;
 

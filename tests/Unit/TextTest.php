@@ -3,8 +3,25 @@
 use Tdwesten\StatamicBuilder\Enums\AutocompleteOption;
 use Tdwesten\StatamicBuilder\Enums\InputTypeOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
 it('can render to a array', function () {
+
+    Text::make('title')
+        ->inputType(InputTypeOption::Email)
+        ->displayName('Name')
+        ->required()
+        ->instructions('The name of the county')
+        ->instructionsPosition('above')
+        ->antlers(false)
+        ->placeholder('Enter a title')
+        ->default('Default value')
+        ->characterLimit(100)
+        ->autocomplete(AutocompleteOption::BdayDay)
+        ->prepend('https://')
+        ->append('.com')
+        ->toArray();
+
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Group('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')

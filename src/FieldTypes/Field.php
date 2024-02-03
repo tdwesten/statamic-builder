@@ -179,7 +179,7 @@ class Field implements Renderable
         return $this;
     }
 
-    public function validate(array $rules = []): self
+    public function validate(array $rules = [])
     {
         if ($this->validate === null) {
             $this->validate = new Collection([]);
@@ -255,7 +255,7 @@ class Field implements Renderable
         return $this;
     }
 
-    public function width($width): self
+    public function width($width)
     {
         $this->width = $width;
 
