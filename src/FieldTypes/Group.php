@@ -3,11 +3,14 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
+use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
 use Tdwesten\StatamicBuilder\Fieldset;
 
 class Group extends Field implements Renderable
 {
+    use Makeble;
+
     protected $fields;
 
     protected $fullscreen = true;
@@ -22,7 +25,7 @@ class Group extends Field implements Renderable
         return $this;
     }
 
-    public static function make($handle, $fields = [])
+    public static function make($handle, $fields = []): static
     {
         return new static($handle, $fields);
     }
