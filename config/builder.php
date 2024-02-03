@@ -1,12 +1,27 @@
 <?php
 
 return [
-    /**
-     * Define the blueprints that should be used for each collection.
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Register Blueprints
+    |--------------------------------------------------------------------------
+    |
+    | Here you can register the blueprints that you want to use in your
+    | Statamic site.
+    |
+    */
     'blueprints' => [
+        /*
+        |--------------------------------------------------------------------------
+        | Collection Blueprints
+        |--------------------------------------------------------------------------
+        |
+        | Here you can register the blueprints that you want to use for your
+        | collections.
+        |
+        */
         'collections.schools' => [
-            // 'article' => \App\Blueprints\ArticleBlueprint::class,
+            // 'article' => App\Blueprints\ArticleBlueprint::class,
         ],
     ],
 ];
