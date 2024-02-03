@@ -24,4 +24,28 @@ return [
             // 'article' => App\Blueprints\ArticleBlueprint::class,
         ],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Register Fieldsets
+    |--------------------------------------------------------------------------
+    |
+    | Here you can register the fieldsets that you want to use in your
+    | Statamic site.
+    |
+    */
+    'fieldsets' => [
+        /*
+        |--------------------------------------------------------------------------
+        | Collection Fieldsets
+        |--------------------------------------------------------------------------
+        |
+        | Here you can register the fieldsets that you want to use for your
+        | collections.
+        |
+        */
+        [
+            // \App\Fieldsets\LogoWithIntroductionFieldset::class,
+        ],
+    ],
 ];

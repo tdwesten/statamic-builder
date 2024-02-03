@@ -55,7 +55,6 @@ class BlueprintRepository extends FieldsBlueprintRepository
 
     protected function makeBlueprintFromFile($path, $namespace = null)
     {
-
         return Blink::store(self::BLINK_FROM_FILE)->once($path, function () use ($path, $namespace) {
             if (! $namespace || ! isset($this->additionalNamespaces[$namespace])) {
                 [$namespace, $handle] = $this->getNamespaceAndHandle(

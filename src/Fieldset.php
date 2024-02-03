@@ -2,21 +2,19 @@
 
 namespace Tdwesten\StatamicBuilder;
 
-use Tdwesten\StatamicBuilder\FieldTypes\Field;
-
 class Fieldset
 {
     protected $prefix = null;
 
     protected $fields;
 
-    public function __construct(string $prefix)
+    public function __construct(?string $prefix = null)
     {
         $this->prefix = $prefix;
         $this->fields = $this->registerFields();
     }
 
-    public static function make(string $prefix)
+    public static function make(?string $prefix = null)
     {
         return new static($prefix);
     }
@@ -28,8 +26,30 @@ class Fieldset
 
     public function toArray(): array
     {
-        return collect($this->fields)->map(function (Field $field) {
-            return $field->prefix($this->prefix);
+        return [
+            'import' => $this->getSlug(),
+            'prefix' => $this->prefix,
+            'fields' => $this->fieldsToArray(),
+        ];
+    }
+
+    public function getSlug(): string
+    {
+        return $this->generateSlug();
+    }
+
+    public function generateSlug(): string
+    {
+        $class = get_called_class();
+        $slug = explode('\\', $class);
+
+        return strtolower(end($slug));
+    }
+
+    public function fieldsToArray(): array
+    {
+        return collect($this->fields)->map(function ($field) {
+            return $field->prefix($this->prefix)->toArray();
         })->toArray();
     }
 

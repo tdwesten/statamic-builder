@@ -1,0 +1,29 @@
+<?php
+
+namespace {{ namespace }};
+
+use Tdwesten\StatamicBuilder\Blueprint;
+use Tdwesten\StatamicBuilder\FieldTypes\Section;
+use Tdwesten\StatamicBuilder\FieldTypes\Text;
+
+class {{ class }} extends Blueprint
+{
+    // TODO: Implement $title property
+    public $title = '';
+
+    // TODO: Implement $handle property
+    public $handle = '';
+
+    public $hidden = false;
+
+    public function register(): Blueprint
+    {
+        $this->addTab('main', [
+            Text::make('Title', 'title')->required(),
+
+            // TODO: Add fields
+        ], 'General');
+
+        return $this;
+    }
+}

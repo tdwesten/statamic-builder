@@ -29,7 +29,7 @@ class Section extends Field
 
     public function fieldsToArray(): array
     {
-        return $this->fields->map(function (Field $field) {
+        return $this->fields->map(function ($field) {
             return $field->toArray();
         })->toArray();
     }

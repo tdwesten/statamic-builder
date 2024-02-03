@@ -1,0 +1,15 @@
+<?php
+
+namespace {{ namespace }};
+
+use Tdwesten\StatamicBuilder\Fieldset;
+
+class {{ class }} extends Fieldset
+{
+    public function registerFields(): array
+    {
+        return [
+            // TODO: Add your fields here
+        ];
+    }
+}

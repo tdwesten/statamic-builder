@@ -24,6 +24,11 @@ class ServiceProvider extends AddonServiceProvider
                 });
         });
 
+        $this->app->bind(\Statamic\Fields\FieldsetRepository::class, function () {
+            return (new \Tdwesten\StatamicBuilder\Repositories\FieldsetRepository)
+                ->setDirectory(resource_path('fieldsets'));
+        });
+
         $this->app->bind(\Statamic\Http\Controllers\CP\Collections\CollectionBlueprintsController::class, function () {
             return new \Tdwesten\StatamicBuilder\Http\Controllers\CollectionBlueprintsController;
         });
@@ -33,8 +38,15 @@ class ServiceProvider extends AddonServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'statamic-builder');
 
-        $this->publishes([
-            __DIR__.'/../config/builder.php' => config_path('builder.php'),
-        ], 'statamic');
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/builder.php' => config_path('builder.php'),
+            ], 'statamic');
+
+            $this->commands([
+                Console\MakeBlueprint::class,
+                Console\MakeFieldset::class,
+            ]);
+        }
     }
 }
