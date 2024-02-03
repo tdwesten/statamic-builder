@@ -1,5 +1,6 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 use Tdwesten\StatamicBuilder\FieldTypes\Group;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
@@ -9,7 +10,7 @@ test('Renders a group to array', function () {
         Text::make('label')
             ->displayName('Label')
             ->instructionsPosition('above')
-            ->visibility('visible')
+            ->visibility(VisibilityOption::Visible)
             ->listable()
             ->width(33),
     ])->displayName('Call to Action');
@@ -58,7 +59,7 @@ test('A group can have a group', function () {
             Text::make('label')
                 ->displayName('Label')
                 ->instructionsPosition('above')
-                ->visibility('visible')
+                ->visibility(VisibilityOption::Visible)
                 ->listable()
                 ->width(33),
         ])->displayName('Call to Action'),
@@ -124,7 +125,7 @@ test('Can set to fullscreen', function () {
         Text::make('label')
             ->displayName('Label')
             ->instructionsPosition('above')
-            ->visibility('visible')
+            ->visibility(VisibilityOption::Visible)
             ->listable()
             ->width(33),
     ])->displayName('Call to Action')->fullscreen();

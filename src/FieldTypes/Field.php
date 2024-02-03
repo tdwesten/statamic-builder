@@ -5,6 +5,7 @@ namespace Tdwesten\StatamicBuilder\FieldTypes;
 use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
+use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
 class Field implements Renderable
 {
@@ -20,7 +21,7 @@ class Field implements Renderable
 
     protected $instructions;
 
-    protected $visibility = 'visible';
+    protected $visibility = VisibilityOption::Visible;
 
     protected $required;
 
@@ -41,6 +42,8 @@ class Field implements Renderable
     protected $width;
 
     protected $customAttributes;
+
+    protected $default;
 
     /**
      * @var Collection
@@ -85,6 +88,7 @@ class Field implements Renderable
         return collect([
             'antlers' => $this->antlers,
             'display' => $this->displayName,
+            'default' => $this->default,
             'duplicate' => $this->duplicate,
             'hide_display' => $this->hideDisplay,
             'icon' => $this->icon,
@@ -94,7 +98,7 @@ class Field implements Renderable
             'replicator_preview' => $this->replicatorPreview,
             'required' => $this->required,
             'type' => $this->type,
-            'visibility' => $this->visibility,
+            'visibility' => $this->visibility->value,
             'validate' => $this->validate->toArray(),
             'width' => $this->width,
         ]);
@@ -153,7 +157,7 @@ class Field implements Renderable
         return $this;
     }
 
-    public function visibility($visibility)
+    public function visibility(VisibilityOption $visibility)
     {
         $this->visibility = $visibility;
 
@@ -263,6 +267,12 @@ class Field implements Renderable
         $this->type = $type;
 
         return $this;
+    }
 
+    public function default($default)
+    {
+        $this->default = $default;
+
+        return $this;
     }
 }

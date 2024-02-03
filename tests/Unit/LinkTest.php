@@ -1,10 +1,12 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+
 it('can render to a array', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Link('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
-        ->visibility('hidden')
+        ->visibility(VisibilityOption::Hidden)
         ->required()
         ->instructionsPosition('below')
         ->listable()

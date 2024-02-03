@@ -12,8 +12,6 @@ class Text extends Field
 
     protected $placeholder;
 
-    protected $default;
-
     protected $characterLimit;
 
     protected $autocomplete;
@@ -32,7 +30,6 @@ class Text extends Field
         return collect([
             'input_type' => $this->inputType->value,
             'placeholder' => $this->placeholder,
-            'default' => $this->default,
             'character_limit' => $this->characterLimit,
             'autocomplete' => $this->autocomplete?->value,
             'prepend' => $this->prepend,
@@ -50,13 +47,6 @@ class Text extends Field
     public function placeholder(string $placeholder)
     {
         $this->placeholder = $placeholder;
-
-        return $this;
-    }
-
-    public function default(string $default)
-    {
-        $this->default = $default;
 
         return $this;
     }

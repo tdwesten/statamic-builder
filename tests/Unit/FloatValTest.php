@@ -3,7 +3,7 @@
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
 it('can render to a array', function () {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Arr('title');
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\FloatVal('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -11,6 +11,7 @@ it('can render to a array', function () {
         ->instructionsPosition('below')
         ->listable()
         ->replicatorPreview(true)
+        ->default('1.0')
         ->width(50);
 
     expect($field->toArray()['field']['display'])->toBe('Display Name');
@@ -29,25 +30,5 @@ it('can render to a array', function () {
 
     expect($field->toArray()['field']['width'])->toBe(50);
 
-    expect($field->toArray()['field']['type'])->toBe('array');
-});
-
-it('can render to a array with mode', function () {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Arr('title');
-    $field->mode(\Tdwesten\StatamicBuilder\Enums\ArrayModeOption::Dynamic);
-
-    expect($field->toArray()['field']['mode'])->toBe('dynamic');
-});
-
-it('can render to a array with keys', function () {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Arr('title');
-    $field->keys([
-        'country' => 'United States',
-        'city' => 'New York',
-    ]);
-
-    expect($field->toArray()['field']['keys'])->toBe([
-        'country' => 'United States',
-        'city' => 'New York',
-    ]);
+    expect($field->toArray()['field']['default'])->toBe('1.0');
 });

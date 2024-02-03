@@ -49,7 +49,6 @@ test('A fieldset can be used in group', function () {
         ], 'Main');
 
     $fields = $blueprint->toArray();
-    ray($fields);
 
     expect($fields)->toBeArray();
 });

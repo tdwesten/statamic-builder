@@ -1,10 +1,12 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+
 it('can render to a array', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
-        ->visibility('hidden')
+        ->visibility(VisibilityOption::Hidden)
         ->required()
         ->instructionsPosition('below')
         ->listable()
@@ -52,7 +54,7 @@ test('Can set instructions', function () {
 
 test('Can set visibility', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
-    $field->visibility('hidden');
+    $field->visibility(VisibilityOption::Hidden);
 
     expect($field->toArray()['field']['visibility'])->toBe('hidden');
 });

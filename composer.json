@@ -20,7 +20,7 @@
         "test": [
             "./vendor/bin/pest"
         ],
-        "generate": [
+        "generate-field": [
             "php field-generator/Generator.php"
         ]
     },
