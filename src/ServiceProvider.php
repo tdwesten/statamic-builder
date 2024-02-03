@@ -23,13 +23,15 @@ class ServiceProvider extends AddonServiceProvider
                     ]);
                 });
         });
+
+        $this->app->bind(\Statamic\Http\Controllers\CP\Collections\CollectionBlueprintsController::class, function () {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\CollectionBlueprintsController;
+        });
     }
 
     public function boot()
     {
-        // $this->app->bind(\Statamic\Fields\BlueprintRepository::class, \Tdwesten\StatamicBuilder\Repositories\BlueprintRepository::class);
-
-        // parent::boot();
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'statamic-builder');
 
         $this->publishes([
             __DIR__.'/../config/builder.php' => config_path('builder.php'),

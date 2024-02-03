@@ -42,7 +42,7 @@ class BlueprintRepository extends FieldsBlueprintRepository
         });
     }
 
-    protected function findBlueprint($namespace, $handle): ?Blueprint
+    public static function findBlueprint($namespace, $handle): ?Blueprint
     {
         $registeredBlueprints = config('builder.blueprints', []);
 
@@ -65,7 +65,7 @@ class BlueprintRepository extends FieldsBlueprintRepository
                 $handle = Str::of($path)->afterLast('/')->before('.');
             }
 
-            $builderBlueprint = $this->findBlueprint($namespace, $handle);
+            $builderBlueprint = self::findBlueprint($namespace, $handle);
 
             if (! $builderBlueprint) {
                 $contents = YAML::file($path)->parse();
