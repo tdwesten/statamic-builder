@@ -11,7 +11,7 @@ class __Field__ extends Field
 
     protected $type = '__type__';
 
-    public function __construct($handle)
+    public function __construct(string $handle)
     {
         parent::__construct($handle);
     }

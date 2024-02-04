@@ -46,7 +46,6 @@ Add field Taggable
 Add field Taxonomies
 Add field Template
 Add field TemplateFolder
-Add field Toggle
 Add field UserGroups
 Add field UserRoles
 Add field Users
