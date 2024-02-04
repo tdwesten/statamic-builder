@@ -2,7 +2,8 @@
 
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
-use Tdwesten\StatamicBuilder\Fieldset;
+use Tdwesten\StatamicBuilder\Exceptions\BlueprintRenderException;
+use Tdwesten\StatamicBuilder\Helpers\FieldParser;
 
 class Tab
 {
@@ -47,50 +48,38 @@ class Tab
 
     public function sectionsToArray(): ?array
     {
-        if ($this->content->first() instanceof Section) {
-            return $this->content->map(function (Section $section) {
-                return $section->toArray();
-            })->toArray();
-        } else {
-            return null;
+        if ($this->content->isEmpty()) {
+            return [];
         }
+
+        $fields = $this->content->filter(function ($field) {
+            return ! ($field instanceof Section);
+        });
+
+        if ($fields->isNotEmpty()) {
+            throw new BlueprintRenderException('Only sections are allowed in tabs');
+        }
+
+        return $this->content->map(function (Section $section) {
+            return $section->toArray();
+        })->toArray();
     }
 
     public function fieldsToArray(): array
     {
-        $this->parseFieldsets();
+        $this->content = FieldParser::parseMixedFieldsToFlatCollection($this->content);
 
-        return $this->content->map(function (Field $field) {
-            return [$field->getHandle() => $field->toArray()];
+        return $this->content->map(function ($field) {
+            return $field->toArray();
         })->toArray();
-    }
-
-    public function parseFieldsets()
-    {
-        $this->content = $this->content->map(function ($field) {
-            if ($field instanceof Fieldset) {
-
-                /** @var Fieldset */
-                $fieldset = $field;
-
-                return $fieldset->toArray();
-            }
-
-            return $field;
-        })->flatten();
     }
 
     public function toArray()
     {
         $content = [
             'display' => $this->displayName,
+            'sections' => $this->sectionsToArray(),
         ];
-
-        if ($sections = $this->sectionsToArray()) {
-            $content['sections'] = $sections;
-        } else {
-            $content['fields'] = $this->fieldsToArray();
-        }
 
         return $content;
     }

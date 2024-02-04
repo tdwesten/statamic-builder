@@ -30,11 +30,15 @@ class Blueprint implements BlueprintInterface
 
     public function toArray()
     {
-        return [
+        $blueprint = [
             'title' => $this->title,
             'hide' => $this->hidden,
             'tabs' => $this->tabsToArray(),
         ];
+
+        ray($blueprint);
+
+        return $blueprint;
     }
 
     public function tabsToArray()

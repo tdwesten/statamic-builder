@@ -2,6 +2,8 @@
 
 namespace Tdwesten\StatamicBuilder;
 
+use Illuminate\Support\Collection;
+
 class Fieldset
 {
     protected $prefix = null;
@@ -29,8 +31,16 @@ class Fieldset
         return [
             'import' => $this->getSlug(),
             'prefix' => $this->prefix,
+        ];
+    }
+
+    public function fieldsetToArray(): array
+    {
+        return [
+            'title' => $this->getSlug(),
             'fields' => $this->fieldsToArray(),
         ];
+
     }
 
     public function getSlug(): string
@@ -51,6 +61,13 @@ class Fieldset
         return collect($this->fields)->map(function ($field) {
             return $field->prefix($this->prefix)->toArray();
         })->toArray();
+    }
+
+    public function getFields(): Collection
+    {
+        return collect($this->fields)->map(function ($field) {
+            return $field->prefix($this->prefix);
+        });
     }
 
     public function getPrefix(): string

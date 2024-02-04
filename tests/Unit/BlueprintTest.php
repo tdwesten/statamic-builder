@@ -1,5 +1,6 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Exceptions\BlueprintRenderException;
 use Tdwesten\StatamicBuilder\FieldTypes\Section;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
@@ -42,11 +43,11 @@ test('Tabs are renderd', function () {
         'tabs' => [
             'main' => [
                 'display' => 'Main',
-                'fields' => [],
+                'sections' => [],
             ],
             'meta' => [
                 'display' => 'Meta',
-                'fields' => [],
+                'sections' => [],
             ],
         ],
     ];
@@ -54,70 +55,17 @@ test('Tabs are renderd', function () {
     expect($blueprint->toArray())->toBe($expected);
 });
 
-test('Fields are renderd', function () {
+it('throws an exception when adding a field to a tab', function () {
     $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('school');
     $blueprint
         ->title('School')
-        ->addTab('main', [
-            Text::make('name')->displayName('Name'),
-        ], 'Main')
+        ->addTab('main', [])
         ->addTab('meta', [
             Text::make('description')->displayName('Description'),
         ], 'Meta');
 
-    $expected = [
-        'title' => 'School',
-        'hide' => false,
-        'tabs' => [
-            'main' => [
-                'display' => 'Main',
-                'fields' => [
-                    [
-                        'name' => [
-                            'handle' => 'name',
-                            'field' => [
-                                'antlers' => false,
-                                'display' => 'Name',
-                                'duplicate' => true,
-                                'hide_display' => false,
-                                'input_type' => 'text',
-                                'instructions_position' => 'above',
-                                'listable' => 'hidden',
-                                'replicator_preview' => true,
-                                'type' => 'text',
-                                'visibility' => 'visible',
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            'meta' => [
-                'display' => 'Meta',
-                'fields' => [
-                    [
-                        'description' => [
-                            'handle' => 'description',
-                            'field' => [
-                                'antlers' => false,
-                                'display' => 'Description',
-                                'duplicate' => true,
-                                'hide_display' => false,
-                                'input_type' => 'text',
-                                'instructions_position' => 'above',
-                                'listable' => 'hidden',
-                                'replicator_preview' => true,
-                                'type' => 'text',
-                                'visibility' => 'visible',
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ];
-
-    expect($blueprint->toArray())->toBe($expected);
-});
+    $blueprint->toArray();
+})->throws(BlueprintRenderException::class, 'Only sections are allowed in tabs');
 
 test('Fields in sections are renderd', function () {
     $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('school');

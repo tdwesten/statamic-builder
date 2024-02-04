@@ -19,7 +19,7 @@ class FieldsetRepository extends FieldsFieldsetRepository
         return $this
             ->make($handle)
             ->initialPath(resource_path('fieldsets'))
-            ->setContents($builderFieldset->toArray());
+            ->setContents($builderFieldset->fieldsetToArray());
     }
 
     public function findFieldset(string $handle): ?Fieldset
