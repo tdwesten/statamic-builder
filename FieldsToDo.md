@@ -28,8 +28,7 @@ Add field Lists
 Add field Markdown
 Add field Navs
 Add field NestedFields
-Add field Radio
-Add field Range
+
 Add field Relationship
 Add field Replicator
 Add field Revealer
