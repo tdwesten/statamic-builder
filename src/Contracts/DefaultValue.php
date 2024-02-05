@@ -12,4 +12,9 @@ trait DefaultValue
 
         return $this;
     }
+
+    public function defaultValue($value)
+    {
+        $this->default($value);
+    }
 }

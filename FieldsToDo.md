@@ -1,8 +1,4 @@
 Add field Bard
-Add field AssetContainer
-Add field AssetFolder
-Add field Assets
-Add field ButtonGroup
 Add field Checkboxes
 Add field Code
 Add field CollectionRoutes
