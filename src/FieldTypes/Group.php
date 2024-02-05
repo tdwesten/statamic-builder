@@ -13,7 +13,7 @@ class Group extends Field implements Renderable
 
     protected $fields;
 
-    protected $fullscreen;
+    protected $fullscreen = false;
 
     public function __construct(string $handle, $fields = [])
     {
