@@ -1,5 +1,4 @@
 Add field Bard
-Add field Code
 Add field CollectionRoutes
 Add field Collections
 Add field CollectionTitleFormats
