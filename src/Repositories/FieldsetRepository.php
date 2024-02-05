@@ -24,10 +24,18 @@ class FieldsetRepository extends FieldsFieldsetRepository
 
     public function findFieldset(string $handle): ?Fieldset
     {
-        $registeredFieldsets = config('builder.fieldsets', []);
+        $registeredFieldsets = config('statamic.builder.fieldsets', []);
 
         $fieldset = collect($registeredFieldsets)
             ->filter(function ($fieldsetClassName) use ($handle) {
+                if (empty($fieldsetClassName)) {
+                    return false;
+                }
+
+                if (! class_exists($fieldsetClassName)) {
+                    return false;
+                }
+
                 return (new $fieldsetClassName)->getSlug() === $handle;
             })
             ->first();

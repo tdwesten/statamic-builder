@@ -40,7 +40,7 @@ class ServiceProvider extends AddonServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/builder.php' => config_path('builder.php'),
+                __DIR__.'/../config/builder.php' => config_path('statamic/builder.php'),
             ], 'statamic');
 
             $this->commands([

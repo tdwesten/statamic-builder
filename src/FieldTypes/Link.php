@@ -47,7 +47,7 @@ class Link extends Field
         return $this;
     }
 
-    public function fullscreen(bool $fullscreen)
+    public function fullscreen(bool $fullscreen = true)
     {
         $this->fullScreen = $fullscreen;
 

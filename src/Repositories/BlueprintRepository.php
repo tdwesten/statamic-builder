@@ -44,7 +44,7 @@ class BlueprintRepository extends FieldsBlueprintRepository
 
     public static function findBlueprint($namespace, $handle): ?Blueprint
     {
-        $registeredBlueprints = config('builder.blueprints', []);
+        $registeredBlueprints = config('statamic.builder.blueprints', []);
 
         if (! isset($registeredBlueprints[$namespace][$handle])) {
             return null;

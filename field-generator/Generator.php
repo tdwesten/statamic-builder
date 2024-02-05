@@ -14,6 +14,12 @@ if (empty($newClassName)) {
 $outputDirectory = __DIR__.'/../src/FieldTypes/';
 $testOutputDirectory = __DIR__.'/../tests/Unit/';
 
+// check if the class already exists
+if (file_exists($outputDirectory.$newClassName.'.php')) {
+    echo "The field already exists.\n";
+    exit(1);
+}
+
 // Read the template file
 $templateContent = file_get_contents($templateFile);
 
