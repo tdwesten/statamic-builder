@@ -6,14 +6,16 @@ use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\DefaultValue;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 
-class ButtonGroup extends Field
+class Checkboxes extends Field
 {
     use DefaultValue;
     use Makeble;
 
-    protected $type = 'button_group';
+    protected $type = 'checkboxes';
 
     protected $options = [];
+
+    protected $inline = false;
 
     public function __construct(string $handle)
     {
@@ -25,12 +27,20 @@ class ButtonGroup extends Field
         return collect([
             'options' => $this->options,
             'default' => $this->default,
+            'inline' => $this->inline,
         ]);
     }
 
     public function options(array $options): self
     {
         $this->options = $options;
+
+        return $this;
+    }
+
+    public function inline(bool $inline = true): self
+    {
+        $this->inline = $inline;
 
         return $this;
     }
