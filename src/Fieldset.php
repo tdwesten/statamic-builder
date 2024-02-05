@@ -3,6 +3,7 @@
 namespace Tdwesten\StatamicBuilder;
 
 use Illuminate\Support\Collection;
+use Tdwesten\StatamicBuilder\Helpers\FieldParser;
 
 class Fieldset
 {
@@ -58,6 +59,9 @@ class Fieldset
 
     public function fieldsToArray(): array
     {
+
+        $this->fields = FieldParser::parseMixedFieldsToFlatCollection($this->fields);
+
         return collect($this->fields)->map(function ($field) {
             return $field->prefix($this->prefix)->toArray();
         })->toArray();
@@ -68,6 +72,13 @@ class Fieldset
         return collect($this->fields)->map(function ($field) {
             return $field->prefix($this->prefix);
         });
+    }
+
+    public function prefix($prefix)
+    {
+        $this->prefix = $prefix;
+
+        return $this;
     }
 
     public function getPrefix(): string

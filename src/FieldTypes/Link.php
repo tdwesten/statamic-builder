@@ -15,6 +15,8 @@ class Link extends Field
 
     protected $container;
 
+    protected $fullScreen;
+
     public function __construct(string $handle)
     {
         parent::__construct($handle);
@@ -27,6 +29,7 @@ class Link extends Field
         return collect([
             'collections' => $this->collections->toArray(),
             'container' => $this->container,
+            'fullscreen' => $this->fullScreen,
         ]);
     }
 
@@ -40,6 +43,13 @@ class Link extends Field
     public function container(string $container)
     {
         $this->container = $container;
+
+        return $this;
+    }
+
+    public function fullscreen(bool $fullscreen)
+    {
+        $this->fullScreen = $fullscreen;
 
         return $this;
     }

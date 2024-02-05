@@ -61,3 +61,20 @@ test('A fieldset can be used in group', function () {
 
     expect($fields['tabs']['main']['sections'][0]['fields'][1]['field']['fields'][0]['import'])->toBe('testfieldset');
 });
+
+test('A fieldset can be used in a fieldset', function () {
+    $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('school');
+    $blueprint
+        ->addTab('main', [
+            Section::make('main', [
+                Text::make('name')->displayName('Name'),
+                TestFieldset::make('test'),
+            ]),
+        ]);
+
+    $fields = $blueprint->toArray();
+
+    expect($fields)->toBeArray();
+
+    expect($fields['tabs']['main']['sections'][0]['fields'][1]['import'])->toBe('testfieldset');
+});
