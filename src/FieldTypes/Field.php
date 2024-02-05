@@ -269,7 +269,7 @@ class Field implements Renderable
         return $this;
     }
 
-    public function default($default)
+    public function default(string $default)
     {
         $this->default = $default;
 
