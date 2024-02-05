@@ -1,8 +1,4 @@
 Add field Bard
-Add field CollectionRoutes
-Add field Collections
-Add field CollectionTitleFormats
-Add field Color
 Add field Concerns
 Add field Date
 Add field Entries
