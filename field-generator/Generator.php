@@ -39,7 +39,10 @@ file_put_contents($newClassFileName, $templateContent);
 file_put_contents($newTestFileName, $testTemplateContent);
 
 // Output the result
-echo "New field class created successfully at $newClassFileName.";
+echo 'New [field] class created successfully at:';
+echo $newClassFileName;
 echo PHP_EOL;
 echo PHP_EOL;
-echo "New field test class created successfully at $newTestFileName.";
+echo 'New field [test] class created successfully at:';
+echo $newTestFileName;
+echo PHP_EOL;
