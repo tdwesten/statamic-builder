@@ -8,53 +8,30 @@ use Tdwesten\StatamicBuilder\Contracts\MaxItems;
 use Tdwesten\StatamicBuilder\Contracts\QueryScopes;
 use Tdwesten\StatamicBuilder\Contracts\UISelectMode;
 
-class Terms extends Field
+class Users extends Field
 {
     use Makeble;
     use MaxItems;
     use QueryScopes;
     use UISelectMode;
 
-    protected $type = 'terms';
+    protected $type = 'users';
 
-    /**
-     * @var Collection
-     */
-    protected $taxonomies;
-
-    protected $create = true;
-
-    protected $icon = 'taxonomy';
+    protected $default;
 
     protected $queryScopes;
 
-    public function __construct($handle)
+    public function __construct(string $handle)
     {
-        parent::__construct($handle, 'text');
+        parent::__construct($handle);
     }
 
     public function fieldToArray(): Collection
     {
         return collect([
             'max_items' => $this->maxItems,
-            'taxonomies' => $this->taxonomies?->toArray(),
             'mode' => $this->mode->value,
-            'create' => $this->create,
             'query_scopes' => $this->queryScopes,
         ]);
-    }
-
-    public function taxonomies(array $taxonomies)
-    {
-        $this->taxonomies = collect($taxonomies);
-
-        return $this;
-    }
-
-    public function create(bool $create)
-    {
-        $this->create = $create;
-
-        return $this;
     }
 }

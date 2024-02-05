@@ -1,8 +1,10 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Enums\UIModeOption;
+
 test('Terms field renders', function () {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
-    $text->displayName('Counties')
+    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+    $terms->displayName('Counties')
         ->required()
         ->instructions('The counties of the school')
         ->taxonomies(['counties']);
@@ -33,12 +35,12 @@ test('Terms field renders', function () {
         ],
     ];
 
-    expect($text->toArray())->toBe($expected);
+    expect($terms->toArray())->toBe($expected);
 });
 
 test('You can set max items', function () {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
-    $text->displayName('Counties')
+    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+    $terms->displayName('Counties')
         ->required()
         ->instructions('The counties of the school')
         ->taxonomies(['counties'])
@@ -71,12 +73,12 @@ test('You can set max items', function () {
         ],
     ];
 
-    expect($text->toArray())->toBe($expected);
+    expect($terms->toArray())->toBe($expected);
 });
 
 test('Terms field renders with multiple taxonomies', function () {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
-    $text->displayName('Counties')
+    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+    $terms->displayName('Counties')
         ->required()
         ->instructions('The counties of the school')
         ->taxonomies(['counties', 'cities']);
@@ -108,16 +110,16 @@ test('Terms field renders with multiple taxonomies', function () {
         ],
     ];
 
-    expect($text->toArray())->toBe($expected);
+    expect($terms->toArray())->toBe($expected);
 });
 
 test('Terms field renders with multiple taxonomies and mode', function () {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
-    $text->displayName('Counties')
+    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+    $terms->displayName('Counties')
         ->required()
         ->instructions('The counties of the school')
         ->taxonomies(['counties', 'cities'])
-        ->mode('select');
+        ->mode(UIModeOption::Select);
 
     $expected = [
         'handle' => 'counties',
@@ -146,16 +148,16 @@ test('Terms field renders with multiple taxonomies and mode', function () {
         ],
     ];
 
-    expect($text->toArray())->toBe($expected);
+    expect($terms->toArray())->toBe($expected);
 });
 
 test('Terms field renders with create option', function () {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
-    $text->displayName('Counties')
+    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+    $terms->displayName('Counties')
         ->required()
         ->instructions('The counties of the school')
         ->taxonomies(['counties', 'cities'])
-        ->mode('select')
+        ->mode(UIModeOption::Select)
         ->create(false);
 
     $expected = [
@@ -185,5 +187,17 @@ test('Terms field renders with create option', function () {
         ],
     ];
 
-    expect($text->toArray())->toBe($expected);
+    expect($terms->toArray())->toBe($expected);
+});
+
+test('can have query scopes', function () {
+    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+
+    $terms->queryScopes([
+        'featured', 'published',
+    ]);
+
+    expect($terms->toArray()['field']['query_scopes'])->toBe([
+        'featured', 'published',
+    ]);
 });
