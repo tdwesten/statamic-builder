@@ -3,9 +3,7 @@
 [ ] Add field Revealer
 [ ] Add field Section
 [ ] Add field Select
-[ ] Add field Sites
 [ ] Add field Slug
 [ ] Add field Spacer
 [ ] Add field Structures
 [ ] Add field Table
-[ ] Add field Taggable
