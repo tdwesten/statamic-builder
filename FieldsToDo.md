@@ -1,7 +1,4 @@
 [ ] Add field Bard
-[ ] Add field Entries
-[ ] Add field Floatval
-[ ] Add field Grid
 [ ] Add field Html
 [ ] Add field Icon
 [ ] Add field Lists

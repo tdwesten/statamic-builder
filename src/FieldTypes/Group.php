@@ -3,17 +3,17 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
+use Tdwesten\StatamicBuilder\Contracts\Fullscreen;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
 use Tdwesten\StatamicBuilder\Helpers\FieldParser;
 
 class Group extends Field implements Renderable
 {
+    use Fullscreen;
     use Makeble;
 
     protected $fields;
-
-    protected $fullscreen = false;
 
     public function __construct(string $handle, $fields = [])
     {
@@ -28,13 +28,6 @@ class Group extends Field implements Renderable
     public static function make($handle, $fields = []): static
     {
         return new static($handle, $fields);
-    }
-
-    public function fullscreen(bool $fullscreen = true)
-    {
-        $this->fullscreen = $fullscreen;
-
-        return $this;
     }
 
     public function fieldToArray(): Collection
