@@ -5,13 +5,13 @@ namespace Tdwesten\StatamicBuilder\FieldTypes;
 use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 
-class Yaml extends Field
+class Lists extends Field
 {
     use Makeble;
 
-    protected $type = 'yaml';
+    protected $type = 'list';
 
-    protected $default = '';
+    protected $default;
 
     public function __construct(string $handle)
     {
