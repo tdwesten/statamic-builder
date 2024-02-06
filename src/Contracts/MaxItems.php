@@ -4,11 +4,11 @@ namespace Tdwesten\StatamicBuilder\Contracts;
 
 trait MaxItems
 {
-    protected $maxItems;
+    protected $max_items;
 
     public function maxItems(int $count)
     {
-        $this->maxItems = $count;
+        $this->max_items = $count;
 
         return $this;
     }

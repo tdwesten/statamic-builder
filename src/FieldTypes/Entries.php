@@ -31,7 +31,7 @@ class Entries extends Field
     public function fieldToArray(): Collection
     {
         return collect([
-            'max_items' => $this->maxItems,
+            'max_items' => $this->max_items,
             'mode' => $this->mode->value,
             'collections' => $this->collections,
             'search_index' => $this->searchIndex,

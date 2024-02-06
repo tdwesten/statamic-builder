@@ -36,7 +36,7 @@ class Terms extends Field
     public function fieldToArray(): Collection
     {
         return collect([
-            'max_items' => $this->maxItems,
+            'max_items' => $this->max_items,
             'taxonomies' => $this->taxonomies?->toArray(),
             'mode' => $this->mode->value,
             'create' => $this->create,
