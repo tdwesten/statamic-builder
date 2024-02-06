@@ -3,6 +3,5 @@
 [ ] Add field Revealer
 [ ] Add field Section
 [ ] Add field Select
-[ ] Add field Slug
 [ ] Add field Structures
 [ ] Add field Table
