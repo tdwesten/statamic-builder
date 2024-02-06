@@ -1,42 +1,22 @@
-Add field Bard
-Add field Concerns
-Add field Date
-Add field Entries
-Add field FieldDisplay
-Add field Files
-Add field Floatval
-Add field GlobalSetSites
-Add field Grid
-Add field Group
-Add field HasSelectOptions
-Add field Hidden
-Add field Html
-Add field Icon
-Add field Integer
-Add field Link
-Add field Lists
-Add field Markdown
-Add field Navs
-Add field NestedFields
-Add field Relationship
-Add field Replicator
-Add field Revealer
-Add field RowId
-Add field Section
-Add field Select
-Add field Sets
-Add field Sites
-Add field Slug
-Add field Spacer
-Add field Structures
-Add field Table
-Add field Taggable
-Add field Taxonomies
-Add field Template
-Add field TemplateFolder
-Add field UserGroups
-Add field UserRoles
-Add field Users
-Add field Video
-Add field Width
-Add field Yaml
+[ ] Add field Bard
+[ ] Add field Entries
+[ ] Add field Floatval
+[ ] Add field Grid
+[ ] Add field Html
+[ ] Add field Icon
+[ ] Add field Lists
+[ ] Add field Markdown
+[ ] Add field Navs
+[ ] Add field Replicator
+[ ] Add field Revealer
+[ ] Add field Section
+[ ] Add field Select
+[ ] Add field Sites
+[ ] Add field Slug
+[ ] Add field Spacer
+[ ] Add field Structures
+[ ] Add field Table
+[ ] Add field Taggable
+[ ] Add field Taxonomies
+[ ] Add field Template
+[ ] Add field UserGroups
