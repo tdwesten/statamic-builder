@@ -1,5 +1,4 @@
 [ ] Add field Bard
-[ ] Add field Icon
 [ ] Add field Lists
 [ ] Add field Markdown
 [ ] Add field Navs
