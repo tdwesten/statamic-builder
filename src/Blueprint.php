@@ -36,8 +36,6 @@ class Blueprint implements BlueprintInterface
             'tabs' => $this->tabsToArray(),
         ];
 
-        ray($blueprint);
-
         return $blueprint;
     }
 
