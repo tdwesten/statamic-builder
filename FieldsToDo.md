@@ -10,5 +10,3 @@
 [ ] Add field Table
 [ ] Add field Taggable
 [ ] Add field Taxonomies
-[ ] Add field Template
-[ ] Add field UserGroups
