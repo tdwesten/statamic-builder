@@ -9,4 +9,3 @@
 [ ] Add field Structures
 [ ] Add field Table
 [ ] Add field Taggable
-[ ] Add field Taxonomies
