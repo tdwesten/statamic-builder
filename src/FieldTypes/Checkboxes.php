@@ -31,14 +31,14 @@ class Checkboxes extends Field
         ]);
     }
 
-    public function options(array $options): self
+    public function options(array $options)
     {
         $this->options = $options;
 
         return $this;
     }
 
-    public function inline(bool $inline = true): self
+    public function inline(bool $inline = true)
     {
         $this->inline = $inline;
 

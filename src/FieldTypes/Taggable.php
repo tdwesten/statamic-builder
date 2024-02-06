@@ -3,17 +3,15 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
-use Tdwesten\StatamicBuilder\Contracts\DefaultValue;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 
-class ButtonGroup extends Field
+class Taggable extends Field
 {
-    use DefaultValue;
     use Makeble;
 
-    protected $type = 'button_group';
+    protected $type = 'taggable';
 
-    protected $options = [];
+    protected $placeholder;
 
     public function __construct(string $handle)
     {
@@ -23,14 +21,13 @@ class ButtonGroup extends Field
     public function fieldToArray(): Collection
     {
         return collect([
-            'options' => $this->options,
-            'default' => $this->default,
+            'placeholder' => $this->placeholder,
         ]);
     }
 
-    public function options(array $options)
+    public function placeholder(string $placeholder)
     {
-        $this->options = $options;
+        $this->placeholder = $placeholder;
 
         return $this;
     }

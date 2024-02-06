@@ -41,35 +41,35 @@ class Grid extends Field
         ]);
     }
 
-    public function reorderable(bool $reorderable = true): self
+    public function reorderable(bool $reorderable = true)
     {
         $this->reorderable = $reorderable;
 
         return $this;
     }
 
-    public function addRow(string $add_row): self
+    public function addRow(string $add_row)
     {
         $this->add_row = $add_row;
 
         return $this;
     }
 
-    public function maxRows(int $max_rows): self
+    public function maxRows(int $max_rows)
     {
         $this->max_rows = $max_rows;
 
         return $this;
     }
 
-    public function minRows(int $min_rows): self
+    public function minRows(int $min_rows)
     {
         $this->min_rows = $min_rows;
 
         return $this;
     }
 
-    public function mode(GridModeOption $mode): self
+    public function mode(GridModeOption $mode)
     {
         $this->mode = $mode;
 

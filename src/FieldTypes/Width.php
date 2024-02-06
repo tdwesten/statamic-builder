@@ -28,14 +28,14 @@ class Width extends Field
         ]);
     }
 
-    public function options(array $options): self
+    public function options(array $options)
     {
         $this->options = $options;
 
         return $this;
     }
 
-    public function default($default): self
+    public function default($default)
     {
         $this->default = $default;
 

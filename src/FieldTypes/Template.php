@@ -31,21 +31,21 @@ class Template extends Field
         ]);
     }
 
-    public function hidePartials(bool $hide = true): self
+    public function hidePartials(bool $hide = true)
     {
         $this->hide_patails = $hide;
 
         return $this;
     }
 
-    public function blueprint(bool $blueprint = true): self
+    public function blueprint(bool $blueprint = true)
     {
         $this->blueprint = $blueprint;
 
         return $this;
     }
 
-    public function folder(string $folder): self
+    public function folder(string $folder)
     {
         $this->folder = $folder;
 

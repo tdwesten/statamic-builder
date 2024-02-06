@@ -37,35 +37,35 @@ class Range extends Field
         ]);
     }
 
-    public function min(int $min): self
+    public function min(int $min)
     {
         $this->min = $min;
 
         return $this;
     }
 
-    public function max(int $max): self
+    public function max(int $max)
     {
         $this->max = $max;
 
         return $this;
     }
 
-    public function step(int $step): self
+    public function step(int $step)
     {
         $this->step = $step;
 
         return $this;
     }
 
-    public function prepend(string $prepend): self
+    public function prepend(string $prepend)
     {
         $this->prepend = $prepend;
 
         return $this;
     }
 
-    public function append(string $append): self
+    public function append(string $append)
     {
         $this->append = $append;
 

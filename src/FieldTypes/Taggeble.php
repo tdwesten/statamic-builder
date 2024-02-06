@@ -5,13 +5,11 @@ namespace Tdwesten\StatamicBuilder\FieldTypes;
 use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 
-class Video extends Field
+class Taggeble extends Field
 {
     use Makeble;
 
-    protected $type = 'video';
-
-    protected $placeholder = '';
+    protected $type = '__type__';
 
     public function __construct(string $handle)
     {
@@ -20,15 +18,6 @@ class Video extends Field
 
     public function fieldToArray(): Collection
     {
-        return collect([
-            'placeholder' => $this->placeholder,
-        ]);
-    }
-
-    public function placeholder(string $placeholder)
-    {
-        $this->placeholder = $placeholder;
-
-        return $this;
+        return collect([]);
     }
 }

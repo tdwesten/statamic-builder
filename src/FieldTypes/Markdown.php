@@ -74,77 +74,77 @@ class Markdown extends Field
         })->toArray();
     }
 
-    public function container(string $container): self
+    public function container(string $container)
     {
         $this->container = $container;
 
         return $this;
     }
 
-    public function folder(string $folder): self
+    public function folder(string $folder)
     {
         $this->folder = $folder;
 
         return $this;
     }
 
-    public function restrict(string $restrict): self
+    public function restrict(string $restrict)
     {
         $this->restrict = $restrict;
 
         return $this;
     }
 
-    public function buttons(array $buttons): self
+    public function buttons(array $buttons)
     {
         $this->buttons = $buttons;
 
         return $this;
     }
 
-    public function automaticLineBreaks(bool $automatic_line_breaks = true): self
+    public function automaticLineBreaks(bool $automatic_line_breaks = true)
     {
         $this->automatic_line_breaks = $automatic_line_breaks;
 
         return $this;
     }
 
-    public function automaticLinks(bool $automatic_links = true): self
+    public function automaticLinks(bool $automatic_links = true)
     {
         $this->automatic_links = $automatic_links;
 
         return $this;
     }
 
-    public function escapeMarkup(bool $escape_markup = true): self
+    public function escapeMarkup(bool $escape_markup = true)
     {
         $this->escape_markup = $escape_markup;
 
         return $this;
     }
 
-    public function headingAnchors(bool $heading_anchors = true): self
+    public function headingAnchors(bool $heading_anchors = true)
     {
         $this->heading_anchors = $heading_anchors;
 
         return $this;
     }
 
-    public function smartypants(bool $smartypants = true): self
+    public function smartypants(bool $smartypants = true)
     {
         $this->smartypants = $smartypants;
 
         return $this;
     }
 
-    public function tableOfContents(bool $table_of_contents = true): self
+    public function tableOfContents(bool $table_of_contents = true)
     {
         $this->table_of_contents = $table_of_contents;
 
         return $this;
     }
 
-    public function parser(string $parser): self
+    public function parser(string $parser)
     {
         $this->parser = $parser;
 

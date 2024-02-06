@@ -6,7 +6,7 @@ trait Fullscreen
 {
     protected $fullscreen = false;
 
-    public function fullscreen(bool $fullscreen = true): self
+    public function fullscreen(bool $fullscreen = true)
     {
         $this->fullscreen = $fullscreen;
 

@@ -38,14 +38,14 @@ class Entries extends Field
         ]);
     }
 
-    public function collections(array $collections): self
+    public function collections(array $collections)
     {
         $this->collections = $collections;
 
         return $this;
     }
 
-    public function searchIndex(string $searchIndex): self
+    public function searchIndex(string $searchIndex)
     {
         $this->searchIndex = $searchIndex;
 

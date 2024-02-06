@@ -31,14 +31,14 @@ class Icon extends Field
         ]);
     }
 
-    public function directory(string $directory): self
+    public function directory(string $directory)
     {
         $this->directory = $directory;
 
         return $this;
     }
 
-    public function folder(string $folder): self
+    public function folder(string $folder)
     {
         $this->folder = $folder;
 
