@@ -29,6 +29,8 @@ class Select extends Field
 
     protected $cast_booleans = false;
 
+    protected $options = [];
+
     public function __construct(string $handle)
     {
         parent::__construct($handle);
@@ -45,7 +47,15 @@ class Select extends Field
             'clearable' => $this->clearable,
             'searchable' => $this->searchable,
             'cast_booleans' => $this->cast_booleans,
+            'options' => $this->options,
         ]);
+    }
+
+    public function options(array $options)
+    {
+        $this->options = $options;
+
+        return $this;
     }
 
     public function taggable(bool $taggable = true)

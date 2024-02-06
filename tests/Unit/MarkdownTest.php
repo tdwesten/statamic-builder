@@ -120,7 +120,5 @@ test('Can define parser', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Markdown('title');
     $field->parser('markdown');
 
-    ray($field->toArray());
-
     expect($field->toArray()['field']['parser'])->toBe('markdown');
 });
