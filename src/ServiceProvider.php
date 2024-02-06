@@ -32,6 +32,10 @@ class ServiceProvider extends AddonServiceProvider
         $this->app->bind(\Statamic\Http\Controllers\CP\Collections\CollectionBlueprintsController::class, function () {
             return new \Tdwesten\StatamicBuilder\Http\Controllers\CollectionBlueprintsController;
         });
+
+        $this->app->bind(\Statamic\Http\Controllers\CP\Globals\GlobalsBlueprintController::class, function () {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\GlobalesBlueprintsController;
+        });
     }
 
     public function boot()

@@ -38,7 +38,14 @@ class BlueprintRepository extends FieldsBlueprintRepository
                     : $this->findFallback($blueprint);
             }
 
-            return $builderBlueprint->register();
+            $contents = $builderBlueprint->toArray();
+
+            return $this->make($handle)
+                ->setHidden(Arr::pull($contents, 'hide'))
+                ->setOrder(Arr::pull($contents, 'order'))
+                ->setInitialPath('')
+                ->setNamespace($namespace ?? null)
+                ->setContents($contents);
         });
     }
 
