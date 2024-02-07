@@ -3,6 +3,7 @@
 namespace Tdwesten\StatamicBuilder;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class Fieldset
 {
@@ -37,23 +38,32 @@ class Fieldset
     public function fieldsetToArray(): array
     {
         return [
-            'title' => $this->getSlug(),
+            'title' => $this->getTitle(),
             'fields' => $this->fieldsToArray(),
         ];
 
     }
 
-    public function getSlug(): string
-    {
-        return $this->generateSlug();
-    }
-
-    public function generateSlug(): string
+    public function getTitle(): string
     {
         $class = get_called_class();
         $slug = explode('\\', $class);
 
-        return strtolower(end($slug));
+        $className = end($slug);
+        $className = str_replace('Fieldset', '', $className);
+        $className = Str::snake($className);
+
+        return Str::title(str_replace('_', ' ', $className));
+    }
+
+    public function getSlug(): string
+    {
+        $class = get_called_class();
+        $slug = explode('\\', $class);
+
+        $className = end($slug);
+
+        return Str::snake($className);
     }
 
     public function fieldsToArray(): array
