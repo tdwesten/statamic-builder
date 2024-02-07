@@ -50,6 +50,7 @@ class ServiceProvider extends AddonServiceProvider
             $this->commands([
                 Console\MakeBlueprint::class,
                 Console\MakeFieldset::class,
+                Console\Importer::class,
             ]);
         }
     }

@@ -3,12 +3,14 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
+use Tdwesten\StatamicBuilder\Contracts\ConditionalLogic;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
 class Field implements Renderable
 {
+    use ConditionalLogic;
     use Makeble;
 
     protected $handle;
@@ -63,6 +65,7 @@ class Field implements Renderable
 
         $field = $fieldDefaults
             ->merge($this->fieldToArray())
+            ->merge($this->conditionalLogicToArray())
             ->merge($this->customAttributes ?? []);
 
         $content = collect([
