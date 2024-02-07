@@ -2,16 +2,17 @@
 
 namespace Tdwesten\StatamicBuilder\Repositories;
 
+use Illuminate\Support\Collection;
 use Statamic\Facades\Blink;
 use Statamic\Facades\File;
 use Statamic\Facades\YAML;
 use Statamic\Fields\Blueprint as StatamicBlueprint;
-use Statamic\Fields\BlueprintRepository as FieldsBlueprintRepository;
+use Statamic\Fields\BlueprintRepository as StatamicBlueprintRepository;
 use Statamic\Support\Arr;
 use Statamic\Support\Str;
 use Tdwesten\StatamicBuilder\Blueprint;
 
-class BlueprintRepository extends FieldsBlueprintRepository
+class BlueprintRepository extends StatamicBlueprintRepository
 {
     public function find($blueprint): ?StatamicBlueprint
     {
@@ -60,6 +61,19 @@ class BlueprintRepository extends FieldsBlueprintRepository
         return new $registeredBlueprints[$namespace][$handle]($handle);
     }
 
+    public static function findBlueprintInNamespace($namespace): Collection
+    {
+        $registeredBlueprints = collect(config('statamic.builder.blueprints', []));
+
+        $namespace = str_replace('/', '.', $namespace);
+
+        $blueprints = collect($registeredBlueprints->get($namespace, collect()));
+
+        return $blueprints->map(function ($blueprint, $handle) {
+            return new $blueprint($handle);
+        });
+    }
+
     protected function makeBlueprintFromFile($path, $namespace = null)
     {
         return Blink::store(self::BLINK_FROM_FILE)->once($path, function () use ($path, $namespace) {
@@ -86,5 +100,25 @@ class BlueprintRepository extends FieldsBlueprintRepository
                 ->setNamespace($namespace ?? null)
                 ->setContents($contents);
         });
+    }
+
+    public function in(string $namespace)
+    {
+        $blueprints = parent::in($namespace);
+
+        $builderBlueprints = self::findBlueprintInNamespace($namespace);
+
+        $builderBlueprints = $builderBlueprints->map(function (Blueprint $blueprint, $handle) use ($namespace) {
+
+            $contents = $blueprint->toArray();
+
+            return $this->make($handle)
+                ->setHidden(Arr::pull($contents, 'hide'))
+                ->setOrder(Arr::pull($contents, 'order'))
+                ->setNamespace($namespace ?? null)
+                ->setContents($contents);
+        });
+
+        return $blueprints->merge($builderBlueprints);
     }
 }
