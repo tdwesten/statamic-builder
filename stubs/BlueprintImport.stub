@@ -1,0 +1,22 @@
+<?php
+
+namespace {{ namespace }};
+
+use Tdwesten\StatamicBuilder\Blueprint;
+use Tdwesten\StatamicBuilder\FieldTypes\Section;
+use Tdwesten\StatamicBuilder\FieldTypes\Text;
+{{ useStatements }}
+
+class {{ className }} extends Blueprint
+{
+    public $title = {{title}};
+
+    public $handle = {{handle}};
+
+    public $hidden = {{hidden}};
+
+    public function register(): Blueprint
+    {
+        {{contents}}
+    }
+}

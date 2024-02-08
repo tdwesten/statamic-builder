@@ -6,21 +6,25 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Statamic\Facades\YAML;
 
-class Exporter extends Command
+class Export extends Command
 {
-    protected $signature = 'statamic-builder:exporter';
+    protected $signature = 'statamic-builder:export';
 
     protected $description = 'Export blueprints and fieldsets from the Statamic Builder to YAML.';
 
-    protected $name = 'Statamic Builder Exporter';
+    protected $name = 'Statamic Builder Export';
 
     public function handle()
     {
-        $this->info('Importing blueprints and fieldsets...');
+        $this->line('Exporting blueprints and fieldsets...');
+
+        $this->newLine();
 
         $this->exportBlueprints();
 
         $this->exportFieldSets();
+
+        $this->newLine();
 
         $this->info('All done!');
     }
@@ -51,7 +55,7 @@ class Exporter extends Command
 
         $yaml = YAML::dump((new $blueprint($handle))->toArray());
 
-        $this->info("Exporting blueprint [{$namespace}.{$handle}] to [{$path}]");
+        $this->line("Exporting blueprint [{$namespace}.{$handle}] to [{$path}]");
 
         $filesystem->put("{$namespace}/{$handle}.yaml", $yaml);
     }
@@ -81,7 +85,7 @@ class Exporter extends Command
 
         $yaml = YAML::dump($fieldset->fieldsetToArray());
 
-        $this->info("Exporting fieldset [{$handle}] to [{$path}]");
+        $this->line("Exporting fieldset [{$handle}] to [{$path}]");
 
         $filesystem->put("{$handle}.yaml", $yaml);
     }

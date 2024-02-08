@@ -4,8 +4,6 @@ namespace Tdwesten\StatamicBuilder\Repositories;
 
 use Illuminate\Support\Collection;
 use Statamic\Facades\Blink;
-use Statamic\Facades\File;
-use Statamic\Facades\YAML;
 use Statamic\Fields\Blueprint as StatamicBlueprint;
 use Statamic\Fields\BlueprintRepository as StatamicBlueprintRepository;
 use Statamic\Support\Arr;
@@ -16,38 +14,21 @@ class BlueprintRepository extends StatamicBlueprintRepository
 {
     public function find($blueprint): ?StatamicBlueprint
     {
-        Blink::store(self::BLINK_FOUND)->forget($blueprint);
+        [$namespace, $handle] = $this->getNamespaceAndHandle($blueprint);
 
-        return Blink::store(self::BLINK_FOUND)->once($blueprint, function () use ($blueprint) {
-            [$namespace, $handle] = $this->getNamespaceAndHandle($blueprint);
-            if (! $blueprint) {
-                return null;
-            }
+        $builderBlueprint = $this->findBlueprint($namespace, $handle);
 
-            $builderBlueprint = $this->findBlueprint($namespace, $handle);
-
-            if (! $builderBlueprint) {
-                // Fall back to the standard blueprint find method.
-                $parts = explode('::', $blueprint);
-
-                $path = count($parts) > 1
-                    ? $this->findNamespacedBlueprintPath($blueprint)
-                    : $this->findStandardBlueprintPath($blueprint);
-
-                return $path !== null && File::exists($path)
-                    ? $this->makeBlueprintFromFile($path, count($parts) > 1 ? $parts[0] : null)
-                    : $this->findFallback($blueprint);
-            }
-
+        if ($builderBlueprint) {
             $contents = $builderBlueprint->toArray();
 
             return $this->make($handle)
                 ->setHidden(Arr::pull($contents, 'hide'))
                 ->setOrder(Arr::pull($contents, 'order'))
-                ->setInitialPath('')
                 ->setNamespace($namespace ?? null)
                 ->setContents($contents);
-        });
+        }
+
+        return parent::find($blueprint);
     }
 
     public static function findBlueprint($namespace, $handle): ?Blueprint
@@ -76,30 +57,28 @@ class BlueprintRepository extends StatamicBlueprintRepository
 
     protected function makeBlueprintFromFile($path, $namespace = null)
     {
-        return Blink::store(self::BLINK_FROM_FILE)->once($path, function () use ($path, $namespace) {
-            if (! $namespace || ! isset($this->additionalNamespaces[$namespace])) {
-                [$namespace, $handle] = $this->getNamespaceAndHandle(
-                    Str::after(Str::before($path, '.yaml'), $this->directory.'/')
-                );
-            } else {
-                $handle = Str::of($path)->afterLast('/')->before('.');
-            }
+        [$namespace, $handle] = $this->getNamespaceAndHandle(
+            Str::after(Str::before($path, '.yaml'), $this->directory.'/')
+        );
 
-            $builderBlueprint = self::findBlueprint($namespace, $handle);
+        $builderBlueprint = self::findBlueprint($namespace, $handle);
 
-            if (! $builderBlueprint) {
-                $contents = YAML::file($path)->parse();
-            } else {
+        if ($builderBlueprint) {
+            $key = $namespace.'/'.$handle;
+
+            return Blink::store(self::BLINK_FROM_FILE)->once($key, function () use ($path, $namespace, $builderBlueprint, $handle) {
                 $contents = $builderBlueprint->toArray();
-            }
 
-            return $this->make($handle)
-                ->setHidden(Arr::pull($contents, 'hide'))
-                ->setOrder(Arr::pull($contents, 'order'))
-                ->setInitialPath($path)
-                ->setNamespace($namespace ?? null)
-                ->setContents($contents);
-        });
+                return $this->make($handle)
+                    ->setHidden(Arr::pull($contents, 'hide'))
+                    ->setOrder(Arr::pull($contents, 'order'))
+                    ->setInitialPath($path)
+                    ->setNamespace($namespace ?? null)
+                    ->setContents($contents);
+            });
+        }
+
+        return parent::makeBlueprintFromFile($path, $namespace);
     }
 
     public function in(string $namespace)
