@@ -7,6 +7,7 @@ use Tdwesten\StatamicBuilder\Contracts\ConditionalLogic;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\Helpers\FieldParser;
 
 class Field implements Renderable
 {
@@ -46,6 +47,8 @@ class Field implements Renderable
     protected $customAttributes;
 
     protected $default;
+
+    protected $fields;
 
     /**
      * @var Collection
@@ -277,5 +280,14 @@ class Field implements Renderable
         $this->default = $default;
 
         return $this;
+    }
+
+    public function fieldsToArray()
+    {
+        $this->fields = FieldParser::parseMixedFieldsToFlatCollection($this->fields);
+
+        return collect($this->fields)->map(function ($field) {
+            return $field->toArray();
+        })->all();
     }
 }

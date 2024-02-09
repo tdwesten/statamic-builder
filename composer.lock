@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b82c2f4f0fd06801db90db0dfeab784a",
+    "content-hash": "b4ce97ecc693577314c255244cd233af",
     "packages": [
         {
             "name": "ajthinking/archetype",
@@ -3399,6 +3399,75 @@
                 }
             ],
             "time": "2024-01-19T00:21:53+00:00"
+        },
+        {
+            "name": "nette/php-generator",
+            "version": "v4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/php-generator.git",
+                "reference": "08ab9bff22ae34fe4e1d2fe8ba16b3770ea2459f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/php-generator/zipball/08ab9bff22ae34fe4e1d2fe8ba16b3770ea2459f",
+                "reference": "08ab9bff22ae34fe4e1d2fe8ba16b3770ea2459f",
+                "shasum": ""
+            },
+            "require": {
+                "nette/utils": "^3.2.9 || ^4.0",
+                "php": "8.0 - 8.3"
+            },
+            "require-dev": {
+                "jetbrains/phpstorm-attributes": "dev-master",
+                "nette/tester": "^2.4",
+                "nikic/php-parser": "^4.18 || ^5.0",
+                "phpstan/phpstan": "^1.0",
+                "tracy/tracy": "^2.8"
+            },
+            "suggest": {
+                "nikic/php-parser": "to use ClassType::from(withBodies: true) & ClassType::fromCode()"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0-only",
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "https://nette.org/contributors"
+                }
+            ],
+            "description": "🐘 Nette PHP Generator: generates neat PHP code for you. Supports new PHP 8.3 features.",
+            "homepage": "https://nette.org",
+            "keywords": [
+                "code",
+                "nette",
+                "php",
+                "scaffolding"
+            ],
+            "support": {
+                "issues": "https://github.com/nette/php-generator/issues",
+                "source": "https://github.com/nette/php-generator/tree/v4.1.3"
+            },
+            "time": "2024-01-18T17:44:20+00:00"
         },
         {
             "name": "nette/schema",
@@ -8117,62 +8186,6 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.2.7"
             },
             "time": "2023-12-08T13:03:43+00:00"
-        },
-        {
-            "name": "touhidurabir/laravel-stub-generator",
-            "version": "1.0.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/touhidurabir/laravel-stub-generator.git",
-                "reference": "054b4fce65222eb14d731314965011b50d05cdca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/touhidurabir/laravel-stub-generator/zipball/054b4fce65222eb14d731314965011b50d05cdca",
-                "reference": "054b4fce65222eb14d731314965011b50d05cdca",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^8.57||^9.0||^10.0",
-                "php": ">=7.2.0"
-            },
-            "require-dev": {
-                "illuminate/container": "^8.57",
-                "orchestra/testbench": "^6.20",
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Touhidurabir\\StubGenerator\\StubGeneratorServiceProvider"
-                    ],
-                    "aliases": {
-                        "ModelRepository": "Touhidurabir\\StubGenerator\\Facades\\StubGenerator"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Touhidurabir\\StubGenerator\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Touhidur Rahman",
-                    "email": "abircse06@gmail.com"
-                }
-            ],
-            "description": "A laravel package to generate class files from stub files.",
-            "support": {
-                "issues": "https://github.com/touhidurabir/laravel-stub-generator/issues",
-                "source": "https://github.com/touhidurabir/laravel-stub-generator/tree/1.0.7"
-            },
-            "time": "2023-03-07T07:11:43+00:00"
         },
         {
             "name": "ueberdosis/tiptap-php",

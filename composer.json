@@ -29,7 +29,7 @@
         "illuminate/support": "^10.0",
         "laravel/framework": "^10.0",
         "statamic/cms": "^4.46",
-        "touhidurabir/laravel-stub-generator": "^1.0"
+        "nette/php-generator": "^4.1"
     },
     "require-dev": {
         "pestphp/pest": "^2.33",

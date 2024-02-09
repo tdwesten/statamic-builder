@@ -39,7 +39,7 @@ test('A fieldset can be used in a blueprint', function () {
 
     expect($fields)->toBeArray();
 
-    expect($fields['tabs']['main']['sections'][0]['fields'][1]['import'])->toBe('testfieldset');
+    expect($fields['tabs']['main']['sections'][0]['fields'][1]['import'])->toBe('test_fieldset');
 });
 
 test('A fieldset can be used in group', function () {
@@ -59,7 +59,7 @@ test('A fieldset can be used in group', function () {
 
     expect($fields)->toBeArray();
 
-    expect($fields['tabs']['main']['sections'][0]['fields'][1]['field']['fields'][0]['import'])->toBe('testfieldset');
+    expect($fields['tabs']['main']['sections'][0]['fields'][1]['field']['fields'][0]['import'])->toBe('test_fieldset');
 });
 
 test('A fieldset can be used in a fieldset', function () {
@@ -76,5 +76,5 @@ test('A fieldset can be used in a fieldset', function () {
 
     expect($fields)->toBeArray();
 
-    expect($fields['tabs']['main']['sections'][0]['fields'][1]['import'])->toBe('testfieldset');
+    expect($fields['tabs']['main']['sections'][0]['fields'][1]['import'])->toBe('test_fieldset');
 });

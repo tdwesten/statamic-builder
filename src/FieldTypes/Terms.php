@@ -51,7 +51,7 @@ class Terms extends Field
         return $this;
     }
 
-    public function create(bool $create)
+    public function create(bool $create = true)
     {
         $this->create = $create;
 

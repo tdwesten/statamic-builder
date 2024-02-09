@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Statamic\Facades\YAML;
 use Statamic\Filesystem\FlysystemAdapter;
-use Touhidurabir\StubGenerator\Facades\StubGenerator;
+use Tdwesten\StatamicBuilder\Blueprint;
 
 class Importer extends Command
 {
@@ -49,26 +49,34 @@ class Importer extends Command
 
     private function importBlueprint($contents)
     {
+        $namespace = new \Nette\PhpGenerator\PhpNamespace('App\Blueprints');
+
         $title = $contents['title'];
-        $fields = $contents['fields'];
+        $handle = Str::slug($title);
+        $hidden = $contents['hidden'];
 
         $className = $this->generateClassName($title);
         $filename = $this->generateFilename($title);
 
-        StubGenerator::from('../../stubs/BlueprintImport.stub')
-            ->to(app_path("/Blueprints/{$filename}"))
-            ->as($className)
-            ->ext('php')
-            ->withReplacers([
-                'title' => $title,
-                'namespace' => 'App\Blueprints',
-                'className' => $className,
-                'handle' => Str::snake($title),
-                'hidden' => $contents['hide'] ?? false,
-                'useStatements' => $this->generateUseStatements(),
-                'contents' => $this->generateContents($fields),
-            ])
-            ->save();
+        $class = $namespace->addClass($className);
+        $class->setExtends(Blueprint::class);
+
+        // Add properties
+        $class->addProperty('title', $title);
+        $class->addProperty('handle', $handle);
+        $class->addProperty('hidden', $hidden);
+
+        // Add register function
+
+        $registerMethod = $class->addMethod('register')
+            ->setReturnType('Blueprint')
+            ->setBody($this->generateRegisterBody($contents));
+        $registerMethod->addBody('test');
+
+        $printer = new \Nette\PhpGenerator\Printer;
+
+        ray($printer->printClass($class));
+
     }
 
     private function generateUseStatements()
@@ -80,24 +88,9 @@ class Importer extends Command
         })->implode("\n");
     }
 
-    private function generateContents($fields)
+    private function generateRegisterBody($fields): string
     {
-        $contents = collect($fields)->map(function ($field) {
-            $type = $field['type'];
-            $handle = $field['handle'];
-            $fieldType = $this->getFieldType($type);
-
-            $this->useStatements->push($fieldType);
-
-            return [
-                'handle' => $handle,
-                'field' => $this->generateField($field),
-            ];
-        });
-
-        return $contents->map(function ($content) {
-            return $this->generateFieldContent($content);
-        })->implode("\n");
+        return '';
     }
 
     private function generateClassName($title)
