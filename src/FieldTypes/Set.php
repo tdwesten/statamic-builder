@@ -21,16 +21,15 @@ class Set extends Field
 
     public function toArray()
     {
-
         $content = collect([
             'display' => $this->displayName,
             'instructions' => $this->instructions,
             'icon' => $this->icon,
-            'sets' => $this->fieldsToArray(),
+            'fields' => $this->fieldsToArray(),
         ]);
 
         // Sort keys
-        $content['sets'] = collect($content['sets'])->sortKeys()->all();
+        $content = $content->sortKeys();
 
         return $content->toArray();
     }

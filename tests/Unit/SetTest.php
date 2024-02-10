@@ -11,5 +11,5 @@ it('can render to a array', function () {
 
     expect($field->toArray()['instructions'])->toBe('Enter the title');
 
-    expect($field->toArray()['sets'][0]['field']['type'])->toBe('text');
+    expect($field->toArray()['fields'][0]['field']['type'])->toBe('text');
 });

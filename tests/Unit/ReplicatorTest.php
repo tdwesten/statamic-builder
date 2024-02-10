@@ -1,6 +1,7 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Replicator;
 use Tdwesten\StatamicBuilder\FieldTypes\Set;
 use Tdwesten\StatamicBuilder\FieldTypes\SetGroup;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
@@ -43,4 +44,74 @@ it('can have sets', function () {
     ])->displayName('Replicator Veld');
 
     expect($field->toArray()['field']['sets']['nieuwe_set_groep']['display'])->toBe('Nieuwe Set Groep');
+});
+
+it('can render the same output', function () {
+    $output = [
+        'handle' => 'replicator_veld',
+        'field' => [
+            'antlers' => false,
+            'collapse' => false,
+            'display' => 'Replicator Veld',
+            'duplicate' => true,
+            'fullscreen' => true,
+            'hide_display' => false,
+            'instructions_position' => 'above',
+            'listable' => 'hidden',
+            'previews' => true,
+            'replicator_preview' => true,
+            'sets' => [
+                'nieuwe_set_groep' => [
+                    'display' => 'Nieuwe Set Groep',
+                    'instructions' => null,
+                    'icon' => null,
+                    'sets' => [
+                        'set_group_handel' => [
+                            'display' => 'Set group',
+                            'fields' => [
+                                [
+                                    'handle' => 'text_veld',
+                                    'field' => [
+                                        'antlers' => false,
+                                        'display' => 'Text Veld',
+                                        'duplicate' => true,
+                                        'hide_display' => false,
+                                        'input_type' => 'text',
+                                        'instructions_position' => 'above',
+                                        'listable' => 'hidden',
+                                        'replicator_preview' => true,
+                                        'type' => 'text',
+                                        'visibility' => 'visible',
+                                    ],
+                                ],
+                            ],
+                            'icon' => 'addon-boxes-stack',
+                            'instructions' => 'set group instructies',
+                        ],
+                    ],
+                ],
+            ],
+            'type' => 'replicator',
+            'visibility' => 'visible',
+        ],
+    ];
+
+    $field = Replicator::make('replicator_veld', [
+        SetGroup::make('nieuwe_set_groep', [
+            Set::make('set_group_handel', [
+                Text::make('text_veld')->displayName('Text Veld'),
+            ])->icon('addon-boxes-stack')
+                ->instructions('set group instructies')
+                ->displayName('Set group'),
+        ])->displayName('Nieuwe Set Groep'),
+
+    ])->displayName('Replicator Veld')
+        ->previews(true)
+        ->fullscreen(true)
+        ->hideDisplay(false);
+
+    ray($output);
+    ray($field->toArray());
+
+    expect($field->toArray())->toBe($output);
 });

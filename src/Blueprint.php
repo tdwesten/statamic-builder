@@ -41,17 +41,12 @@ class Blueprint implements BlueprintInterface
 
     public function tabsToArray()
     {
-        $tabs = $this->tabs->mapWithKeys(function (Tab $tab) {
+        return $this->tabs->mapWithKeys(function (Tab $tab) {
             return [$tab->getHandle() => $tab->toArray()];
         })->toArray();
-
-        return $tabs;
     }
 
-    public function register()
-    {
-        // (placeholder) Silence is golden
-    }
+    public function register() {}
 
     public function addTab($handle, $content = [], $displayName = null)
     {

@@ -34,15 +34,15 @@ class Replicator extends Field
     {
         return collect([
             'type' => $this->type,
-            'handle' => $this->handle,
-            'sets' => $this->setsToArray(),
+            'sets' => $this->setGroupsToArray(),
             'max_sets' => $this->max_sets,
             'collapse' => $this->collapse->value,
             'previews' => $this->previews,
+            'fullscreen' => $this->fullscreen,
         ]);
     }
 
-    public function setsToArray(): array
+    public function setGroupsToArray(): array
     {
         $this->setGroups = collect($this->setGroups);
 
@@ -59,5 +59,19 @@ class Replicator extends Field
         })->all();
 
         return $setGroups;
+    }
+
+    public function previews($previews = true)
+    {
+        $this->previews = $previews;
+
+        return $this;
+    }
+
+    public function collapse(CollapseOption $collapse)
+    {
+        $this->collapse = $collapse;
+
+        return $this;
     }
 }

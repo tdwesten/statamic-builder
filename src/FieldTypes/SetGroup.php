@@ -22,7 +22,6 @@ class SetGroup extends Field
 
     public function toArray()
     {
-
         $content = collect([
             'display' => $this->displayName,
             'instructions' => $this->instructions,
