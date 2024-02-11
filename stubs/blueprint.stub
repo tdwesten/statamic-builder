@@ -5,25 +5,26 @@ namespace {{ namespace }};
 use Tdwesten\StatamicBuilder\Blueprint;
 use Tdwesten\StatamicBuilder\FieldTypes\Section;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
+use Tdwesten\StatamicBuilder\FieldTypes\Tab;
 
 class {{ class }} extends Blueprint
 {
-    // TODO: Implement $title property
+    // TODO: Add a title for this blueprint
     public $title = '';
 
-    // TODO: Implement $handle property
+    // TODO: Add a handle for this blueprint
     public $handle = '';
 
     public $hidden = false;
 
-    public function register(): Blueprint
+    public function registerTabs(): Array
     {
-        $this->addTab('main', [
-            Text::make('Title', 'title')->required(),
-
-            // TODO: Add fields
-        ], 'General');
-
-        return $this;
+        return [
+            Tab::make('General', [
+                Section::make('General', [
+                    Text::make('Title', 'title')->required(),
+                ]),
+            ]),
+        ];
     }
 }
