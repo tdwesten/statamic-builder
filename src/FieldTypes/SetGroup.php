@@ -53,4 +53,12 @@ class SetGroup extends Field
 
         return $sets;
     }
+
+    public function displayName($displayName)
+    {
+        $this->displayName = $displayName;
+
+        return $this;
+
+    }
 }

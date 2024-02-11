@@ -40,7 +40,7 @@ class Field implements Renderable
 
     protected $hideDisplay = false;
 
-    protected $icon;
+    protected Icon $icon;
 
     protected $width;
 
@@ -57,6 +57,8 @@ class Field implements Renderable
 
     public function __construct($handle)
     {
+        $this->validateHandle($handle);
+
         $this->handle = $handle;
         $this->type = $this->getType();
         $this->validate = new Collection([]);
@@ -254,7 +256,7 @@ class Field implements Renderable
         return $this;
     }
 
-    public function icon($icon)
+    public function icon(Icon $icon)
     {
         $this->icon = $icon;
 
@@ -289,5 +291,16 @@ class Field implements Renderable
         return collect($this->fields)->map(function ($field) {
             return $field->toArray();
         })->all();
+    }
+
+    public function validateHandle($handle)
+    {
+        if (! is_string($handle)) {
+            throw new \InvalidArgumentException('[ '.get_called_class().' ] Field handle must be a string');
+        }
+
+        if (empty($handle)) {
+            throw new \InvalidArgumentException('[ '.get_called_class().'] Field handle cannot be empty');
+        }
     }
 }

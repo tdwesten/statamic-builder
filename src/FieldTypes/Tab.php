@@ -56,8 +56,8 @@ class Tab
             return ! ($field instanceof Section);
         });
 
-        if ($fields->isNotEmpty()) {
-            throw new BlueprintRenderException('Only sections are allowed in tabs');
+        if ($fields->count() > 0) {
+            throw new BlueprintRenderException('['.get_called_class().'] > Only sections are allowed in tabs');
         }
 
         return $this->sections->map(function (Section $section) {
