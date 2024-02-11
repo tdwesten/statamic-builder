@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\ConditionalLogic;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
+use Tdwesten\StatamicBuilder\Enums\Icon;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 use Tdwesten\StatamicBuilder\Helpers\FieldParser;
 

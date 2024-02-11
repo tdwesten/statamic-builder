@@ -3,11 +3,14 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
+use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Enums\AutocompleteOption;
 use Tdwesten\StatamicBuilder\Enums\InputTypeOption;
 
 class Text extends Field
 {
+    use Makeble;
+
     protected $inputType = InputTypeOption::Text;
 
     protected $placeholder;

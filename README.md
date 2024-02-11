@@ -2,15 +2,17 @@
 
 # Statamic Builder
 
-> Statamic Builder is a Statamic addon that does something pretty neat.
+Statamic Builder is a fluent blueprint and fieldset builder for Statamic. This means this provides you with a fluent way of defening your Statamic blueprints and fieldsets.
 
 ## Features
 
-This addon does:
+This addon allows you to create:
 
-- This
-- And this
-- And even this
+- [x] Collection blueprints
+- [x] Global blueprints
+- [x] Fieldsets
+- [ ] Taxonomy blueprints (comming!)
+- [ ]
 
 ## How to Install
 
