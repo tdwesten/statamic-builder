@@ -41,7 +41,7 @@ class Field implements Renderable
 
     protected $hideDisplay = false;
 
-    protected Icon $icon;
+    protected $icon;
 
     protected $width;
 
@@ -100,7 +100,7 @@ class Field implements Renderable
             'default' => $this->default,
             'duplicate' => $this->duplicate,
             'hide_display' => $this->hideDisplay,
-            'icon' => $this->icon,
+            'icon' => $this->icon?->value,
             'instructions' => $this->instructions,
             'instructions_position' => $this->instructionsPosition,
             'listable' => $this->listable,
