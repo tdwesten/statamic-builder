@@ -5,6 +5,7 @@ namespace Tdwesten\StatamicBuilder\FieldTypes;
 use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Enums\AssetsUIModeOption;
+use Tdwesten\StatamicBuilder\Enums\Icon;
 
 class Assets extends Field
 {
@@ -12,7 +13,7 @@ class Assets extends Field
 
     protected $type = 'assets';
 
-    protected $icon;
+    protected $icon = Icon::Assets;
 
     protected $max_files;
 
