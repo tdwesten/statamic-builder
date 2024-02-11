@@ -24,7 +24,7 @@ class Terms extends Field
 
     protected $create = true;
 
-    protected $icon = 'taxonomy';
+    protected $icon;
 
     protected $queryScopes;
 

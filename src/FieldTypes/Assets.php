@@ -12,7 +12,7 @@ class Assets extends Field
 
     protected $type = 'assets';
 
-    protected $icon = 'assets';
+    protected $icon;
 
     protected $max_files;
 

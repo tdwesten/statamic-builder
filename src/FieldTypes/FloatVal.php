@@ -11,7 +11,7 @@ class FloatVal extends Field
 
     protected $type = 'float';
 
-    protected $icon = 'float';
+    protected $icon;
 
     public function __construct($handle)
     {
