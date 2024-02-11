@@ -17,9 +17,12 @@ class CollectionBlueprintsController extends StatamicCollectionBlueprintsControl
         $builderBlueprint = BlueprintRepository::findBlueprint($blueprint->namespace(), $blueprint->handle());
 
         if ($builderBlueprint) {
+            $blueprintPath = BlueprintRepository::findBlueprintPath($blueprint->namespace(), $blueprint->handle());
+
             return view('statamic-builder::collections.blueprints.edit', [
                 'collection' => $collection,
                 'blueprint' => $blueprint,
+                'blueprintPath' => $blueprintPath,
                 'blueprintVueObject' => $this->toVueObject($blueprint),
             ]);
         }

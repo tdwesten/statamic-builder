@@ -15,15 +15,7 @@ class ServiceProvider extends AddonServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/builder.php', 'builder');
 
-        $this->app->bind(\Statamic\Fields\BlueprintRepository::class, function () {
-            return (new \Tdwesten\StatamicBuilder\Repositories\BlueprintRepository)
-                ->setDirectory(resource_path('blueprints'))
-                ->setFallback('default', function () {
-                    return \Statamic\Facades\Blueprint::makeFromFields([
-                        'content' => ['type' => 'markdown', 'localizable' => true],
-                    ]);
-                });
-        });
+        $this->registerBlueprints();
 
         $this->app->bind(\Statamic\Fields\FieldsetRepository::class, function () {
             return (new \Tdwesten\StatamicBuilder\Repositories\FieldsetRepository)
@@ -42,6 +34,19 @@ class ServiceProvider extends AddonServiceProvider
             return new \Tdwesten\StatamicBuilder\Http\Controllers\GlobalesBlueprintsController;
         });
 
+    }
+
+    protected function registerBlueprints()
+    {
+        $this->app->singleton(\Statamic\Fields\BlueprintRepository::class, function () {
+            return (new \Tdwesten\StatamicBuilder\Repositories\BlueprintRepository)
+                ->setDirectory(resource_path('blueprints'))
+                ->setFallback('default', function () {
+                    return \Statamic\Facades\Blueprint::makeFromFields([
+                        'title' => ['type' => 'text', 'localizable' => true],
+                    ]);
+                });
+        });
     }
 
     public function boot()

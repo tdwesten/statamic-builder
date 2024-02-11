@@ -3,6 +3,7 @@
 namespace Tdwesten\StatamicBuilder\Repositories;
 
 use Illuminate\Support\Collection;
+use ReflectionClass;
 use Statamic\Facades\Blink;
 use Statamic\Fields\Blueprint as StatamicBlueprint;
 use Statamic\Fields\BlueprintRepository as StatamicBlueprintRepository;
@@ -35,11 +36,28 @@ class BlueprintRepository extends StatamicBlueprintRepository
     {
         $registeredBlueprints = config('statamic.builder.blueprints', []);
 
+        $namespace = str_replace('/', '.', $namespace);
+
         if (! isset($registeredBlueprints[$namespace][$handle])) {
             return null;
         }
 
         return new $registeredBlueprints[$namespace][$handle]($handle);
+    }
+
+    public static function findBlueprintPath($namespace, $handle): ?string
+    {
+        $blueprint = self::findBlueprint($namespace, $handle);
+
+        if (! $blueprint) {
+            return null;
+        }
+
+        $reflectionClass = new ReflectionClass($blueprint);
+        $filePath = $reflectionClass->getFileName();
+
+        return $filePath;
+
     }
 
     public static function findBlueprintInNamespace($namespace): Collection
