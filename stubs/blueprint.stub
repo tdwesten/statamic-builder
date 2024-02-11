@@ -22,7 +22,9 @@ class {{ class }} extends Blueprint
         return [
             Tab::make('General', [
                 Section::make('General', [
-                    Text::make('Title', 'title')->required(),
+                    Text::make('title')
+                        ->displayName('Title')
+                        ->required()
                 ]),
             ]),
         ];

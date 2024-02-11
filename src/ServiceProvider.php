@@ -54,8 +54,8 @@ class ServiceProvider extends AddonServiceProvider
             ], 'statamic');
 
             $this->commands([
-                Console\MakeBlueprint::class,
-                Console\MakeFieldset::class,
+                Console\MakeBlueprintCommand::class,
+                Console\MakeFieldsetCommand::class,
                 Console\Importer::class,
                 Console\Export::class,
             ]);

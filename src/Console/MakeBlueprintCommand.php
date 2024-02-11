@@ -4,29 +4,29 @@ namespace Tdwesten\StatamicBuilder\Console;
 
 use Illuminate\Console\GeneratorCommand as BaseGeneratorCommand;
 
-class MakeFieldset extends BaseGeneratorCommand
+class MakeBlueprintCommand extends BaseGeneratorCommand
 {
     /**
      * @var string
      */
-    protected $name = 'make:fieldset';
+    protected $name = 'make:blueprint';
 
     /**
      * @var string
      */
-    protected $description = 'Create a new Statamic Builder fieldset';
+    protected $description = 'Create a new Statamic Builder blueprint';
 
     /**
      * @var string
      */
-    protected $type = 'Statamic Builder Fieldset';
+    protected $type = 'Statamic Builder Blueprint';
 
     /**
      * {@inheritDoc}
      */
     protected function getStub()
     {
-        return __DIR__.'/../../stubs/fieldset.stub';
+        return __DIR__.'/../../stubs/blueprint.stub';
     }
 
     /**
@@ -34,6 +34,6 @@ class MakeFieldset extends BaseGeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\\Fieldsets';
+        return $rootNamespace.'\\Blueprints';
     }
 }
