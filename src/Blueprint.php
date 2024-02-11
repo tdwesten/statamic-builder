@@ -3,9 +3,10 @@
 namespace Tdwesten\StatamicBuilder;
 
 use Tdwesten\StatamicBuilder\Contracts\Blueprint as BlueprintInterface;
+use Tdwesten\StatamicBuilder\Exceptions\BlueprintRenderException;
 use Tdwesten\StatamicBuilder\FieldTypes\Tab;
 
-class Blueprint implements BlueprintInterface
+abstract class Blueprint implements BlueprintInterface
 {
     protected $tabs;
 
@@ -18,14 +19,13 @@ class Blueprint implements BlueprintInterface
     public function __construct(string $handle)
     {
         $this->handle = $handle;
-        $this->tabs = collect();
-
-        $this->register();
+        $this->tabs = collect($this->registerTabs());
     }
 
     public static function make(string $handle)
     {
         return new static($handle);
+
     }
 
     public function toArray()
@@ -41,24 +41,31 @@ class Blueprint implements BlueprintInterface
 
     public function tabsToArray()
     {
+        if ($this->tabs->isEmpty()) {
+            return [];
+        }
+
+        $tabs = $this->tabs->filter(function ($field) {
+            return ! ($field instanceof Tab);
+        });
+
+        if ($tabs->isNotEmpty()) {
+            throw new BlueprintRenderException('Only tabs are allowed in the register function of a blueprint');
+        }
+
         return $this->tabs->mapWithKeys(function (Tab $tab) {
             return [$tab->getHandle() => $tab->toArray()];
         })->toArray();
     }
 
-    public function register() {}
+    abstract public function registerTabs(): array;
 
-    public function addTab($handle, $content = [], $displayName = null)
+    public function addTab(Tab $tab)
     {
-        $tab = new Tab($handle, $content);
-
-        if ($displayName) {
-            $tab->displayName($displayName);
-        }
-
         $this->tabs->push($tab);
 
         return $this;
+
     }
 
     public function getHandle()

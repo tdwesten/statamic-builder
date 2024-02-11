@@ -2,7 +2,9 @@
 
 use Tdwesten\StatamicBuilder\FieldTypes\Group;
 use Tdwesten\StatamicBuilder\FieldTypes\Section;
+use Tdwesten\StatamicBuilder\FieldTypes\Tab;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
+use Tests\Helpers\EmptyTestBlueprint;
 use Tests\Helpers\TestFieldset;
 
 it('can be instantiated', function () {
@@ -25,15 +27,16 @@ it('can be converted to an array', function () {
 });
 
 test('A fieldset can be used in a blueprint', function () {
-    $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('school');
+    $blueprint = EmptyTestBlueprint::make('school');
     $blueprint
         ->title('School')
-        ->addTab('main', [
+        ->addTab(Tab::make('main', [
             Section::make('main', [
                 Text::make('name')->displayName('Name'),
                 TestFieldset::make('test'),
             ]),
-        ], 'Main');
+        ])
+        );
 
     $fields = $blueprint->toArray();
 
@@ -43,17 +46,17 @@ test('A fieldset can be used in a blueprint', function () {
 });
 
 test('A fieldset can be used in group', function () {
-    $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('school');
+    $blueprint = EmptyTestBlueprint::make('school');
     $blueprint
         ->title('School')
-        ->addTab('main', [
+        ->addTab(Tab::make('main', [
             Section::make('main', [
                 Text::make('name')->displayName('Name'),
                 Group::make('test', [
                     TestFieldset::make('test'),
                 ]),
-            ]),
-        ], 'Main');
+            ])])
+        );
 
     $fields = $blueprint->toArray();
 
@@ -63,14 +66,15 @@ test('A fieldset can be used in group', function () {
 });
 
 test('A fieldset can be used in a fieldset', function () {
-    $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('school');
+    $blueprint = EmptyTestBlueprint::make('school');
     $blueprint
-        ->addTab('main', [
+        ->addTab(Tab::make('main', [
             Section::make('main', [
                 Text::make('name')->displayName('Name'),
                 TestFieldset::make('test'),
             ]),
-        ]);
+        ])
+        );
 
     $fields = $blueprint->toArray();
 

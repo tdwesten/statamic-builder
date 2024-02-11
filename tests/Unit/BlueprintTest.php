@@ -1,53 +1,55 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Exceptions\BlueprintRenderException;
-use Tdwesten\StatamicBuilder\FieldTypes\Section;
+use Tdwesten\StatamicBuilder\FieldTypes\Tab;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
+use Tests\Helpers\TestBlueprint;
 
-test('All fields are renderd', function () {
-    $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('article');
+test('Has a title', function () {
+    $blueprint = TestBlueprint::make('test_blueprint');
 
-    $blueprint
-        ->title('Article')
-        ->hidden(true);
-
-    expect($blueprint->toArray())->toBe([
-        'title' => 'Article',
-        'hide' => true,
-        'tabs' => [],
-    ]);
+    expect($blueprint->toArray()['title'])->toBe(
+        'Test Blueprint'
+    );
 });
 
 it('can be set to hidden', function () {
-    $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('article');
-
+    $blueprint = TestBlueprint::make('test_blueprint');
     $blueprint->hidden(true);
 
-    expect($blueprint->toArray())->toBe([
-        'title' => null,
-        'hide' => true,
-        'tabs' => [],
-    ]);
+    expect($blueprint->toArray()['hide'])->toBe(true);
 });
 
 test('Tabs are renderd', function () {
-    $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('school');
-    $blueprint
-        ->title('School')
-        ->addTab('main', [], 'Main')
-        ->addTab('meta', [], 'Meta');
+    $blueprint = TestBlueprint::make('test_blueprint');
 
     $expected = [
-        'title' => 'School',
+        'title' => 'Test Blueprint',
         'hide' => false,
         'tabs' => [
             'main' => [
                 'display' => 'Main',
-                'sections' => [],
-            ],
-            'meta' => [
-                'display' => 'Meta',
-                'sections' => [],
+                'sections' => [
+                    [
+                        'display' => 'General',
+                        'fields' => [
+                            [
+                                'handle' => 'title',
+                                'field' => [
+                                    'antlers' => false,
+                                    'duplicate' => true,
+                                    'hide_display' => false,
+                                    'input_type' => 'text',
+                                    'instructions_position' => 'above',
+                                    'listable' => 'hidden',
+                                    'replicator_preview' => true,
+                                    'type' => 'text',
+                                    'visibility' => 'visible',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
         ],
     ];
@@ -56,88 +58,25 @@ test('Tabs are renderd', function () {
 });
 
 it('throws an exception when adding a field to a tab', function () {
-    $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('school');
+    $blueprint = TestBlueprint::make('test_blueprint');
     $blueprint
         ->title('School')
-        ->addTab('main', [])
-        ->addTab('meta', [
-            Text::make('description')->displayName('Description'),
-        ], 'Meta');
+        ->addTab(Tab::make('main', [
+            Text::make('name')->displayName('Name'),
+        ]));
 
     $blueprint->toArray();
 })->throws(BlueprintRenderException::class, 'Only sections are allowed in tabs');
 
-test('Fields in sections are renderd', function () {
-    $blueprint = new \Tdwesten\StatamicBuilder\Blueprint('school');
-    $blueprint
-        ->title('School')
-        ->addTab('main', [
-            Section::make('main', [
-                Text::make('name')->displayName('Name'),
-            ]),
-        ], 'Main')
-        ->addTab('meta', [
-            Section::make('meta', [
-                Text::make('description')->displayName('Description'),
-            ]),
-        ], 'Meta');
+test('you can set a title', function () {
+    $blueprint = TestBlueprint::make('test_blueprint');
+    $blueprint->title('School');
 
-    $expected = [
-        'title' => 'School',
-        'hide' => false,
-        'tabs' => [
-            'main' => [
-                'display' => 'Main',
-                'sections' => [
-                    [
-                        'display' => 'main',
-                        'fields' => [
-                            [
-                                'handle' => 'name',
-                                'field' => [
-                                    'antlers' => false,
-                                    'display' => 'Name',
-                                    'duplicate' => true,
-                                    'hide_display' => false,
-                                    'input_type' => 'text',
-                                    'instructions_position' => 'above',
-                                    'listable' => 'hidden',
-                                    'replicator_preview' => true,
-                                    'type' => 'text',
-                                    'visibility' => 'visible',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            'meta' => [
-                'display' => 'Meta',
-                'sections' => [
-                    [
-                        'display' => 'meta',
-                        'fields' => [
-                            [
-                                'handle' => 'description',
-                                'field' => [
-                                    'antlers' => false,
-                                    'display' => 'Description',
-                                    'duplicate' => true,
-                                    'hide_display' => false,
-                                    'input_type' => 'text',
-                                    'instructions_position' => 'above',
-                                    'listable' => 'hidden',
-                                    'replicator_preview' => true,
-                                    'type' => 'text',
-                                    'visibility' => 'visible',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ];
+    expect($blueprint->toArray()['title'])->toBe('School');
+});
 
-    expect($blueprint->toArray())->toBe($expected);
+test('you can get the handle', function () {
+    $blueprint = TestBlueprint::make('test_blueprint');
+
+    expect($blueprint->getHandle())->toBe('test_blueprint');
 });

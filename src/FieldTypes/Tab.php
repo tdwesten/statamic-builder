@@ -11,20 +11,20 @@ class Tab
 
     protected $displayName;
 
-    protected $content;
+    protected $sections;
 
     protected $instructions;
 
-    public function __construct($handle, $content = [])
+    public function __construct($handle, $sections = [])
     {
         $this->handle = $handle;
 
-        $this->content = collect($content);
+        $this->sections = collect($sections);
     }
 
-    public static function make($handle)
+    public static function make($handle, $sections = [])
     {
-        return new static($handle);
+        return new static($handle, $sections);
     }
 
     public function getHandle()
@@ -48,11 +48,11 @@ class Tab
 
     public function sectionsToArray(): ?array
     {
-        if ($this->content->isEmpty()) {
+        if ($this->sections->isEmpty()) {
             return [];
         }
 
-        $fields = $this->content->filter(function ($field) {
+        $fields = $this->sections->filter(function ($field) {
             return ! ($field instanceof Section);
         });
 
@@ -60,16 +60,16 @@ class Tab
             throw new BlueprintRenderException('Only sections are allowed in tabs');
         }
 
-        return $this->content->map(function (Section $section) {
+        return $this->sections->map(function (Section $section) {
             return $section->toArray();
         })->toArray();
     }
 
     public function fieldsToArray(): array
     {
-        $this->content = FieldParser::parseMixedFieldsToFlatCollection($this->content);
+        $this->sections = FieldParser::parseMixedFieldsToFlatCollection($this->sections);
 
-        return $this->content->map(function ($field) {
+        return $this->sections->map(function ($field) {
             return $field->toArray();
         })->toArray();
     }
