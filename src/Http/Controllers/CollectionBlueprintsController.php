@@ -19,7 +19,7 @@ class CollectionBlueprintsController extends StatamicCollectionBlueprintsControl
         if ($builderBlueprint) {
             $blueprintPath = BlueprintRepository::findBlueprintPath($blueprint->namespace(), $blueprint->handle());
 
-            return view('statamic-builder::collections.blueprints.edit', [
+            return view('statamic-builder::not-editable', [
                 'collection' => $collection,
                 'blueprint' => $blueprint,
                 'blueprintPath' => $blueprintPath,
@@ -27,10 +27,6 @@ class CollectionBlueprintsController extends StatamicCollectionBlueprintsControl
             ]);
         }
 
-        return view('statamic::collections.blueprints.edit', [
-            'collection' => $collection,
-            'blueprint' => $blueprint,
-            'blueprintVueObject' => $this->toVueObject($blueprint),
-        ]);
+        parent::edit($collection, $blueprint);
     }
 }

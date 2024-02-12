@@ -50,10 +50,31 @@ This addon allows you to create:
 - [x] Collection blueprints
 - [x] Global blueprints
 - [x] Fieldsets
-- [ ] Taxonomy blueprints (comming!)
+- [x] Taxonomy blueprints
 - [ ] Navigation blueprints (comming!)
 - [ ] Asset container blueprints (comming!)
 - [ ] User blueprints (comming!)
+
+## Supported Fieldtypes
+
+The following fieldtypes are supported:
+Arr, Assets, ButtonGroup, Checkboxes, Code, Collections, Collor, Date, Entries, Field, FloatVal, Grid, Group, Html, Icon, Integer, Link, Lists, Markdown, Navs, Radio, Range, Relationship, Replicator, Revealer, Section, SectionField, Select, Set, SetGroup, Sites, Slug, Spacer, Structures, Tab, Table, Taggable, Taggeble, Taxonomies, Template, Terms, Text, Textarea, Time, Toggle, UserGroups, UserRoles, Users, Video, Width, Yaml.
+
+And you can also use the `Field` class to implement custom fieldtypes. For example:
+
+```php
+Field::make('custom_field')
+    ->withAttributes([
+        'type' => 'custom_type',
+        'display' => 'Custom Field',
+        'instructions' => 'This is a custom field',
+        'required' => true,
+        'options' => [
+            'option1' => 'Option 1',
+            'option2' => 'Option 2',
+        ],
+    ]);
+```
 
 ## How to Install
 

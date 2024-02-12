@@ -6,7 +6,7 @@ use Statamic\Http\Controllers\CP\Fields\ManagesBlueprints;
 use Statamic\Http\Controllers\CP\Globals\GlobalsBlueprintController as StatamicGlobalsBlueprintController;
 use Tdwesten\StatamicBuilder\Repositories\BlueprintRepository;
 
-class GlobalesBlueprintsController extends StatamicGlobalsBlueprintController
+class GlobalsBlueprintsController extends StatamicGlobalsBlueprintController
 {
     use ManagesBlueprints;
 
@@ -15,7 +15,11 @@ class GlobalesBlueprintsController extends StatamicGlobalsBlueprintController
         $builderBlueprint = BlueprintRepository::findBlueprint('globals', $blueprint);
 
         if ($builderBlueprint) {
-            return view('statamic-builder::globals.blueprints.edit', []);
+            $blueprintPath = BlueprintRepository::findBlueprintPath('globals', $blueprint);
+
+            return view('statamic-builder::not-editable', [
+                'blueprintPath' => $blueprintPath,
+            ]);
         }
 
         parent::edit($blueprint);

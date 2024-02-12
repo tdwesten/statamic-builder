@@ -15,28 +15,46 @@ class ServiceProvider extends AddonServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/builder.php', 'builder');
 
-        $this->registerBlueprints();
+        $this->registerBlueprintRepository();
 
-        $this->app->bind(\Statamic\Fields\FieldsetRepository::class, function () {
-            return (new \Tdwesten\StatamicBuilder\Repositories\FieldsetRepository)
-                ->setDirectory(resource_path('fieldsets'));
-        });
+        $this->registerFieldsetRepository();
 
-        $this->app->bind(\Statamic\Stache\Repositories\GlobalRepository::class, function () {
-            return new GlobalRepository(app('stache'));
-        });
+        $this->registerGlobalRepository();
 
+        $this->registerControllers();
+    }
+
+    protected function registerControllers()
+    {
         $this->app->bind(\Statamic\Http\Controllers\CP\Collections\CollectionBlueprintsController::class, function () {
             return new \Tdwesten\StatamicBuilder\Http\Controllers\CollectionBlueprintsController;
         });
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Globals\GlobalsBlueprintController::class, function () {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\GlobalesBlueprintsController;
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\GlobalsBlueprintsController;
         });
 
+        $this->app->bind(\Statamic\Http\Controllers\CP\Taxonomies\TaxonomyBlueprintsController::class, function () {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\TaxonomyBlueprintsController;
+        });
     }
 
-    protected function registerBlueprints()
+    protected function registerGlobalRepository()
+    {
+        $this->app->singleton(\Statamic\Stache\Repositories\GlobalRepository::class, function () {
+            return new GlobalRepository(app('stache'));
+        });
+    }
+
+    protected function registerFieldsetRepository()
+    {
+        $this->app->singleton(\Statamic\Fields\FieldsetRepository::class, function () {
+            return (new \Tdwesten\StatamicBuilder\Repositories\FieldsetRepository)
+                ->setDirectory(resource_path('fieldsets'));
+        });
+    }
+
+    protected function registerBlueprintRepository()
     {
         $this->app->singleton(\Statamic\Fields\BlueprintRepository::class, function () {
             return (new \Tdwesten\StatamicBuilder\Repositories\BlueprintRepository)
