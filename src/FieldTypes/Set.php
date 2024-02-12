@@ -24,7 +24,7 @@ class Set extends Field
         $content = collect([
             'display' => $this->displayName,
             'instructions' => $this->instructions,
-            'icon' => $this->icon,
+            'icon' => $this->icon?->value,
             'fields' => $this->fieldsToArray(),
         ]);
 

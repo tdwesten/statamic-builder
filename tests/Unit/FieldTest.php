@@ -1,5 +1,6 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Enums\Icon;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
 it('can render to a array', function () {
@@ -133,9 +134,9 @@ test(' can set multiple validation rules', function () {
 
 test('Can set a custom icon', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
-    $field->icon('icon');
+    $field->icon(Icon::AddCircle);
 
-    expect($field->toArray()['field']['icon'])->toBe('icon');
+    expect($field->toArray()['field']['icon'])->toBe(Icon::AddCircle->value);
 });
 
 test('Can create a thirth-party field', function () {

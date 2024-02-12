@@ -1,5 +1,6 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Enums\Icon;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 use Tdwesten\StatamicBuilder\FieldTypes\Replicator;
 use Tdwesten\StatamicBuilder\FieldTypes\Set;
@@ -39,7 +40,7 @@ it('can have sets', function () {
         SetGroup::make('nieuwe_set_groep', [
             Set::make('set_group_handel', [
                 Text::make('text_veld')->displayName('Tekst Veld'),
-            ])->icon('addon-boxes-stack')->instructions('set group instructies'),
+            ])->icon(Icon::Addons)->instructions('set group instructies'),
         ])->displayName('Nieuwe Set Groep'),
     ])->displayName('Replicator Veld');
 
@@ -85,7 +86,7 @@ it('can render the same output', function () {
                                     ],
                                 ],
                             ],
-                            'icon' => 'addon-boxes-stack',
+                            'icon' => 'addons',
                             'instructions' => 'set group instructies',
                         ],
                     ],
@@ -100,7 +101,7 @@ it('can render the same output', function () {
         SetGroup::make('nieuwe_set_groep', [
             Set::make('set_group_handel', [
                 Text::make('text_veld')->displayName('Text Veld'),
-            ])->icon('addon-boxes-stack')
+            ])->icon(Icon::Addons)
                 ->instructions('set group instructies')
                 ->displayName('Set group'),
         ])->displayName('Nieuwe Set Groep'),

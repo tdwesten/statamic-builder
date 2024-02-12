@@ -1,5 +1,6 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Enums\Icon;
 use Tdwesten\StatamicBuilder\Enums\UIModeOption;
 
 test('Terms field renders', function () {
@@ -158,6 +159,7 @@ test('Terms field renders with create option', function () {
         ->instructions('The counties of the school')
         ->taxonomies(['counties', 'cities'])
         ->mode(UIModeOption::Select)
+        ->icon(Icon::Taxonomy)
         ->create(false);
 
     $expected = [
