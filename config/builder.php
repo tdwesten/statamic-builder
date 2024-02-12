@@ -23,6 +23,9 @@ return [
         'collections.articles' => [
             // 'article' => App\Blueprints\ArticleBlueprint::class,
         ],
+        'taxonomies.tags' => [
+            // 'tag' => App\Blueprints\TagBlueprint::class,
+        ],
         'globals' => [
             // 'footer' => App\Blueprints\SiteBlueprint::class,
         ],
