@@ -17,7 +17,7 @@ return [
         |--------------------------------------------------------------------------
         |
         | Here you can register the blueprints that you want to use for your
-        | collections.
+        | collections, taxonomies, and globals.
         |
         */
         'collections.articles' => [
@@ -37,21 +37,10 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you can register the fieldsets that you want to use in your
-    | Statamic site.
+    | blueprints.
     |
     */
     'fieldsets' => [
-        /*
-        |--------------------------------------------------------------------------
-        | Collection Fieldsets
-        |--------------------------------------------------------------------------
-        |
-        | Here you can register the fieldsets that you want to use for your
-        | collections.
-        |
-        */
-        [
-            // \App\Fieldsets\LogoWithIntroductionFieldset::class,
-        ],
+        // \App\Fieldsets\LogoWithIntroductionFieldset::class,
     ],
 ];
