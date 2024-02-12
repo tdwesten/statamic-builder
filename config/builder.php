@@ -20,8 +20,11 @@ return [
         | collections.
         |
         */
-        'collections.schools' => [
+        'collections.articles' => [
             // 'article' => App\Blueprints\ArticleBlueprint::class,
+        ],
+        'globals' => [
+            // 'footer' => App\Blueprints\SiteBlueprint::class,
         ],
     ],
 
