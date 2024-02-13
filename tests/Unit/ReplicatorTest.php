@@ -111,8 +111,5 @@ it('can render the same output', function () {
         ->fullscreen(true)
         ->hideDisplay(false);
 
-    ray($output);
-    ray($field->toArray());
-
     expect($field->toArray())->toBe($output);
 });

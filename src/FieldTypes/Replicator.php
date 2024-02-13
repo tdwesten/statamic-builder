@@ -36,7 +36,7 @@ class Replicator extends Field
             'type' => $this->type,
             'sets' => $this->setGroupsToArray(),
             'max_sets' => $this->max_sets,
-            'collapse' => $this->collapse->value,
+            'collapse' => $this->collapse->toArray(),
             'previews' => $this->previews,
             'fullscreen' => $this->fullscreen,
         ]);
