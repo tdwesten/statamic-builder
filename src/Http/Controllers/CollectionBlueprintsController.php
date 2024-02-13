@@ -27,6 +27,6 @@ class CollectionBlueprintsController extends StatamicCollectionBlueprintsControl
             ]);
         }
 
-        parent::edit($collection, $blueprint);
+        return parent::edit($collection, $blueprint);
     }
 }

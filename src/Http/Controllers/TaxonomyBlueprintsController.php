@@ -21,6 +21,6 @@ class TaxonomyBlueprintsController extends StatamicTaxonomyBlueprintsController
             ]);
         }
 
-        parent::edit($taxonomy, $blueprint);
+        return parent::edit($taxonomy, $blueprint);
     }
 }

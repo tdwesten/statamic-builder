@@ -22,6 +22,6 @@ class GlobalsBlueprintsController extends StatamicGlobalsBlueprintController
             ]);
         }
 
-        parent::edit($blueprint);
+        return parent::edit($blueprint);
     }
 }
