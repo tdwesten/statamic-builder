@@ -7,7 +7,6 @@ use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Contracts\MaxItems;
 use Tdwesten\StatamicBuilder\Contracts\QueryScopes;
 use Tdwesten\StatamicBuilder\Contracts\UISelectMode;
-use Tdwesten\StatamicBuilder\Enums\Icon;
 
 class Terms extends Field
 {
@@ -25,7 +24,7 @@ class Terms extends Field
 
     protected $create = true;
 
-    protected $icon = Icon::Taxonomy;
+    protected $icon;
 
     protected $queryScopes;
 

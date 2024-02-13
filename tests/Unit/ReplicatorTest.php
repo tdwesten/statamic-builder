@@ -40,7 +40,7 @@ it('can have sets', function () {
         SetGroup::make('nieuwe_set_groep', [
             Set::make('set_group_handel', [
                 Text::make('text_veld')->displayName('Tekst Veld'),
-            ])->icon(Icon::Addons)->instructions('set group instructies'),
+            ])->icon(Icon::AddonBoxesStack)->instructions('set group instructies'),
         ])->displayName('Nieuwe Set Groep'),
     ])->displayName('Replicator Veld');
 
@@ -86,7 +86,7 @@ it('can render the same output', function () {
                                     ],
                                 ],
                             ],
-                            'icon' => 'addons',
+                            'icon' => null,
                             'instructions' => 'set group instructies',
                         ],
                     ],
@@ -101,7 +101,7 @@ it('can render the same output', function () {
         SetGroup::make('nieuwe_set_groep', [
             Set::make('set_group_handel', [
                 Text::make('text_veld')->displayName('Text Veld'),
-            ])->icon(Icon::Addons)
+            ])
                 ->instructions('set group instructies')
                 ->displayName('Set group'),
         ])->displayName('Nieuwe Set Groep'),

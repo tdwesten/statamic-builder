@@ -1,6 +1,5 @@
 <?php
 
-use Tdwesten\StatamicBuilder\Enums\Icon;
 use Tdwesten\StatamicBuilder\Enums\UIModeOption;
 
 test('Terms field renders', function () {
@@ -18,7 +17,6 @@ test('Terms field renders', function () {
             'display' => 'Counties',
             'duplicate' => true,
             'hide_display' => false,
-            'icon' => 'taxonomy',
             'instructions' => 'The counties of the school',
             'instructions_position' => 'above',
             'listable' => 'hidden',
@@ -55,7 +53,6 @@ test('You can set max items', function () {
             'display' => 'Counties',
             'duplicate' => true,
             'hide_display' => false,
-            'icon' => 'taxonomy',
             'instructions' => 'The counties of the school',
             'instructions_position' => 'above',
             'listable' => 'hidden',
@@ -92,7 +89,6 @@ test('Terms field renders with multiple taxonomies', function () {
             'display' => 'Counties',
             'duplicate' => true,
             'hide_display' => false,
-            'icon' => 'taxonomy',
             'instructions' => 'The counties of the school',
             'instructions_position' => 'above',
             'listable' => 'hidden',
@@ -130,7 +126,6 @@ test('Terms field renders with multiple taxonomies and mode', function () {
             'display' => 'Counties',
             'duplicate' => true,
             'hide_display' => false,
-            'icon' => 'taxonomy',
             'instructions' => 'The counties of the school',
             'instructions_position' => 'above',
             'listable' => 'hidden',
@@ -159,7 +154,6 @@ test('Terms field renders with create option', function () {
         ->instructions('The counties of the school')
         ->taxonomies(['counties', 'cities'])
         ->mode(UIModeOption::Select)
-        ->icon(Icon::Taxonomy)
         ->create(false);
 
     $expected = [
@@ -170,7 +164,6 @@ test('Terms field renders with create option', function () {
             'display' => 'Counties',
             'duplicate' => true,
             'hide_display' => false,
-            'icon' => 'taxonomy',
             'instructions' => 'The counties of the school',
             'instructions_position' => 'above',
             'listable' => 'hidden',

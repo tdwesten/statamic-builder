@@ -134,9 +134,9 @@ test(' can set multiple validation rules', function () {
 
 test('Can set a custom icon', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
-    $field->icon(Icon::AddCircle);
+    $field->icon(Icon::AddonBoxesStack);
 
-    expect($field->toArray()['field']['icon'])->toBe(Icon::AddCircle->value);
+    expect($field->toArray()['field']['icon'])->toBe(Icon::AddonBoxesStack->value);
 });
 
 test('Can create a thirth-party field', function () {

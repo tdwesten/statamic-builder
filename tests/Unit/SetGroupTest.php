@@ -8,7 +8,7 @@ it('can render to a array', function () {
     $field = \Tdwesten\StatamicBuilder\FieldTypes\SetGroup::make('title', [
         Set::make('set_group_handel', [
             Text::make('text_veld')->displayName('Tekst Veld'),
-        ])->icon(Icon::Addons)->instructions('set group instructies')->displayName('Set group'),
+        ])->icon(Icon::AddonBoxesStack)->instructions('set group instructies')->displayName('Set group'),
     ]);
 
     expect($field->toArray()['sets']['set_group_handel']['display'])->toBe('Set group');
