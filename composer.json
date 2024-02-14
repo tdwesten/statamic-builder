@@ -1,6 +1,7 @@
 {
     "name": "tdwesten/statamic-builder",
     "description": "A fluent blueprint and fieldset builder for Statamic.",
+    "version": "v0.1.1.alpha",
     "autoload": {
         "psr-4": {
             "Tdwesten\\StatamicBuilder\\": "src"
