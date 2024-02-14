@@ -11,6 +11,7 @@ it('can render to a array', function () {
         ->required()
         ->instructionsPosition('below')
         ->listable()
+        ->container('container')
         ->replicatorPreview(true)
         ->width(50);
 
@@ -33,21 +34,21 @@ it('can render to a array', function () {
 
 it('can set max files', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Assets('title');
-    $field->maxFiles(5);
+    $field->maxFiles(5)->container('container');
 
     expect($field->toArray()['field']['max_files'])->toBe(5);
 });
 
 it('can set min files', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Assets('title');
-    $field->minFiles(5);
+    $field->minFiles(5)->container('container');
 
     expect($field->toArray()['field']['min_files'])->toBe(5);
 });
 
 it('can set mode', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Assets('title');
-    $field->mode(AssetsUIModeOption::Grid);
+    $field->mode(AssetsUIModeOption::Grid)->container('container');
 
     expect($field->toArray()['field']['mode'])->toBe('grid');
 });
@@ -61,42 +62,42 @@ it('can set container', function () {
 
 it('can set folder', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Assets('title');
-    $field->folder('folder');
+    $field->folder('folder')->container('container');
 
     expect($field->toArray()['field']['folder'])->toBe('folder');
 });
 
 it('can restrict', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Assets('title');
-    $field->restrict();
+    $field->restrict()->container('container');
 
     expect($field->toArray()['field']['restrict'])->toBe(true);
 });
 
 it('can allow uploads', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Assets('title');
-    $field->allowUploads();
+    $field->allowUploads()->container('container');
 
     expect($field->toArray()['field']['allow_uploads'])->toBe(true);
 });
 
 it('can show filename', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Assets('title');
-    $field->showFilename();
+    $field->showFilename()->container('container');
 
     expect($field->toArray()['field']['show_filename'])->toBe(true);
 });
 
 it('can show set alt', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Assets('title');
-    $field->showSetAlt();
+    $field->showSetAlt()->container('container');
 
     expect($field->toArray()['field']['show_set_alt'])->toBe(true);
 });
 
 it('can set query_scopes', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Assets('title');
-    $field->queryScopes(['container1', 'container2']);
+    $field->queryScopes(['container1', 'container2'])->container('container');
 
     expect($field->toArray()['field']['query_scopes'])->toBe(['container1', 'container2']);
 });

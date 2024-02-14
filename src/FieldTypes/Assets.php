@@ -5,6 +5,7 @@ namespace Tdwesten\StatamicBuilder\FieldTypes;
 use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Enums\AssetsUIModeOption;
+use Tdwesten\StatamicBuilder\Exceptions\BlueprintRenderException;
 
 class Assets extends Field
 {
@@ -121,5 +122,19 @@ class Assets extends Field
         $this->query_scopes = $queryScopes;
 
         return $this;
+    }
+
+    public function validateField()
+    {
+        parent::validateField();
+
+        if ($this->min_files && $this->max_files && $this->min_files > $this->max_files) {
+            throw new BlueprintRenderException('min_files must be less than or equal to max_files');
+        }
+
+        if ($this->container === null || empty($this->container)) {
+            throw new BlueprintRenderException('[ '.get_called_class().'] Field container cannot be empty');
+        }
+
     }
 }

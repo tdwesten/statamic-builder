@@ -8,6 +8,7 @@ use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
 use Tdwesten\StatamicBuilder\Enums\Icon;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\Exceptions\BlueprintRenderException;
 use Tdwesten\StatamicBuilder\Helpers\FieldParser;
 
 class Field implements Renderable
@@ -58,8 +59,6 @@ class Field implements Renderable
 
     public function __construct($handle)
     {
-        $this->validateHandle($handle);
-
         $this->handle = $handle;
         $this->type = $this->getType();
         $this->validate = new Collection([]);
@@ -68,6 +67,8 @@ class Field implements Renderable
     public function toArray()
     {
         $fieldDefaults = $this->fieldDefaults();
+
+        $this->validateField();
 
         $field = $fieldDefaults
             ->merge($this->fieldToArray())
@@ -294,14 +295,10 @@ class Field implements Renderable
         })->all();
     }
 
-    public function validateHandle($handle)
+    public function validateField()
     {
-        if (! is_string($handle)) {
-            throw new \InvalidArgumentException('[ '.get_called_class().' ] Field handle must be a string');
-        }
-
-        if (empty($handle)) {
-            throw new \InvalidArgumentException('[ '.get_called_class().'] Field handle cannot be empty');
+        if ($this->getHandle() === null || empty($this->getHandle())) {
+            throw new BlueprintRenderException('[ '.get_called_class().'] Field handle cannot be empty');
         }
     }
 }
