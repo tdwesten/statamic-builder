@@ -20,10 +20,9 @@ class CollectionBlueprintsController extends StatamicCollectionBlueprintsControl
             $blueprintPath = BlueprintRepository::findBlueprintPath($blueprint->namespace(), $blueprint->handle());
 
             return view('statamic-builder::not-editable', [
-                'collection' => $collection,
-                'blueprint' => $blueprint,
+                // 'isLocal' => config('app.env') === 'local' || config('app.env') === 'development',
+                'isLocal' => false,
                 'blueprintPath' => $blueprintPath,
-                'blueprintVueObject' => $this->toVueObject($blueprint),
             ]);
         }
 

@@ -18,6 +18,7 @@ class TaxonomyBlueprintsController extends StatamicTaxonomyBlueprintsController
 
             return view('statamic-builder::not-editable', [
                 'blueprintPath' => $blueprintPath,
+                'isLocal' => config('app.env') === 'local' || config('app.env') === 'development',
             ]);
         }
 
