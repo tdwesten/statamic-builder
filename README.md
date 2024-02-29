@@ -58,7 +58,7 @@ This addon allows you to create:
 ## Supported Fieldtypes
 
 The following fieldtypes are supported:
-Arr, Assets, ButtonGroup, Checkboxes, Code, Collections, Collor, Date, Entries, Field, FloatVal, Grid, Group, Html, Icon, Integer, Link, Lists, Markdown, Navs, Radio, Range, Relationship, Replicator, Revealer, Section, SectionField, Select, Set, SetGroup, Sites, Slug, Spacer, Structures, Tab, Table, Taggable, Taggeble, Taxonomies, Template, Terms, Text, Textarea, Time, Toggle, UserGroups, UserRoles, Users, Video, Width, Yaml.
+Arr, Assets, Bard, ButtonGroup, Checkboxes, Code, Collections, Collor, Date, Entries, Field, FloatVal, Grid, Group, Html, Icon, Integer, Link, Lists, Markdown, Navs, Radio, Range, Relationship, Replicator, Revealer, Section, SectionField, Select, Set, SetGroup, Sites, Slug, Spacer, Structures, Tab, Table, Taggable, Taggeble, Taxonomies, Template, Terms, Text, Textarea, Time, Toggle, UserGroups, UserRoles, Users, Video, Width, Yaml.
 
 See all pending fields that needs to be added: https://github.com/tdwesten/statamic-builder/labels/Missing%20Statamic%20field
 

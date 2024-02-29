@@ -118,7 +118,7 @@ class Bard extends Field
     public function validateField()
     {
         if (
-            ($this->buttons->has(BardButton::Anchor) || $this->buttons->has(BardButton::Image)) &&
+            ($this->buttons->contains(BardButton::Anchor) || $this->buttons->contains(BardButton::Image)) &&
             $this->container === null
         ) {
             throw new BlueprintRenderException('Bard field with anchor or image buttons must have a container');
