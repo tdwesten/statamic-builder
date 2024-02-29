@@ -13,6 +13,8 @@ use Tdwesten\StatamicBuilder\Blueprint;
 
 class BlueprintRepository extends StatamicBlueprintRepository
 {
+    protected const BLINK_FROM_STATAMIC_BLUIDER = 'stataic-builder-blueprint';
+
     public function find($blueprint): ?StatamicBlueprint
     {
         [$namespace, $handle] = $this->getNamespaceAndHandle($blueprint);
@@ -38,11 +40,15 @@ class BlueprintRepository extends StatamicBlueprintRepository
 
         $namespace = str_replace('/', '.', $namespace);
 
-        if (! isset($registeredBlueprints[$namespace][$handle])) {
-            return null;
+        if (isset($registeredBlueprints[$handle])) {
+            return new $registeredBlueprints[$handle]($handle);
         }
 
-        return new $registeredBlueprints[$namespace][$handle]($handle);
+        if (isset($registeredBlueprints[$namespace][$handle])) {
+            return new $registeredBlueprints[$namespace][$handle]($handle);
+        }
+
+        return null;
     }
 
     public static function findBlueprintPath($namespace, $handle): ?string
@@ -62,14 +68,19 @@ class BlueprintRepository extends StatamicBlueprintRepository
 
     public static function findBlueprintInNamespace($namespace): Collection
     {
-        $registeredBlueprints = collect(config('statamic.builder.blueprints', []));
+        $blink = 'statamic-builder-blueprints-'.$namespace;
 
-        $namespace = str_replace('/', '.', $namespace);
+        return Blink::store(self::BLINK_FROM_STATAMIC_BLUIDER)->once($blink, function () use ($namespace) {
 
-        $blueprints = collect($registeredBlueprints->get($namespace, collect()));
+            $registeredBlueprints = collect(config('statamic.builder.blueprints', []));
 
-        return $blueprints->map(function ($blueprint, $handle) {
-            return new $blueprint($handle);
+            $namespace = str_replace('/', '.', $namespace);
+
+            $blueprints = collect($registeredBlueprints->get($namespace, collect()));
+
+            return $blueprints->map(function ($blueprint, $handle) {
+                return new $blueprint($handle);
+            });
         });
     }
 
