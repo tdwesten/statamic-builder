@@ -9,12 +9,25 @@ use Tdwesten\StatamicBuilder\FieldTypes\Tab;
 
 class {{ class }} extends Blueprint
 {
-    // TODO: Add a title for this blueprint
+    /**
+     * The blueprint title.
+     *
+     * @var string
+     */
     public $title = '';
 
-    // TODO: Add a handle for this blueprint
+    /**
+     * The blueprint handle.
+     *
+     * @var string
+     */
     public $handle = '';
 
+    /**
+     * Hide the blueprint from the blueprint dropdown.
+     *
+     * @var string
+     */
     public $hidden = false;
 
     public function registerTabs(): Array
