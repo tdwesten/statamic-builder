@@ -43,4 +43,17 @@ return [
     'fieldsets' => [
         // \App\Fieldsets\LogoWithIntroductionFieldset::class,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Register Collections
+    |--------------------------------------------------------------------------
+    |
+    | Here you can register the collections that you want to use in your
+    | Statamic site.
+    |
+    */
+    'collections' => [
+        // App\Collections\Articles::class,
+    ],
 ];

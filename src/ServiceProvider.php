@@ -21,6 +21,8 @@ class ServiceProvider extends AddonServiceProvider
 
         $this->registerGlobalRepository();
 
+        $this->registerCollectionRepository();
+
         $this->registerControllers();
     }
 
@@ -54,6 +56,17 @@ class ServiceProvider extends AddonServiceProvider
         });
     }
 
+    protected function registerCollectionRepository()
+    {
+        $this->app->singleton(\Statamic\Contracts\Entries\CollectionRepository::class, function () {
+            return new \Tdwesten\StatamicBuilder\Repositories\CollectionRepository(app('stache'));
+        });
+
+        $this->app->singleton(\Statamic\Stache\Stores\CollectionsStore::class, function () {
+            return new \Tdwesten\StatamicBuilder\Stache\Stores\CollectionsStore(app('stache'));
+        });
+    }
+
     protected function registerBlueprintRepository()
     {
         $this->app->singleton(\Statamic\Fields\BlueprintRepository::class, function () {
@@ -79,6 +92,7 @@ class ServiceProvider extends AddonServiceProvider
             $this->commands([
                 Console\MakeBlueprintCommand::class,
                 Console\MakeFieldsetCommand::class,
+                Console\MakeCollectionCommand::class,
                 Console\Importer::class,
                 Console\Export::class,
             ]);
