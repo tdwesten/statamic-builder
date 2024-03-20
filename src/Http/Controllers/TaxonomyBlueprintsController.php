@@ -17,8 +17,9 @@ class TaxonomyBlueprintsController extends StatamicTaxonomyBlueprintsController
             $blueprintPath = BlueprintRepository::findBlueprintPath($blueprint->namespace(), $blueprint->handle());
 
             return view('statamic-builder::not-editable', [
-                'blueprintPath' => $blueprintPath,
+                'type' => 'Blueprint',
                 'isLocal' => config('app.env') === 'local' || config('app.env') === 'development',
+                'filePath' => $blueprintPath,
             ]);
         }
 

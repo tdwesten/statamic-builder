@@ -6,9 +6,13 @@ use Illuminate\Support\Collection as IlluminateCollection;
 use Statamic\Entries\Collection;
 use Statamic\Stache\Repositories\CollectionRepository as StatamicCollectionRepository;
 use Statamic\Stache\Stache;
+use Tdwesten\StatamicBuilder\BaseCollection;
 
 class CollectionRepository extends StatamicCollectionRepository
 {
+    /**
+     * @var IlluminateCollection
+     */
     private $collections;
 
     public function __construct(Stache $stache)
@@ -29,6 +33,17 @@ class CollectionRepository extends StatamicCollectionRepository
                 $this->collections->put($collection::handle(), $collection);
             }
         });
+    }
+
+    public function getCollectionByHandle($handle): ?BaseCollection
+    {
+        $collection = $this->collections->get($handle, null);
+
+        if ($collection) {
+            return new $collection;
+        }
+
+        return null;
     }
 
     public function all(): IlluminateCollection

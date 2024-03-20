@@ -2,6 +2,7 @@
 
 namespace Tdwesten\StatamicBuilder;
 
+use Illuminate\Http\Request;
 use Statamic\Providers\AddonServiceProvider;
 use Tdwesten\StatamicBuilder\Repositories\GlobalRepository;
 
@@ -38,6 +39,13 @@ class ServiceProvider extends AddonServiceProvider
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Taxonomies\TaxonomyBlueprintsController::class, function () {
             return new \Tdwesten\StatamicBuilder\Http\Controllers\TaxonomyBlueprintsController;
+        });
+
+        $this->app->bind(\Statamic\Http\Controllers\CP\Collections\CollectionsController::class, function ($app) {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\CollectionsController(
+                $app->make(Request::class),
+                $app->make(\Tdwesten\StatamicBuilder\Repositories\CollectionRepository::class)
+            );
         });
     }
 

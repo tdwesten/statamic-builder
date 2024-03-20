@@ -18,8 +18,9 @@ class GlobalsBlueprintsController extends StatamicGlobalsBlueprintController
             $blueprintPath = BlueprintRepository::findBlueprintPath('globals', $blueprint);
 
             return view('statamic-builder::not-editable', [
-                'blueprintPath' => $blueprintPath,
+                'type' => 'Blueprint',
                 'isLocal' => config('app.env') === 'local' || config('app.env') === 'development',
+                'filePath' => $blueprintPath,
             ]);
         }
 
