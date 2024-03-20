@@ -1,24 +1,14 @@
 <?php
 
-namespace {{ namespace }};
+namespace Tests\Helpers;
 
 use Statamic\Facades\Site;
 use Tdwesten\StatamicBuilder\BaseCollection;
 
-class {{ class }} extends BaseCollection
+class TestCollection extends BaseCollection
 {
     /**
-     * Return the handle for the collection
-     *
-     * Example: return 'blog';
-     */
-    public static function handle(): string
-    {
-        return 'shows';
-    }
-
-    /**
-     * Return the title for the collection
+     * The title for the collection
      *
      * Example: return 'Blog';
      */
@@ -28,7 +18,17 @@ class {{ class }} extends BaseCollection
     }
 
     /**
-     * Return the route for the collection
+     * The handle for the collection
+     *
+     * Example: return 'blog';
+     */
+    public static function handle(): string
+    {
+        return 'shows';
+    }
+
+    /**
+     * The route for the collection
      *
      * Example: return '/blog/{slug}';
      *
@@ -233,8 +233,11 @@ class {{ class }} extends BaseCollection
      * @example return [
      *   [
      *     'label' => 'Entry',
-     *     'format' => '/blog/{slug}',
-     *     'refresh' => true,
+     *     'url' => '/blog/{slug}',
+     *   ],
+     *   [
+     *     'label' => 'Index',
+     *     'url' => '/blog',
      *   ],
      * ];
      *
