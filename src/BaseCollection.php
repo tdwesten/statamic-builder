@@ -36,7 +36,7 @@ abstract class BaseCollection
 
     abstract public function originBehavior(): string;
 
-    abstract public function structure(): array;
+    abstract public function structure(): ?array;
 
     abstract public function sortBy(): ?string;
 
