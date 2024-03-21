@@ -32,7 +32,7 @@ abstract class BaseCollection
 
     abstract public function revisionsEnabled(): bool;
 
-    abstract public function defaultPublishState(): string;
+    abstract public function defaultPublishState(): bool;
 
     abstract public function originBehavior(): string;
 

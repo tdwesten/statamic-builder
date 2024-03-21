@@ -144,13 +144,13 @@ class {{ class }} extends BaseCollection
     /**
      * Return the default publish state for the collection
      *
-     * Options are 'published' or 'draft'
+     * While creating new entries in this collection the published toggle will default to true instead of false (draft).
      *
-     * Example: return 'published';
+     * Example: return true;
      */
-    public function defaultPublishState(): string
+    public function defaultPublishState(): bool
     {
-        return 'published';
+        return true;
     }
 
     /**
