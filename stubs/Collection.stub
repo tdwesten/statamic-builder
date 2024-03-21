@@ -172,13 +172,9 @@ class {{ class }} extends BaseCollection
      *
      * @docs https://statamic.dev/structures
      */
-    public function structure(): array
+    public function structure(): ?array
     {
-        return [
-            'root' => false,
-            'slugs' => false,
-            'max_depth' => null,
-        ];
+        return null;
     }
 
     /**
