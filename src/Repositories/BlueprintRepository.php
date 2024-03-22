@@ -40,12 +40,12 @@ class BlueprintRepository extends StatamicBlueprintRepository
 
         $namespace = str_replace('/', '.', $namespace);
 
-        if (isset($registeredBlueprints[$handle])) {
-            return new $registeredBlueprints[$handle]($handle);
-        }
-
         if (isset($registeredBlueprints[$namespace][$handle])) {
             return new $registeredBlueprints[$namespace][$handle]($handle);
+        }
+
+        if (isset($registeredBlueprints[$handle])) {
+            return new $registeredBlueprints[$handle]($handle);
         }
 
         return null;

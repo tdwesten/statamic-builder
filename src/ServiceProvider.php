@@ -4,25 +4,17 @@ namespace Tdwesten\StatamicBuilder;
 
 use Illuminate\Http\Request;
 use Statamic\Providers\AddonServiceProvider;
+use Tdwesten\StatamicBuilder\Repositories\AssetContainerRepository;
 use Tdwesten\StatamicBuilder\Repositories\GlobalRepository;
+use Tdwesten\StatamicBuilder\Repositories\NavigationRepository;
 
 class ServiceProvider extends AddonServiceProvider
 {
-    public function bootAddon()
-    {
-    }
-
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/builder.php', 'builder');
 
-        $this->registerBlueprintRepository();
-
-        $this->registerFieldsetRepository();
-
-        $this->registerGlobalRepository();
-
-        $this->registerCollectionRepository();
+        $this->bindRepositories();
 
         $this->registerControllers();
     }
@@ -41,31 +33,44 @@ class ServiceProvider extends AddonServiceProvider
             return new \Tdwesten\StatamicBuilder\Http\Controllers\TaxonomyBlueprintsController;
         });
 
+        $this->app->bind(\Statamic\Http\Controllers\CP\Navigation\NavigationBlueprintController::class, function () {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\NavigationBlueprintController;
+        });
+
+        $this->app->bind(\Statamic\Http\Controllers\CP\Assets\AssetContainerBlueprintController::class, function () {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\AssetContainerBlueprintController(
+                app('request')
+            );
+        });
+
         $this->app->bind(\Statamic\Http\Controllers\CP\Collections\CollectionsController::class, function ($app) {
             return new \Tdwesten\StatamicBuilder\Http\Controllers\CollectionsController(
                 $app->make(Request::class),
                 $app->make(\Tdwesten\StatamicBuilder\Repositories\CollectionRepository::class)
             );
         });
+
     }
 
-    protected function registerGlobalRepository()
+    protected function bindRepositories()
     {
+        $this->app->singleton(\Statamic\Stache\Repositories\AssetContainerRepository::class, function () {
+            return new AssetContainerRepository(app('stache'));
+        });
+
         $this->app->singleton(\Statamic\Stache\Repositories\GlobalRepository::class, function () {
             return new GlobalRepository(app('stache'));
         });
-    }
 
-    protected function registerFieldsetRepository()
-    {
         $this->app->singleton(\Statamic\Fields\FieldsetRepository::class, function () {
             return (new \Tdwesten\StatamicBuilder\Repositories\FieldsetRepository)
                 ->setDirectory(resource_path('fieldsets'));
         });
-    }
 
-    protected function registerCollectionRepository()
-    {
+        $this->app->singleton(\Statamic\Stache\Repositories\NavigationRepository::class, function () {
+            return new NavigationRepository(app('stache'));
+        });
+
         $this->app->singleton(\Statamic\Contracts\Entries\CollectionRepository::class, function () {
             return new \Tdwesten\StatamicBuilder\Repositories\CollectionRepository(app('stache'));
         });
@@ -73,10 +78,7 @@ class ServiceProvider extends AddonServiceProvider
         $this->app->singleton(\Statamic\Stache\Stores\CollectionsStore::class, function () {
             return new \Tdwesten\StatamicBuilder\Stache\Stores\CollectionsStore(app('stache'));
         });
-    }
 
-    protected function registerBlueprintRepository()
-    {
         $this->app->singleton(\Statamic\Fields\BlueprintRepository::class, function () {
             return (new \Tdwesten\StatamicBuilder\Repositories\BlueprintRepository)
                 ->setDirectory(resource_path('blueprints'))
@@ -101,9 +103,10 @@ class ServiceProvider extends AddonServiceProvider
                 Console\MakeBlueprintCommand::class,
                 Console\MakeFieldsetCommand::class,
                 Console\MakeCollectionCommand::class,
-                Console\Importer::class,
                 Console\Export::class,
             ]);
         }
+
+        parent::boot();
     }
 }

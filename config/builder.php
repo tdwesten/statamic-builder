@@ -29,6 +29,12 @@ return [
         'globals' => [
             // 'footer' => App\Blueprints\SiteBlueprint::class,
         ],
+        'navigation' => [
+            // 'main' => App\Blueprints\MainNavigationBlueprint::class,
+        ],
+        'assets' => [
+            // 'assets' => App\Blueprints\AssetsContainerBlueprint::class,
+        ],
     ],
 
     /*

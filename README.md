@@ -47,13 +47,19 @@ class PageBlueprint extends Blueprint
 
 This addon allows you to create:
 
-- [x] Collection blueprints
-- [x] Global blueprints
+Create blueprints for:
+
+- [x] Collections
+- [x] Globals
 - [x] Fieldsets
-- [x] Taxonomy blueprints
-- [ ] Navigation blueprints (comming!)
-- [ ] Asset container blueprints (comming!)
-- [ ] User blueprints (comming!)
+- [x] Taxonomies
+- [x] Navigation Items
+- [x] Asset containers
+- [ ] Users (coming soon)
+
+Also, you can create Create fieldsets.
+
+And you can register collections.
 
 ## Supported Fieldtypes
 
@@ -234,5 +240,59 @@ class PageBlueprint extends Blueprint
 ```
 
 5. That's it! You can now use your fieldset in your Statamic application.
+
+## How to register a collection
+
+1. Generate a new collection blueprint:
+
+```bash
+php artisan make:collection Articles
+```
+
+2. Define your collection:
+
+```php
+<?php
+
+namespace App\Collections;
+
+use Statamic\Facades\Site;
+use Tdwesten\StatamicBuilder\BaseCollection;
+
+class Articles extends BaseCollection
+{
+    /**
+     * Return the handle for the collection
+     *
+     * Example: return 'blog';
+     */
+    public static function handle(): string
+    {
+        return 'articles';
+    }
+
+    /**
+     * Return the title for the collection
+     *
+     * Example: return 'Blog';
+     */
+    public function title(): string
+    {
+        return 'Articles';
+    }
+    ...
+}
+```
+
+3. Add the collection to the `config/statamic/builder.php` file:
+
+```php
+<?php
+    return [
+        'collections' => [
+            \App\Collections\Articles::class,
+        ],
+    ];
+```
 
 More documentation will be added soon.
