@@ -148,9 +148,9 @@ class TestCollection extends BaseCollection
      *
      * Example: return 'published';
      */
-    public function defaultPublishState(): string
+    public function defaultPublishState(): bool
     {
-        return 'published';
+        return true;
     }
 
     /**
