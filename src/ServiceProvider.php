@@ -43,6 +43,10 @@ class ServiceProvider extends AddonServiceProvider
             );
         });
 
+        $this->app->bind(\Statamic\Http\Controllers\CP\Users\UserBlueprintController::class, function () {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\UserBlueprintController;
+        });
+
         $this->app->bind(\Statamic\Http\Controllers\CP\Collections\CollectionsController::class, function ($app) {
             return new \Tdwesten\StatamicBuilder\Http\Controllers\CollectionsController(
                 $app->make(Request::class),

@@ -35,6 +35,7 @@ return [
         'assets' => [
             // 'assets' => App\Blueprints\AssetsContainerBlueprint::class,
         ],
+        'user' => null,
     ],
 
     /*
