@@ -3,9 +3,7 @@
 namespace Tdwesten\StatamicBuilder\Stache\Stores;
 
 use Illuminate\Support\Collection;
-use Statamic\Facades\Path;
 use Statamic\Stache\Stores\CollectionsStore as StatamicCollectionsStore;
-use Symfony\Component\Finder\SplFileInfo;
 use Tdwesten\StatamicBuilder\BaseCollection;
 
 class CollectionsStore extends StatamicCollectionsStore
@@ -42,30 +40,4 @@ class CollectionsStore extends StatamicCollectionsStore
             return $this->getItem($key, $collections);
         });
     }
-
-    // public function getItemFilter(SplFileInfo $file)
-    // {
-    //     /** @var Collection */
-    //     $files = parent::getItemFilter($file) ?? collect([]);
-
-    //     $collections = $this->getCollections();
-
-    //     $collections = $collections->map(function ($collection) {
-    //         $file = (new \ReflectionClass($collection))->getFileName();
-
-    //         $file = new SplFileInfo($file, '', '');
-
-    //         return [Path::tidy($file->getPathname()) => $file->getMTime()];
-    //     });
-
-    //     return $files->merge($collections);
-
-    // }
-
-    // public function getCollections(): Collection
-    // {
-    //     $collections = collect(config('builder.collections'), []);
-
-    //     return $collections;
-    // }
 }

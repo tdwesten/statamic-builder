@@ -58,7 +58,7 @@ it('can render the same output', function () {
             'fullscreen' => true,
             'hide_display' => false,
             'instructions_position' => 'above',
-            'listable' => 'hidden',
+            'listable' => 'visible',
             'previews' => true,
             'replicator_preview' => true,
             'sets' => [
@@ -79,7 +79,7 @@ it('can render the same output', function () {
                                         'hide_display' => false,
                                         'input_type' => 'text',
                                         'instructions_position' => 'above',
-                                        'listable' => 'hidden',
+                                        'listable' => 'visible',
                                         'replicator_preview' => true,
                                         'type' => 'text',
                                         'visibility' => 'visible',

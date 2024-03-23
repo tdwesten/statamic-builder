@@ -14,6 +14,8 @@ class {{ class }} extends BaseCollection
      */
     public static function handle(): string
     {
+        // TODO: Change to the correct blueprint handle
+
         return 'shows';
     }
 
@@ -24,7 +26,23 @@ class {{ class }} extends BaseCollection
      */
     public function title(): string
     {
+        // TODO: Change to the correct title
+
         return 'Shows';
+    }
+
+    /**
+     * Return the blueprint handle for the taxonomy
+     *
+     * Example: return 'tag';
+     *
+     * Docs: https://statamic.dev/blueprints#blueprints
+     */
+    public function blueprint(): string
+    {
+        // TODO: Change to the correct blueprint handle
+
+        return 'show';
     }
 
     /**

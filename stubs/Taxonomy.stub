@@ -1,0 +1,117 @@
+<?php
+
+namespace {{ namespace }};
+
+use Statamic\Facades\Site;
+use Tdwesten\StatamicBuilder\BaseTaxonomy;
+
+class {{ class }} extends BaseTaxonomy
+{
+    /**
+     * Return the handle for the taxonomy
+     *
+     * Example: return 'tags';
+     */
+    public static function handle(): string
+    {
+        // TODO: Change to your taxonomy handle
+
+        return 'tags';
+    }
+
+    /**
+     * Return the title for the taxonomy
+     *
+     * Example: return 'Tags';
+     */
+    public function title(): string
+    {
+        // TODO: Change to your taxonomy title
+
+        return 'Tags';
+    }
+
+    /**
+     * Return the blueprint handle for the taxonomy
+     *
+     * Example: return 'tag';
+     *
+     * Docs: https://statamic.dev/blueprints#blueprints
+     */
+    public function blueprint(): string
+    {
+        // TODO: Change to your taxonomy blueprint
+
+        return 'tag';
+    }
+
+    /**
+     * Return the sites for the collection
+     *
+     * Example: return ['en', 'de'];
+     *
+     * Docs: https://statamic.dev/collections#sites
+     */
+    public function sites(): array
+    {
+        return Site::hasMultiple() ? [] : [Site::default()->handle()];
+    }
+
+    /**
+     * Return the preview targets for the collection
+     *
+     * @example return [
+     *   [
+     *     'label' => 'Term',
+     *     'format' => '{permalink}',
+     *     'refresh' => true,
+     *   ],
+     * ];
+     *
+     * @docs https://statamic.dev/live-preview#preview-targets
+     */
+    public function previewTargets(): array
+    {
+        return [];
+    }
+
+    /**
+     * Set this taxonomy's default layout. Terms can override this setting with a layout field.
+     *
+     * @docs https://statamic.dev/views#layouts
+     */
+    public function layout(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * Set this taxonomy's default template. Terms can override this setting with a template field.
+     *
+     * @docs https://statamic.dev/views#templates
+     */
+    public function template(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * Set this taxonomy's default template. Terms can override this setting with a template field.
+     *
+     * @docs https://statamic.dev/views#templates
+     */
+    public function termTemplate(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * The collections that use this taxonomy.
+     *
+     * @docs https://statamic.dev/routing#routes
+     */
+    public function collections(): array
+    {
+        return [];
+    }
+}

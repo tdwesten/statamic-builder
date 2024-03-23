@@ -17,6 +17,8 @@ class ServiceProvider extends AddonServiceProvider
         $this->bindRepositories();
 
         $this->registerControllers();
+
+        $this->bindStores();
     }
 
     protected function registerControllers()
@@ -54,6 +56,24 @@ class ServiceProvider extends AddonServiceProvider
             );
         });
 
+        $this->app->bind(\Statamic\Http\Controllers\CP\Taxonomies\TaxonomiesController::class, function ($app) {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\TaxonomiesController(
+                $app->make(Request::class),
+                $app->make(\Tdwesten\StatamicBuilder\Repositories\TaxonomyRepository::class)
+            );
+        });
+
+    }
+
+    protected function bindStores()
+    {
+        $this->app->singleton(\Statamic\Stache\Stores\CollectionsStore::class, function () {
+            return new \Tdwesten\StatamicBuilder\Stache\Stores\CollectionsStore(app('stache'));
+        });
+
+        $this->app->singleton(\Statamic\Stache\Stores\TaxonomiesStore::class, function () {
+            return new \Tdwesten\StatamicBuilder\Stache\Stores\TaxonomiesStore(app('stache'));
+        });
     }
 
     protected function bindRepositories()
@@ -79,8 +99,8 @@ class ServiceProvider extends AddonServiceProvider
             return new \Tdwesten\StatamicBuilder\Repositories\CollectionRepository(app('stache'));
         });
 
-        $this->app->singleton(\Statamic\Stache\Stores\CollectionsStore::class, function () {
-            return new \Tdwesten\StatamicBuilder\Stache\Stores\CollectionsStore(app('stache'));
+        $this->app->singleton(\Statamic\Contracts\Taxonomies\TaxonomyRepository::class, function () {
+            return new \Tdwesten\StatamicBuilder\Repositories\TaxonomyRepository(app('stache'));
         });
 
         $this->app->singleton(\Statamic\Fields\BlueprintRepository::class, function () {
@@ -107,6 +127,7 @@ class ServiceProvider extends AddonServiceProvider
                 Console\MakeBlueprintCommand::class,
                 Console\MakeFieldsetCommand::class,
                 Console\MakeCollectionCommand::class,
+                Console\MakeTaxonomyCommand::class,
                 Console\Export::class,
             ]);
         }

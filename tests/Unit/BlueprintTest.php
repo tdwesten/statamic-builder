@@ -41,7 +41,7 @@ test('Tabs are renderd', function () {
                                     'hide_display' => false,
                                     'input_type' => 'text',
                                     'instructions_position' => 'above',
-                                    'listable' => 'hidden',
+                                    'listable' => 'visible',
                                     'replicator_preview' => true,
                                     'type' => 'text',
                                     'visibility' => 'visible',

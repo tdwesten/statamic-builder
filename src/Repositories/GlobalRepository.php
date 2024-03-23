@@ -12,6 +12,7 @@ class GlobalRepository extends StatamicGlobalRepository
         $builderKeys = BlueprintRepository::findBlueprintInNamespace('globals')->map(function ($blueprint) {
             return $blueprint->getHandle();
         });
+
         $keys = $this->store->paths()->keys()->merge($builderKeys);
 
         return GlobalCollection::make($this->store->getItems($keys));

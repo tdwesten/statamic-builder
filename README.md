@@ -45,30 +45,11 @@ class PageBlueprint extends Blueprint
 
 ## Features
 
-This addon allows you to create:
-
-Create blueprints for:
-
-- [x] Collections
-- [x] Globals
-- [x] Fieldsets
-- [x] Taxonomies
-- [x] Navigation Items
-- [x] Asset containers
-- [ ] Users (coming soon)
-
-Also, you can create Create fieldsets.
-
-And you can register collections.
+This addon allows you to create blueprints and fieldsets in a fluent way. Also you can register collections and taxonomies for your Statamic application.
 
 ## Supported Fieldtypes
 
-The following fieldtypes are supported:
-Arr, Assets, Bard, ButtonGroup, Checkboxes, Code, Collections, Collor, Date, Entries, Field, FloatVal, Grid, Group, Html, Icon, Integer, Link, Lists, Markdown, Navs, Radio, Range, Relationship, Replicator, Revealer, Section, SectionField, Select, Set, SetGroup, Sites, Slug, Spacer, Structures, Tab, Table, Taggable, Taggeble, Taxonomies, Template, Terms, Text, Textarea, Time, Toggle, UserGroups, UserRoles, Users, Video, Width, Yaml.
-
-See all pending fields that needs to be added: https://github.com/tdwesten/statamic-builder/labels/Missing%20Statamic%20field
-
-And you can also use the `Field` class to implement custom fieldtypes. For example:
+All the default fieldtypes are supported. And you can also use the `Field` class to implement custom fieldtypes. For example:
 
 ```php
 Field::make('custom_field')
@@ -295,4 +276,61 @@ class Articles extends BaseCollection
     ];
 ```
 
-More documentation will be added soon.
+## How to register a taxonomy
+
+1. Generate a new taxonomy blueprint:
+
+```bash
+php artisan make:taxonomy Categories
+```
+
+2. Define your taxonomy:
+
+```php
+<?php
+
+namespace App\Taxonomies;
+
+use Statamic\Facades\Site;
+use Tdwesten\StatamicBuilder\BaseTaxonomy;
+
+class Categories extends BaseTaxonomy
+{
+    /**
+     * Return the handle for the taxonomy
+     *
+     * Example: return 'tags';
+     */
+    public static function handle(): string
+    {
+        // TODO: Change to your taxonomy handle
+
+        return 'categories';
+    }
+
+    /**
+     * Return the title for the taxonomy
+     *
+     * Example: return 'Tags';
+     */
+    public function title(): string
+    {
+        // TODO: Change to your taxonomy title
+
+        return 'Categories';
+    }
+
+    ...
+}
+```
+
+3. Add the taxonomy to the `config/statamic/builder.php` file:
+
+```php
+<?php
+    return [
+        'taxonomies' => [
+            \App\Taxonomies\Categories::class,
+        ],
+    ];
+```

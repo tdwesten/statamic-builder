@@ -63,4 +63,17 @@ return [
     'collections' => [
         // App\Collections\Articles::class,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Register Taxonomies
+    |--------------------------------------------------------------------------
+    |
+    | Here you can register the taxonomies that you want to use in your
+    | Statamic site.
+    |
+    */
+    'taxonomies' => [
+        // App\Taxonomies\Tags::class,
+    ],
 ];

@@ -67,7 +67,7 @@ test('Renders expected array data', function () {
             'input_type' => 'text',
             'instructions' => 'The name of the county',
             'instructions_position' => 'above',
-            'listable' => 'hidden',
+            'listable' => 'visible',
             'replicator_preview' => true,
             'required' => true,
             'type' => 'text',
