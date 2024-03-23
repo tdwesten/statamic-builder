@@ -128,7 +128,7 @@ class {{ class }} extends BaseCollection
      */
     public function searchIndex(): string
     {
-        return 'search_index';
+        return 'default';
     }
 
     /**
