@@ -32,7 +32,7 @@ class Field implements Renderable
 
     protected $instructionsPosition = 'above';
 
-    protected $listable = 'hidden';
+    protected $listable = 'visible';
 
     protected $replicatorPreview = true;
 
