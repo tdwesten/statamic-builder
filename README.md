@@ -1,6 +1,6 @@
 # Statamic Builder
 
-The Statamic Builder speeds up building Statamic sites. It offers a clear method to define blueprints, fieldsets, collections, and taxonomies using PHP classes. This approach enhances code readability and maintainability compared to writing YAML files.
+The Statamic Builder speeds up building Statamic sites. It offers a clear method to define blueprints, fieldsets, collections, naviations and taxonomies using PHP classes. This approach enhances code readability and maintainability compared to writing YAML files.
 
 For example, you can define a collection blueprint as follows:
 
