@@ -1,8 +1,5 @@
 [![CI](https://github.com/tdwesten/statamic-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/tdwesten/statamic-builder/actions/workflows/ci.yml)
 
-> [!WARNING]
-> This addon is still in Alpha and should not be used in production environments.
-
 # Statamic Builder
 
 Statamic Builder is a fluent blueprint and fieldset builder for Statamic. This means this provides you with a fluent way of defening your Statamic blueprints and fieldsets.

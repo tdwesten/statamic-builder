@@ -76,4 +76,17 @@ return [
     'taxonomies' => [
         // App\Taxonomies\Tags::class,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Register Globals
+    |--------------------------------------------------------------------------
+    |
+    | Here you can register the globals that you want to use in your
+    | Statamic site.
+    |
+    */
+    'globals' => [
+        // App\Globals\Footer::class,
+    ],
 ];

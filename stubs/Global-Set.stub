@@ -1,0 +1,45 @@
+<?php
+
+namespace {{ namespace }};
+
+use Statamic\Facades\Site;
+use Tdwesten\StatamicBuilder\BaseGlobalSet;
+
+class {{ class }} extends BaseGlobalSet
+{
+    /**
+     * Return the handle for the collection
+     *
+     * Example: return 'footer';
+     */
+    public static function handle(): string
+    {
+        // TODO: Change to the correct global set handle
+
+        return 'footer';
+    }
+
+    /**
+     * Return the title for the collection
+     *
+     * Example: return 'Footer';
+     */
+    public function title(): string
+    {
+        // TODO: Change to the correct title
+
+        return 'Footer';
+    }
+
+    /**
+     * Return the sites for the collection
+     *
+     * Example: return ['en', 'de'];
+     *
+     * Docs: https://statamic.dev/collections#sites
+     */
+    public function sites(): array
+    {
+        return Site::hasMultiple() ? [] : [Site::default()->handle()];
+    }
+}

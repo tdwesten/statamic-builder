@@ -4,9 +4,6 @@ namespace Tdwesten\StatamicBuilder;
 
 use Illuminate\Http\Request;
 use Statamic\Providers\AddonServiceProvider;
-use Tdwesten\StatamicBuilder\Repositories\AssetContainerRepository;
-use Tdwesten\StatamicBuilder\Repositories\GlobalRepository;
-use Tdwesten\StatamicBuilder\Repositories\NavigationRepository;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -63,6 +60,13 @@ class ServiceProvider extends AddonServiceProvider
             );
         });
 
+        $this->app->bind(\Statamic\Http\Controllers\CP\Globals\GlobalsController::class, function ($app) {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\GlobalsController(
+                $app->make(Request::class),
+                $app->make(\Tdwesten\StatamicBuilder\Repositories\GlobalRepository::class)
+            );
+        });
+
     }
 
     protected function bindStores()
@@ -74,16 +78,20 @@ class ServiceProvider extends AddonServiceProvider
         $this->app->singleton(\Statamic\Stache\Stores\TaxonomiesStore::class, function () {
             return new \Tdwesten\StatamicBuilder\Stache\Stores\TaxonomiesStore(app('stache'));
         });
+
+        $this->app->singleton(\Statamic\Stache\Stores\GlobalsStore::class, function () {
+            return new \Tdwesten\StatamicBuilder\Stache\Stores\GlobalsStore(app('stache'));
+        });
     }
 
     protected function bindRepositories()
     {
         $this->app->singleton(\Statamic\Stache\Repositories\AssetContainerRepository::class, function () {
-            return new AssetContainerRepository(app('stache'));
+            return new \Tdwesten\StatamicBuilder\Repositories\AssetContainerRepository(app('stache'));
         });
 
         $this->app->singleton(\Statamic\Stache\Repositories\GlobalRepository::class, function () {
-            return new GlobalRepository(app('stache'));
+            return new \Tdwesten\StatamicBuilder\Repositories\GlobalRepository(app('stache'));
         });
 
         $this->app->singleton(\Statamic\Fields\FieldsetRepository::class, function () {
@@ -92,7 +100,7 @@ class ServiceProvider extends AddonServiceProvider
         });
 
         $this->app->singleton(\Statamic\Stache\Repositories\NavigationRepository::class, function () {
-            return new NavigationRepository(app('stache'));
+            return new \Tdwesten\StatamicBuilder\Repositories\NavigationRepository(app('stache'));
         });
 
         $this->app->singleton(\Statamic\Contracts\Entries\CollectionRepository::class, function () {
@@ -128,6 +136,7 @@ class ServiceProvider extends AddonServiceProvider
                 Console\MakeFieldsetCommand::class,
                 Console\MakeCollectionCommand::class,
                 Console\MakeTaxonomyCommand::class,
+                Console\MakeGlobalSetCommand::class,
                 Console\Export::class,
             ]);
         }
