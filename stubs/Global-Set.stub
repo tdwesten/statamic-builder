@@ -8,7 +8,7 @@ use Tdwesten\StatamicBuilder\BaseGlobalSet;
 class {{ class }} extends BaseGlobalSet
 {
     /**
-     * Return the handle for the collection
+     * The handle for this global set
      *
      * Example: return 'footer';
      */
@@ -20,7 +20,7 @@ class {{ class }} extends BaseGlobalSet
     }
 
     /**
-     * Return the title for the collection
+     * The title for this global set
      *
      * Example: return 'Footer';
      */
@@ -32,14 +32,13 @@ class {{ class }} extends BaseGlobalSet
     }
 
     /**
-     * Return the sites for the collection
+     * The sites for this global set
      *
-     * Example: return ['en', 'de'];
-     *
-     * Docs: https://statamic.dev/collections#sites
+     * Example: return ['default'] or ['default', 'en', 'de'];
      */
     public function sites(): array
     {
-        return Site::hasMultiple() ? [] : [Site::default()->handle()];
+        return ['default'];
     }
+
 }

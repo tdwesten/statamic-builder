@@ -33,6 +33,19 @@ class GlobalRepository extends StatamicGlobalRepository
         return GlobalCollection::make($this->store->getItems($keys, $this->globals));
     }
 
+    public function find($id): ?GlobalSet
+    {
+        if ($global = $this->globals->get($id)) {
+            return (new $global)->register();
+        }
+
+        $r = parent::find($id);
+
+        if ($r) {
+            return $r;
+        }
+    }
+
     private function initializeGlobals()
     {
         $globals = collect(config('statamic.builder.globals', []));

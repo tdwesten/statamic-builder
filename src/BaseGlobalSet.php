@@ -3,6 +3,7 @@
 namespace Tdwesten\StatamicBuilder;
 
 use Statamic\Facades\GlobalSet as StatamicGlobalSet;
+use Statamic\Facades\Site;
 
 abstract class BaseGlobalSet
 {
@@ -10,12 +11,20 @@ abstract class BaseGlobalSet
 
     abstract public function title(): string;
 
+    abstract public function sites(): array;
+
     public function register()
     {
         /** @var StatamicGlobalSet */
-        $globalSet = StatamicGlobalSet::make($this->handle())
+        $global = StatamicGlobalSet::make($this->handle())
             ->title($this->title());
 
-        return $globalSet;
+        $sites = $this->sites() ?? [Site::default()->handle()];
+
+        foreach ($sites as $site) {
+            $global->addLocalization($global->makeLocalization($site));
+        }
+
+        return $global;
     }
 }

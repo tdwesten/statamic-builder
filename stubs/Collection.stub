@@ -100,13 +100,13 @@ class {{ class }} extends BaseCollection
     /**
      * Return the sites for the collection
      *
-     * Example: return ['en', 'de'];
+     * Example: return [Site::default()->handle(), 'nl'];
      *
      * Docs: https://statamic.dev/collections#sites
      */
     public function sites(): array
     {
-        return Site::hasMultiple() ? [] : [Site::default()->handle()];
+        return [Site::default()->handle()];
     }
 
     /**

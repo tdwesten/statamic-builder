@@ -8,7 +8,7 @@ use Tdwesten\StatamicBuilder\BaseTaxonomy;
 class {{ class }} extends BaseTaxonomy
 {
     /**
-     * Return the handle for the taxonomy
+     * The handle of this taxonomy
      *
      * Example: return 'tags';
      */
@@ -20,7 +20,7 @@ class {{ class }} extends BaseTaxonomy
     }
 
     /**
-     * Return the title for the taxonomy
+     * The title of this taxonomy
      *
      * Example: return 'Tags';
      */
@@ -32,7 +32,7 @@ class {{ class }} extends BaseTaxonomy
     }
 
     /**
-     * Return the blueprint handle for the taxonomy
+     * The default taxonomy blueprint
      *
      * Example: return 'tag';
      *
@@ -40,25 +40,25 @@ class {{ class }} extends BaseTaxonomy
      */
     public function blueprint(): string
     {
-        // TODO: Change to your taxonomy blueprint
+        // TODO: Change to your taxonomy blueprint handle
 
         return 'tag';
     }
 
     /**
-     * Return the sites for the collection
+     * The sites that the taxonomy is available in
      *
-     * Example: return ['en', 'de'];
+     * Example: return [Site::default()->handle(), 'nl'];
      *
      * Docs: https://statamic.dev/collections#sites
      */
     public function sites(): array
     {
-        return Site::hasMultiple() ? [] : [Site::default()->handle()];
+        return [Site::default()->handle()];
     }
 
     /**
-     * Return the preview targets for the collection
+     * The preview targets for this taxonomy.
      *
      * @example return [
      *   [
