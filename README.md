@@ -1,10 +1,8 @@
-[![CI](https://github.com/tdwesten/statamic-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/tdwesten/statamic-builder/actions/workflows/ci.yml)
-
 # Statamic Builder
 
-Statamic Builder is a fluent blueprint and fieldset builder for Statamic. This means this provides you with a fluent way of defening your Statamic blueprints and fieldsets.
+The Statamic Builder speeds up building Statamic sites. It offers a clear method to define blueprints, fieldsets, collections, and taxonomies using PHP classes. This approach enhances code readability and maintainability compared to writing YAML files.
 
-For example, you can define a collection blueprint like this:
+For example, you can define a collection blueprint as follows:
 
 ```php
 <?php
@@ -40,39 +38,21 @@ class PageBlueprint extends Blueprint
 }
 ```
 
-## Features
+## Installation
 
-This addon allows you to create blueprints and fieldsets in a fluent way. Also you can register collections and taxonomies for your Statamic application.
-
-## Supported Fieldtypes
-
-All the default fieldtypes are supported. And you can also use the `Field` class to implement custom fieldtypes. For example:
-
-```php
-Field::make('custom_field')
-    ->withAttributes([
-        'type' => 'custom_type',
-        'display' => 'Custom Field',
-        'instructions' => 'This is a custom field',
-        'required' => true,
-        'options' => [
-            'option1' => 'Option 1',
-            'option2' => 'Option 2',
-        ],
-    ]);
-```
-
-## How to Install
-
-You can install this addon via composer:
+You can install this addon with composer. Run the following command in your terminal to install the addon.
 
 ```bash
 composer require tdwesten/statamic-builder
 ```
 
-## How to create a blueprint
+## Blueprints and Fieldsets
 
-1. Create a new blueprint by running the following command:
+This addon allows you to create blueprints and fieldsets in a fluent way. This makes it easier to define and maintain your blueprints and fieldsets.
+
+### How to create a blueprint
+
+1. Create a new blueprint by running the following command for a page blueprint for example:
 
 ```bash
 php artisan make:blueprint PageBlueprint
@@ -130,21 +110,20 @@ class PageBlueprint extends Blueprint
                 'page' => \App\Blueprints\PageBlueprint::class,
             ],
         ],
-        'fieldsets' => [],
     ];
 ```
 
 4. That's it! You can now use your blueprint in your Statamic application.
 
-## How to create a fieldset
+### How to create a fieldset
 
-1. Create a new fieldset by running the following command:
+1. Create a new fieldset by running the following command for a hero fieldset for example:
 
 ```bash
 php artisan make:fieldset HeroFieldset
 ```
 
-2. Define your fieldset in the generated file. For example:
+2. Define your fieldset in the generated file. For example add a title and image field to the hero fieldset:
 
 ```php
 <?php
@@ -179,7 +158,11 @@ class HeroFieldset extends Fieldset
 ```php
 <?php
     return [
-        'blueprints' => [],
+        'blueprints' => [
+            'collections.pages' => [
+                'page' => \App\Blueprints\PageBlueprint::class,
+            ],
+        ],
         'fieldsets' => [
             \App\Fieldsets\HeroFieldset::class,
         ],
@@ -217,17 +200,38 @@ class PageBlueprint extends Blueprint
 }
 ```
 
-5. That's it! You can now use your fieldset in your Statamic application.
+### Supported Fieldtypes
 
-## How to register a collection
+All default Statamic field types are supported. You can create custom field types by utilizing the `Field` class. For example to create a custom field type you can use the following code:
 
-1. Generate a new collection blueprint:
+```php
+Field::make('custom_field')
+    ->withAttributes([
+        'type' => 'custom_type',
+        'display' => 'Custom Field',
+        'instructions' => 'This is a custom field',
+        'required' => true,
+        'options' => [
+            'option1' => 'Option 1',
+            'option2' => 'Option 2',
+        ],
+        // Add more attributes here...
+    ]);
+```
+
+## How to register Collections, Taxonomies and Globals
+
+This addon enables you to define collections, taxonomies, and globals in PHP classes, simplifying the process of defining and managing them.
+
+### How to register a collection
+
+1. Generate a new collection blueprint, for example for an articles collection blueprint run the following command:
 
 ```bash
 php artisan make:collection Articles
 ```
 
-2. Define your collection:
+2. Define your Articles collection blueprint in the generated file. For example, the file has all options available to define a collection blueprint. For example:
 
 ```php
 <?php
@@ -258,7 +262,8 @@ class Articles extends BaseCollection
     {
         return 'Articles';
     }
-    ...
+
+    // Add more options here...
 }
 ```
 
@@ -273,15 +278,15 @@ class Articles extends BaseCollection
     ];
 ```
 
-## How to register a taxonomy
+### How to register a taxonomy
 
-1. Generate a new taxonomy blueprint:
+1. Generate a new taxonomy blueprint, for example for a categories taxonomy blueprint run the following command:
 
 ```bash
 php artisan make:taxonomy Categories
 ```
 
-2. Define your taxonomy:
+2. Define your taxonomy in the generated file. For example, the file has all options available to define a taxonomy. For example:
 
 ```php
 <?php
@@ -317,7 +322,7 @@ class Categories extends BaseTaxonomy
         return 'Categories';
     }
 
-    ...
+    // Add more options here...
 }
 ```
 
@@ -328,6 +333,61 @@ class Categories extends BaseTaxonomy
     return [
         'taxonomies' => [
             \App\Taxonomies\Categories::class,
+        ],
+    ];
+```
+
+### How to register a global set
+
+1. Generate a new global set blueprint, for example for a site settings global set blueprint run the following command:
+
+```bash
+php artisan make:global-set SiteSettings
+```
+
+2. Define your global set in the generated file. For example, the file has all options available to define a global set. For example:
+
+```php
+<?php
+
+namespace App\Globals;
+
+use Statamic\Facades\Site;
+use Tdwesten\StatamicBuilder\BaseGlobalSet;
+
+class SiteSettings extends BaseGlobalSet
+{
+    /**
+     * The handle for this global set
+     *
+     * Example: return 'footer';
+     */
+    public static function handle(): string
+    {
+        return 'site_settings';
+    }
+
+    /**
+     * The title for this global set
+     *
+     * Example: return 'Footer';
+     */
+    public function title(): string
+    {
+        return 'Site Settings';
+    }
+
+    // Add more options here...
+}
+```
+
+3. Add the global set to the `config/statamic/builder.php` file:
+
+```php
+<?php
+    return [
+        'globals' => [
+            \App\Globals\SiteSettings::class,
         ],
     ];
 ```
