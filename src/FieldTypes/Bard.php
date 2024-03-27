@@ -17,11 +17,11 @@ class Bard extends Field
 
     protected $type = 'bard';
 
-    protected $buttons;
+    protected Collection $buttons;
 
-    protected $smart_typography = false;
+    protected bool $smart_typography = false;
 
-    protected $save_html = false;
+    protected bool $save_html = false;
 
     protected $inline;
 
@@ -71,7 +71,9 @@ class Bard extends Field
     public function fieldToArray(): Collection
     {
         return collect([
-            'buttons' => $this->buttons->map->value()->toArray(),
+            'buttons' => $this->buttons->map(function (BardButton $button) {
+                return $button->value;
+            })->all(),
             'smart_typography' => $this->smart_typography,
             'fullscreen' => $this->fullscreen,
             'save_html' => $this->save_html,
