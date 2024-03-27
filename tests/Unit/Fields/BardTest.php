@@ -1,5 +1,7 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Enums\BardButton;
+use Tdwesten\StatamicBuilder\Enums\BardInlineOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
 it('can render to a array', function () {
@@ -28,4 +30,25 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['replicator_preview'])->toBe(true);
 
     expect($field->toArray()['field']['width'])->toBe(50);
+});
+
+test('you can add multiple buttons', function () {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
+    $field->buttons([BardButton::Bold, BardButton::Italic]);
+
+    expect($field->toArray()['field']['buttons'])->toBe(['bold', 'italic']);
+});
+
+test('you can add a single button', function () {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
+    $field->buttons([BardButton::Bold]);
+
+    expect($field->toArray()['field']['buttons'])->toBe(['bold']);
+});
+
+test('you can set the inline option', function () {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
+    $field->inline(BardInlineOption::True);
+
+    expect($field->toArray()['field']['inline'])->toBe(true);
 });
