@@ -1,3 +1,5 @@
+![Github](https://github.com/tdwesten/statamic-builder/assets/224501/fb3da5da-6035-4ca4-9d70-3509c8b626c6)
+
 # Statamic Builder
 
 The Statamic Builder speeds up building Statamic sites. It offers a clear method to define blueprints, fieldsets, collections, naviations and taxonomies using PHP classes. This approach enhances code readability and maintainability compared to writing YAML files.
