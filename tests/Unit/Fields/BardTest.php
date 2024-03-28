@@ -39,6 +39,13 @@ test('you can add multiple buttons', function () {
     expect($field->toArray()['field']['buttons'])->toBe(['bold', 'italic']);
 });
 
+test('you can add custom buttons as a string', function () {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
+    $field->buttons([BardButton::Bold, BardButton::Italic, 'custom_button']);
+
+    expect($field->toArray()['field']['buttons'])->toBe(['bold', 'italic', 'custom_button']);
+});
+
 test('you can add a single button', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
     $field->buttons([BardButton::Bold]);

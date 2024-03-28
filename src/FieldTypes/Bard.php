@@ -71,9 +71,7 @@ class Bard extends Field
     public function fieldToArray(): Collection
     {
         return collect([
-            'buttons' => $this->buttons->map(function (BardButton $button) {
-                return $button->value;
-            })->all(),
+            'buttons' => $this->buttonsToArray(),
             'smart_typography' => $this->smart_typography,
             'fullscreen' => $this->fullscreen,
             'save_html' => $this->save_html,
@@ -96,6 +94,13 @@ class Bard extends Field
             'previews' => $this->previews,
             'sets' => $this->setGroupsToArray(),
         ]);
+    }
+
+    public function buttonsToArray(): array
+    {
+        return $this->buttons->map(function ($button) {
+            return $button instanceof BardButton ? $button?->value : $button;
+        })->all();
     }
 
     public function setGroupsToArray(): array
@@ -128,7 +133,7 @@ class Bard extends Field
     }
 
     /**
-     * @param  BardButton[]  $buttons
+     * @param  BardButton[]|string[]  $buttons
      * @return $this
      */
     public function buttons(array $buttons)
