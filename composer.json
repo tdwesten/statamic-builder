@@ -1,7 +1,7 @@
 {
     "name": "tdwesten/statamic-builder",
     "description": "A fluent blueprint and fieldset builder for Statamic.",
-    "version": "v1.0.1",
+    "version": "v1.0.2",
     "autoload": {
         "psr-4": {
             "Tdwesten\\StatamicBuilder\\": "src"
@@ -30,13 +30,13 @@
         "php": "^8.2",
         "illuminate/support": "^10.0",
         "laravel/framework": "^10.0",
-        "statamic/cms": "^4.46",
-        "nette/php-generator": "^4.1"
+        "statamic/cms": "^4.46"
     },
     "require-dev": {
         "pestphp/pest": "^2.33",
         "laravel/pint": "^1.7",
         "orchestra/testbench": "^8.0",
+        "spatie/laravel-ray": "^1.36",
         "pestphp/pest-plugin-laravel": "^2.2"
     },
     "config": {
