@@ -45,7 +45,9 @@ class BlueprintRepository extends StatamicBlueprintRepository
         }
 
         if (isset($registeredBlueprints[$handle])) {
-            return new $registeredBlueprints[$handle]($handle);
+            if (is_string($registeredBlueprints[$handle])) {
+                return new $registeredBlueprints[$handle]($handle);
+            }
         }
 
         return null;
