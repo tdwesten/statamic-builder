@@ -32,6 +32,7 @@ class PageBlueprint extends Blueprint
                     Text::make('title')
                         ->displayName('Title')
                         ->instructions('The title of the page')
+                        ->localizable()
                         ->required()
                 ]),
             ]),
