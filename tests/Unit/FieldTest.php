@@ -116,6 +116,13 @@ test('Can set hide display', function () {
     expect($field->toArray()['field']['hide_display'])->toBe(true);
 });
 
+test('Can set localizable', function () {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
+    $field->localizable();
+
+    expect($field->toArray()['field']['localizable'])->toBe(true);
+});
+
 test('Can set validation to sometimes', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
     $field

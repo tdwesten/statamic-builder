@@ -68,6 +68,7 @@ test('Renders expected array data', function () {
             'instructions' => 'The name of the county',
             'instructions_position' => 'above',
             'listable' => 'visible',
+            'localizable' => false,
             'replicator_preview' => true,
             'required' => true,
             'type' => 'text',

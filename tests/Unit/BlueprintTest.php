@@ -42,6 +42,7 @@ test('Tabs are renderd', function () {
                                     'input_type' => 'text',
                                     'instructions_position' => 'above',
                                     'listable' => 'visible',
+                                    'localizable' => false,
                                     'replicator_preview' => true,
                                     'type' => 'text',
                                     'visibility' => 'visible',

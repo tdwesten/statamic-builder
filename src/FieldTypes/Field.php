@@ -52,6 +52,8 @@ class Field implements Renderable
 
     protected $fields;
 
+    protected $localizable = false;
+
     /**
      * @var Collection
      */
@@ -83,8 +85,8 @@ class Field implements Renderable
         // Remove empty values
         $content['field'] = collect($content['field'])->filter(function ($item) {
             return is_array($item)
-                ? ! empty($item)
-                : ! in_array($item, [null, ''], true);
+                ? !empty($item)
+                : !in_array($item, [null, ''], true);
         })->all();
 
         // Sort keys
@@ -111,6 +113,7 @@ class Field implements Renderable
             'visibility' => $this->visibility->value,
             'validate' => $this->validate->toArray(),
             'width' => $this->width,
+            'localizable' => $this->localizable,
         ]);
     }
 
@@ -129,13 +132,12 @@ class Field implements Renderable
         $this->customAttributes = $attributes;
 
         return $this;
-
     }
 
     public function getHandle()
     {
         if ($this->prefix) {
-            return $this->prefix.'.'.$this->handle;
+            return $this->prefix . '.' . $this->handle;
         }
 
         return $this->handle;
@@ -286,6 +288,13 @@ class Field implements Renderable
         return $this;
     }
 
+    public function localizable($localizable = true)
+    {
+        $this->localizable = $localizable;
+
+        return $this;
+    }
+
     public function fieldsToArray()
     {
         $this->fields = FieldParser::parseMixedFieldsToFlatCollection($this->fields);
@@ -298,7 +307,7 @@ class Field implements Renderable
     public function validateField()
     {
         if ($this->getHandle() === null || empty($this->getHandle())) {
-            throw new BlueprintRenderException('[ '.get_called_class().'] Field handle cannot be empty');
+            throw new BlueprintRenderException('[ ' . get_called_class() . '] Field handle cannot be empty');
         }
     }
 }
