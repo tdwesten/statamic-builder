@@ -28,9 +28,9 @@
     },
     "require": {
         "php": "^8.2",
-        "illuminate/support": "^10.0",
-        "laravel/framework": "^10.0",
-        "statamic/cms": "^4.46"
+        "illuminate/support": "^10.0|^11.0",
+        "laravel/framework": "^10.0|^11.0",
+        "statamic/cms": "^4.46|^5.0"
     },
     "require-dev": {
         "pestphp/pest": "^2.33",

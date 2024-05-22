@@ -13,6 +13,7 @@ enum Icon: string
     case AlignObjectCenter = 'align-object-center';
     case AlignObjectTop = 'align-object-top';
     case AlignRight = 'align-right';
+    case Array = 'array';
     case ArrowLeft = 'arrow-left';
     case ArrowRight = 'arrow-right';
     case ArrowRoadmapPathFlow = 'arrow-roadmap-path-flow';
