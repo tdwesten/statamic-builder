@@ -5,6 +5,7 @@ namespace Tdwesten\StatamicBuilder\FieldTypes;
 use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Enums\ArrayModeOption;
+use Tdwesten\StatamicBuilder\Enums\Icon;
 
 class Arr extends Field
 {
@@ -20,7 +21,7 @@ class Arr extends Field
     {
         parent::__construct($handle, $this->type);
 
-        $this->icon = 'array';
+        $this->icon = Icon::Array;
 
         $this->mode = ArrayModeOption::Dynamic;
     }
