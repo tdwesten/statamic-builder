@@ -9,7 +9,7 @@ class ServiceProvider extends AddonServiceProvider
 {
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/builder.php', 'builder');
+        $this->mergeConfigFrom(__DIR__ . '/../config/builder.php', 'builder');
 
         $this->bindRepositories();
 
@@ -66,7 +66,6 @@ class ServiceProvider extends AddonServiceProvider
                 $app->make(\Tdwesten\StatamicBuilder\Repositories\GlobalRepository::class)
             );
         });
-
     }
 
     protected function bindStores()
@@ -100,6 +99,9 @@ class ServiceProvider extends AddonServiceProvider
         });
 
         $this->app->singleton(\Statamic\Stache\Repositories\NavigationRepository::class, function () {
+            if (config('statamic.eloquent-driver.navigations.driver') === 'eloquent') {
+                return new \Tdwesten\StatamicBuilder\Repositories\EloquentNavigationRepository(app('stache'));
+            }
             return new \Tdwesten\StatamicBuilder\Repositories\NavigationRepository(app('stache'));
         });
 
@@ -124,11 +126,11 @@ class ServiceProvider extends AddonServiceProvider
 
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'statamic-builder');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'statamic-builder');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/builder.php' => config_path('statamic/builder.php'),
+                __DIR__ . '/../config/builder.php' => config_path('statamic/builder.php'),
             ], 'statamic');
 
             $this->commands([
@@ -138,6 +140,7 @@ class ServiceProvider extends AddonServiceProvider
                 Console\MakeTaxonomyCommand::class,
                 Console\MakeGlobalSetCommand::class,
                 Console\Export::class,
+                Console\MakeNavigationCommand::class,
             ]);
         }
 
