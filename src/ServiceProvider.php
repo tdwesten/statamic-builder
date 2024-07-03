@@ -36,6 +36,10 @@ class ServiceProvider extends AddonServiceProvider
             return new \Tdwesten\StatamicBuilder\Http\Controllers\NavigationBlueprintController;
         });
 
+        $this->app->bind(\Statamic\Http\Controllers\CP\Navigation\NavigationController::class, function ($app) {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\NavigationController($app->make(Request::class));
+        });
+
         $this->app->bind(\Statamic\Http\Controllers\CP\Assets\AssetContainerBlueprintController::class, function () {
             return new \Tdwesten\StatamicBuilder\Http\Controllers\AssetContainerBlueprintController(
                 app('request')
