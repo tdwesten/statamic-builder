@@ -1,0 +1,57 @@
+<?php
+
+namespace {{ namespace }};
+
+use Tdwesten\StatamicBuilder\Blueprint;
+use Tdwesten\StatamicBuilder\FieldTypes\Section;
+use Tdwesten\StatamicBuilder\FieldTypes\Text;
+use Tdwesten\StatamicBuilder\FieldTypes\Tab;
+
+class {{ class }} extends Blueprint
+{
+    /**
+     * The blueprint title.
+     *
+     * @var string
+     */
+    public $title = '';
+
+    /**
+     * The blueprint handle.
+     *
+     * @var string
+     */
+    public $handle = '';
+
+    /**
+     * Hide the blueprint from the blueprint dropdown.
+     *
+     * @var bool
+     */
+    public $hidden = false;
+
+    public function registerTabs(): Array
+    {
+        return [
+            Tab::make('General', [
+                Section::make('General', [
+                    Text::make('title')
+                        ->displayName('Title')
+                        ->required()
+                ]),
+            ]),
+        ];
+    }
+
+    public function toArray()
+    {
+        $blueprint = [
+            'title' => $this->title,
+            'hide' => $this->hidden,
+            'tabs' => $this->tabsToArray(),
+            'handle' => $this->handle
+        ];
+
+        return $blueprint;
+    }
+}
