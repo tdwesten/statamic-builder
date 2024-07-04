@@ -26,7 +26,7 @@ class {{ class }} extends Blueprint
     /**
      * Hide the blueprint from the blueprint dropdown.
      *
-     * @var string
+     * @var bool
      */
     public $hidden = false;
 
