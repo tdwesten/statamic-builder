@@ -12,5 +12,4 @@ enum MarkdownButtonOption: string
     case Link = 'link';
     case Image = 'image';
     case Table = 'table';
-
 }

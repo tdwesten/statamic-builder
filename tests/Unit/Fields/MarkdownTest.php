@@ -46,6 +46,21 @@ test('it can render to a array with buttons', function () {
     ]);
 });
 
+test('it can render a array with buttons as string', function () {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Markdown('title');
+    $field->buttons([
+        'bold',
+        'italic',
+        'link',
+    ]);
+
+    expect($field->toArray()['field']['buttons'])->toBe([
+        MarkdownButtonOption::Bold->value,
+        MarkdownButtonOption::Italic->value,
+        MarkdownButtonOption::Link->value,
+    ]);
+});
+
 test('Can set a asset container', function () {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Markdown('title');
     $field->container('assets');

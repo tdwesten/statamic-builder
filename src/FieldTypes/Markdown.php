@@ -95,9 +95,21 @@ class Markdown extends Field
         return $this;
     }
 
+    /**
+     * Set the buttons for the markdown field.
+     *
+     * @param  array<MarkdownButtonOption|string>  $buttons  The buttons to set.
+     * @return void
+     */
     public function buttons(array $buttons)
     {
-        $this->buttons = $buttons;
+        $this->buttons = collect($buttons)->map(function ($button) {
+            if ($button instanceof MarkdownButtonOption) {
+                return $button;
+            }
+
+            return MarkdownButtonOption::from($button);
+        })->toArray();
 
         return $this;
     }
