@@ -11,7 +11,7 @@ class NavigationController extends StatamicNavigationController
     {
         $navBlueprint = BlueprintRepository::findBlueprintInNamespace('navigation', $navHandle);
 
-        if ($navBlueprint) {
+        if ($navBlueprint->count()) {
             $blueprintPath = BlueprintRepository::findBlueprintPath('navigation', $navHandle);
 
             return view('statamic-builder::not-editable', [
