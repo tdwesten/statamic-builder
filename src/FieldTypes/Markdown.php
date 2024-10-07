@@ -70,8 +70,8 @@ class Markdown extends Field
     protected function buttonsToArray(): array
     {
         return collect($this->buttons)->map(function ($button) {
-            return $button->value;
-        })->toArray();
+            return $button instanceof MarkdownButtonOption ? $button?->value : $button;
+        })->all();
     }
 
     public function container(string $container)
@@ -103,13 +103,7 @@ class Markdown extends Field
      */
     public function buttons(array $buttons)
     {
-        $this->buttons = collect($buttons)->map(function ($button) {
-            if ($button instanceof MarkdownButtonOption) {
-                return $button;
-            }
-
-            return MarkdownButtonOption::from($button);
-        })->toArray();
+        $this->buttons = collect($buttons);
 
         return $this;
     }
