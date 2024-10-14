@@ -17,7 +17,7 @@ class Dictionary extends Field
 
     protected array $dictionaryOptions = [];
 
-    protected array $placeholder;
+    protected string $placeholder = '';
 
     public function __construct(string $handle)
     {
