@@ -52,3 +52,17 @@ it('can set additional dictionary options', function () {
 
     expect($field->toArray()['field']['dictionary']['foo'])->toBe('bar');
 });
+
+test('it can set placeholder', function () {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Dictionary('title');
+    $field->placeholder('placeholder');
+
+    expect($field->toArray()['field']['placeholder'])->toBe('placeholder');
+});
+
+test('it can set max items', function () {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Dictionary('title');
+    $field->maxItems(5);
+
+    expect($field->toArray()['field']['max_items'])->toBe(5);
+});
