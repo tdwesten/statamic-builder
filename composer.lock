@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0cd46647a332adffed1041d166b6206",
+    "content-hash": "fb54bfaedba771c7c96d285cb04ac918",
     "packages": [
         {
             "name": "ajthinking/archetype",
@@ -12195,6 +12195,58 @@
             "time": "2024-01-25T10:15:50+00:00"
         },
         {
+            "name": "statamic/eloquent-driver",
+            "version": "v3.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/statamic/eloquent-driver.git",
+                "reference": "13202b4fd5eda658ae98dc5413b1c6dc2a68ce1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/statamic/eloquent-driver/zipball/13202b4fd5eda658ae98dc5413b1c6dc2a68ce1e",
+                "reference": "13202b4fd5eda658ae98dc5413b1c6dc2a68ce1e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "statamic/cms": "^4.51"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^3.3",
+                "laravel/pint": "^1.0",
+                "orchestra/testbench": "^7.0 || ^8.0",
+                "phpunit/phpunit": "^9.4"
+            },
+            "type": "library",
+            "extra": {
+                "statamic": {
+                    "name": "Eloquent Driver",
+                    "description": "Allows you to store Statamic data in a database."
+                },
+                "laravel": {
+                    "providers": [
+                        "Statamic\\Eloquent\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Statamic\\Eloquent\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Allows you to store Statamic data in a database.",
+            "support": {
+                "issues": "https://github.com/statamic/eloquent-driver/issues",
+                "source": "https://github.com/statamic/eloquent-driver/tree/v3.4.1"
+            },
+            "time": "2024-05-08T06:09:23+00:00"
+        },
+        {
             "name": "symfony/polyfill-iconv",
             "version": "v1.29.0",
             "source": {
@@ -12662,5 +12714,5 @@
         "php": "^8.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
