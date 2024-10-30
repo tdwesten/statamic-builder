@@ -2,7 +2,7 @@
 
 # Statamic Builder
 
-The Statamic Builder speeds up building Statamic sites. It offers a clear method to define blueprints, fieldsets, collections, naviations and taxonomies using PHP classes. This approach enhances code readability and maintainability compared to writing YAML files.
+The Statamic Builder speeds up building Statamic sites. It offers a clear method to define sites, blueprints, fieldsets, collections, naviations and taxonomies using PHP classes. This approach enhances code readability and maintainability compared to writing YAML files.
 
 For example, you can define a collection blueprint as follows:
 
@@ -360,3 +360,90 @@ This addon enables you to define collections and taxonomies in PHP classes, simp
            ],
        ];
    ```
+
+### How to create a Site
+
+1. Create a new site by running the following command:
+
+   ```bash
+   php artisan make:site Blog
+   ```
+
+2. Define your site in the generated file. For example:
+
+    ```php
+    <?php
+
+    namespace App\Sites;
+
+    use Tdwesten\StatamicBuilder\BaseSite;
+
+    class Blog extends BaseSite
+    {
+        /**
+         * Return the handle for the site
+         *
+         * Example: return 'default';
+         */
+        public function handle(): string
+        {
+            return 'blog';
+        }
+
+        /**
+         * Return the handle for the site
+         *
+         * Example: return 'Default';
+         */
+        public function name(): string
+        {
+            return 'Blog';
+        }
+
+        /**
+         * Return the base url for the site
+         *
+         * Example: return '/';
+         */
+        public function url(): string
+        {
+            return '/blog';
+        }
+
+        /**
+         * Return the locale of the site
+         *
+         * Example: return '/';
+         */
+        public function locale(): string
+        {
+            return 'en_US';
+        }
+
+        /**
+         * Return the array of extra attributes for the site
+         *
+         * Example: return ['foo' => 'bar'];
+         */
+        public function attributes(): array
+        {
+            return [];
+        }
+    }
+    ```
+
+3. Register the Site in your `config/statamic/builder.php` file:
+
+    ```php
+    <?php
+        return [
+            'sites' => [
+                \App\Sites\Blog::class
+            ],
+        ];
+    ```
+
+4. Clear the cache:
+```bash
+   php artisan cache:clear
+```
