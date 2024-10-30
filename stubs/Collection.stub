@@ -49,10 +49,11 @@ class {{ class }} extends BaseCollection
      * Return the route for the collection
      *
      * Example: return '/blog/{slug}';
+     * Example: return ['default' => '/blog/{slug}'];
      *
      * Docs: https://statamic.dev/collections#routing
      */
-    public function route(): ?string
+    public function route(): ?null|string|array
     {
         return null;
     }
