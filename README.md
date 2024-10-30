@@ -222,9 +222,9 @@ Field::make('custom_field')
     ]);
 ```
 
-## How to register Collections, Taxonomies and Globals
+## How to register Collections and Taxonomies
 
-This addon enables you to define collections, taxonomies, and globals in PHP classes, simplifying the process of defining and managing them.
+This addon enables you to define collections and taxonomies in PHP classes, simplifying the process of defining and managing them.
 
 ### How to register a collection
 
@@ -340,41 +340,7 @@ This addon enables you to define collections, taxonomies, and globals in PHP cla
        ];
    ```
 
-### How to register a global set
 
-1. Generate a new global set blueprint, for example for a site settings global set blueprint run the following command:
-
-   ```bash
-   php artisan make:global-set SiteSettings
-   ```
-
-2. Define your global set in the generated file. For example, the file has all options available to define a global set. For example:
-
-   ```php
-   <?php
-
-   namespace App\Globals;
-
-   use Statamic\Facades\Site;
-   use Tdwesten\StatamicBuilder\BaseGlobalSet;
-
-   class SiteSettings extends BaseGlobalSet
-   {
-       /**
-        * The handle for this global set
-        *
-        * Example: return 'footer';
-        */
-       public static function handle(): string
-       {
-           return 'site_settings';
-       }
-
-       /**
-        * The title for this global set
-        *
-        * Example: return 'Footer';
-        */
        public function title(): string
        {
            return 'Site Settings';
