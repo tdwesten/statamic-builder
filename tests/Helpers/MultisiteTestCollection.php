@@ -2,10 +2,9 @@
 
 namespace Tests\Helpers;
 
-use Statamic\Facades\Site;
 use Tdwesten\StatamicBuilder\BaseCollection;
 
-class TestCollection extends BaseCollection
+class MultisiteTestCollection extends BaseCollection
 {
     /**
      * The title for the collection
@@ -34,9 +33,12 @@ class TestCollection extends BaseCollection
      *
      * Docs: https://statamic.dev/collections#routing
      */
-    public function route(): ?string
+    public function route(): string|array|null
     {
-        return '/shows/{slug}';
+        return [
+            'en' => '/shows/{slug}',
+            'de' => '/shows/{slug}',
+        ];
     }
 
     /**
@@ -88,7 +90,7 @@ class TestCollection extends BaseCollection
      */
     public function sites(): array
     {
-        return Site::hasMultiple() ? [] : [Site::default()->handle()];
+        return ['en', 'de'];
     }
 
     /**
