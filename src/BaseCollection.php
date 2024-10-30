@@ -10,7 +10,7 @@ abstract class BaseCollection
 
     abstract public static function handle(): string;
 
-    abstract public function route(): ?string;
+    abstract public function route(): null|string|array;
 
     abstract public function slugs(): bool;
 
