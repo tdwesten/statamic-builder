@@ -3,7 +3,7 @@
 use Tests\Helpers\TestSite;
 
 test('Has a name', function () {
-    $site = new TestSite();
+    $site = new TestSite;
 
     expect($site->name())->toBe(
         'Blog'
@@ -11,7 +11,7 @@ test('Has a name', function () {
 });
 
 test('Has a handle', function () {
-    $site = new TestSite();
+    $site = new TestSite;
 
     expect($site->handle())->toBe(
         'blog'
@@ -19,7 +19,7 @@ test('Has a handle', function () {
 });
 
 test('Has a url', function () {
-    $site = new TestSite();
+    $site = new TestSite;
 
     expect($site->url())->toBe(
         'http://blog.test'
@@ -27,7 +27,7 @@ test('Has a url', function () {
 });
 
 test('Has a locale', function () {
-    $site = new TestSite();
+    $site = new TestSite;
 
     expect($site->locale())->toBe(
         'en_US'
@@ -35,9 +35,9 @@ test('Has a locale', function () {
 });
 
 test('Has extra attributes', function () {
-    $site = new TestSite();
+    $site = new TestSite;
 
     expect($site->attributes())->toBe([
-        'extra' => 'attributes'
+        'extra' => 'attributes',
     ]);
 });

@@ -26,7 +26,7 @@ class MakeSiteCommand extends BaseGeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/../../stubs/Site.stub';
+        return __DIR__.'/../../stubs/Site.stub';
     }
 
     /**
@@ -34,6 +34,6 @@ class MakeSiteCommand extends BaseGeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\\Sites';
+        return $rootNamespace.'\\Sites';
     }
 }

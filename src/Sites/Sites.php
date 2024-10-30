@@ -13,11 +13,11 @@ class Sites extends StatamicSites
             return collect(config('statamic.builder.sites'))
                 ->mapWithKeys(function ($site) {
                     $site = new $site;
+
                     return [$site->handle() => $site->toArray()];
                 })
                 ->toArray()
                 ?: $this->getFallbackConfig();
         });
     }
-
 }

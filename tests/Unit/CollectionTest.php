@@ -4,7 +4,7 @@ use Tests\Helpers\MultisiteTestCollection;
 use Tests\Helpers\TestCollection;
 
 test('Has a title', function () {
-    $collection = new TestCollection();
+    $collection = new TestCollection;
 
     expect($collection->title())->toBe(
         'Shows'
@@ -12,7 +12,7 @@ test('Has a title', function () {
 });
 
 test('Has a handle', function () {
-    $collection = new TestCollection();
+    $collection = new TestCollection;
 
     expect($collection->handle())->toBe(
         'shows'
@@ -20,7 +20,7 @@ test('Has a handle', function () {
 });
 
 test('Has a route', function () {
-    $collection = new TestCollection();
+    $collection = new TestCollection;
 
     expect($collection->route())->toBe(
         '/shows/{slug}'
@@ -28,7 +28,7 @@ test('Has a route', function () {
 });
 
 test('Has multiple route for multisites', function () {
-    $collection = new MultisiteTestCollection();
+    $collection = new MultisiteTestCollection;
 
     expect($collection->route())->toBe(
         [
@@ -39,7 +39,7 @@ test('Has multiple route for multisites', function () {
 });
 
 test('Can have multiple sites', function () {
-    $collection = new MultisiteTestCollection();
+    $collection = new MultisiteTestCollection;
 
     expect($collection->sites())->toBe(
         ['en', 'de']
@@ -47,7 +47,7 @@ test('Can have multiple sites', function () {
 });
 
 test('Has slugs', function () {
-    $collection = new TestCollection();
+    $collection = new TestCollection;
 
     expect($collection->slugs())->toBeTrue();
 });

@@ -4,23 +4,23 @@ namespace Tdwesten\StatamicBuilder;
 
 abstract class BaseSite
 {
-    abstract function handle(): string;
+    abstract public function handle(): string;
 
-    abstract function name(): string;
+    abstract public function name(): string;
 
-    abstract function url(): string;
+    abstract public function url(): string;
 
-    abstract function locale(): string;
+    abstract public function locale(): string;
 
-    abstract function attributes(): array;
+    abstract public function attributes(): array;
 
     public function toArray(): array
     {
-        return  [
+        return [
             'name' => $this->name(),
             'url' => $this->url(),
             'locale' => $this->locale(),
-            'attributes' => $this->attributes(),   
+            'attributes' => $this->attributes(),
         ];
     }
 }

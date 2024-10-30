@@ -54,7 +54,7 @@ class TestSite extends BaseSite
     public function attributes(): array
     {
         return [
-            'extra' => 'attributes'
+            'extra' => 'attributes',
         ];
     }
 }

@@ -3,9 +3,8 @@
 namespace Tdwesten\StatamicBuilder\Repositories;
 
 use Illuminate\Support\Collection;
-use Statamic\Eloquent\Structures\NavigationRepository as StatamicNavigationRepository;
-use Tdwesten\StatamicBuilder\Repositories\BlueprintRepository;
 use Statamic\Contracts\Structures\Nav as NavContract;
+use Statamic\Eloquent\Structures\NavigationRepository as StatamicNavigationRepository;
 use Statamic\Eloquent\Structures\NavModel;
 
 class EloquentNavigationRepository extends StatamicNavigationRepository
@@ -24,7 +23,7 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
     public function find($id): ?NavContract
     {
         return $this->all()->filter(function ($value, $key) use ($id) {
-            return ($key === $id);
+            return $key === $id;
         })->first();
     }
 
