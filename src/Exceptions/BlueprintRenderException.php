@@ -2,6 +2,4 @@
 
 namespace Tdwesten\StatamicBuilder\Exceptions;
 
-class BlueprintRenderException extends \Exception
-{
-}
+class BlueprintRenderException extends \Exception {}

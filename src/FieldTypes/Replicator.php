@@ -47,7 +47,7 @@ class Replicator extends Field
         $this->setGroups = collect($this->setGroups);
 
         $this->setGroups = $this->setGroups->filter(function ($setGroup) {
-            if (!$setGroup instanceof SetGroup) {
+            if (! $setGroup instanceof SetGroup) {
                 throw new BlueprintRenderException('Replicator field only accepts SetGroups\s as children.');
             }
 

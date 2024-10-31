@@ -72,7 +72,7 @@ class Export extends Command
     private function exportFieldset($fieldset)
     {
 
-        $fieldset = new $fieldset();
+        $fieldset = new $fieldset;
 
         $handle = $fieldset->getSlug();
 
