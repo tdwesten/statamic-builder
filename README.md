@@ -363,6 +363,9 @@ This addon enables you to define collections and taxonomies in PHP classes, simp
 
 ### How to create a Site
 
+> [!WARNING]  
+The sites are cached forever. When adding a site, you need to clear the cache.
+
 1. Create a new site by running the following command:
 
    ```bash
