@@ -3,8 +3,8 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
-use Tdwesten\StatamicBuilder\Contracts\MaxItems;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
+use Tdwesten\StatamicBuilder\Contracts\MaxItems;
 
 class Dictionary extends Field
 {
@@ -59,7 +59,8 @@ class Dictionary extends Field
     /**
      * Set the non-selectable placeholder text. Default: none.
      */
-    public function placeholder(string $placeholder): self {
+    public function placeholder(string $placeholder): self
+    {
         $this->placeholder = $placeholder;
 
         return $this;

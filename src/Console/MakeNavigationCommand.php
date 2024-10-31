@@ -26,7 +26,7 @@ class MakeNavigationCommand extends BaseGeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/../../stubs/navigation.stub';
+        return __DIR__.'/../../stubs/navigation.stub';
     }
 
     /**
@@ -34,6 +34,6 @@ class MakeNavigationCommand extends BaseGeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\\Navigations';
+        return $rootNamespace.'\\Navigations';
     }
 }
