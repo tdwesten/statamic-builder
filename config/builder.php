@@ -89,4 +89,17 @@ return [
     'globals' => [
         // App\Globals\Footer::class,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Register Sites
+    |--------------------------------------------------------------------------
+    |
+    | Here you can register the sites that you want to use in your
+    | Statamic site.
+    |
+    */
+    'sites' => [
+        // App\Sites\Blog::class,
+    ],
 ];

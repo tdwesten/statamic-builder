@@ -1,0 +1,58 @@
+<?php
+
+namespace {{ namespace }};
+
+use Tdwesten\StatamicBuilder\BaseSite;
+
+class {{ class }} extends BaseSite
+{
+    /**
+     * Return the handle for the site
+     *
+     * Example: return 'default';
+     */
+    public function handle(): string
+    {
+        return 'default';
+    }
+
+    /**
+     * Return the handle for the site
+     *
+     * Example: return 'Default';
+     */
+    public function name(): string
+    {
+        return config('app.name');
+    }
+
+    /**
+     * Return the base url for the site
+     *
+     * Example: return '/';
+     */
+    public function url(): string
+    {
+        return '/';
+    }
+
+    /**
+     * Return the locale of the site
+     *
+     * Example: return '/';
+     */
+    public function locale(): string
+    {
+        return 'en_US';
+    }
+
+    /**
+     * Return the array of extra attributes for the site
+     *
+     * Example: return ['foo' => 'bar'];
+     */
+    public function attributes(): array
+    {
+        return [];
+    }
+}

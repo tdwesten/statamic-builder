@@ -16,6 +16,13 @@ class ServiceProvider extends AddonServiceProvider
         $this->registerControllers();
 
         $this->bindStores();
+
+        $this->bindSites();
+    }
+
+    protected function bindSites()
+    {
+        $this->app->bind(\Statamic\Sites\Sites::class, fn () => new \Tdwesten\StatamicBuilder\Sites\Sites);
     }
 
     protected function registerControllers()
@@ -146,6 +153,7 @@ class ServiceProvider extends AddonServiceProvider
                 Console\MakeGlobalSetCommand::class,
                 Console\Export::class,
                 Console\MakeNavigationCommand::class,
+                Console\MakeSiteCommand::class,
             ]);
         }
 

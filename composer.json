@@ -30,7 +30,7 @@
         "php": "^8.2",
         "illuminate/support": "^10.0|^11.0",
         "laravel/framework": "^10.0|^11.0",
-        "statamic/cms": "^4.46|^5.0"
+        "statamic/cms": "^5.0"
     },
     "require-dev": {
         "pestphp/pest": "^2.33",
@@ -38,7 +38,7 @@
         "orchestra/testbench": "^8.0",
         "spatie/laravel-ray": "^1.36",
         "pestphp/pest-plugin-laravel": "^2.2",
-        "statamic/eloquent-driver": "^3.4"
+        "statamic/eloquent-driver": "^4.16"
     },
     "config": {
         "allow-plugins": {
