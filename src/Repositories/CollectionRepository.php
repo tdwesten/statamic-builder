@@ -49,10 +49,10 @@ class CollectionRepository extends StatamicCollectionRepository
     public function all(): IlluminateCollection
     {
         $keys = $this->store->paths()->keys();
-        
+
         // add custom collections
-        $keys = $this->collections->keys()->filter(fn($collection) => $this->getCollectionByHandle($collection)->visible())->merge($keys);
-        
+        $keys = $this->collections->keys()->filter(fn ($collection) => $this->getCollectionByHandle($collection)->visible())->merge($keys);
+
         return $this->store->getItems($keys, $this->collections);
     }
 
