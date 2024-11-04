@@ -54,6 +54,11 @@ abstract class BaseCollection
 
     abstract public function pastDateBehavior(): ?string;
 
+    public function visible(): bool
+    {
+        return true;
+    }
+
     public function register()
     {
         $collection = StatamicCollection::make($this->handle())
