@@ -51,7 +51,7 @@ class CollectionRepository extends StatamicCollectionRepository
         $keys = $this->store->paths()->keys();
 
         // add custom collections
-        $keys = $this->collections->keys()->merge($keys);
+        $keys = $this->collections->keys()->filter(fn ($collection) => $this->getCollectionByHandle($collection)->visible())->merge($keys);
 
         return $this->store->getItems($keys, $this->collections);
     }
