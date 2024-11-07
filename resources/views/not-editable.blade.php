@@ -82,7 +82,6 @@
                     <a href="idea://open?file={{ $filePath }}"
                         class="w-full lg:w-1/2 p-4 flex items-start hover:bg-gray-200 rounded-md group">
                         <div class="h-8 w-8 mr-4 text-gray-800">
-                            <?xml version="1.0" encoding="utf-8"?>
                             <!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 70 70"
