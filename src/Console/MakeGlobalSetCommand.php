@@ -26,7 +26,7 @@ class MakeGlobalSetCommand extends BaseGeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/../../stubs/global-set.stub';
+        return __DIR__.'/../../stubs/Global-Set.stub';
     }
 
     /**

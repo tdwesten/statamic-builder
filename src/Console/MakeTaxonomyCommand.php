@@ -26,7 +26,7 @@ class MakeTaxonomyCommand extends BaseGeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/../../stubs/taxonomy.stub';
+        return __DIR__.'/../../stubs/Taxonomy.stub';
     }
 
     /**
