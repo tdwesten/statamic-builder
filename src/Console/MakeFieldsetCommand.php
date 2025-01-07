@@ -26,7 +26,7 @@ class MakeFieldsetCommand extends BaseGeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/../../stubs/fieldset.stub';
+        return __DIR__.'/../../stubs/Fieldset.stub';
     }
 
     /**

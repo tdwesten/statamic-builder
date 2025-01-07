@@ -26,7 +26,7 @@ class MakeCollectionCommand extends BaseGeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/../../stubs/collection.stub';
+        return __DIR__.'/../../stubs/Collection.stub';
     }
 
     /**
