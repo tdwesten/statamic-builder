@@ -65,3 +65,11 @@ test('it can render to a array with mode', function () {
 
     expect($field->toArray()['field']['mode'])->toBe(\Tdwesten\StatamicBuilder\Enums\GridModeOption::Table->value);
 });
+
+it('can render to a array with fields', function () {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Grid('grid', [
+        new \Tdwesten\StatamicBuilder\FieldTypes\Text('title'),
+    ]);
+
+    expect($field->toArray()['field']['fields'][0]['field']['type'])->toBe('text');
+});

@@ -22,11 +22,15 @@ class Grid extends Field
 
     protected $min_rows;
 
+    protected $fields;
+
     protected $mode = GridModeOption::Table;
 
-    public function __construct(string $handle)
+    public function __construct(string $handle, array $fields = [])
     {
         parent::__construct($handle);
+
+        $this->fields = collect($fields);
     }
 
     public function fieldToArray(): Collection
@@ -38,6 +42,7 @@ class Grid extends Field
             'max_rows' => $this->max_rows,
             'min_rows' => $this->min_rows,
             'mode' => $this->mode->value,
+            'fields' => $this->fieldsToArray(),
         ]);
     }
 
