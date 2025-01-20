@@ -7,26 +7,26 @@ use Tdwesten\StatamicBuilder\FieldTypes\Text;
 use Tests\Helpers\EmptyTestBlueprint;
 use Tests\Helpers\TestFieldset;
 
-it('can be instantiated', function () {
+it('can be instantiated', function (): void {
     $fieldset = new \Tdwesten\StatamicBuilder\Fieldset('test');
     expect($fieldset)->toBeInstanceOf(\Tdwesten\StatamicBuilder\Fieldset::class);
 });
 
-it('can be registered', function () {
+it('can be registered', function (): void {
     $fieldset = new \Tdwesten\StatamicBuilder\Fieldset('test');
     $fields = $fieldset->toArray();
 
     expect($fields)->toBeArray();
 });
 
-it('can be converted to an array', function () {
+it('can be converted to an array', function (): void {
     $fieldset = TestFieldset::make('test');
     $fields = $fieldset->toArray();
 
     expect($fields)->toBeArray();
 });
 
-test('A fieldset can be used in a blueprint', function () {
+test('A fieldset can be used in a blueprint', function (): void {
     $blueprint = EmptyTestBlueprint::make('school');
     $blueprint
         ->title('School')
@@ -45,7 +45,7 @@ test('A fieldset can be used in a blueprint', function () {
     expect($fields['tabs']['main']['sections'][0]['fields'][1]['import'])->toBe('test_fieldset');
 });
 
-test('A fieldset can be used in group', function () {
+test('A fieldset can be used in group', function (): void {
     $blueprint = EmptyTestBlueprint::make('school');
     $blueprint
         ->title('School')
@@ -65,7 +65,7 @@ test('A fieldset can be used in group', function () {
     expect($fields['tabs']['main']['sections'][0]['fields'][1]['field']['fields'][0]['import'])->toBe('test_fieldset');
 });
 
-test('A fieldset can be used in a fieldset', function () {
+test('A fieldset can be used in a fieldset', function (): void {
     $blueprint = EmptyTestBlueprint::make('school');
     $blueprint
         ->addTab(Tab::make('main', [

@@ -3,7 +3,7 @@
 use Tdwesten\StatamicBuilder\Enums\UIModeOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Navs('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -31,14 +31,14 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-test('Can set max items', function () {
+test('Can set max items', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Navs('title');
     $field->maxItems(5);
 
     expect($field->toArray()['field']['max_items'])->toBe(5);
 });
 
-test('Can set mode', function () {
+test('Can set mode', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Navs('title');
     $field->mode(UIModeOption::StackSelector);
 

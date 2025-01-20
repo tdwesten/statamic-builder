@@ -1,6 +1,6 @@
 <?php
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Set('title', [
         new \Tdwesten\StatamicBuilder\FieldTypes\Text('title'),
     ]);

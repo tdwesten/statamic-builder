@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Dictionary('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,7 +30,7 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-it('type can be set', function () {
+it('type can be set', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Dictionary('title');
     $field->dictionaryType('countries');
     $field->dictionaryOptions(['region' => 'africa']);
@@ -40,7 +40,7 @@ it('type can be set', function () {
     expect($field->toArray()['field']['dictionary']['region'])->toBe('africa');
 });
 
-it('can set additional dictionary options', function () {
+it('can set additional dictionary options', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Dictionary('title');
     $field->dictionaryType('countries');
 
@@ -53,14 +53,14 @@ it('can set additional dictionary options', function () {
     expect($field->toArray()['field']['dictionary']['foo'])->toBe('bar');
 });
 
-test('it can set placeholder', function () {
+test('it can set placeholder', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Dictionary('title');
     $field->placeholder('placeholder');
 
     expect($field->toArray()['field']['placeholder'])->toBe('placeholder');
 });
 
-test('it can set max items', function () {
+test('it can set max items', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Dictionary('title');
     $field->maxItems(5);
 

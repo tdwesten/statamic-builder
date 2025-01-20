@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Select('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,56 +30,56 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-test('it can set taggable', function () {
+test('it can set taggable', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Select('title');
     $field->taggable();
 
     expect($field->toArray()['field']['taggable'])->toBe(true);
 });
 
-test('it can set push tags', function () {
+test('it can set push tags', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Select('title');
     $field->pushTags();
 
     expect($field->toArray()['field']['push_tags'])->toBe(true);
 });
 
-test('it can set placeholder', function () {
+test('it can set placeholder', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Select('title');
     $field->placeholder('placeholder');
 
     expect($field->toArray()['field']['placeholder'])->toBe('placeholder');
 });
 
-test('it can set multiple', function () {
+test('it can set multiple', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Select('title');
     $field->multiple();
 
     expect($field->toArray()['field']['multiple'])->toBe(true);
 });
 
-test('it can set max items', function () {
+test('it can set max items', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Select('title');
     $field->maxItems(5);
 
     expect($field->toArray()['field']['max_items'])->toBe(5);
 });
 
-test('it can set clearable', function () {
+test('it can set clearable', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Select('title');
     $field->clearable();
 
     expect($field->toArray()['field']['clearable'])->toBe(true);
 });
 
-test('it can set searchable', function () {
+test('it can set searchable', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Select('title');
     $field->searchable();
 
     expect($field->toArray()['field']['searchable'])->toBe(true);
 });
 
-test('it can set cast booleans', function () {
+test('it can set cast booleans', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Select('title');
     $field->castBooleans();
 

@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Collor('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,21 +30,21 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-test('you can set the allow any', function () {
+test('you can set the allow any', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Collor('title');
     $field->allowAny(false);
 
     expect($field->toArray()['field']['allow_any'])->toBe(false);
 });
 
-test('you can set the swatches', function () {
+test('you can set the swatches', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Collor('title');
     $field->swatches(['#000000', '#ffffff']);
 
     expect($field->toArray()['field']['swatches'])->toBe(['#000000', '#ffffff']);
 });
 
-test('you can set the default value', function () {
+test('you can set the default value', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Collor('title');
     $field->default('#000000');
 

@@ -4,7 +4,7 @@ use Tdwesten\StatamicBuilder\Enums\Icon;
 use Tdwesten\StatamicBuilder\FieldTypes\Set;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = \Tdwesten\StatamicBuilder\FieldTypes\SetGroup::make('title', [
         Set::make('set_group_handel', [
             Text::make('text_veld')->displayName('Tekst Veld'),

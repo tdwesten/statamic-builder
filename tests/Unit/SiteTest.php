@@ -2,7 +2,7 @@
 
 use Tests\Helpers\TestSite;
 
-test('Has a name', function () {
+test('Has a name', function (): void {
     $site = new TestSite;
 
     expect($site->name())->toBe(
@@ -10,7 +10,7 @@ test('Has a name', function () {
     );
 });
 
-test('Has a handle', function () {
+test('Has a handle', function (): void {
     $site = new TestSite;
 
     expect($site->handle())->toBe(
@@ -18,7 +18,7 @@ test('Has a handle', function () {
     );
 });
 
-test('Has a url', function () {
+test('Has a url', function (): void {
     $site = new TestSite;
 
     expect($site->url())->toBe(
@@ -26,7 +26,7 @@ test('Has a url', function () {
     );
 });
 
-test('Has a locale', function () {
+test('Has a locale', function (): void {
     $site = new TestSite;
 
     expect($site->locale())->toBe(
@@ -34,7 +34,7 @@ test('Has a locale', function () {
     );
 });
 
-test('Has extra attributes', function () {
+test('Has extra attributes', function (): void {
     $site = new TestSite;
 
     expect($site->attributes())->toBe([

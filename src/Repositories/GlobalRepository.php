@@ -52,7 +52,7 @@ class GlobalRepository extends StatamicGlobalRepository
 
         $this->globals = collect();
 
-        $globals->each(function (string $set) {
+        $globals->each(function (string $set): void {
             if (class_exists($set, true)) {
                 $this->globals->put($set::handle(), $set);
             }

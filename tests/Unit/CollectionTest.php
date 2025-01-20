@@ -3,7 +3,7 @@
 use Tests\Helpers\MultisiteTestCollection;
 use Tests\Helpers\TestCollection;
 
-test('Has a title', function () {
+test('Has a title', function (): void {
     $collection = new TestCollection;
 
     expect($collection->title())->toBe(
@@ -11,7 +11,7 @@ test('Has a title', function () {
     );
 });
 
-test('Has a handle', function () {
+test('Has a handle', function (): void {
     $collection = new TestCollection;
 
     expect($collection->handle())->toBe(
@@ -19,7 +19,7 @@ test('Has a handle', function () {
     );
 });
 
-test('Has a route', function () {
+test('Has a route', function (): void {
     $collection = new TestCollection;
 
     expect($collection->route())->toBe(
@@ -27,7 +27,7 @@ test('Has a route', function () {
     );
 });
 
-test('Has multiple route for multisites', function () {
+test('Has multiple route for multisites', function (): void {
     $collection = new MultisiteTestCollection;
 
     expect($collection->route())->toBe(
@@ -38,7 +38,7 @@ test('Has multiple route for multisites', function () {
     );
 });
 
-test('Can have multiple sites', function () {
+test('Can have multiple sites', function (): void {
     $collection = new MultisiteTestCollection;
 
     expect($collection->sites())->toBe(
@@ -46,7 +46,7 @@ test('Can have multiple sites', function () {
     );
 });
 
-test('Has slugs', function () {
+test('Has slugs', function (): void {
     $collection = new TestCollection;
 
     expect($collection->slugs())->toBeTrue();

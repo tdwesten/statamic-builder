@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\ButtonGroup('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,7 +30,7 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-it('can render to a array with options', function () {
+it('can render to a array with options', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\ButtonGroup('title');
     $field->options([
         'option1' => 'Option 1',
@@ -43,7 +43,7 @@ it('can render to a array with options', function () {
     ]);
 });
 
-it('can render to a array with default value', function () {
+it('can render to a array with default value', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\ButtonGroup('title');
     $field->default('option1');
 

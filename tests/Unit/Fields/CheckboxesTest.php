@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Checkboxes('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,7 +30,7 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-it('can render to a array with options', function () {
+it('can render to a array with options', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Checkboxes('title');
     $field->options([
         'option1' => 'Option 1',
@@ -43,14 +43,14 @@ it('can render to a array with options', function () {
     ]);
 });
 
-it('can render to a array with default value', function () {
+it('can render to a array with default value', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Checkboxes('title');
     $field->default('option1');
 
     expect($field->toArray()['field']['default'])->toBe('option1');
 });
 
-it('can render to a array with inline', function () {
+it('can render to a array with inline', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Checkboxes('title');
     $field->inline();
 

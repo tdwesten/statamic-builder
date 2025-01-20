@@ -3,7 +3,7 @@
 use Tdwesten\StatamicBuilder\Enums\UIModeOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -31,28 +31,28 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-test('it can render to a array with max items', function () {
+test('it can render to a array with max items', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
     $field->maxItems(5);
 
     expect($field->toArray()['field']['max_items'])->toBe(5);
 });
 
-test('it can render to a array with mode', function () {
+test('it can render to a array with mode', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
     $field->mode(UIModeOption::Select);
 
     expect($field->toArray()['field']['mode'])->toBe(UIModeOption::Select->value);
 });
 
-test('it can render to a array with collections', function () {
+test('it can render to a array with collections', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
     $field->collections(['blog', 'news']);
 
     expect($field->toArray()['field']['collections'])->toBe(['blog', 'news']);
 });
 
-test('it can render to a array with search index', function () {
+test('it can render to a array with search index', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
     $field->searchIndex('title');
 

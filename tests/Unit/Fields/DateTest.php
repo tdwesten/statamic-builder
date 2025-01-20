@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Date('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,70 +30,70 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-it('can render to a array with mode', function () {
+it('can render to a array with mode', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Date('title');
     $field->mode(\Tdwesten\StatamicBuilder\Enums\DateModeOption::Range);
 
     expect($field->toArray()['field']['mode'])->toBe('range');
 });
 
-it('can render to a array with inline', function () {
+it('can render to a array with inline', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Date('title');
     $field->inline();
 
     expect($field->toArray()['field']['inline'])->toBe(true);
 });
 
-it('can render to a array with full width', function () {
+it('can render to a array with full width', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Date('title');
     $field->fullWidth();
 
     expect($field->toArray()['field']['full_width'])->toBe(true);
 });
 
-it('can render to a array with columns', function () {
+it('can render to a array with columns', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Date('title');
     $field->columns(2);
 
     expect($field->toArray()['field']['columns'])->toBe(2);
 });
 
-it('can render to a array with rows', function () {
+it('can render to a array with rows', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Date('title');
     $field->rows(2);
 
     expect($field->toArray()['field']['rows'])->toBe(2);
 });
 
-it('can render to a array with time enabled', function () {
+it('can render to a array with time enabled', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Date('title');
     $field->timeEnabled();
 
     expect($field->toArray()['field']['time_enabled'])->toBe(true);
 });
 
-it('can render to a array with time seconds enabled', function () {
+it('can render to a array with time seconds enabled', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Date('title');
     $field->timeSecondsEnabled();
 
     expect($field->toArray()['field']['time_seconds_enabled'])->toBe(true);
 });
 
-it('can render to a array with earliest date', function () {
+it('can render to a array with earliest date', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Date('title');
     $field->earliestDate(new \Carbon\Carbon('2021-01-01'));
 
     expect($field->toArray()['field']['earliest_date'])->toBe('2021-01-01');
 });
 
-it('can render to a array with latest date', function () {
+it('can render to a array with latest date', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Date('title');
     $field->latestDate(new \Carbon\Carbon('2021-01-01'));
 
     expect($field->toArray()['field']['latest_date'])->toBe('2021-01-01');
 });
 
-it('can render to a array with format', function () {
+it('can render to a array with format', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Date('title');
     $field->format('Y-m-d');
 

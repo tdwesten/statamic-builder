@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Collections('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,14 +30,14 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-it('can have max items', function () {
+it('can have max items', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Collections('title');
     $field->maxItems(5);
 
     expect($field->toArray()['field']['max_items'])->toBe(5);
 });
 
-it('can have a mode', function () {
+it('can have a mode', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Collections('title');
     $field->mode(\Tdwesten\StatamicBuilder\Enums\UIModeOption::Select);
 

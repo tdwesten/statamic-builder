@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Arr('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -32,14 +32,14 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['type'])->toBe('array');
 });
 
-it('can render to a array with mode', function () {
+it('can render to a array with mode', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Arr('title');
     $field->mode(\Tdwesten\StatamicBuilder\Enums\ArrayModeOption::Dynamic);
 
     expect($field->toArray()['field']['mode'])->toBe('dynamic');
 });
 
-it('can render to a array with keys', function () {
+it('can render to a array with keys', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Arr('title');
     $field->keys([
         'country' => 'United States',

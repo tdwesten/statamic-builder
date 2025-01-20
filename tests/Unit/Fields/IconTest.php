@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Icon('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,21 +30,21 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-test('it can render to a array with directory', function () {
+test('it can render to a array with directory', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Icon('title');
     $field->directory('vendor/package/icons');
 
     expect($field->toArray()['field']['directory'])->toBe('vendor/package/icons');
 });
 
-test('it can render to a array with folder', function () {
+test('it can render to a array with folder', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Icon('title');
     $field->folder('folder');
 
     expect($field->toArray()['field']['folder'])->toBe('folder');
 });
 
-test('it can render to a array with default', function () {
+test('it can render to a array with default', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Icon('title');
     $field->default('default');
 

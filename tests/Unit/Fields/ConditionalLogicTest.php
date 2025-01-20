@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\OperatorOption;
 
-test('Can set conditional logic if', function () {
+test('Can set conditional logic if', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
     $field
         ->type('text')
@@ -13,7 +13,7 @@ test('Can set conditional logic if', function () {
     ]);
 });
 
-test('Can set conditional logic if with multiple conditions', function () {
+test('Can set conditional logic if with multiple conditions', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
     $field
         ->type('text')
@@ -26,7 +26,7 @@ test('Can set conditional logic if with multiple conditions', function () {
     ]);
 });
 
-test('Can set conditional logic if any', function () {
+test('Can set conditional logic if any', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
     $field
         ->type('text')

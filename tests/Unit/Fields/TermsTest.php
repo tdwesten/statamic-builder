@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\UIModeOption;
 
-test('Terms field renders', function () {
+test('Terms field renders', function (): void {
     $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
     $terms->displayName('Counties')
         ->required()
@@ -38,7 +38,7 @@ test('Terms field renders', function () {
     expect($terms->toArray())->toBe($expected);
 });
 
-test('You can set max items', function () {
+test('You can set max items', function (): void {
     $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
     $terms->displayName('Counties')
         ->required()
@@ -76,7 +76,7 @@ test('You can set max items', function () {
     expect($terms->toArray())->toBe($expected);
 });
 
-test('Terms field renders with multiple taxonomies', function () {
+test('Terms field renders with multiple taxonomies', function (): void {
     $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
     $terms->displayName('Counties')
         ->required()
@@ -113,7 +113,7 @@ test('Terms field renders with multiple taxonomies', function () {
     expect($terms->toArray())->toBe($expected);
 });
 
-test('Terms field renders with multiple taxonomies and mode', function () {
+test('Terms field renders with multiple taxonomies and mode', function (): void {
     $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
     $terms->displayName('Counties')
         ->required()
@@ -151,7 +151,7 @@ test('Terms field renders with multiple taxonomies and mode', function () {
     expect($terms->toArray())->toBe($expected);
 });
 
-test('Terms field renders with create option', function () {
+test('Terms field renders with create option', function (): void {
     $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
     $terms->displayName('Counties')
         ->required()
@@ -190,7 +190,7 @@ test('Terms field renders with create option', function () {
     expect($terms->toArray())->toBe($expected);
 });
 
-test('can have query scopes', function () {
+test('can have query scopes', function (): void {
     $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
 
     $terms->queryScopes([

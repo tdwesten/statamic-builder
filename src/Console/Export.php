@@ -33,10 +33,10 @@ class Export extends Command
     {
         $namespaces = collect(config('statamic.builder.blueprints', []));
 
-        $namespaces->each(function ($blueprints, $namespace) {
+        $namespaces->each(function ($blueprints, $namespace): void {
             $blueprints = collect($blueprints);
 
-            $blueprints->each(function ($blueprint, $handle) use ($namespace) {
+            $blueprints->each(function ($blueprint, $handle) use ($namespace): void {
                 $this->exportBlueprint($namespace, $handle, $blueprint);
             });
         });
@@ -64,7 +64,7 @@ class Export extends Command
     {
         $namespaces = collect(config('statamic.builder.fieldsets', []));
 
-        $namespaces->each(function ($fieldset) {
+        $namespaces->each(function ($fieldset): void {
             $this->exportFieldset($fieldset);
         });
     }

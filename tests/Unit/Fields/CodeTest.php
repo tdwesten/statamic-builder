@@ -3,7 +3,7 @@
 use Tdwesten\StatamicBuilder\Enums\CodeModeOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Code('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -31,56 +31,56 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-test('you can set the mode', function () {
+test('you can set the mode', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Code('title');
     $field->mode(\Tdwesten\StatamicBuilder\Enums\CodeModeOption::CSS);
 
     expect($field->toArray()['field']['mode'])->toBe(CodeModeOption::CSS->value);
 });
 
-test('you can set the mode selectable', function () {
+test('you can set the mode selectable', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Code('title');
     $field->modeSelectable(false);
 
     expect($field->toArray()['field']['mode_selectable'])->toBe(false);
 });
 
-test('you can set the indent type', function () {
+test('you can set the indent type', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Code('title');
     $field->indentType(\Tdwesten\StatamicBuilder\Enums\CodeIndentTypeOption::Tabs);
 
     expect($field->toArray()['field']['indent_type'])->toBe(\Tdwesten\StatamicBuilder\Enums\CodeIndentTypeOption::Tabs->value);
 });
 
-test('you can set the indent size', function () {
+test('you can set the indent size', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Code('title');
     $field->indentSize(2);
 
     expect($field->toArray()['field']['indent_size'])->toBe(2);
 });
 
-test('you can set the key map', function () {
+test('you can set the key map', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Code('title');
     $field->keyMap(\Tdwesten\StatamicBuilder\Enums\CodeKeyMapOption::Vim);
 
     expect($field->toArray()['field']['key_map'])->toBe(\Tdwesten\StatamicBuilder\Enums\CodeKeyMapOption::Vim->value);
 });
 
-test('you can set the line numbers', function () {
+test('you can set the line numbers', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Code('title');
     $field->lineNumbers();
 
     expect($field->toArray()['field']['line_numbers'])->toBe(true);
 });
 
-test('you can set the line wrapping', function () {
+test('you can set the line wrapping', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Code('title');
     $field->lineWrapping();
 
     expect($field->toArray()['field']['line_wrapping'])->toBe(true);
 });
 
-test('you can set the rulers', function () {
+test('you can set the rulers', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Code('title');
     $field->rulers([80, 120]);
 

@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Video('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,14 +30,14 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-it('can have a default', function () {
+it('can have a default', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Video('title');
     $field->default('https://www.youtube.com/watch?v=12345');
 
     expect($field->toArray()['field']['default'])->toBe('https://www.youtube.com/watch?v=12345');
 });
 
-it('can have a placeholder', function () {
+it('can have a placeholder', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Video('title');
     $field->placeholder('https://www.youtube.com/watch?v=12345');
 

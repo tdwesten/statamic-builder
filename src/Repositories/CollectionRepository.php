@@ -28,7 +28,7 @@ class CollectionRepository extends StatamicCollectionRepository
 
         $this->collections = collect();
 
-        $collections->each(function (string $collection) {
+        $collections->each(function (string $collection): void {
             if (class_exists($collection, true)) {
                 $this->collections->put($collection::handle(), $collection);
             }

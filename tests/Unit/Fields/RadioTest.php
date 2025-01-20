@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Radio('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,7 +30,7 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-it('can have options', function () {
+it('can have options', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Radio('title');
     $field->options([
         'one' => 'One',
@@ -40,14 +40,14 @@ it('can have options', function () {
     expect($field->toArray()['field']['options'])->toBe(['one' => 'One', 'two' => 'Two']);
 });
 
-it('can be inline', function () {
+it('can be inline', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Radio('title');
     $field->inline();
 
     expect($field->toArray()['field']['inline'])->toBe(true);
 });
 
-it('can cast booleans', function () {
+it('can cast booleans', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Radio('title');
     $field->castBooleans();
 

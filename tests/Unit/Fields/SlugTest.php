@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Slug('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,21 +30,21 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-test('it can set from', function () {
+test('it can set from', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Slug('title');
     $field->from('from');
 
     expect($field->toArray()['field']['from'])->toBe('from');
 });
 
-test('it can set generate', function () {
+test('it can set generate', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Slug('title');
     $field->generate();
 
     expect($field->toArray()['field']['generate'])->toBe(true);
 });
 
-test('it can show regenerate', function () {
+test('it can show regenerate', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Slug('title');
     $field->showRegenerate();
 

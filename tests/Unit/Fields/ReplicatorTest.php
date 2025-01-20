@@ -7,7 +7,7 @@ use Tdwesten\StatamicBuilder\FieldTypes\Set;
 use Tdwesten\StatamicBuilder\FieldTypes\SetGroup;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Replicator('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -35,7 +35,7 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-it('can have sets', function () {
+it('can have sets', function (): void {
     $field = \Tdwesten\StatamicBuilder\FieldTypes\Replicator::make('replicator_veld', [
         SetGroup::make('nieuwe_set_groep', [
             Set::make('set_group_handel', [
@@ -47,7 +47,7 @@ it('can have sets', function () {
     expect($field->toArray()['field']['sets']['nieuwe_set_groep']['display'])->toBe('Nieuwe Set Groep');
 });
 
-it('can render the same output', function () {
+it('can render the same output', function (): void {
     $output = [
         'handle' => 'replicator_veld',
         'field' => [

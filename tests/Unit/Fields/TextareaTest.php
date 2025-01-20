@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Textarea('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,21 +30,21 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-it('can have a character limit', function () {
+it('can have a character limit', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Textarea('title');
     $field->characterLimit(100);
 
     expect($field->toArray()['field']['character_limit'])->toBe(100);
 });
 
-it('can have a placeholder', function () {
+it('can have a placeholder', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Textarea('title');
     $field->placeholder('Enter the title');
 
     expect($field->toArray()['field']['placeholder'])->toBe('Enter the title');
 });
 
-it('can have a default value', function () {
+it('can have a default value', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Textarea('title');
     $field->default('Default value');
 

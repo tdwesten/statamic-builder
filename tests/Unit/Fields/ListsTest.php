@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Lists('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,7 +30,7 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-test('it can render to a array with options', function () {
+test('it can render to a array with options', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Lists('title');
     $field->default(['one', 'two', 'three']);
 

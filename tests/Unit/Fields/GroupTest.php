@@ -4,7 +4,7 @@ use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 use Tdwesten\StatamicBuilder\FieldTypes\Group;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
-test('Renders a group to array', function () {
+test('Renders a group to array', function (): void {
 
     $group = Group::make('cta', [
         Text::make('label')
@@ -54,7 +54,7 @@ test('Renders a group to array', function () {
     expect($group->toArray())->toBe($expected);
 });
 
-test('A group can have a group', function () {
+test('A group can have a group', function (): void {
 
     $group = Group::make('counties', [
         Group::make('states', [
@@ -124,7 +124,7 @@ test('A group can have a group', function () {
     expect($group->toArray())->toBe($expected);
 });
 
-test('Can set to fullscreen', function () {
+test('Can set to fullscreen', function (): void {
 
     $group = Group::make('cta', [
         Text::make('label')

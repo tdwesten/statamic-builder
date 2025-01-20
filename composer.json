@@ -20,7 +20,7 @@
     },
     "scripts": {
         "test": [
-            "./vendor/bin/pest"
+            "./vendor/bin/pest && ./vendor/bin/rector"
         ],
         "generate-field": [
             "php field-generator/Generator.php"
@@ -38,7 +38,8 @@
         "orchestra/testbench": "^9.0",
         "spatie/laravel-ray": "^1.39",
         "pestphp/pest-plugin-laravel": "^3",
-        "statamic/eloquent-driver": "^4.16"
+        "statamic/eloquent-driver": "^4.16",
+        "rector/rector": "^2.0"
     },
     "config": {
         "allow-plugins": {

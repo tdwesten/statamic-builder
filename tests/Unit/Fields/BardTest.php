@@ -4,7 +4,7 @@ use Tdwesten\StatamicBuilder\Enums\BardButton;
 use Tdwesten\StatamicBuilder\Enums\BardInlineOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -32,28 +32,28 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-test('you can add multiple buttons', function () {
+test('you can add multiple buttons', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
     $field->buttons([BardButton::Bold, BardButton::Italic]);
 
     expect($field->toArray()['field']['buttons'])->toBe(['bold', 'italic']);
 });
 
-test('you can add custom buttons as a string', function () {
+test('you can add custom buttons as a string', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
     $field->buttons([BardButton::Bold, BardButton::Italic, 'custom_button']);
 
     expect($field->toArray()['field']['buttons'])->toBe(['bold', 'italic', 'custom_button']);
 });
 
-test('you can add a single button', function () {
+test('you can add a single button', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
     $field->buttons([BardButton::Bold]);
 
     expect($field->toArray()['field']['buttons'])->toBe(['bold']);
 });
 
-test('you can set the inline option', function () {
+test('you can set the inline option', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
     $field->inline(BardInlineOption::True);
 

@@ -5,7 +5,7 @@ use Tdwesten\StatamicBuilder\FieldTypes\Tab;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 use Tests\Helpers\TestBlueprint;
 
-test('Has a title', function () {
+test('Has a title', function (): void {
     $blueprint = TestBlueprint::make('test_blueprint');
 
     expect($blueprint->toArray()['title'])->toBe(
@@ -13,14 +13,14 @@ test('Has a title', function () {
     );
 });
 
-it('can be set to hidden', function () {
+it('can be set to hidden', function (): void {
     $blueprint = TestBlueprint::make('test_blueprint');
     $blueprint->hidden(true);
 
     expect($blueprint->toArray()['hide'])->toBe(true);
 });
 
-test('Tabs are renderd', function () {
+test('Tabs are renderd', function (): void {
     $blueprint = TestBlueprint::make('test_blueprint');
 
     $expected = [
@@ -58,7 +58,7 @@ test('Tabs are renderd', function () {
     expect($blueprint->toArray())->toBe($expected);
 });
 
-it('throws an exception when adding a field to a tab', function () {
+it('throws an exception when adding a field to a tab', function (): void {
     $blueprint = TestBlueprint::make('test_blueprint');
     $blueprint
         ->title('School')
@@ -69,14 +69,14 @@ it('throws an exception when adding a field to a tab', function () {
     $blueprint->toArray();
 })->throws(BlueprintRenderException::class, 'Only sections are allowed in tabs');
 
-test('you can set a title', function () {
+test('you can set a title', function (): void {
     $blueprint = TestBlueprint::make('test_blueprint');
     $blueprint->title('School');
 
     expect($blueprint->toArray()['title'])->toBe('School');
 });
 
-test('you can get the handle', function () {
+test('you can get the handle', function (): void {
     $blueprint = TestBlueprint::make('test_blueprint');
 
     expect($blueprint->getHandle())->toBe('test_blueprint');

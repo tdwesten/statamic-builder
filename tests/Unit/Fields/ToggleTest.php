@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
-it('can render to a array', function () {
+it('can render to a array', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Toggle('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
@@ -30,14 +30,14 @@ it('can render to a array', function () {
     expect($field->toArray()['field']['width'])->toBe(50);
 });
 
-it('can have inline label', function () {
+it('can have inline label', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Toggle('title');
     $field->inlineLabel('Inline Label');
 
     expect($field->toArray()['field']['inline_label'])->toBe('Inline Label');
 });
 
-it('can have inline label when true', function () {
+it('can have inline label when true', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Toggle('title');
     $field->inlineLabelWhenTrue('Inline Label When True');
 

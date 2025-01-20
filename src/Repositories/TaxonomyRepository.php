@@ -28,7 +28,7 @@ class TaxonomyRepository extends StatamicTaxonomyRepository
 
         $this->taxonomies = collect();
 
-        $taxonomies->each(function (string $taxonomy) {
+        $taxonomies->each(function (string $taxonomy): void {
             if (class_exists($taxonomy, true)) {
                 $this->taxonomies->put($taxonomy::handle(), $taxonomy);
             }
