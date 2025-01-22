@@ -9,15 +9,21 @@ class Sites extends StatamicSites
 {
     protected function getSavedSites()
     {
+        $sites = config('statamic.builder.sites');
+
+        if ($sites === null) {
+            return parent::getSavedSites();
+        }
+
         return Cache::rememberForever('statamic.builder.sites', function () {
-            return collect(config('statamic.builder.sites'))
+            $sitesFromConfigFile = collect(config('statamic.builder.sites'))
                 ->mapWithKeys(function ($site) {
                     $site = new $site;
 
                     return [$site->handle() => $site->toArray()];
-                })
-                ->toArray()
-                ?: $this->getFallbackConfig();
+                });
+
+            return $sitesFromConfigFile->isNotEmpty() ? $sitesFromConfigFile->toArray() : $this->getFallbackConfig();
         });
     }
 }
