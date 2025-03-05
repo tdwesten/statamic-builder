@@ -5,6 +5,7 @@ namespace Tdwesten\StatamicBuilder\FieldTypes;
 use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Enums\AssetsUIModeOption;
+use Tdwesten\StatamicBuilder\Enums\DynamicFolderOption;
 use Tdwesten\StatamicBuilder\Exceptions\BlueprintRenderException;
 
 class Assets extends Field
@@ -22,6 +23,8 @@ class Assets extends Field
     protected $container;
 
     protected $folder;
+
+    protected $dynamic;
 
     protected $restrict;
 
@@ -46,6 +49,7 @@ class Assets extends Field
             'mode' => $this->mode->value,
             'container' => $this->container,
             'folder' => $this->folder,
+            'dynamic' => $this->dynamic?->value,
             'restrict' => $this->restrict,
             'allow_uploads' => $this->allow_uploads,
             'show_filename' => $this->show_filename,
@@ -85,6 +89,13 @@ class Assets extends Field
     public function folder(string $folder)
     {
         $this->folder = $folder;
+
+        return $this;
+    }
+
+    public function dynamic(DynamicFolderOption $dynamic)
+    {
+        $this->dynamic = $dynamic;
 
         return $this;
     }

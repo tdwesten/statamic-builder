@@ -1,6 +1,7 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\AssetsUIModeOption;
+use Tdwesten\StatamicBuilder\Enums\DynamicFolderOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
 it('can render to a array', function (): void {
@@ -100,4 +101,11 @@ it('can set query_scopes', function (): void {
     $field->queryScopes(['container1', 'container2'])->container('container');
 
     expect($field->toArray()['field']['query_scopes'])->toBe(['container1', 'container2']);
+});
+
+it('can set dynamic folder', function (): void {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Assets('title');
+    $field->dynamic(DynamicFolderOption::Id)->container('container');
+
+    expect($field->toArray()['field']['dynamic'])->toBe(DynamicFolderOption::Id->value);
 });
