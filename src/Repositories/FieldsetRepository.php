@@ -2,6 +2,7 @@
 
 namespace Tdwesten\StatamicBuilder\Repositories;
 
+use Illuminate\Support\Collection;
 use Statamic\Fields\Fieldset as StatamicFieldset;
 use Statamic\Fields\FieldsetRepository as FieldsFieldsetRepository;
 use Tdwesten\StatamicBuilder\Fieldset;
@@ -45,5 +46,20 @@ class FieldsetRepository extends FieldsFieldsetRepository
         }
 
         return new $fieldset;
+    }
+
+    public function all(): Collection
+    {
+        return collect([
+            ...$this->getStandardFieldsets(),
+            ...$this->getNamespacedFieldsets(),
+            ...array_map(function ($f) {
+                $f = new $f;
+                return $this
+                    ->make($f->getSlug())
+                    ->initialPath(resource_path('fieldsets'))
+                    ->setContents($f->fieldsetToArray());
+            }, config('statamic.builder.fieldsets', [])),
+        ]);
     }
 }
