@@ -53,12 +53,13 @@ class FieldsetRepository extends FieldsFieldsetRepository
         return collect([
             ...$this->getStandardFieldsets(),
             ...$this->getNamespacedFieldsets(),
-            ...array_map(function ($f) {
-                $f = new $f;
+            ...array_map(function ($fieldset) {
+                $fieldset = new $fieldset;
+
                 return $this
-                    ->make($f->getSlug())
+                    ->make($fieldset->getSlug())
                     ->initialPath(resource_path('fieldsets'))
-                    ->setContents($f->fieldsetToArray());
+                    ->setContents($fieldset->fieldsetToArray());
             }, config('statamic.builder.fieldsets', [])),
         ]);
     }
