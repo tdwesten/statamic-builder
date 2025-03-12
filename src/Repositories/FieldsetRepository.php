@@ -63,4 +63,14 @@ class FieldsetRepository extends FieldsFieldsetRepository
             }, config('statamic.builder.fieldsets', [])),
         ]);
     }
+
+    public function save(StatamicFieldset $fieldset)
+    {
+        if (FieldsetRepository::findFieldset($fieldset->handle())) {
+            // Fieldsets from statamic-builder should not be saved
+            return;
+        }
+
+        parent::save($fieldset);
+    }
 }
