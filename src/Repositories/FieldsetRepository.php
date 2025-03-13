@@ -66,7 +66,7 @@ class FieldsetRepository extends FieldsFieldsetRepository
 
     public function save(StatamicFieldset $fieldset)
     {
-        if (FieldsetRepository::findFieldset($fieldset->handle())) {
+        if ($this->findFieldset($fieldset->handle())) {
             // Fieldsets from statamic-builder should not be saved
             return;
         }
