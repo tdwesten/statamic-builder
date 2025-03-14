@@ -12,7 +12,7 @@ class CollectionBlueprintsController extends StatamicCollectionBlueprintsControl
 
     public function edit($collection, $blueprint)
     {
-        $blueprint = $collection->entryBlueprint($blueprint);
+        $blueprint = $collection->entryBlueprint($givenBlueprint = $blueprint);
 
         $builderBlueprint = BlueprintRepository::findBlueprint($blueprint->namespace(), $blueprint->handle());
 
@@ -26,6 +26,6 @@ class CollectionBlueprintsController extends StatamicCollectionBlueprintsControl
             ]);
         }
 
-        return parent::edit($collection, $blueprint);
+        return parent::edit($collection, $givenBlueprint);
     }
 }
