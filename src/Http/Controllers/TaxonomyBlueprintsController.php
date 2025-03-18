@@ -9,7 +9,7 @@ class TaxonomyBlueprintsController extends StatamicTaxonomyBlueprintsController
 {
     public function edit($taxonomy, $blueprint)
     {
-        $blueprint = $taxonomy->termBlueprint($blueprint);
+        $blueprint = $taxonomy->termBlueprint($givenBlueprint = $blueprint);
 
         $builderBlueprint = BlueprintRepository::findBlueprint($blueprint->namespace(), $blueprint->handle());
 
@@ -23,6 +23,6 @@ class TaxonomyBlueprintsController extends StatamicTaxonomyBlueprintsController
             ]);
         }
 
-        return parent::edit($taxonomy, $blueprint);
+        return parent::edit($taxonomy, $givenBlueprint);
     }
 }
