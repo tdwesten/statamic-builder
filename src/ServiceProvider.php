@@ -77,6 +77,13 @@ class ServiceProvider extends AddonServiceProvider
                 $app->make(\Tdwesten\StatamicBuilder\Repositories\GlobalRepository::class)
             );
         });
+
+        $this->app->bind(\Statamic\Http\Controllers\CP\Fields\FieldsetController::class, function ($app) {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\FieldsetController(
+                $app->make(Request::class),
+                $app->make(\Tdwesten\StatamicBuilder\Repositories\FieldsetRepository::class)
+            );
+        });
     }
 
     protected function bindStores()

@@ -122,6 +122,10 @@ class BlueprintRepository extends StatamicBlueprintRepository
 
             $contents = $blueprint->toArray();
 
+            if (is_string($namespace)) {
+                $namespace = str_replace('/', '.', $namespace);
+            }
+
             return $this->make($handle)
                 ->setHidden(Arr::pull($contents, 'hide'))
                 ->setOrder(Arr::pull($contents, 'order'))
