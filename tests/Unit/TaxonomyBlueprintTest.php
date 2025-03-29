@@ -6,9 +6,9 @@ use Tests\TestCase;
 
 pest()->extend(TestCase::class);
 
-const TEST_FILES_DIRECTORY = __DIR__ . '/../__fixtures__';
-const TAX_DIRECTORY = TEST_FILES_DIRECTORY . '/content/taxonomies';
-const TEST_TAX_BLUEPRINTS_DIRECTORY = TEST_FILES_DIRECTORY . '/resources/blueprints/taxonomies/test_tax';
+const TEST_FILES_DIRECTORY = __DIR__.'/../__fixtures__';
+const TAX_DIRECTORY = TEST_FILES_DIRECTORY.'/content/taxonomies';
+const TEST_TAX_BLUEPRINTS_DIRECTORY = TEST_FILES_DIRECTORY.'/resources/blueprints/taxonomies/test_tax';
 
 test('taxonomy blueprints can be edited', function (): void {
 
@@ -18,7 +18,7 @@ test('taxonomy blueprints can be edited', function (): void {
             && mkdir(TEST_TAX_BLUEPRINTS_DIRECTORY, recursive: true);
 
         if (! $created) {
-            $this->fail('Could not create test files directory (in ' . TEST_FILES_DIRECTORY . ')');
+            $this->fail('Could not create test files directory (in '.TEST_FILES_DIRECTORY.')');
         }
     }
 
@@ -43,8 +43,8 @@ BLUEPRINT;
 title: Test_Tax
 TAXONOMY;
 
-    file_put_contents(TAX_DIRECTORY . '/test_tax.yaml', $test_tax);
-    file_put_contents(TEST_TAX_BLUEPRINTS_DIRECTORY . '/test_tax.yaml', $test_tax_blueprint);
+    file_put_contents(TAX_DIRECTORY.'/test_tax.yaml', $test_tax);
+    file_put_contents(TEST_TAX_BLUEPRINTS_DIRECTORY.'/test_tax.yaml', $test_tax_blueprint);
 
     // Create a new controller and attempt to edit the taxonomy blueprint with it
     (new TaxonomyBlueprintsController)->edit(Taxonomy::findByHandle('test_tax'), 'test_tax');
