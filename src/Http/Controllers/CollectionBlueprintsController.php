@@ -12,12 +12,12 @@ class CollectionBlueprintsController extends StatamicCollectionBlueprintsControl
 
     public function edit($collection, $blueprint)
     {
-        $blueprint = $collection->entryBlueprint($givenBlueprint = $blueprint);
+        $entryBlueprint = $collection->entryBlueprint($blueprint);
 
-        $builderBlueprint = BlueprintRepository::findBlueprint($blueprint->namespace(), $blueprint->handle());
+        $builderBlueprint = BlueprintRepository::findBlueprint($entryBlueprint->namespace(), $entryBlueprint->handle());
 
         if ($builderBlueprint) {
-            $blueprintPath = BlueprintRepository::findBlueprintPath($blueprint->namespace(), $blueprint->handle());
+            $blueprintPath = BlueprintRepository::findBlueprintPath($entryBlueprint->namespace(), $entryBlueprint->handle());
 
             return view('statamic-builder::not-editable', [
                 'type' => 'Blueprint',
@@ -26,6 +26,6 @@ class CollectionBlueprintsController extends StatamicCollectionBlueprintsControl
             ]);
         }
 
-        return parent::edit($collection, $givenBlueprint);
+        return parent::edit($collection, $blueprint);
     }
 }
