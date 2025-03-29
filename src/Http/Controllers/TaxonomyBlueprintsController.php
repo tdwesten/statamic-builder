@@ -9,12 +9,12 @@ class TaxonomyBlueprintsController extends StatamicTaxonomyBlueprintsController
 {
     public function edit($taxonomy, $blueprint)
     {
-        $blueprint = $taxonomy->termBlueprint($blueprint);
+        $termBlueprint = $taxonomy->termBlueprint($blueprint);
 
-        $builderBlueprint = BlueprintRepository::findBlueprint($blueprint->namespace(), $blueprint->handle());
+        $builderBlueprint = BlueprintRepository::findBlueprint($termBlueprint->namespace(), $termBlueprint->handle());
 
         if ($builderBlueprint) {
-            $blueprintPath = BlueprintRepository::findBlueprintPath($blueprint->namespace(), $blueprint->handle());
+            $blueprintPath = BlueprintRepository::findBlueprintPath($termBlueprint->namespace(), $termBlueprint->handle());
 
             return view('statamic-builder::not-editable', [
                 'type' => 'Blueprint',
