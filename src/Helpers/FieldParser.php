@@ -14,12 +14,16 @@ class FieldParser
     {
         $items = collect($items);
 
-        return $items->map(function ($field) {
-            if ($field instanceof Fieldset) {
-                return $field->getFields();
-            }
+        $items
+            ->map(function ($item) {
+                if ($item instanceof Fieldset) {
+                    return $item;
+                }
 
-            return $field;
-        })->flatten(1);
+                return [$item];
+            })
+            ->flatten();
+
+        return $items;
     }
 }
