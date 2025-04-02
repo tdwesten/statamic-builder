@@ -4,7 +4,6 @@ namespace Tdwesten\StatamicBuilder\Helpers;
 
 use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Fieldset;
-use Tdwesten\StatamicBuilder\FieldTypes\Field;
 
 class FieldParser
 {

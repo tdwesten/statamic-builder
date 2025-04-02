@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use Tdwesten\StatamicBuilder\Helpers\FieldParser;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
+use Tdwesten\StatamicBuilder\Helpers\FieldParser;
 use Tests\Helpers\TestFieldset;
 
 test('it preserves field order when flattening mixed fields', function () {
