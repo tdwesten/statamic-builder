@@ -51,7 +51,7 @@ class Export extends Command
             'root' => base_path('resources/collections'),
         ]);
 
-        $data = (new $collection())->register();
+        $data = (new $collection)->register();
 
         $path = base_path("resources/collections/{$data->handle()}.yaml");
 
