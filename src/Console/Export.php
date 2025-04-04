@@ -24,9 +24,42 @@ class Export extends Command
 
         $this->exportFieldSets();
 
+        $this->exportCollections();
+
         $this->newLine();
 
         $this->info('All done!');
+    }
+
+    private function exportCollections()
+    {
+        $namespaces = collect(config('statamic.builder.collections', []));
+
+        $namespaces->each(function ($collections): void {
+            $collections = collect($collections);
+
+            $collections->each(function ($collection): void {
+                $this->exportCollection($collection);
+            });
+        });
+    }
+
+    private function exportCollection($collection)
+    {
+        $filesystem = Storage::build([
+            'driver' => 'local',
+            'root' => base_path('resources/collections'),
+        ]);
+
+        $data = (new $collection)->register();
+
+        $path = base_path("resources/collections/{$data->handle()}.yaml");
+
+        $yaml = YAML::dump($data->toArray());
+
+        $this->line("Exporting collection [{$data->handle()}] to [{$path}]");
+
+        $filesystem->put("{$data->handle()}.yaml", $yaml);
     }
 
     private function exportBlueprints()
