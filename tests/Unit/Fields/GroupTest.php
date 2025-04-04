@@ -13,7 +13,9 @@ test('Renders a group to array', function (): void {
             ->visibility(VisibilityOption::Visible)
             ->listable()
             ->width(33),
-    ])->displayName('Call to Action');
+    ])
+        ->displayName('Call to Action')
+        ->listable();
 
     $expected = [
         'handle' => 'cta',
@@ -43,7 +45,7 @@ test('Renders a group to array', function (): void {
             'fullscreen' => false,
             'hide_display' => false,
             'instructions_position' => 'above',
-            'listable' => 'visible',
+            'listable' => true,
             'localizable' => false,
             'replicator_preview' => true,
             'type' => 'group',
@@ -64,8 +66,12 @@ test('A group can have a group', function (): void {
                 ->visibility(VisibilityOption::Visible)
                 ->listable()
                 ->width(33),
-        ])->displayName('Call to Action'),
-    ])->displayName('Call to Action');
+        ])
+            ->displayName('Call to Action')
+            ->listable(),
+    ])
+        ->displayName('Call to Action')
+        ->listable();
 
     $expected = [
         'handle' => 'counties',
@@ -102,7 +108,7 @@ test('A group can have a group', function (): void {
                         'fullscreen' => false,
                         'hide_display' => false,
                         'instructions_position' => 'above',
-                        'listable' => 'visible',
+                        'listable' => true,
                         'localizable' => false,
                         'replicator_preview' => true,
                         'type' => 'group',
@@ -113,7 +119,7 @@ test('A group can have a group', function (): void {
             'fullscreen' => false,
             'hide_display' => false,
             'instructions_position' => 'above',
-            'listable' => 'visible',
+            'listable' => true,
             'localizable' => false,
             'replicator_preview' => true,
             'type' => 'group',

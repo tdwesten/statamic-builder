@@ -7,6 +7,7 @@ use Tdwesten\StatamicBuilder\Contracts\ConditionalLogic;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
 use Tdwesten\StatamicBuilder\Enums\Icon;
+use Tdwesten\StatamicBuilder\Enums\ListableOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 use Tdwesten\StatamicBuilder\Exceptions\BlueprintRenderException;
 use Tdwesten\StatamicBuilder\Helpers\FieldParser;
@@ -32,7 +33,7 @@ class Field implements Renderable
 
     protected $instructionsPosition = 'above';
 
-    protected $listable = 'visible';
+    protected $listable = ListableOption::Hidden;
 
     protected $replicatorPreview = true;
 
@@ -106,7 +107,7 @@ class Field implements Renderable
             'icon' => $this->icon?->value,
             'instructions' => $this->instructions,
             'instructions_position' => $this->instructionsPosition,
-            'listable' => $this->listable,
+            'listable' => $this->listable->toArray(),
             'replicator_preview' => $this->replicatorPreview,
             'required' => $this->required,
             'type' => $this->type,
@@ -225,9 +226,9 @@ class Field implements Renderable
         return $this;
     }
 
-    public function listable()
+    public function listable(?ListableOption $listable = null)
     {
-        $this->listable = true;
+        $this->listable = $listable ?? ListableOption::True;
 
         return $this;
     }

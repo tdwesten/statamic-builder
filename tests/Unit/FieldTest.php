@@ -1,6 +1,7 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\Icon;
+use Tdwesten\StatamicBuilder\Enums\ListableOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 
 it('can render to a array', function (): void {
@@ -76,7 +77,7 @@ test('Can set instructions position', function (): void {
 
 test('Can set listable', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
-    $field->listable();
+    $field->listable(ListableOption::True);
 
     expect($field->toArray()['field']['listable'])->toBe(true);
 });
