@@ -39,11 +39,7 @@ class GlobalRepository extends StatamicGlobalRepository
             return (new $global)->register();
         }
 
-        $r = parent::find($id);
-
-        if ($r) {
-            return $r;
-        }
+        return parent::find($id);
     }
 
     private function initializeGlobals()
