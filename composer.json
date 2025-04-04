@@ -1,7 +1,7 @@
 {
     "name": "tdwesten/statamic-builder",
     "description": "A fluent blueprint and fieldset builder for Statamic.",
-    "version": "v1.0.17",
+    "version": "v1.0.18",
     "license": "MIT",
     "autoload": {
         "psr-4": {
