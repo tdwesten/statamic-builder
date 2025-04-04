@@ -4,7 +4,6 @@ namespace Tdwesten\StatamicBuilder\Helpers;
 
 use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Fieldset;
-use Tdwesten\StatamicBuilder\FieldTypes\Field;
 
 class FieldParser
 {
@@ -15,15 +14,15 @@ class FieldParser
     {
         $items = collect($items);
 
-        $fieldsets = $items->filter(function ($field) {
-            return $field instanceof Fieldset;
-        })->flatten();
+        $items
+            ->map(function ($item) {
+                if ($item instanceof Fieldset) {
+                    return $item;
+                }
 
-        $fields = $items->filter(function ($field) {
-            return $field instanceof Field;
-        });
-
-        $items = collect($fieldsets)->merge($fields);
+                return [$item];
+            })
+            ->flatten();
 
         return $items;
     }
