@@ -35,6 +35,7 @@ class Entries extends Field
             'mode' => $this->mode->value,
             'collections' => $this->collections,
             'search_index' => $this->searchIndex,
+            'query_scopes' => $this->queryScopes,
         ]);
     }
 
