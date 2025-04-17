@@ -22,7 +22,7 @@ class FieldParser
 
                 return [$item];
             })
-            ->flatten();
+            ->flatten(1);
 
         return $items;
     }
