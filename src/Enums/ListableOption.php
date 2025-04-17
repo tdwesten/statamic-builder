@@ -8,16 +8,12 @@ enum ListableOption: string
     case True = 'true';
     case False = 'false';
 
-    public function toArray()
+    public function toArray(): bool|string
     {
-        if ($this === ListableOption::Hidden) {
-            return 'hidden';
-        }
-
-        if ($this === ListableOption::True) {
-            return true;
-        }
-
-        return false;
+        return match ($this) {
+            ListableOption::Hidden => 'hidden',
+            ListableOption::True => true,
+            ListableOption::False => false,
+        };
     }
 }
