@@ -55,7 +55,8 @@ test('Renders expected array data', function (): void {
         ->required()
         ->instructions('The name of the county')
         ->instructionsPosition('above')
-        ->antlers(false);
+        ->antlers(false)
+        ->listable();
 
     $expected = [
         'handle' => 'title',
@@ -67,7 +68,7 @@ test('Renders expected array data', function (): void {
             'input_type' => 'text',
             'instructions' => 'The name of the county',
             'instructions_position' => 'above',
-            'listable' => 'visible',
+            'listable' => true,
             'localizable' => false,
             'replicator_preview' => true,
             'required' => true,
