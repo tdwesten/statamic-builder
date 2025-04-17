@@ -42,7 +42,6 @@
         "pestphp/pest": "^3",
         "laravel/pint": "^1.2",
         "orchestra/testbench": "^9.0",
-        "spatie/laravel-ray": "^1.39",
         "pestphp/pest-plugin-laravel": "^3",
         "statamic/eloquent-driver": "^4.16",
         "rector/rector": "^2.0"

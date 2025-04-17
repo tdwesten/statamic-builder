@@ -50,7 +50,7 @@ TAXONOMY;
     (new TaxonomyBlueprintsController)->edit(Taxonomy::findByHandle('test_tax'), 'test_tax');
 })
     ->throwsNoExceptions()
-    ->after(function () {
+    ->after(function (): void {
         $it = new RecursiveDirectoryIterator(TEST_FILES_DIRECTORY, RecursiveDirectoryIterator::SKIP_DOTS);
         $files = new RecursiveIteratorIterator(
             $it,
