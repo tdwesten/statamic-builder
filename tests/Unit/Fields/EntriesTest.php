@@ -58,3 +58,10 @@ test('it can render to a array with search index', function (): void {
 
     expect($field->toArray()['field']['search_index'])->toBe('title');
 });
+
+test('it can render the queryScopes to the array', function(): void {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
+    $field->queryScopes(['scope1', 'scope2']);
+
+    expect($field->toArray()['field']['query_scopes'])->toBe(['scope1', 'scope2']);
+});
