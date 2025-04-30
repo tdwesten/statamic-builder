@@ -52,4 +52,9 @@ class Entries extends Field
 
         return $this;
     }
+
+    public function create(bool $create = true)
+    {
+        $this->create = $create;
+    }
 }
