@@ -6,7 +6,6 @@ namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 class ForeignField
 {
-
     protected ?array $config;
 
     public function __construct(protected string $handle, protected string $field) {}
@@ -15,6 +14,7 @@ class ForeignField
     {
         return new static($handle, $field);
     }
+
     public function toArray(): array
     {
         return [

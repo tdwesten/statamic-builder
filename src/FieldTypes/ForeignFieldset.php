@@ -12,7 +12,7 @@ class ForeignFieldset
 
     protected ?string $prefix;
 
-    public function __construct(protected string $handle){}
+    public function __construct(protected string $handle) {}
 
     public static function make(string $handle): self
     {
