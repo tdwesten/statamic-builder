@@ -206,6 +206,45 @@ This addon allows you to create blueprints and fieldsets in a fluent way. This m
        }
    }
    ```
+### Working with foreign fieldset
+When working with a mixed Codebase or while using other Statamic plugins you can use their provided Fieldsets with the `ForeignFieldset` and `ForeignField` class which implement similar to the Statamic Standard Import.
+
+```php
+   <?php
+
+   namespace App\Blueprints;
+
+   use Tdwesten\StatamicBuilder\Blueprint;
+   use Tdwesten\StatamicBuilder\FieldTypes\ForeignField;
+   use Tdwesten\StatamicBuilder\FieldTypes\ForeignFieldset;
+
+   class PageBlueprint extends Blueprint
+   {
+       public $title = 'Page';
+
+       public $handle = 'page';
+
+       public $hidden = false;
+
+       public function registerTabs(): Array
+       {
+           return [
+               Tab::make('General', [
+                   Section::make('General', [
+                        ForeignFieldset::make('statamic-peak-seo::seo_basic')
+                            ->prefix('myseo_')
+                        ForeignField::make('mytext','foreign_fields.bard')
+                            ->config([
+                                'width'=>'25',
+                                'display' => "My bard Field"
+                                'validate' => 'required|string|max:3',
+                            ])
+                   ]),
+               ]),
+           ];
+       }
+   }
+```
 
 ### Supported Fieldtypes
 
