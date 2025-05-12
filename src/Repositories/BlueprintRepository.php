@@ -13,7 +13,7 @@ use Tdwesten\StatamicBuilder\Blueprint;
 
 class BlueprintRepository extends StatamicBlueprintRepository
 {
-    protected const BLINK_FROM_STATAMIC_BLUIDER = 'stataic-builder-blueprint';
+    protected const BLINK_FROM_STATAMIC_BUILDER = 'statamic-builder-blueprint';
 
     public function find($blueprint): ?StatamicBlueprint
     {
@@ -72,7 +72,7 @@ class BlueprintRepository extends StatamicBlueprintRepository
     {
         $blink = 'statamic-builder-blueprints-'.$namespace;
 
-        return Blink::store(self::BLINK_FROM_STATAMIC_BLUIDER)->once($blink, function () use ($namespace) {
+        return Blink::store(self::BLINK_FROM_STATAMIC_BUILDER)->once($blink, function () use ($namespace) {
 
             $registeredBlueprints = collect(config('statamic.builder.blueprints', []));
 
