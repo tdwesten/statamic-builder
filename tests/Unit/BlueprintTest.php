@@ -37,6 +37,7 @@ test('Tabs are renderd', function (): void {
                                 'handle' => 'title',
                                 'field' => [
                                     'antlers' => false,
+                                    'display' => 'Title',
                                     'duplicate' => true,
                                     'hide_display' => false,
                                     'input_type' => 'text',
