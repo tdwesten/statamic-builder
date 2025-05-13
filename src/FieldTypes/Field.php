@@ -101,7 +101,7 @@ class Field implements Renderable
     {
         return collect([
             'antlers' => $this->antlers,
-            'display' => $this->displayName ?? Str::slugToTitle($this->handle),
+            'display' => !empty($this->displayName) ? $this->displayName : Str::slugToTitle($this->handle),
             'default' => $this->default,
             'duplicate' => $this->duplicate,
             'hide_display' => $this->hideDisplay,
