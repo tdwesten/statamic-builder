@@ -3,6 +3,7 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
+use Statamic\Support\Str;
 use Tdwesten\StatamicBuilder\Contracts\ConditionalLogic;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 use Tdwesten\StatamicBuilder\Contracts\Renderable;
@@ -100,7 +101,7 @@ class Field implements Renderable
     {
         return collect([
             'antlers' => $this->antlers,
-            'display' => $this->displayName,
+            'display' => ! empty($this->displayName) ? $this->displayName : Str::slugToTitle($this->handle),
             'default' => $this->default,
             'duplicate' => $this->duplicate,
             'hide_display' => $this->hideDisplay,
