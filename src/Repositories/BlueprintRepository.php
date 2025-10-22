@@ -15,6 +15,26 @@ class BlueprintRepository extends StatamicBlueprintRepository
 {
     protected const BLINK_FROM_STATAMIC_BUILDER = 'statamic-builder-blueprint';
 
+    /**
+     * Get the blueprint directory, supporting both old (directory) and new (directories) property.
+     * This ensures compatibility with Statamic v5.67.0+ where $directory was changed to $directories.
+     */
+    protected function getDirectory(): string
+    {
+        // Statamic v5.67.0+ uses $directories (array)
+        if (property_exists($this, 'directories') && is_array($this->directories) && count($this->directories) > 0) {
+            return $this->directories[0];
+        }
+
+        // Pre v5.67.0 uses $directory (string)
+        if (property_exists($this, 'directory')) {
+            return $this->directory;
+        }
+
+        // Fallback to default
+        return 'resources/blueprints';
+    }
+
     public function find($blueprint): ?StatamicBlueprint
     {
         [$namespace, $handle] = $this->getNamespaceAndHandle($blueprint);
@@ -88,8 +108,11 @@ class BlueprintRepository extends StatamicBlueprintRepository
 
     protected function makeBlueprintFromFile($path, $namespace = null)
     {
+        // Support both old (directory) and new (directories) property names for Statamic v5.67.0+ compatibility
+        $directory = $this->getDirectory();
+
         [$namespace, $handle] = $this->getNamespaceAndHandle(
-            Str::after(Str::before($path, '.yaml'), $this->directory.'/')
+            Str::after(Str::before($path, '.yaml'), $directory.'/')
         );
 
         $builderBlueprint = self::findBlueprint($namespace, $handle);
