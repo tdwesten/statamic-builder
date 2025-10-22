@@ -21,17 +21,35 @@ class BlueprintRepository extends StatamicBlueprintRepository
      */
     protected function getDirectory(): string
     {
-        // Statamic v5.67.0+ uses $directories (array)
-        if (property_exists($this, 'directories') && is_array($this->directories) && count($this->directories) > 0) {
-            return $this->directories[0];
+        // Statamic v5.67.0+ uses $directories (associative array with 'default' key) and provides a directory() method
+        if (method_exists($this, 'directory')) {
+            $dir = $this->directory();
+            if (! empty($dir)) {
+                return $dir;
+            }
+        }
+
+        // Statamic v5.67.0+ uses $directories (associative array)
+        if (property_exists($this, 'directories') && is_array($this->directories)) {
+            // Check for 'default' key (v5.67.0+)
+            if (isset($this->directories['default']) && ! empty($this->directories['default'])) {
+                return $this->directories['default'];
+            }
+            // Check for first element (if it's a simple array)
+            if (count($this->directories) > 0) {
+                $first = reset($this->directories);
+                if (! empty($first)) {
+                    return $first;
+                }
+            }
         }
 
         // Pre v5.67.0 uses $directory (string)
-        if (property_exists($this, 'directory')) {
+        if (property_exists($this, 'directory') && ! empty($this->directory)) {
             return $this->directory;
         }
 
-        // Fallback to default
+        // Fallback to Statamic's default blueprint directory
         return 'resources/blueprints';
     }
 
