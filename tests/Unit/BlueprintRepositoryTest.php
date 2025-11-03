@@ -3,6 +3,9 @@
 use Statamic\Fields\Blueprint as StatamicBlueprint;
 use Tdwesten\StatamicBuilder\Repositories\BlueprintRepository;
 use Tests\Helpers\TestBlueprint;
+use Tests\TestCase;
+
+uses(TestCase::class);
 
 beforeEach(function () {
     // Register test blueprint
