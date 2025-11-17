@@ -39,10 +39,10 @@
         "statamic/cms": "^5.4"
     },
     "require-dev": {
-        "pestphp/pest": "^3",
+        "pestphp/pest": "*",
         "laravel/pint": "^1.2",
         "orchestra/testbench": "^9.0",
-        "pestphp/pest-plugin-laravel": "^3",
+        "pestphp/pest-plugin-laravel": "*",
         "statamic/eloquent-driver": "^4.16",
         "rector/rector": "^2.0"
     },

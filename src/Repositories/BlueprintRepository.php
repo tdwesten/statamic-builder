@@ -15,6 +15,44 @@ class BlueprintRepository extends StatamicBlueprintRepository
 {
     protected const BLINK_FROM_STATAMIC_BUILDER = 'statamic-builder-blueprint';
 
+    /**
+     * Get the blueprint directory, supporting both old (directory) and new (directories) property.
+     * This ensures compatibility with Statamic v5.67.0+ where $directory was changed to $directories.
+     */
+    protected function getDirectory(): string
+    {
+        // Statamic v5.67.0+ uses $directories (associative array with 'default' key) and provides a directory() method
+        if (method_exists($this, 'directory')) {
+            $dir = $this->directory();
+            if (! empty($dir)) {
+                return $dir;
+            }
+        }
+
+        // Statamic v5.67.0+ uses $directories (associative array)
+        if (property_exists($this, 'directories') && is_array($this->directories)) {
+            // Check for 'default' key (v5.67.0+)
+            if (isset($this->directories['default']) && ! empty($this->directories['default'])) {
+                return $this->directories['default'];
+            }
+            // Check for first element (if it's a simple array)
+            if (count($this->directories) > 0) {
+                $first = reset($this->directories);
+                if (! empty($first)) {
+                    return $first;
+                }
+            }
+        }
+
+        // Pre v5.67.0 uses $directory (string)
+        if (property_exists($this, 'directory') && ! empty($this->directory)) {
+            return $this->directory;
+        }
+
+        // Fallback to Statamic's default blueprint directory
+        return 'resources/blueprints';
+    }
+
     public function find($blueprint): ?StatamicBlueprint
     {
         [$namespace, $handle] = $this->getNamespaceAndHandle($blueprint);
@@ -88,8 +126,11 @@ class BlueprintRepository extends StatamicBlueprintRepository
 
     protected function makeBlueprintFromFile($path, $namespace = null)
     {
+        // Support both old (directory) and new (directories) property names for Statamic v5.67.0+ compatibility
+        $directory = $this->getDirectory();
+
         [$namespace, $handle] = $this->getNamespaceAndHandle(
-            Str::after(Str::before($path, '.yaml'), $this->directory.'/')
+            Str::after(Str::before($path, '.yaml'), $directory.'/')
         );
 
         $builderBlueprint = self::findBlueprint($namespace, $handle);
