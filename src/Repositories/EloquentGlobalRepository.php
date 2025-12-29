@@ -24,7 +24,7 @@ class EloquentGlobalRepository extends StatamicEloquentGlobalRepository
 
     public function all(): GlobalCollection
     {
-        // Get builder-registered globals
+        // Get builder-registered globals, keyed by handle
         $builderGlobals = $this->globals->map(function ($globalClass, $handle) {
             return (new $globalClass)->register();
         });
@@ -32,10 +32,10 @@ class EloquentGlobalRepository extends StatamicEloquentGlobalRepository
         // Merge with database globals
         $databaseGlobals = parent::all();
 
-        // Combine both collections
-        $allGlobals = $builderGlobals->merge($databaseGlobals);
+        // Combine both collections - builder globals take precedence
+        $allGlobals = $databaseGlobals->merge($builderGlobals);
 
-        return GlobalCollection::make($allGlobals);
+        return $allGlobals;
     }
 
     public function find($id): ?GlobalSet
