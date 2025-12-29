@@ -108,6 +108,10 @@ class ServiceProvider extends AddonServiceProvider
         });
 
         $this->app->singleton(\Statamic\Stache\Repositories\GlobalRepository::class, function () {
+            if (config('statamic.eloquent-driver.globals.driver') === 'eloquent') {
+                return new \Tdwesten\StatamicBuilder\Repositories\EloquentGlobalRepository();
+            }
+
             return new \Tdwesten\StatamicBuilder\Repositories\GlobalRepository(app('stache'));
         });
 
