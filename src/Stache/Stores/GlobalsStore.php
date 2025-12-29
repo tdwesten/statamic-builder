@@ -15,12 +15,12 @@ class GlobalsStore extends StatamicGlobalsStore
         $globals = $globals ?? collect([]);
 
         if ($globals->has($key)) {
-            /** @var BaseTaxonomy */
+            /** @var BaseGlobalSet */
             $globalSet = $globals->get($key);
-            $globalSet = new $globalSet($key);
+            $globalSet = new $globalSet();
 
             if (! $globalSet instanceof BaseGlobalSet) {
-                throw new \Exception("Collection [{$key}] must extend [Tdwesten\StatamicBuilder\BaseGlobalSet]");
+                throw new \Exception("Global Set [{$key}] must extend [Tdwesten\StatamicBuilder\BaseGlobalSet]");
             }
 
             $item = $globalSet->register();
