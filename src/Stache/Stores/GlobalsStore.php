@@ -5,7 +5,6 @@ namespace Tdwesten\StatamicBuilder\Stache\Stores;
 use Illuminate\Support\Collection;
 use Statamic\Stache\Stores\GlobalsStore as StatamicGlobalsStore;
 use Tdwesten\StatamicBuilder\BaseGlobalSet;
-use Tdwesten\StatamicBuilder\BaseTaxonomy;
 
 class GlobalsStore extends StatamicGlobalsStore
 {
