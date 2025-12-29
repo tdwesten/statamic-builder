@@ -4,7 +4,6 @@ namespace Tdwesten\StatamicBuilder\Repositories;
 
 use Illuminate\Support\Collection as IlluminateCollection;
 use Statamic\Eloquent\Globals\GlobalRepository as StatamicEloquentGlobalRepository;
-use Statamic\Eloquent\Globals\GlobalSetModel;
 use Statamic\Globals\GlobalCollection;
 use Statamic\Globals\GlobalSet;
 use Tdwesten\StatamicBuilder\BaseGlobalSet;

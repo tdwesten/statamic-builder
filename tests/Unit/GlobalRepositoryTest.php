@@ -6,6 +6,10 @@ use Tests\TestCase;
 
 pest()->extend(TestCase::class);
 
+beforeEach(function (): void {
+    config(['statamic.builder.globals' => []]);
+});
+
 test('::find does not throw when no result is found', function (): void {
     GlobalSet::find('id-that-does-not-exist');
 })->throwsNoExceptions();
@@ -43,4 +47,3 @@ test('::all includes builder-registered globals', function (): void {
 
     expect($globals->has('test_global'))->toBeTrue();
 });
-
