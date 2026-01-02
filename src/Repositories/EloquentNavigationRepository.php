@@ -5,7 +5,6 @@ namespace Tdwesten\StatamicBuilder\Repositories;
 use Illuminate\Support\Collection;
 use Statamic\Contracts\Structures\Nav as NavContract;
 use Statamic\Eloquent\Structures\NavigationRepository as StatamicNavigationRepository;
-use Statamic\Eloquent\Structures\NavModel;
 use Statamic\Stache\Stache;
 
 class EloquentNavigationRepository extends StatamicNavigationRepository
@@ -37,17 +36,32 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
 
     public function all(): Collection
     {
-        $builderKeys = BlueprintRepository::findBlueprintInNamespace('navigation')->transform(function ($value, $key) {
-            $model = new NavModel($value->toArray());
+        // Get database navigations
+        $databaseNavigations = parent::all();
 
-            return app(NavContract::class)->fromModel($model);
-        });
-
+        // Get builder-registered navigation instances from classes, keyed by handle
         $customNavigations = $this->navigations->map(function ($navigation) {
             return (new $navigation)->register();
         });
 
-        return $builderKeys->merge($customNavigations);
+        $blueprints = BlueprintRepository::findBlueprintInNamespace('navigation');
+
+        $builderKeys = $blueprints
+            ->reject(function ($value, $handle) use ($databaseNavigations, $customNavigations) {
+                return $databaseNavigations->has($handle) || $customNavigations->has($handle);
+            })
+            ->map(function ($value) {
+                $contents = $value->toArray();
+                $nav = \Statamic\Facades\Nav::make($value->getHandle())
+                    ->title($contents['title'] ?? null);
+
+                $nav->sites(\Statamic\Facades\Site::all()->map->handle()->all());
+
+                return $nav;
+            });
+
+        // Combine all - builder classes take highest precedence
+        return $databaseNavigations->merge($builderKeys)->merge($customNavigations);
     }
 
     public function find($id): ?NavContract

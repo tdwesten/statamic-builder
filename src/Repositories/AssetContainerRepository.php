@@ -15,6 +15,6 @@ class AssetContainerRepository extends StatamicAssetContainerRepository
 
         $keys = $this->store->paths()->keys()->merge($builderKeys)->unique();
 
-        return $this->store->getItems($keys);
+        return $this->store->getItems($keys)->filter();
     }
 }

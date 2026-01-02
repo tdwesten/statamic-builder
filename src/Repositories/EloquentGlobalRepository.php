@@ -4,6 +4,7 @@ namespace Tdwesten\StatamicBuilder\Repositories;
 
 use Illuminate\Support\Collection as IlluminateCollection;
 use Statamic\Eloquent\Globals\GlobalRepository as StatamicEloquentGlobalRepository;
+use Statamic\Facades\GlobalSet as StatamicGlobalSet;
 use Statamic\Globals\GlobalCollection;
 use Statamic\Globals\GlobalSet;
 use Statamic\Stache\Stache;
@@ -25,17 +26,34 @@ class EloquentGlobalRepository extends StatamicEloquentGlobalRepository
 
     public function all(): GlobalCollection
     {
+        // Get database globals
+        $databaseGlobals = parent::all();
+
         // Get builder-registered global instances from classes, keyed by handle
         $builderGlobals = $this->globals->map(function ($globalClass, $handle) {
             return (new $globalClass)->register();
         });
 
-        // Get database globals
-        $databaseGlobals = parent::all();
+        $blueprints = BlueprintRepository::findBlueprintInNamespace('globals');
+
+        $builderKeys = $blueprints
+            ->reject(function ($value, $handle) use ($databaseGlobals, $builderGlobals) {
+                return $databaseGlobals->has($handle) || $builderGlobals->has($handle);
+            })
+            ->map(function ($value) {
+                $contents = $value->toArray();
+                $global = StatamicGlobalSet::make($value->getHandle())
+                    ->title($contents['title'] ?? null);
+
+                foreach (\Statamic\Facades\Site::all() as $site) {
+                    $global->addLocalization($global->makeLocalization($site->handle()));
+                }
+
+                return $global;
+            });
 
         // Combine both collections - builder globals take precedence
-        // Since $this->globals is keyed by handle, map preserves those keys
-        return $databaseGlobals->merge($builderGlobals);
+        return $databaseGlobals->merge($builderKeys)->merge($builderGlobals);
     }
 
     public function find($id): ?GlobalSet

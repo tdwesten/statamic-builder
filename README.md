@@ -431,6 +431,9 @@ process of defining and managing them.
            return 'Site Settings';
        }
 
+       /**
+        * Return the sites for the global set
+        */
        public function sites(): array
        {
            return ['default'];
@@ -497,6 +500,11 @@ process of defining and managing them.
        public function maxDepth(): ?int
        {
            return 3;
+       }
+
+       public function sites(): array
+       {
+           return ['default'];
        }
    }
    ```
@@ -601,3 +609,15 @@ process of defining and managing them.
 ```bash
    php artisan cache:clear
 ```
+
+## Exporting to YAML
+
+If you want to export your PHP-defined blueprints, fieldsets, and collections to YAML files, you can use the following
+command:
+
+```bash
+php artisan statamic-builder:export
+```
+
+This will generate the YAML files in the `resources/blueprints`, `resources/fieldsets`, and `resources/collections`
+directories.

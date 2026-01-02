@@ -37,13 +37,32 @@ class NavigationRepository extends StatamicNavigationRepository
 
     public function all(): Collection
     {
-        $builderKeys = BlueprintRepository::findBlueprintInNamespace('navigation')->map(function ($blueprint) {
+        $blueprints = BlueprintRepository::findBlueprintInNamespace('navigation');
+
+        $builderKeys = $blueprints->map(function ($blueprint) {
             return $blueprint->getHandle();
         });
 
         $keys = $this->store->paths()->keys()->merge($builderKeys)->merge($this->navigations->keys())->unique();
 
-        return $this->store->getItems($keys, $this->navigations);
+        return $this->store->getItems($keys, $this->navigations)->map(function ($item, $key) use ($blueprints) {
+            if ($item) {
+                return $item;
+            }
+
+            $blueprint = $blueprints->get($key);
+
+            if ($blueprint) {
+                $nav = \Statamic\Facades\Nav::make($key)
+                    ->title($blueprint->toArray()['title'] ?? null);
+
+                $nav->sites(\Statamic\Facades\Site::all()->map->handle()->all());
+
+                return $nav;
+            }
+
+            return null;
+        })->filter();
     }
 
     public function findByHandle($handle): ?Nav

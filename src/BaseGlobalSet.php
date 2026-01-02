@@ -9,9 +9,15 @@ abstract class BaseGlobalSet
 {
     abstract public static function handle(): string;
 
-    abstract public function title(): string;
+    public function title(): string
+    {
+        return (string) \Statamic\Support\Str::of(static::handle())->title()->replace('_', ' ');
+    }
 
-    abstract public function sites(): array;
+    public function sites(): array
+    {
+        return [Site::default()->handle()];
+    }
 
     public function register()
     {
