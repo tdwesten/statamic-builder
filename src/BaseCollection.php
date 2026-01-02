@@ -3,56 +3,126 @@
 namespace Tdwesten\StatamicBuilder;
 
 use Statamic\Facades\Collection as StatamicCollection;
+use Statamic\Facades\Site;
 
 abstract class BaseCollection
 {
-    abstract public function title(): string;
-
     abstract public static function handle(): string;
 
-    abstract public function route(): null|string|array;
+    public function title(): string
+    {
+        return (string) \Statamic\Support\Str::of(static::handle())->title()->replace('_', ' ');
+    }
 
-    abstract public function slugs(): bool;
+    public function route(): null|string|array
+    {
+        return null;
+    }
 
-    abstract public function titleFormat(): null|string|array;
+    public function slugs(): bool
+    {
+        return true;
+    }
 
-    abstract public function mount(): ?string;
+    public function titleFormat(): null|string|array
+    {
+        return null;
+    }
 
-    abstract public function date(): bool;
+    public function mount(): ?string
+    {
+        return null;
+    }
 
-    abstract public function sites(): array;
+    public function date(): bool
+    {
+        return false;
+    }
 
-    abstract public function template(): ?string;
+    public function sites(): array
+    {
+        return [Site::default()->handle()];
+    }
 
-    abstract public function layout(): ?string;
+    public function template(): ?string
+    {
+        return null;
+    }
 
-    abstract public function inject(): array;
+    public function layout(): ?string
+    {
+        return null;
+    }
 
-    abstract public function searchIndex(): string;
+    public function inject(): array
+    {
+        return [];
+    }
 
-    abstract public function revisionsEnabled(): bool;
+    public function searchIndex(): ?string
+    {
+        return null;
+    }
 
-    abstract public function defaultPublishState(): bool;
+    public function revisionsEnabled(): bool
+    {
+        return false;
+    }
 
-    abstract public function originBehavior(): string;
+    public function defaultPublishState(): bool
+    {
+        return true;
+    }
 
-    abstract public function structure(): ?array;
+    public function originBehavior(): string
+    {
+        return 'select';
+    }
 
-    abstract public function sortBy(): ?string;
+    public function structure(): ?array
+    {
+        return null;
+    }
 
-    abstract public function sortDir(): ?string;
+    public function sortBy(): ?string
+    {
+        return null;
+    }
 
-    abstract public function taxonomies(): array;
+    public function sortDir(): ?string
+    {
+        return null;
+    }
 
-    abstract public function propagate(): ?bool;
+    public function taxonomies(): array
+    {
+        return [];
+    }
 
-    abstract public function previewTargets(): array;
+    public function propagate(): ?bool
+    {
+        return null;
+    }
 
-    abstract public function autosave(): bool|int|null;
+    public function previewTargets(): array
+    {
+        return [];
+    }
 
-    abstract public function futureDateBehavior(): ?string;
+    public function autosave(): bool|int|null
+    {
+        return null;
+    }
 
-    abstract public function pastDateBehavior(): ?string;
+    public function futureDateBehavior(): ?string
+    {
+        return null;
+    }
+
+    public function pastDateBehavior(): ?string
+    {
+        return null;
+    }
 
     public function visible(): bool
     {
@@ -61,6 +131,7 @@ abstract class BaseCollection
 
     public function register()
     {
+        /** @var \Statamic\Entries\Collection */
         $collection = StatamicCollection::make($this->handle())
             ->title($this->title())
             ->routes($this->route())

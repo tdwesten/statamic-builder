@@ -32,6 +32,18 @@ class MakeCollectionCommand extends BaseGeneratorCommand
     /**
      * {@inheritDoc}
      */
+    protected function buildClass($name)
+    {
+        $stub = parent::buildClass($name);
+
+        $handle = \Illuminate\Support\Str::of($name)->afterLast('\\')->snake();
+
+        return str_replace(['{{ handle }}', '{{handle}}'], $handle, $stub);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     protected function getDefaultNamespace($rootNamespace)
     {
         return $rootNamespace.'\\Collections';

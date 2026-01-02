@@ -16,7 +16,7 @@ class GlobalsStore extends StatamicGlobalsStore
         if ($globals->has($key)) {
             /** @var BaseGlobalSet */
             $globalSet = $globals->get($key);
-            $globalSet = new $globalSet();
+            $globalSet = new $globalSet;
 
             if (! $globalSet instanceof BaseGlobalSet) {
                 throw new \Exception("Global Set [{$key}] must extend [Tdwesten\StatamicBuilder\BaseGlobalSet]");

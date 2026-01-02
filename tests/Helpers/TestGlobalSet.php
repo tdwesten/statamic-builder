@@ -2,7 +2,6 @@
 
 namespace Tests\Helpers;
 
-use Statamic\Facades\Site;
 use Tdwesten\StatamicBuilder\BaseGlobalSet;
 
 class TestGlobalSet extends BaseGlobalSet
