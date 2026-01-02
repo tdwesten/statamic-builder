@@ -6,6 +6,7 @@ use Illuminate\Support\Collection as IlluminateCollection;
 use Statamic\Eloquent\Globals\GlobalRepository as StatamicEloquentGlobalRepository;
 use Statamic\Globals\GlobalCollection;
 use Statamic\Globals\GlobalSet;
+use Statamic\Stache\Stache;
 use Tdwesten\StatamicBuilder\BaseGlobalSet;
 
 class EloquentGlobalRepository extends StatamicEloquentGlobalRepository
@@ -15,9 +16,9 @@ class EloquentGlobalRepository extends StatamicEloquentGlobalRepository
      */
     private $globals;
 
-    public function __construct()
+    public function __construct(Stache $stache)
     {
-        parent::__construct();
+        parent::__construct($stache);
 
         $this->initializeGlobals();
     }

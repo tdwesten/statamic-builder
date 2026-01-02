@@ -6,7 +6,9 @@
 
 # Statamic Builder
 
-The Statamic Builder speeds up building Statamic sites. It offers a clear method to define sites, blueprints, fieldsets, collections, naviations and taxonomies using PHP classes. This approach enhances code readability and maintainability compared to writing YAML files.
+The Statamic Builder speeds up building Statamic sites. It offers a clear method to define sites, blueprints, fieldsets,
+collections, navigations and taxonomies using PHP classes. This approach enhances code readability and maintainability
+compared to writing YAML files.
 
 For example, you can define a collection blueprint as follows:
 
@@ -232,11 +234,11 @@ When working with a mixed Codebase or while using other Statamic plugins you can
                Tab::make('General', [
                    Section::make('General', [
                         ForeignFieldset::make('statamic-peak-seo::seo_basic')
-                            ->prefix('myseo_')
+                            ->prefix('myseo_'),
                         ForeignField::make('mytext','foreign_fields.bard')
                             ->config([
                                 'width'=>'25',
-                                'display' => "My bard Field"
+                                'display' => "My bard Field",
                                 'validate' => 'required|string|max:3',
                             ])
                    ]),
@@ -265,19 +267,30 @@ Field::make('custom_field')
     ]);
 ```
 
-## How to register Collections and Taxonomies
+### Custom field generator
 
-This addon enables you to define collections and taxonomies in PHP classes, simplifying the process of defining and managing them.
+A custom field generator is available to quickly create new field types. Run the following command in your terminal:
+
+```bash
+composer generate-field MyField
+```
+
+This will create a new field class in `src/FieldTypes/` and a test class in `tests/Unit/`.
+
+## How to register Collections, Taxonomies, Globals and Navigations
+
+This addon enables you to define collections, taxonomies, globals and navigations in PHP classes, simplifying the
+process of defining and managing them.
 
 ### How to register a collection
 
-1. Generate a new collection blueprint, for example for an articles collection blueprint run the following command:
+1. Generate a new collection, for example for an articles collection run the following command:
 
    ```bash
    php artisan make:collection Articles
    ```
 
-2. Define your Articles collection blueprint in the generated file. For example, the file has all options available to define a collection blueprint. For example:
+2. Define your Articles collection in the generated file. For example:
 
    ```php
    <?php
@@ -326,13 +339,13 @@ This addon enables you to define collections and taxonomies in PHP classes, simp
 
 ### How to register a taxonomy
 
-1. Generate a new taxonomy blueprint, for example for a categories taxonomy blueprint run the following command:
+1. Generate a new taxonomy, for example for a categories taxonomy run the following command:
 
    ```bash
    php artisan make:taxonomy Categories
    ```
 
-2. Define your taxonomy in the generated file. For example, the file has all options available to define a taxonomy. For example:
+2. Define your taxonomy in the generated file. For example:
 
    ```php
    <?php
@@ -383,13 +396,45 @@ This addon enables you to define collections and taxonomies in PHP classes, simp
        ];
    ```
 
+### How to register a global set
 
+1. Generate a new global set, for example for a SiteSettings global set run the following command:
+
+   ```bash
+   php artisan make:global-set SiteSettings
+   ```
+
+2. Define your global set in the generated file. For example:
+
+   ```php
+   <?php
+
+   namespace App\Globals;
+
+   use Tdwesten\StatamicBuilder\BaseGlobalSet;
+
+   class SiteSettings extends BaseGlobalSet
+   {
+       /**
+        * Return the handle for the global set
+        */
+       public static function handle(): string
+       {
+           return 'site_settings';
+       }
+
+       /**
+        * Return the title for the global set
+        */
        public function title(): string
        {
            return 'Site Settings';
        }
 
-       // Add more options here...
+       public function sites(): array
+       {
+           return ['default'];
+       }
    }
    ```
 
@@ -404,10 +449,73 @@ This addon enables you to define collections and taxonomies in PHP classes, simp
        ];
    ```
 
+### How to register a navigation
+
+1. Generate a new navigation, for example for a Main navigation run the following command:
+
+   ```bash
+   php artisan make:navigation Main
+   ```
+
+2. Define your navigation in the generated file. For example:
+
+   ```php
+   <?php
+
+   namespace App\Navigations;
+
+   use Tdwesten\StatamicBuilder\BaseNavigation;
+
+   class Main extends BaseNavigation
+   {
+       /**
+        * Return the handle for the navigation
+        */
+       public static function handle(): string
+       {
+           return 'main';
+       }
+
+       /**
+        * Return the title for the navigation
+        */
+       public function title(): string
+       {
+           return 'Main Navigation';
+       }
+
+       public function collections(): array
+       {
+           return ['pages'];
+       }
+
+       public function expectsRoot(): bool
+       {
+           return true;
+       }
+
+       public function maxDepth(): ?int
+       {
+           return 3;
+       }
+   }
+   ```
+
+3. Add the navigation to the `config/statamic/builder.php` file:
+
+   ```php
+   <?php
+       return [
+           'navigations' => [
+               \App\Navigations\Main::class,
+           ],
+       ];
+   ```
+
 ### How to create a Site
 
 > [!WARNING]  
-The sites are cached forever. When adding a site, you need to clear the cache.
+> The sites are cached forever. When adding a site, you need to clear the cache.
 
 1. Create a new site by running the following command:
 

@@ -99,17 +99,21 @@ class ServiceProvider extends AddonServiceProvider
         $this->app->singleton(\Statamic\Stache\Stores\GlobalsStore::class, function () {
             return new \Tdwesten\StatamicBuilder\Stache\Stores\GlobalsStore(app('stache'));
         });
+
+        $this->app->singleton(\Statamic\Stache\Stores\NavigationStore::class, function () {
+            return new \Tdwesten\StatamicBuilder\Stache\Stores\NavigationStore(app('stache'));
+        });
     }
 
     protected function bindRepositories()
     {
-        $this->app->singleton(\Statamic\Stache\Repositories\AssetContainerRepository::class, function () {
+        $this->app->singleton(\Statamic\Contracts\Assets\AssetContainerRepository::class, function () {
             return new \Tdwesten\StatamicBuilder\Repositories\AssetContainerRepository(app('stache'));
         });
 
-        $this->app->singleton(\Statamic\Stache\Repositories\GlobalRepository::class, function () {
+        $this->app->singleton(\Statamic\Contracts\Globals\GlobalRepository::class, function () {
             if (config('statamic.eloquent-driver.globals.driver') === 'eloquent') {
-                return new \Tdwesten\StatamicBuilder\Repositories\EloquentGlobalRepository;
+                return new \Tdwesten\StatamicBuilder\Repositories\EloquentGlobalRepository(app('stache'));
             }
 
             return new \Tdwesten\StatamicBuilder\Repositories\GlobalRepository(app('stache'));
@@ -120,7 +124,7 @@ class ServiceProvider extends AddonServiceProvider
                 ->setDirectory(resource_path('fieldsets'));
         });
 
-        $this->app->singleton(\Statamic\Stache\Repositories\NavigationRepository::class, function () {
+        $this->app->singleton(\Statamic\Contracts\Structures\NavigationRepository::class, function () {
             if (config('statamic.eloquent-driver.navigations.driver') === 'eloquent') {
                 return new \Tdwesten\StatamicBuilder\Repositories\EloquentNavigationRepository(app('stache'));
             }

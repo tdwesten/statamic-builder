@@ -102,4 +102,17 @@ return [
     'sites' => [
         // App\Sites\Blog::class,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Register Navigations
+    |--------------------------------------------------------------------------
+    |
+    | Here you can register the navigations that you want to use in your
+    | Statamic site.
+    |
+    */
+    'navigations' => [
+        // App\Navigations\Main::class,
+    ],
 ];

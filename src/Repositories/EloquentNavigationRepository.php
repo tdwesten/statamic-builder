@@ -6,9 +6,35 @@ use Illuminate\Support\Collection;
 use Statamic\Contracts\Structures\Nav as NavContract;
 use Statamic\Eloquent\Structures\NavigationRepository as StatamicNavigationRepository;
 use Statamic\Eloquent\Structures\NavModel;
+use Statamic\Stache\Stache;
 
 class EloquentNavigationRepository extends StatamicNavigationRepository
 {
+    /**
+     * @var Collection
+     */
+    private $navigations;
+
+    public function __construct(Stache $stache)
+    {
+        parent::__construct($stache);
+
+        $this->initializeNavigations();
+    }
+
+    private function initializeNavigations()
+    {
+        $navigations = collect(config('statamic.builder.navigations', []));
+
+        $this->navigations = collect();
+
+        $navigations->each(function (string $navigation): void {
+            if (class_exists($navigation, true)) {
+                $this->navigations->put($navigation::handle(), $navigation);
+            }
+        });
+    }
+
     public function all(): Collection
     {
         $builderKeys = BlueprintRepository::findBlueprintInNamespace('navigation')->transform(function ($value, $key) {
@@ -17,7 +43,11 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
             return app(NavContract::class)->fromModel($model);
         });
 
-        return $builderKeys;
+        $customNavigations = $this->navigations->map(function ($navigation) {
+            return (new $navigation)->register();
+        });
+
+        return $builderKeys->merge($customNavigations);
     }
 
     public function find($id): ?NavContract

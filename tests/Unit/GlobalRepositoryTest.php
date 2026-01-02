@@ -24,7 +24,7 @@ test('::findByHandle finds builder-registered global', function (): void {
     config(['statamic.builder.globals' => [TestGlobalSet::class]]);
 
     // Re-initialize the repository with the new config
-    app()->singleton(\Statamic\Stache\Repositories\GlobalRepository::class, function () {
+    app()->singleton(\Statamic\Contracts\Globals\GlobalRepository::class, function () {
         return new \Tdwesten\StatamicBuilder\Repositories\GlobalRepository(app('stache'));
     });
 
@@ -39,7 +39,7 @@ test('::all includes builder-registered globals', function (): void {
     config(['statamic.builder.globals' => [TestGlobalSet::class]]);
 
     // Re-initialize the repository with the new config
-    app()->singleton(\Statamic\Stache\Repositories\GlobalRepository::class, function () {
+    app()->singleton(\Statamic\Contracts\Globals\GlobalRepository::class, function () {
         return new \Tdwesten\StatamicBuilder\Repositories\GlobalRepository(app('stache'));
     });
 
