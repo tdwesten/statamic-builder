@@ -37,8 +37,8 @@ class GlobalsStore extends StatamicGlobalsStore
     {
         $this->handleFileChanges();
 
-        return collect($keys)->map(function ($key) use ($globals) {
-            return $this->getItem($key, $globals);
+        return collect($keys)->mapWithKeys(function ($key) use ($globals) {
+            return [$key => $this->getItem($key, $globals)];
         });
     }
 }
