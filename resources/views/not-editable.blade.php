@@ -2,18 +2,28 @@
 @section('title', __('Configure Collection'))
 
 @section('content')
-    <div class="card p-0 content">
-        <div class="py-6 px-8 border-b">
-            <h1>{{ $type }} {{ 'not editable' }}</h1>
-            <p>{{ __("Because this $type is registered with the Statamic Builder it's only editable in PHP.") }}</p>
+    <div class="card p-0 content dark:bg-dark-800">
+        <div class="py-6 px-8 border-b dark:border-dark-900">
+            <h1 class="dark:text-dark-100">{{ $type }} {{ 'not editable' }}</h1>
+            <p class="dark:text-dark-400">{{ __("Because this $type is registered with the Statamic Builder it's only editable in PHP.") }}</p>
         </div>
 
         @if ($filePath)
+            <div class="px-8 py-4 border-b dark:border-dark-900 bg-gray-50 dark:bg-dark-700/50">
+                <div class="flex items-center text-xs font-mono text-gray-600 dark:text-dark-400">
+                    <svg class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    <span class="break-all">{{ $filePath }}</span>
+                </div>
+            </div>
+
             @if ($isLocal)
                 <div class="flex flex-wrap p-4">
                     <a href="vscode://file/{{ $filePath }}"
-                        class="w-full lg:w-1/2 p-4 flex items-start hover:bg-gray-200 rounded-md group">
-                        <div class="h-8 w-8 mr-4 text-gray-800">
+                       class="w-full lg:w-1/2 p-4 flex items-start hover:bg-gray-200 dark:hover:bg-dark-600 rounded-md group">
+                        <div class="h-8 w-8 mr-4 text-gray-800 dark:text-dark-100">
                             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="100"
                                     height="100">
@@ -75,13 +85,13 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="mb-2 text-blue">{{ __('Edit in Visual Studio Code') }}</h3>
-                            <p>{{ __('Open this Blueprint in Visual Studio Code to edit it.') }}</p>
+                            <h3 class="mb-2 text-blue dark:text-blue-400">{{ __('Edit in Visual Studio Code') }}</h3>
+                            <p class="dark:text-dark-400">{{ __('Open this Blueprint in Visual Studio Code to edit it.') }}</p>
                         </div>
                     </a>
                     <a href="idea://open?file={{ $filePath }}"
-                        class="w-full lg:w-1/2 p-4 flex items-start hover:bg-gray-200 rounded-md group">
-                        <div class="h-8 w-8 mr-4 text-gray-800">
+                       class="w-full lg:w-1/2 p-4 flex items-start hover:bg-gray-200 dark:hover:bg-dark-600 rounded-md group">
+                        <div class="h-8 w-8 mr-4 text-gray-800 dark:text-dark-100">
                             <!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 70 70"
@@ -139,8 +149,8 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="mb-2 text-blue">{{ __('Edit in PhpStorm/IDEA') }}</h3>
-                            <p>{{ __('Open this Blueprint in PhpStorm/IDEA to edit it.') }}</p>
+                            <h3 class="mb-2 text-blue dark:text-blue-400">{{ __('Edit in PhpStorm/IDEA') }}</h3>
+                            <p class="dark:text-dark-400">{{ __('Open this Blueprint in PhpStorm/IDEA to edit it.') }}</p>
                         </div>
                     </a>
                 </div>
