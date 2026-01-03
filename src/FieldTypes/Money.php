@@ -6,16 +6,16 @@ use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\DefaultValue;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 
-class Time extends Field
+class Money extends Field
 {
     use DefaultValue;
     use Makeble;
 
-    protected $type = 'time';
+    protected $type = 'money';
 
-    protected $secondsEnabled = false;
+    protected $currency;
 
-    public function __construct($handle)
+    public function __construct(string $handle)
     {
         parent::__construct($handle);
     }
@@ -23,14 +23,14 @@ class Time extends Field
     public function fieldToArray(): Collection
     {
         return collect([
-            'seconds_enabled' => $this->secondsEnabled,
             'default' => $this->default,
+            'currency' => $this->currency,
         ]);
     }
 
-    public function secondsEnabled()
+    public function currency(string $currency)
     {
-        $this->secondsEnabled = true;
+        $this->currency = $currency;
 
         return $this;
     }
