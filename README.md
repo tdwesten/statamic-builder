@@ -28,6 +28,12 @@ You can install this addon with composer:
 composer require tdwesten/statamic-builder
 ```
 
+## Requirements
+
+- PHP 8.2+
+- Statamic 5.4+ or 6.0 Alpha
+- Laravel 11 or 12
+
 ## Configuration
 
 You can publish the configuration file using:
