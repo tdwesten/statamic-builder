@@ -4,20 +4,48 @@
 The Statamic Builder speeds up building Statamic sites by providing a fluent, PHP-based API to define sites, blueprints, fieldsets, collections, navigations, and taxonomies. This approach enhances code readability and maintainability by replacing traditional YAML configuration with PHP classes.
 
 #### Build and Configuration
-This project is a Statamic addon that provides a fluent API for building blueprints and fieldsets.
+
+This project is a Statamic addon that integrates deeply with Statamic's core systems and provides a fluent API for
+building blueprints and fieldsets.
 
 - **Requirements**: PHP 8.2+, Statamic 5.4+, Laravel 10/11/12.
-- **Installation**: Run `composer install` to install dependencies.
-- **Service Provider**: `Tdwesten\StatamicBuilder\ServiceProvider` is automatically registered via Laravel's package discovery.
+- **Installation**:
+  ```bash
+  composer install
+  ```
+- **Service Provider**: `Tdwesten\StatamicBuilder\ServiceProvider` is automatically registered via Laravel's package
+  discovery. It handles component discovery, repository binding, and command registration.
+- **Configuration**:
+  Publish the configuration file to customize discovery paths and register components manually:
+  ```bash
+  php artisan vendor:publish --tag=statamic
+  ```
+- **Exporting to YAML**:
+  If you need to generate standard Statamic YAML files from your PHP definitions:
+  ```bash
+  php artisan statamic-builder:export
+  ```
 
 #### Testing
 The project uses [Pest](https://pestphp.com/) for testing, along with `orchestra/testbench` for Laravel/Statamic integration.
 
-- **Running Tests**: Execute `./vendor/bin/pest` to run the full test suite.
-- **Adding Tests**: New tests should be placed in the `tests/Unit` or `tests/Feature` directories. Tests should use the Pest syntax.
-- **Test Case**: Most tests should extend `Tests\TestCase`, which in turn extends `Statamic\Testing\AddonTestCase`.
+- **Configuring Tests**:
+    - Tests extend `Tests\TestCase`, which boots the Statamic environment.
+    - No additional database configuration is typically required as it uses in-memory storage for testing.
+- **Running Tests**:
+  Execute the following command to run the full test suite:
+  ```bash
+  ./vendor/bin/pest
+  ```
+  To run tests and static analysis (Rector):
+  ```bash
+  composer test
+  ```
+- **Adding Tests**:
+    - Place new tests in `tests/Unit` or `tests/Feature`.
+    - For new field types, use the generator to create a starting test: `composer generate-field MyField`.
 
-**Example Test Case (Fluent Blueprint Building):**
+**Verified Example Test Case:**
 ```php
 <?php
 
@@ -49,16 +77,24 @@ test('it can build a simple blueprint', function () {
 
 #### Development Information
 - **Code Style**: Follow PSR-12 and Laravel coding standards. `laravel/pint` is included for formatting.
-- **Static Analysis/Refactoring**: Rector is used for automated refactoring. Run `./vendor/bin/rector` to check for improvements.
-- **Fluent API**: Use the `make()` static method and chainable setters (e.g., `->displayName()`, `->instructions()`) for field configuration.
+- **Static Analysis/Refactoring**: Rector is used for automated refactoring and code quality. Run it via:
+  ```bash
+  ./vendor/bin/rector
+  ```
+- **Fluent API Design**: Always use the `make()` static method for instantiating fields and chainable setters (e.g.,
+  `->displayName()`, `->instructions()`, `->required()`) for configuration.
 - **Custom Field Types**: New field types should extend `Tdwesten\StatamicBuilder\FieldTypes\Field`.
-- **Field Generator**: A custom field generator is available via `composer generate-field`.
+- **Field Generator**:
+  ```bash
+  composer generate-field MyFieldName
+  ```
+  This command populates `src/FieldTypes/` and `tests/Unit/` using templates in the `field-generator/` directory.
 
 #### Auto Registration & Discovery
 
-The addon supports auto-discovery and registration of components to avoid manual entry in the configuration file.
+The addon supports auto-discovery to avoid manual registration in `config/statamic/builder.php`.
 
-- **Enable**: Set `'auto_registration' => true` in `config/statamic/builder.php`.
+- **Enable**: Set `'auto_registration' => true` in the config.
 - **Requirements**:
     - **Blueprints**: Must implement `public static function handle(): string` and
       `public static function blueprintNamespace(): string`.
