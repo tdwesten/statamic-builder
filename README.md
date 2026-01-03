@@ -1,5 +1,5 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tdwesten/statamic-builder.svg?style=flat-square)](https://packagist.org/packages/tdwesten/statamic-builder)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/tdwesten/statamic-builder/ci.yml?branch=main&label=tests&style=flat-square)](https://github.com/tdwesten/statamic-builder/actions/workflows/ci.yml)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/tdwesten/statamic-builder/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/tdwesten/statamic-builder/actions/workflows/tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/tdwesten/statamic-builder.svg?style=flat-square)](https://packagist.org/packages/tdwesten/statamic-builder)
 
 ![Github](https://github.com/tdwesten/statamic-builder/assets/224501/fb3da5da-6035-4ca4-9d70-3509c8b626c6)
