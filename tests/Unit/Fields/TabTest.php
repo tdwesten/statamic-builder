@@ -4,7 +4,7 @@ use Tdwesten\StatamicBuilder\FieldTypes\Section;
 use Tdwesten\StatamicBuilder\FieldTypes\Tab;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
-test('Tab can be rendered', function () {
+test('Tab can be rendered', function (): void {
     $tab = Tab::make('main', [
         Section::make('General', [
             Text::make('title')->displayName('Title'),

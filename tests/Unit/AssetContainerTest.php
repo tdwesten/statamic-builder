@@ -3,9 +3,6 @@
 namespace Tests\Unit;
 
 use Tests\Helpers\TestAssetContainer;
-use Tests\TestCase;
-
-pest()->extend(TestCase::class);
 
 test('Has a title', function (): void {
     $container = new TestAssetContainer;

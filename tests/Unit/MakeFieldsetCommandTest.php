@@ -3,11 +3,8 @@
 namespace Tests\Unit;
 
 use Illuminate\Support\Facades\File;
-use Tests\TestCase;
 
-pest()->extend(TestCase::class);
-
-test('it can create a fieldset', function () {
+test('it can create a fieldset', function (): void {
     $this->artisan('make:fieldset', ['name' => 'CommonFieldset'])
         ->assertExitCode(0);
 

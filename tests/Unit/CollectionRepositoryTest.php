@@ -2,9 +2,6 @@
 
 use Statamic\Facades\Collection;
 use Tests\Helpers\TestCollection;
-use Tests\TestCase;
-
-pest()->extend(TestCase::class);
 
 beforeEach(function (): void {
     config(['statamic.builder.collections' => []]);

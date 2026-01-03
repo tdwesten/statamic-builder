@@ -2,9 +2,6 @@
 
 use Statamic\Facades\GlobalSet;
 use Tests\Helpers\TestGlobalSet;
-use Tests\TestCase;
-
-pest()->extend(TestCase::class);
 
 beforeEach(function (): void {
     config(['statamic.builder.globals' => [TestGlobalSet::class]]);
@@ -15,7 +12,7 @@ beforeEach(function (): void {
     });
 });
 
-test('it can save global variables', function () {
+test('it can save global variables', function (): void {
     $globalSet = GlobalSet::findByHandle('test_global');
     expect($globalSet)->not()->toBeNull();
 
@@ -31,7 +28,7 @@ test('it can save global variables', function () {
     expect($localization->get('test_field'))->toBe('test_value');
 });
 
-test('it can save global variables for blueprint-based globals', function () {
+test('it can save global variables for blueprint-based globals', function (): void {
     config(['statamic.builder.blueprints.globals' => [
         'blueprint_global' => \Tests\Helpers\TestBlueprint::class,
     ]]);

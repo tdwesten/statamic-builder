@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\FieldTypes\ForeignField;
 
-test('Foreign field can be rendered', function () {
+test('Foreign field can be rendered', function (): void {
     $field = ForeignField::make('handle', 'field_name');
     $expected = [
         'handle' => 'handle',
@@ -13,7 +13,7 @@ test('Foreign field can be rendered', function () {
     expect($field->toArray())->toBe($expected);
 });
 
-test('Foreign field can be rendered with config', function () {
+test('Foreign field can be rendered with config', function (): void {
     $field = ForeignField::make('handle', 'field_name')->config(['display' => 'Custom Display']);
     $expected = [
         'handle' => 'handle',

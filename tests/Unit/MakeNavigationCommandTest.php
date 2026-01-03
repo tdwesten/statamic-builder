@@ -3,11 +3,8 @@
 namespace Tests\Unit;
 
 use Illuminate\Support\Facades\File;
-use Tests\TestCase;
 
-pest()->extend(TestCase::class);
-
-test('it can generate a navigation class', function () {
+test('it can generate a navigation class', function (): void {
     $name = 'MainNavigation';
     $this->artisan('make:navigation', ['name' => $name]);
 

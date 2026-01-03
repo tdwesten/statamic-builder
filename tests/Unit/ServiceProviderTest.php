@@ -6,29 +6,26 @@ use Statamic\Contracts\Structures\NavigationRepository;
 use Tdwesten\StatamicBuilder\Repositories\AssetContainerRepository as BuilderAssetContainerRepository;
 use Tdwesten\StatamicBuilder\Repositories\GlobalRepository as BuilderGlobalRepository;
 use Tdwesten\StatamicBuilder\Repositories\NavigationRepository as BuilderNavigationRepository;
-use Tests\TestCase;
 
-pest()->extend(TestCase::class);
-
-test('it binds the navigation repository contract', function () {
+test('it binds the navigation repository contract', function (): void {
     $repository = app(NavigationRepository::class);
 
     expect($repository)->toBeInstanceOf(BuilderNavigationRepository::class);
 });
 
-test('it binds the global repository contract', function () {
+test('it binds the global repository contract', function (): void {
     $repository = app(GlobalRepository::class);
 
     expect($repository)->toBeInstanceOf(BuilderGlobalRepository::class);
 });
 
-test('it binds the asset container repository contract', function () {
+test('it binds the asset container repository contract', function (): void {
     $repository = app(AssetContainerRepository::class);
 
     expect($repository)->toBeInstanceOf(BuilderAssetContainerRepository::class);
 });
 
-test('it binds the eloquent navigation repository when driver is eloquent', function () {
+test('it binds the eloquent navigation repository when driver is eloquent', function (): void {
     config(['statamic.eloquent-driver.navigations.driver' => 'eloquent']);
 
     // Re-register the service provider or just the binding
@@ -45,7 +42,7 @@ test('it binds the eloquent navigation repository when driver is eloquent', func
     expect($repository)->toBeInstanceOf(\Tdwesten\StatamicBuilder\Repositories\EloquentNavigationRepository::class);
 });
 
-test('it binds the eloquent global repository when driver is eloquent', function () {
+test('it binds the eloquent global repository when driver is eloquent', function (): void {
     config(['statamic.eloquent-driver.globals.driver' => 'eloquent']);
 
     // Re-register the service provider or just the binding

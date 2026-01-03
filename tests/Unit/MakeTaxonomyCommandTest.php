@@ -3,11 +3,8 @@
 namespace Tests\Unit;
 
 use Illuminate\Support\Facades\File;
-use Tests\TestCase;
 
-pest()->extend(TestCase::class);
-
-test('it can create a taxonomy', function () {
+test('it can create a taxonomy', function (): void {
     $this->artisan('make:taxonomy', ['name' => 'TagsTaxonomy'])
         ->assertExitCode(0);
 

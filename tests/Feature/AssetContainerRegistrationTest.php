@@ -2,9 +2,6 @@
 
 use Statamic\Facades\AssetContainer;
 use Tdwesten\StatamicBuilder\BaseAssetContainer;
-use Tests\TestCase;
-
-pest()->extend(TestCase::class);
 
 class IntegrationTestAssetContainer extends BaseAssetContainer
 {
@@ -14,7 +11,7 @@ class IntegrationTestAssetContainer extends BaseAssetContainer
     }
 }
 
-test('registered asset containers are found by the repository', function () {
+test('registered asset containers are found by the repository', function (): void {
     config(['statamic.builder.asset_containers' => [
         IntegrationTestAssetContainer::class,
     ]]);
@@ -25,7 +22,7 @@ test('registered asset containers are found by the repository', function () {
     expect($container->handle())->toBe('integration_assets');
 });
 
-test('all includes registered asset containers', function () {
+test('all includes registered asset containers', function (): void {
     config(['statamic.builder.asset_containers' => [
         IntegrationTestAssetContainer::class,
     ]]);

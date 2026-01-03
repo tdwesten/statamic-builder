@@ -2,9 +2,6 @@
 
 use Statamic\Facades\Taxonomy;
 use Tdwesten\StatamicBuilder\Http\Controllers\TaxonomyBlueprintsController;
-use Tests\TestCase;
-
-pest()->extend(TestCase::class);
 
 const TEST_FILES_DIRECTORY = __DIR__.'/../__fixtures__';
 const TAX_DIRECTORY = TEST_FILES_DIRECTORY.'/content/taxonomies';

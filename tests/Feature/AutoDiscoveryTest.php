@@ -3,25 +3,22 @@
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Statamic\Facades\AssetContainer;
-use Tests\TestCase;
 
-pest()->extend(TestCase::class);
-
-beforeEach(function () {
+beforeEach(function (): void {
     // Create a temporary directory for discovery
     if (! File::isDirectory(base_path('app/AssetContainers'))) {
         File::makeDirectory(base_path('app/AssetContainers'), 0755, true);
     }
 });
 
-afterEach(function () {
+afterEach(function (): void {
     // Clean up temporary directory
     if (File::isDirectory(base_path('app'))) {
         File::deleteDirectory(base_path('app'));
     }
 });
 
-test('it can auto discover asset containers', function () {
+test('it can auto discover asset containers', function (): void {
     // 1. Enable auto registration and set path
     Config::set('statamic.builder.auto_registration', true);
     Config::set('statamic.builder.auto_discovery.asset_containers', base_path('app/AssetContainers'));

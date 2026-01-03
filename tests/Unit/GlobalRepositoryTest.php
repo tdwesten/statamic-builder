@@ -2,9 +2,6 @@
 
 use Statamic\Facades\GlobalSet;
 use Tests\Helpers\TestGlobalSet;
-use Tests\TestCase;
-
-pest()->extend(TestCase::class);
 
 beforeEach(function (): void {
     config(['statamic.builder.globals' => []]);

@@ -1,11 +1,8 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Repositories\TaxonomyRepository;
-use Tests\TestCase;
 
-pest()->extend(TestCase::class);
-
-test('::all includes builder-registered taxonomies', function () {
+test('::all includes builder-registered taxonomies', function (): void {
     config(['statamic.builder.taxonomies' => [
         \Tests\Helpers\TestTaxonomy::class,
     ]]);
@@ -16,7 +13,7 @@ test('::all includes builder-registered taxonomies', function () {
     expect($taxonomies->has('test_taxonomy'))->toBeTrue();
 });
 
-test('::findByHandle finds builder-registered taxonomy', function () {
+test('::findByHandle finds builder-registered taxonomy', function (): void {
     config(['statamic.builder.taxonomies' => [
         \Tests\Helpers\TestTaxonomy::class,
     ]]);

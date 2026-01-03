@@ -2,7 +2,7 @@
 
 use Tdwesten\StatamicBuilder\FieldTypes\ForeignFieldset;
 
-test('Foreign fieldset can be rendered', function () {
+test('Foreign fieldset can be rendered', function (): void {
     $fieldset = ForeignFieldset::make('handle');
     $expected = [
         'import' => 'handle',
@@ -12,7 +12,7 @@ test('Foreign fieldset can be rendered', function () {
     expect($fieldset->toArray())->toBe($expected);
 });
 
-test('Foreign fieldset can be rendered with prefix', function () {
+test('Foreign fieldset can be rendered with prefix', function (): void {
     $fieldset = ForeignFieldset::make('handle')->prefix('prefix_');
     $expected = [
         'import' => 'handle',

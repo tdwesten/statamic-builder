@@ -2,11 +2,8 @@
 
 use Statamic\Fields\Fieldset as StatamicFieldset;
 use Tdwesten\StatamicBuilder\Repositories\FieldsetRepository;
-use Tests\TestCase;
 
-pest()->extend(TestCase::class);
-
-test('::all includes builder-registered fieldsets', function () {
+test('::all includes builder-registered fieldsets', function (): void {
     config(['statamic.builder.fieldsets' => [
         \Tests\Helpers\TestFieldset::class,
     ]]);
@@ -21,7 +18,7 @@ test('::all includes builder-registered fieldsets', function () {
     expect($fieldsets->contains(fn ($fieldset) => $fieldset->handle() === 'test_fieldset'))->toBeTrue();
 });
 
-test('::find finds builder-registered fieldset', function () {
+test('::find finds builder-registered fieldset', function (): void {
     config(['statamic.builder.fieldsets' => [
         \Tests\Helpers\TestFieldset::class,
     ]]);
@@ -33,7 +30,7 @@ test('::find finds builder-registered fieldset', function () {
     expect($fieldset->handle())->toBe('test_fieldset');
 });
 
-test('::save does not save builder-registered fieldset', function () {
+test('::save does not save builder-registered fieldset', function (): void {
     config(['statamic.builder.fieldsets' => [
         \Tests\Helpers\TestFieldset::class,
     ]]);

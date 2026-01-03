@@ -3,11 +3,8 @@
 use Statamic\Assets\AssetContainer as StatamicAssetContainer;
 use Tdwesten\StatamicBuilder\Repositories\AssetContainerRepository;
 use Tests\Helpers\TestAssetContainer;
-use Tests\TestCase;
 
-pest()->extend(TestCase::class);
-
-test('::all includes builder-registered asset containers', function () {
+test('::all includes builder-registered asset containers', function (): void {
     config(['statamic.builder.asset_containers' => [
         TestAssetContainer::class,
     ]]);
@@ -24,7 +21,7 @@ test('::all includes builder-registered asset containers', function () {
     expect($containers->map->handle()->toArray())->toContain('main_assets');
 });
 
-test('can find by handle', function () {
+test('can find by handle', function (): void {
     config(['statamic.builder.asset_containers' => [
         TestAssetContainer::class,
     ]]);

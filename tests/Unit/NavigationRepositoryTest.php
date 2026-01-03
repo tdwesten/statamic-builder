@@ -2,9 +2,6 @@
 
 use Statamic\Facades\Nav;
 use Tests\Helpers\TestNavigation;
-use Tests\TestCase;
-
-pest()->extend(TestCase::class);
 
 beforeEach(function (): void {
     config(['statamic.builder.navigations' => []]);

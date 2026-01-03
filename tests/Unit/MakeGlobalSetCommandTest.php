@@ -3,11 +3,8 @@
 namespace Tests\Unit;
 
 use Illuminate\Support\Facades\File;
-use Tests\TestCase;
 
-pest()->extend(TestCase::class);
-
-test('it can generate a global set class', function () {
+test('it can generate a global set class', function (): void {
     $name = 'FooterGlobal';
     $this->artisan('make:global-set', ['name' => $name]);
 
