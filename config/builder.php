@@ -115,4 +115,35 @@ return [
     'navigations' => [
         // App\Navigations\Main::class,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Auto Registration
+    |--------------------------------------------------------------------------
+    |
+    | Here you can enable auto registration of your blueprints, fieldsets,
+    | collections, taxonomies, globals, sites, and navigations.
+    |
+    */
+    'auto_registration' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Auto Discovery Paths
+    |--------------------------------------------------------------------------
+    |
+    | Here you can define the paths that will be used to auto discover your
+    | blueprints, fieldsets, collections, taxonomies, globals, sites, and
+    | navigations.
+    |
+    */
+    'auto_discovery' => [
+        'blueprints' => app_path('Blueprints'),
+        'fieldsets' => app_path('Fieldsets'),
+        'collections' => app_path('Collections'),
+        'taxonomies' => app_path('Taxonomies'),
+        'globals' => app_path('Globals'),
+        'navigations' => app_path('Navigations'),
+        'sites' => app_path('Sites'),
+    ],
 ];

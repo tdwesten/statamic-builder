@@ -25,10 +25,12 @@ abstract class BaseGlobalSet
         $global = StatamicGlobalSet::make($this->handle())
             ->title($this->title());
 
-        $sites = $this->sites() ?? [Site::default()->handle()];
+        $sites = $this->sites() ?? [\Statamic\Facades\Site::default()->handle()];
 
         foreach ($sites as $site) {
-            $global->addLocalization($global->makeLocalization($site));
+            if (! $global->in($site)) {
+                $global->addLocalization($global->makeLocalization($site));
+            }
         }
 
         return $global;

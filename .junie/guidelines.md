@@ -53,3 +53,16 @@ test('it can build a simple blueprint', function () {
 - **Fluent API**: Use the `make()` static method and chainable setters (e.g., `->displayName()`, `->instructions()`) for field configuration.
 - **Custom Field Types**: New field types should extend `Tdwesten\StatamicBuilder\FieldTypes\Field`.
 - **Field Generator**: A custom field generator is available via `composer generate-field`.
+
+#### Auto Registration & Discovery
+
+The addon supports auto-discovery and registration of components to avoid manual entry in the configuration file.
+
+- **Enable**: Set `'auto_registration' => true` in `config/statamic/builder.php`.
+- **Requirements**:
+    - **Blueprints**: Must implement `public static function handle(): string` and
+      `public static function blueprintNamespace(): string`.
+    - **Collections, Taxonomies, Globals, Navigations**: Must implement `public static function handle(): string`.
+    - **Sites**: Must implement `public function handle(): string`.
+- **Default Paths**: Components are discovered in `app/Blueprints`, `app/Collections`, etc. These can be customized in
+  the `auto_discovery` configuration.

@@ -46,7 +46,9 @@ class EloquentGlobalRepository extends StatamicEloquentGlobalRepository
                     ->title($contents['title'] ?? null);
 
                 foreach (\Statamic\Facades\Site::all() as $site) {
-                    $global->addLocalization($global->makeLocalization($site->handle()));
+                    if (! $global->in($site->handle())) {
+                        $global->addLocalization($global->makeLocalization($site->handle()));
+                    }
                 }
 
                 return $global;
@@ -62,7 +64,33 @@ class EloquentGlobalRepository extends StatamicEloquentGlobalRepository
             return (new $global)->register();
         }
 
-        return parent::find($id);
+        $global = parent::find($id);
+
+        if ($global) {
+            return $global;
+        }
+
+        return $this->findInBlueprints($id);
+    }
+
+    private function findInBlueprints($handle): ?GlobalSet
+    {
+        $blueprint = BlueprintRepository::findBlueprintInNamespace('globals')->get($handle);
+
+        if (! $blueprint) {
+            return null;
+        }
+
+        $global = \Statamic\Facades\GlobalSet::make($handle)
+            ->title($blueprint->toArray()['title'] ?? null);
+
+        foreach (\Statamic\Facades\Site::all() as $site) {
+            if (! $global->in($site->handle())) {
+                $global->addLocalization($global->makeLocalization($site->handle()));
+            }
+        }
+
+        return $global;
     }
 
     private function initializeGlobals()
@@ -86,7 +114,13 @@ class EloquentGlobalRepository extends StatamicEloquentGlobalRepository
             return (new $set)->register();
         }
 
-        return parent::findByHandle($handle);
+        $global = parent::findByHandle($handle);
+
+        if ($global) {
+            return $global;
+        }
+
+        return $this->findInBlueprints($handle);
     }
 
     public function getGlobalByHandle($handle): ?BaseGlobalSet

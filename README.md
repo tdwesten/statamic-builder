@@ -610,6 +610,86 @@ process of defining and managing them.
    php artisan cache:clear
 ```
 
+## Auto Registration
+
+You can enable auto registration of your blueprints, fieldsets, collections, taxonomies, globals, sites, and navigations
+in the `config/statamic/builder.php` file. This will automatically discover and register your components without having
+to manually add them to the configuration file.
+
+To enable auto registration, set the `auto_registration` option to `true`:
+
+```php
+'auto_registration' => true,
+```
+
+### Auto Discovery Paths
+
+By default, the addon will look for your components in the following directories:
+
+- Blueprints: `app/Blueprints`
+- Fieldsets: `app/Fieldsets`
+- Collections: `app/Collections`
+- Taxonomies: `app/Taxonomies`
+- Globals: `app/Globals`
+- Navigations: `app/Navigations`
+- Sites: `app/Sites`
+
+You can customize these paths in the `auto_discovery` option in the `config/statamic/builder.php` file:
+
+```php
+'auto_discovery' => [
+    'blueprints' => app_path('Blueprints'),
+    'fieldsets' => app_path('Fieldsets'),
+    'collections' => app_path('Collections'),
+    'taxonomies' => app_path('Taxonomies'),
+    'globals' => app_path('Globals'),
+    'navigations' => app_path('Navigations'),
+    'sites' => app_path('Sites'),
+],
+```
+
+### Auto Discovery Requirements
+
+For components to be auto-discovered, they must follow some requirements:
+
+#### Blueprints
+
+Blueprints must implement the `handle()` and `blueprintNamespace()` methods:
+
+```php
+public static function handle(): string
+{
+    return 'page';
+}
+
+public static function blueprintNamespace(): string
+{
+    return 'collections.pages';
+}
+```
+
+#### Collections, Taxonomies, Globals, and Navigations
+
+These components must implement the `handle()` method:
+
+```php
+public static function handle(): string
+{
+    return 'articles';
+}
+```
+
+#### Sites
+
+Sites must implement the `handle()` method:
+
+```php
+public function handle(): string
+{
+    return 'default';
+}
+```
+
 ## Exporting to YAML
 
 If you want to export your PHP-defined blueprints, fieldsets, and collections to YAML files, you can use the following

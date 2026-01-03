@@ -11,6 +11,8 @@ class ServiceProvider extends AddonServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/builder.php', 'builder');
 
+        (new Discovery)->discover();
+
         $this->bindRepositories();
 
         $this->registerControllers();

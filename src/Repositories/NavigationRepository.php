@@ -65,6 +65,23 @@ class NavigationRepository extends StatamicNavigationRepository
         })->filter();
     }
 
+    public function find($id): ?Nav
+    {
+        $navigation = $this->navigations->get($id);
+
+        if ($navigation) {
+            return (new $navigation)->register();
+        }
+
+        $nav = parent::find($id);
+
+        if ($nav) {
+            return $nav;
+        }
+
+        return $this->findInBlueprints($id);
+    }
+
     public function findByHandle($handle): ?Nav
     {
         $navigation = $this->navigations->get($handle);
@@ -73,7 +90,29 @@ class NavigationRepository extends StatamicNavigationRepository
             return (new $navigation)->register();
         }
 
-        return parent::findByHandle($handle);
+        $nav = parent::findByHandle($handle);
+
+        if ($nav) {
+            return $nav;
+        }
+
+        return $this->findInBlueprints($handle);
+    }
+
+    private function findInBlueprints($handle): ?Nav
+    {
+        $blueprint = BlueprintRepository::findBlueprintInNamespace('navigation')->get($handle);
+
+        if (! $blueprint) {
+            return null;
+        }
+
+        $nav = \Statamic\Facades\Nav::make($handle)
+            ->title($blueprint->toArray()['title'] ?? null);
+
+        $nav->sites(\Statamic\Facades\Site::all()->map->handle()->all());
+
+        return $nav;
     }
 
     public function getNavigationByHandle($handle): ?BaseNavigation
