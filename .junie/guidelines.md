@@ -76,6 +76,11 @@ test('it can build a simple blueprint', function () {
 ```
 
 #### Development Information
+
+- **Mandatory Tasks**: Always perform the following tasks when completing a task or before submitting a pull request:
+    - **Update README**: Ensure `README.md` reflects any new features or changes.
+    - **Format Code**: Run `vendor/bin/pint` to maintain consistent code style.
+    - **Run Tests**: Ensure all tests pass by running `./vendor/bin/pest`.
 - **Code Style**: Follow PSR-12 and Laravel coding standards. `laravel/pint` is included for formatting.
 - **Static Analysis/Refactoring**: Rector is used for automated refactoring and code quality. Run it via:
   ```bash

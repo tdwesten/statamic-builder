@@ -40,17 +40,18 @@ The configuration file allows you to manually register components or enable auto
 
 ### Options
 
-| Option | Description |
-| --- | --- |
-| `blueprints` | Manual registration of blueprints, grouped by namespace. |
-| `fieldsets` | Manual registration of fieldsets. |
-| `collections` | Manual registration of collections. |
-| `taxonomies` | Manual registration of taxonomies. |
-| `globals` | Manual registration of global sets. |
-| `sites` | Manual registration of sites. |
-| `navigations` | Manual registration of navigations. |
-| `auto_registration` | Enable or disable auto-discovery of components. |
-| `auto_discovery` | Define custom paths for auto-discovery of each component type. |
+| Option              | Description                                                    |
+|---------------------|----------------------------------------------------------------|
+| `blueprints`        | Manual registration of blueprints, grouped by namespace.       |
+| `fieldsets`         | Manual registration of fieldsets.                              |
+| `collections`       | Manual registration of collections.                            |
+| `taxonomies`        | Manual registration of taxonomies.                             |
+| `globals`           | Manual registration of global sets.                            |
+| `sites`             | Manual registration of sites.                                  |
+| `navigations`       | Manual registration of navigations.                            |
+| `asset_containers`  | Manual registration of asset containers.                       |
+| `auto_registration` | Enable or disable auto-discovery of components.                |
+| `auto_discovery`    | Define custom paths for auto-discovery of each component type. |
 
 ## Auto Registration & Discovery
 
@@ -65,7 +66,7 @@ Enable `auto_registration` in `config/statamic/builder.php` to automatically fin
 For components to be auto-discovered, they must implement certain static methods:
 
 - **Blueprints**: Must implement `static function handle()` and `static function blueprintNamespace()`.
-- **Collections, Taxonomies, Globals, Navigations**: Must implement `static function handle()`.
+- **Collections, Taxonomies, Globals, Navigations, Asset Containers**: Must implement `static function handle()`.
 - **Sites**: Must implement `function handle()`.
 
 ## Blueprints and Fieldsets
@@ -189,6 +190,41 @@ Generate a global set:
 ```bash
 php artisan make:global-set SiteSettings
 ```
+
+## Asset Containers
+
+Generate an asset container:
+
+```bash
+php artisan make:asset-container Main
+```
+
+```php
+namespace App\AssetContainers;
+
+use Tdwesten\StatamicBuilder\BaseAssetContainer;
+
+class Main extends BaseAssetContainer
+{
+    public static function handle(): string
+    {
+        return 'main';
+    }
+
+    public function title(): string
+    {
+        return 'Main Assets';
+    }
+
+    public function disk(): string
+    {
+        return 'public';
+    }
+}
+```
+
+Most methods in `BaseAssetContainer` have default implementations, so you only need to override what you want to
+change (e.g., `disk()`, `allowUploads()`, `createFolders()`).
 
 ## Navigations
 
@@ -323,16 +359,17 @@ composer generate-field MyField
 
 ## Artisan Commands
 
-| Command | Description |
-| --- | --- |
-| `make:blueprint` | Create a new Blueprint class. |
-| `make:fieldset` | Create a new Fieldset class. |
-| `make:collection` | Create a new Collection class. |
-| `make:taxonomy` | Create a new Taxonomy class. |
-| `make:global-set` | Create a new Global Set class. |
-| `make:navigation` | Create a new Navigation class. |
-| `make:site` | Create a new Site class. |
-| `statamic-builder:export` | Export definitions to YAML. |
+| Command                   | Description                         |
+|---------------------------|-------------------------------------|
+| `make:blueprint`          | Create a new Blueprint class.       |
+| `make:fieldset`           | Create a new Fieldset class.        |
+| `make:collection`         | Create a new Collection class.      |
+| `make:taxonomy`           | Create a new Taxonomy class.        |
+| `make:global-set`         | Create a new Global Set class.      |
+| `make:navigation`         | Create a new Navigation class.      |
+| `make:asset-container`    | Create a new Asset Container class. |
+| `make:site`               | Create a new Site class.            |
+| `statamic-builder:export` | Export definitions to YAML.         |
 
 ## Exporting to YAML
 

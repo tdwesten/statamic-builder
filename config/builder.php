@@ -105,6 +105,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Register Asset Containers
+    |--------------------------------------------------------------------------
+    |
+    | Here you can register the asset containers that you want to use in your
+    | Statamic site.
+    |
+    */
+    'asset_containers' => [
+        // App\AssetContainers\Main::class,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Register Navigations
     |--------------------------------------------------------------------------
     |
@@ -144,6 +157,7 @@ return [
         'taxonomies' => app_path('Taxonomies'),
         'globals' => app_path('Globals'),
         'navigations' => app_path('Navigations'),
+        'asset_containers' => app_path('AssetContainers'),
         'sites' => app_path('Sites'),
     ],
 ];

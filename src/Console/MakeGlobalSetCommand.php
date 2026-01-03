@@ -24,9 +24,33 @@ class MakeGlobalSetCommand extends BaseGeneratorCommand
     /**
      * {@inheritDoc}
      */
+    public function handle()
+    {
+        if (parent::handle() === false) {
+            return false;
+        }
+
+        if (! config('statamic.builder.auto_registration', false)) {
+            $this->info('Remember to register your new Global Set in config/statamic/builder.php');
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     protected function getStub()
     {
         return __DIR__.'/../../stubs/Global-Set.stub';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getNameInput()
+    {
+        $input = trim($this->argument('name'));
+
+        return \Illuminate\Support\Str::studly($input);
     }
 
     /**

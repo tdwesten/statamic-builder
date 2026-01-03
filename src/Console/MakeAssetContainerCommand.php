@@ -4,22 +4,22 @@ namespace Tdwesten\StatamicBuilder\Console;
 
 use Illuminate\Console\GeneratorCommand as BaseGeneratorCommand;
 
-class MakeFieldsetCommand extends BaseGeneratorCommand
+class MakeAssetContainerCommand extends BaseGeneratorCommand
 {
     /**
      * @var string
      */
-    protected $name = 'make:fieldset';
+    protected $name = 'make:asset-container';
 
     /**
      * @var string
      */
-    protected $description = 'Create a new Statamic Builder fieldset';
+    protected $description = 'Create a new Statamic Builder Asset Container';
 
     /**
      * @var string
      */
-    protected $type = 'Statamic Builder Fieldset';
+    protected $type = 'Statamic Builder Asset Container';
 
     /**
      * {@inheritDoc}
@@ -31,7 +31,7 @@ class MakeFieldsetCommand extends BaseGeneratorCommand
         }
 
         if (! config('statamic.builder.auto_registration', false)) {
-            $this->info('Remember to register your new Fieldset in config/statamic/builder.php');
+            $this->info('Remember to register your new Asset Container in config/statamic/builder.php');
         }
     }
 
@@ -40,7 +40,7 @@ class MakeFieldsetCommand extends BaseGeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/../../stubs/Fieldset.stub';
+        return __DIR__.'/../../stubs/AssetContainer.stub';
     }
 
     /**
@@ -56,8 +56,20 @@ class MakeFieldsetCommand extends BaseGeneratorCommand
     /**
      * {@inheritDoc}
      */
+    protected function buildClass($name)
+    {
+        $stub = parent::buildClass($name);
+
+        $handle = \Illuminate\Support\Str::of($name)->afterLast('\\')->snake();
+
+        return str_replace(['{{ handle }}', '{{handle}}'], $handle, $stub);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\\Fieldsets';
+        return $rootNamespace.'\\AssetContainers';
     }
 }

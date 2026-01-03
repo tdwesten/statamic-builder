@@ -9,7 +9,7 @@ class ServiceProvider extends AddonServiceProvider
 {
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/builder.php', 'builder');
+        $this->mergeConfigFrom(__DIR__.'/../config/builder.php', 'statamic.builder');
 
         (new Discovery)->discover();
 
@@ -171,6 +171,7 @@ class ServiceProvider extends AddonServiceProvider
                 Console\Export::class,
                 Console\MakeNavigationCommand::class,
                 Console\MakeSiteCommand::class,
+                Console\MakeAssetContainerCommand::class,
             ]);
         }
 

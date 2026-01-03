@@ -1,0 +1,72 @@
+<?php
+
+namespace {{ namespace }};
+
+use Tdwesten\StatamicBuilder\BaseAssetContainer;
+
+class {{ class }} extends BaseAssetContainer
+{
+    /**
+     * The handle for the asset container.
+     */
+    public static function handle(): string
+    {
+        return '{{ handle }}';
+    }
+
+    /**
+     * The title for the asset container.
+     */
+    public function title(): string
+    {
+        return '{{ class }}';
+    }
+
+    /**
+     * The disk for the asset container.
+     */
+    public function disk(): string
+    {
+        return 'public';
+    }
+
+    /**
+     * Allow uploads to the asset container?
+     */
+    public function allowUploads(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Allow moving files in the asset container?
+     */
+    public function allowMoving(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Allow renaming files in the asset container?
+     */
+    public function allowRenaming(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Allow creating folders in the asset container?
+     */
+    public function createFolders(): bool
+    {
+        return true;
+    }
+
+    /**
+     * The search index for the asset container.
+     */
+    public function searchIndex(): ?string
+    {
+        return null;
+    }
+}
