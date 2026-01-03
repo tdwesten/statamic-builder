@@ -1,0 +1,467 @@
+
+   PASS  Tests\Unit\AssetContainerRepositoryTest
+  ✓ ::all includes builder-registered asset containers                                                                                                                                               0.08s  
+
+   PASS  Tests\Unit\BlueprintTest
+  ✓ Has a title
+  ✓ it can be set to hidden
+  ✓ Tabs are renderd
+  ✓ it throws an exception when adding a field to a tab
+  ✓ you can set a title
+  ✓ you can get the handle
+
+   PASS  Tests\Unit\CollectionRepositoryTest
+  ✓ ::find does not throw when no result is found                                                                                                                                                    0.01s  
+  ✓ ::find returns null for nonexistent handles                                                                                                                                                      0.01s  
+  ✓ ::findByHandle finds builder-registered collection                                                                                                                                               0.01s  
+  ✓ ::all includes builder-registered collections                                                                                                                                                    0.01s  
+
+   PASS  Tests\Unit\CollectionTest
+  ✓ Has a title
+  ✓ Has a handle
+  ✓ Has a route
+  ✓ Has multiple route for multisites
+  ✓ Can have multiple sites
+  ✓ Has slugs
+  ✓ Has default values for optional methods
+
+   PASS  Tests\Unit\FieldParserTest
+  ✓ it preserves field order when flattening mixed fields
+
+   PASS  Tests\Unit\FieldTest
+  ✓ it can render to a array
+  ✓ Can set a handle prefix
+  ✓ Can set a display name
+  ✓ Can set instructions
+  ✓ Can set visibility
+  ✓ Can set required
+  ✓ Can set instructions position
+  ✓ Can set listable
+  ✓ Can set replicator preview
+  ✓ Can set width
+  ✓ Can set antlers
+  ✓ Can set duplicate
+  ✓ Can set hide display
+  ✓ Can set localizable
+  ✓ Can set validation to sometimes
+  ✓ can set multiple validation rules
+  ✓ Can set a custom icon
+  ✓ Can create a thirth-party field
+
+   PASS  Tests\Unit\Fields\ArrTest
+  ✓ it can render to a array
+  ✓ it can render to a array with mode
+  ✓ it can render to a array with keys
+
+   PASS  Tests\Unit\Fields\AssetsTest
+  ✓ it can render to a array
+  ✓ it can set max files
+  ✓ it can set min files
+  ✓ it can set mode
+  ✓ it can set container
+  ✓ it can set folder
+  ✓ it can restrict
+  ✓ it can allow uploads
+  ✓ it can show filename
+  ✓ it can show set alt
+  ✓ it can set query_scopes
+  ✓ it can set dynamic folder
+
+   PASS  Tests\Unit\Fields\BardTest
+  ✓ it can render to a array
+  ✓ you can add multiple buttons
+  ✓ you can add custom buttons as a string
+  ✓ you can add a single button
+  ✓ you can set the inline option
+  ✓ you can set inline to false
+  ✓ you can set inline to break (accordion)
+
+   PASS  Tests\Unit\Fields\ButtonGroupTest
+  ✓ it can render to a array
+  ✓ it can render to a array with options
+  ✓ it can render to a array with default value
+  ✓ it can set default value using defaultValue method
+
+   PASS  Tests\Unit\Fields\CheckboxesTest
+  ✓ it can render to a array
+  ✓ it can render to a array with options
+  ✓ it can render to a array with default value
+  ✓ it can render to a array with inline
+
+   PASS  Tests\Unit\Fields\CodeTest
+  ✓ it can render to a array
+  ✓ you can set the mode
+  ✓ you can set the mode selectable
+  ✓ you can set the indent type
+  ✓ you can set the indent size
+  ✓ you can set the key map
+  ✓ you can set the line numbers
+  ✓ you can set the line wrapping
+  ✓ you can set the rulers
+
+   PASS  Tests\Unit\Fields\CollectionsTest
+  ✓ it can render to a array
+  ✓ it can have max items
+  ✓ it can have a mode
+
+   PASS  Tests\Unit\Fields\CollorTest
+  ✓ it can render to a array
+  ✓ you can set the allow any
+  ✓ you can set the swatches
+  ✓ you can set the default value
+
+   PASS  Tests\Unit\Fields\ConditionalLogicTest
+  ✓ Can set conditional logic if
+  ✓ Can set conditional logic if with multiple conditions
+  ✓ Can set conditional logic if any
+  ✓ Can set conditional logic with custom if
+  ✓ Can set conditional logic with custom if_any
+  ✓ Can set conditional logic unless
+  ✓ Can set conditional logic unless with multiple conditions
+  ✓ Can set conditional logic with custom unless
+
+   PASS  Tests\Unit\Fields\DateTest
+  ✓ it can render to a array
+  ✓ it can render to a array with mode
+  ✓ it can render to a array with inline
+  ✓ it can render to a array with full width
+  ✓ it can render to a array with columns
+  ✓ it can render to a array with rows
+  ✓ it can render to a array with time enabled
+  ✓ it can render to a array with time seconds enabled
+  ✓ it can render to a array with earliest date
+  ✓ it can render to a array with latest date
+  ✓ it can render to a array with format
+
+   PASS  Tests\Unit\Fields\DictionaryTest
+  ✓ it can render to a array
+  ✓ it type can be set
+  ✓ it can set additional dictionary options
+  ✓ it can set placeholder
+  ✓ it can set max items
+
+   PASS  Tests\Unit\Fields\EntriesTest
+  ✓ it can render to a array
+  ✓ it can render to a array with max items
+  ✓ it can render to a array with mode
+  ✓ it can render to a array with collections
+  ✓ it can render to a array with search index
+  ✓ it can render the queryScopes to the array
+
+   PASS  Tests\Unit\Fields\FieldsetTest
+  ✓ it can be instantiated
+  ✓ it can be registered
+  ✓ it can be converted to an array
+  ✓ A fieldset can be used in a blueprint
+  ✓ A fieldset can be used in group
+  ✓ A fieldset can be used in a fieldset
+
+   PASS  Tests\Unit\Fields\FloatValTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\ForeignFieldTest
+  ✓ Foreign field can be rendered
+  ✓ Foreign field can be rendered with config
+
+   PASS  Tests\Unit\Fields\ForeignFieldsetTest
+  ✓ Foreign fieldset can be rendered
+  ✓ Foreign fieldset can be rendered with prefix
+
+   PASS  Tests\Unit\Fields\FormTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\GridTest
+  ✓ it can render to a array
+  ✓ it can render to a array with reorderable
+  ✓ it can render to a array with add row
+  ✓ it can render to a array with max rows
+  ✓ it can render to a array with min rows
+  ✓ it can render to a array with mode
+  ✓ it can render to a array with fields
+
+   PASS  Tests\Unit\Fields\GroupTest
+  ✓ Renders a group to array
+  ✓ A group can have a group
+  ✓ Can set to fullscreen
+
+   PASS  Tests\Unit\Fields\HtmlTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\IconTest
+  ✓ it can render to a array
+  ✓ it can render to a array with directory
+  ✓ it can render to a array with folder
+  ✓ it can render to a array with default
+
+   PASS  Tests\Unit\Fields\IntegerTest
+  ✓ it can render to a array
+  ✓ it can have a prepend
+  ✓ it can have a append
+
+   PASS  Tests\Unit\Fields\LinkTest
+  ✓ it can render to a array
+  ✓ it can render to a array with collections
+  ✓ it can render to a array with container
+
+   PASS  Tests\Unit\Fields\ListsTest
+  ✓ it can render to a array
+  ✓ it can render to a array with options
+
+   PASS  Tests\Unit\Fields\MarkdownTest
+  ✓ it can render to a array
+  ✓ it can render to a array with buttons
+  ✓ it can render a array with buttons as string
+  ✓ Can set a asset container
+  ✓ Can set a asset folder
+  ✓ Can resetrict to a asset folder
+  ✓ can set automatic line breaks
+  ✓ can set automatic links
+  ✓ can set escape markup
+  ✓ can set heading anchors
+  ✓ Can set smartypants
+  ✓ Can set default value
+  ✓ Can enable table of contents
+  ✓ Can define parser
+
+   PASS  Tests\Unit\Fields\NavsTest
+  ✓ it can render to a array
+  ✓ Can set max items
+  ✓ Can set mode
+
+   PASS  Tests\Unit\Fields\RadioTest
+  ✓ it can render to a array
+  ✓ it can have options
+  ✓ it can be inline
+  ✓ it can cast booleans
+
+   PASS  Tests\Unit\Fields\RangeTest
+  ✓ it can render to a array
+  ✓ can have a min
+  ✓ can have a max
+  ✓ can have a step
+  ✓ can have a prepend
+  ✓ can have a append
+
+   PASS  Tests\Unit\Fields\RelationshipTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\ReplicatorTest
+  ✓ it can render to a array
+  ✓ it can have sets
+  ✓ it can render the same output
+  ✓ can set collapse to false
+  ✓ can set collapse to true
+  ✓ can set collapse to accordion
+
+   PASS  Tests\Unit\Fields\RevealerTest
+  ✓ it can render to a array
+  ✓ it can have a ui mode
+  ✓ it can have a input_label
+
+   PASS  Tests\Unit\Fields\SectionFieldTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\SectionTest
+  ✓ Section can be rendered
+
+   PASS  Tests\Unit\Fields\SelectTest
+  ✓ it can render to a array
+  ✓ it can set taggable
+  ✓ it can set push tags
+  ✓ it can set placeholder
+  ✓ it can set multiple
+  ✓ it can set max items
+  ✓ it can set clearable
+  ✓ it can set searchable
+  ✓ it can set cast booleans
+
+   PASS  Tests\Unit\Fields\SetGroupTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\SetTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\SitesTest
+  ✓ it can render to a array
+  ✓ Can set max items
+  ✓ Can set mode
+
+   PASS  Tests\Unit\Fields\SlugTest
+  ✓ it can render to a array
+  ✓ it can set from
+  ✓ it can set generate
+  ✓ it can show regenerate
+
+   PASS  Tests\Unit\Fields\SpacerTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\StructuresTest
+  ✓ it can render to a array
+  ✓ it can set max_items
+  ✓ it can set mode
+
+   PASS  Tests\Unit\Fields\TabTest
+  ✓ Tab can be rendered
+
+   PASS  Tests\Unit\Fields\TableTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\TaggableTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\TaggebleTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\TaxonomiesTest
+  ✓ it can render to a array
+  ✓ Can set max items
+  ✓ Can set mode
+
+   PASS  Tests\Unit\Fields\TemplateTest
+  ✓ it can render to a array
+  ✓ it can hide partials
+  ✓ it can set blueprint
+  ✓ it can set folder
+
+   PASS  Tests\Unit\Fields\TermsTest
+  ✓ Terms field renders
+  ✓ You can set max items
+  ✓ Terms field renders with multiple taxonomies
+  ✓ Terms field renders with multiple taxonomies and mode
+  ✓ Terms field renders with create option
+  ✓ can have query scopes
+
+   PASS  Tests\Unit\Fields\TextTest
+  ✓ it can render to a array
+  ✓ Renders expected array data
+  ✓ Can set input type to email
+  ✓ Can set input type to number
+  ✓ Can add a placeholder
+  ✓ Can add a default value
+  ✓ Can add a character limit
+  ✓ Can add autocomplete options
+  ✓ Can add prepend text
+  ✓ Can add append text
+
+   PASS  Tests\Unit\Fields\TextareaTest
+  ✓ it can render to a array
+  ✓ it can have a character limit
+  ✓ it can have a placeholder
+  ✓ it can have a default value
+
+   PASS  Tests\Unit\Fields\TimeTest
+  ✓ it can render to a array
+  ✓ it can have seconds enabled
+
+   PASS  Tests\Unit\Fields\ToggleTest
+  ✓ it can render to a array
+  ✓ it can have inline label
+  ✓ it can have inline label when true
+
+   PASS  Tests\Unit\Fields\UserGroupsTest
+  ✓ it can render to a array
+  ✓ Can set max items
+  ✓ Can set mode
+
+   PASS  Tests\Unit\Fields\UserRolesTest
+  ✓ it can render to a array
+  ✓ it can have max items
+  ✓ it can have a mode
+
+   PASS  Tests\Unit\Fields\UsersTest
+  ✓ it can render to a array
+  ✓ can have max items
+  ✓ can have query scopes
+  ✓ can have mode
+
+   PASS  Tests\Unit\Fields\VideoTest
+  ✓ it can render to a array
+  ✓ it can have a default
+  ✓ it can have a placeholder
+
+   PASS  Tests\Unit\Fields\WidthTest
+  ✓ it can render to a array
+  ✓ it can have options
+  ✓ it can have a default
+
+   PASS  Tests\Unit\Fields\YamlTest
+  ✓ it can render to a array
+  ✓ it can have a default
+
+   PASS  Tests\Unit\FieldsetRepositoryTest
+  ✓ ::all includes builder-registered fieldsets                                                                                                                                                      0.01s  
+  ✓ ::find finds builder-registered fieldset                                                                                                                                                         0.01s  
+  ✓ ::save does not save builder-registered fieldset                                                                                                                                                 0.01s  
+
+   PASS  Tests\Unit\GlobalRepositoryTest
+  ✓ ::find does not throw when no result is found                                                                                                                                                    0.01s  
+  ✓ ::find returns null for nonexistent handles                                                                                                                                                      0.01s  
+  ✓ ::findByHandle finds builder-registered global                                                                                                                                                   0.01s  
+  ✓ ::all includes builder-registered globals                                                                                                                                                        0.01s  
+  ✓ ::all includes globals from blueprints                                                                                                                                                           0.01s  
+
+   PASS  Tests\Unit\GlobalSetTest
+  ✓ Has a handle
+  ✓ Has a title
+  ✓ Has sites
+
+   PASS  Tests\Unit\MakeBlueprintCommandTest
+  ✓ it can create a blueprint                                                                                                                                                                        0.03s  
+
+   PASS  Tests\Unit\MakeCollectionCommandTest
+  ✓ it can create a collection                                                                                                                                                                       0.01s  
+
+   PASS  Tests\Unit\MakeFieldsetCommandTest
+  ✓ it can create a fieldset                                                                                                                                                                         0.01s  
+
+   PASS  Tests\Unit\MakeGlobalSetCommandTest
+  ✓ it can generate a global set class                                                                                                                                                               0.02s  
+
+   PASS  Tests\Unit\MakeNavigationCommandTest
+  ✓ it can generate a navigation class                                                                                                                                                               0.02s  
+
+   PASS  Tests\Unit\MakeSiteCommandTest
+  ✓ it can create a site                                                                                                                                                                             0.02s  
+
+   PASS  Tests\Unit\MakeTaxonomyCommandTest
+  ✓ it can create a taxonomy                                                                                                                                                                         0.02s  
+
+   PASS  Tests\Unit\NavigationRepositoryTest
+  ✓ ::find does not throw when no result is found                                                                                                                                                    0.01s  
+  ✓ ::find returns null for nonexistent handles                                                                                                                                                      0.01s  
+  ✓ ::findByHandle finds builder-registered navigation                                                                                                                                               0.01s  
+  ✓ ::all includes builder-registered navigations                                                                                                                                                    0.01s  
+
+   PASS  Tests\Unit\NavigationTest
+  ✓ Has a handle
+  ✓ Has a title
+  ✓ Has default collections
+  ✓ Has default sites
+  ✓ Has default expectsRoot
+  ✓ Has default maxDepth
+
+   PASS  Tests\Unit\ServiceProviderTest
+  ✓ it binds the navigation repository contract                                                                                                                                                      0.01s  
+  ✓ it binds the global repository contract                                                                                                                                                          0.01s  
+  ✓ it binds the asset container repository contract                                                                                                                                                 0.01s  
+  ✓ it binds the eloquent navigation repository when driver is eloquent                                                                                                                              0.01s  
+  ✓ it binds the eloquent global repository when driver is eloquent                                                                                                                                  0.01s  
+
+   PASS  Tests\Unit\SiteTest
+  ✓ Has a name
+  ✓ Has a handle
+  ✓ Has a url
+  ✓ Has a locale
+  ✓ Has extra attributes
+  ✓ Can convert to array
+
+   PASS  Tests\Unit\TaxonomyBlueprintTest
+  ✓ taxonomy blueprints can be edited                                                                                                                                                                0.02s  
+
+   PASS  Tests\Unit\TaxonomyRepositoryTest
+  ✓ ::all includes builder-registered taxonomies                                                                                                                                                     0.01s  
+  ✓ ::findByHandle finds builder-registered taxonomy                                                                                                                                                 0.01s  
+
+  Tests:    305 passed (697 assertions)
+  Duration: 0.76s
+

@@ -59,3 +59,17 @@ test('you can set the inline option', function (): void {
 
     expect($field->toArray()['field']['inline'])->toBe(true);
 });
+
+test('you can set inline to false', function (): void {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
+    $field->inline(BardInlineOption::False);
+
+    expect($field->toArray()['field']['inline'])->toBe(false);
+});
+
+test('you can set inline to break (accordion)', function (): void {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
+    $field->inline(BardInlineOption::Break);
+
+    expect($field->toArray()['field']['inline'])->toBe('accordion');
+});

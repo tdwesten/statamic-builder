@@ -1,0 +1,603 @@
+
+   PASS  Tests\Unit\AssetContainerRepositoryTest
+  ✓ ::all includes builder-registered asset containers                                                                                                                                               0.18s  
+
+   PASS  Tests\Unit\BlueprintTest
+  ✓ Has a title                                                                                                                                                                                      0.01s  
+  ✓ it can be set to hidden
+  ✓ Tabs are renderd
+  ✓ it throws an exception when adding a field to a tab
+  ✓ you can set a title
+  ✓ you can get the handle
+
+   PASS  Tests\Unit\CollectionRepositoryTest
+  ✓ ::find does not throw when no result is found                                                                                                                                                    0.03s  
+  ✓ ::find returns null for nonexistent handles                                                                                                                                                      0.02s  
+  ✓ ::findByHandle finds builder-registered collection                                                                                                                                               0.03s  
+  ✓ ::all includes builder-registered collections                                                                                                                                                    0.03s  
+
+   PASS  Tests\Unit\CollectionTest
+  ✓ Has a title
+  ✓ Has a handle
+  ✓ Has a route
+  ✓ Has multiple route for multisites
+  ✓ Can have multiple sites
+  ✓ Has slugs
+  ✓ Has default values for optional methods
+
+   PASS  Tests\Unit\FieldParserTest
+  ✓ it preserves field order when flattening mixed fields                                                                                                                                            0.01s  
+
+   PASS  Tests\Unit\FieldTest
+  ✓ it can render to a array
+  ✓ Can set a handle prefix
+  ✓ Can set a display name
+  ✓ Can set instructions
+  ✓ Can set visibility
+  ✓ Can set required
+  ✓ Can set instructions position
+  ✓ Can set listable
+  ✓ Can set replicator preview
+  ✓ Can set width
+  ✓ Can set antlers
+  ✓ Can set duplicate
+  ✓ Can set hide display
+  ✓ Can set localizable
+  ✓ Can set validation to sometimes
+  ✓ can set multiple validation rules
+  ✓ Can set a custom icon
+  ✓ Can create a thirth-party field
+
+   PASS  Tests\Unit\Fields\ArrTest
+  ✓ it can render to a array                                                                                                                                                                         0.01s  
+  ✓ it can render to a array with mode
+  ✓ it can render to a array with keys
+
+   PASS  Tests\Unit\Fields\AssetsTest
+  ✓ it can render to a array
+  ✓ it can set max files
+  ✓ it can set min files
+  ✓ it can set mode
+  ✓ it can set container
+  ✓ it can set folder
+  ✓ it can restrict
+  ✓ it can allow uploads
+  ✓ it can show filename
+  ✓ it can show set alt
+  ✓ it can set query_scopes
+  ✓ it can set dynamic folder
+
+   PASS  Tests\Unit\Fields\BardTest
+  ✓ it can render to a array                                                                                                                                                                         0.01s  
+  ✓ you can add multiple buttons
+  ✓ you can add custom buttons as a string
+  ✓ you can add a single button
+  ✓ you can set the inline option
+  ✓ you can set inline to false
+  ✓ you can set inline to break (accordion)
+
+   PASS  Tests\Unit\Fields\ButtonGroupTest
+  ✓ it can render to a array                                                                                                                                                                         0.01s  
+  ✓ it can render to a array with options
+  ✓ it can render to a array with default value
+  ✓ it can set default value using defaultValue method
+
+   PASS  Tests\Unit\Fields\CheckboxesTest
+  ✓ it can render to a array
+  ✓ it can render to a array with options
+  ✓ it can render to a array with default value
+  ✓ it can render to a array with inline
+
+   PASS  Tests\Unit\Fields\CodeTest
+  ✓ it can render to a array
+  ✓ you can set the mode
+  ✓ you can set the mode selectable
+  ✓ you can set the indent type
+  ✓ you can set the indent size
+  ✓ you can set the key map
+  ✓ you can set the line numbers
+  ✓ you can set the line wrapping
+  ✓ you can set the rulers
+
+   PASS  Tests\Unit\Fields\CollectionsTest
+  ✓ it can render to a array                                                                                                                                                                         0.01s  
+  ✓ it can have max items
+  ✓ it can have a mode
+
+   PASS  Tests\Unit\Fields\CollorTest
+  ✓ it can render to a array
+  ✓ you can set the allow any
+  ✓ you can set the swatches
+  ✓ you can set the default value
+
+   PASS  Tests\Unit\Fields\ConditionalLogicTest
+  ✓ Can set conditional logic if
+  ✓ Can set conditional logic if with multiple conditions
+  ✓ Can set conditional logic if any
+  ✓ Can set conditional logic with custom if
+  ✓ Can set conditional logic with custom if_any
+  ✓ Can set conditional logic unless
+  ✓ Can set conditional logic unless with multiple conditions
+  ✓ Can set conditional logic with custom unless
+
+   PASS  Tests\Unit\Fields\DateTest
+  ✓ it can render to a array                                                                                                                                                                         0.01s  
+  ✓ it can render to a array with mode
+  ✓ it can render to a array with inline
+  ✓ it can render to a array with full width
+  ✓ it can render to a array with columns
+  ✓ it can render to a array with rows
+  ✓ it can render to a array with time enabled
+  ✓ it can render to a array with time seconds enabled
+  ✓ it can render to a array with earliest date
+  ✓ it can render to a array with latest date
+  ✓ it can render to a array with format
+
+   PASS  Tests\Unit\Fields\DictionaryTest
+  ✓ it can render to a array                                                                                                                                                                         0.01s  
+  ✓ it type can be set
+  ✓ it can set additional dictionary options
+  ✓ it can set placeholder
+  ✓ it can set max items
+
+   PASS  Tests\Unit\Fields\EntriesTest
+  ✓ it can render to a array
+  ✓ it can render to a array with max items
+  ✓ it can render to a array with mode
+  ✓ it can render to a array with collections
+  ✓ it can render to a array with search index
+  ✓ it can render the queryScopes to the array
+
+   PASS  Tests\Unit\Fields\FieldsetTest
+  ✓ it can be instantiated
+  ✓ it can be registered
+  ✓ it can be converted to an array
+  ✓ A fieldset can be used in a blueprint
+  ✓ A fieldset can be used in group
+  ✓ A fieldset can be used in a fieldset
+
+   PASS  Tests\Unit\Fields\FloatValTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\ForeignFieldTest
+  ✓ Foreign field can be rendered
+  ✓ Foreign field can be rendered with config
+
+   PASS  Tests\Unit\Fields\ForeignFieldsetTest
+  ✓ Foreign fieldset can be rendered
+  ✓ Foreign fieldset can be rendered with prefix
+
+   PASS  Tests\Unit\Fields\FormTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\GridTest
+  ✓ it can render to a array
+  ✓ it can render to a array with reorderable
+  ✓ it can render to a array with add row
+  ✓ it can render to a array with max rows
+  ✓ it can render to a array with min rows
+  ✓ it can render to a array with mode
+  ✓ it can render to a array with fields
+
+   PASS  Tests\Unit\Fields\GroupTest
+  ✓ Renders a group to array
+  ✓ A group can have a group
+  ✓ Can set to fullscreen
+
+   PASS  Tests\Unit\Fields\HtmlTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\IconTest
+  ✓ it can render to a array
+  ✓ it can render to a array with directory
+  ✓ it can render to a array with folder
+  ✓ it can render to a array with default
+
+   PASS  Tests\Unit\Fields\IntegerTest
+  ✓ it can render to a array
+  ✓ it can have a prepend
+  ✓ it can have a append
+
+   PASS  Tests\Unit\Fields\LinkTest
+  ✓ it can render to a array
+  ✓ it can render to a array with collections
+  ✓ it can render to a array with container
+
+   PASS  Tests\Unit\Fields\ListsTest
+  ✓ it can render to a array
+  ✓ it can render to a array with options
+
+   PASS  Tests\Unit\Fields\MarkdownTest
+  ✓ it can render to a array
+  ✓ it can render to a array with buttons
+  ✓ it can render a array with buttons as string
+  ✓ Can set a asset container
+  ✓ Can set a asset folder
+  ✓ Can resetrict to a asset folder
+  ✓ can set automatic line breaks
+  ✓ can set automatic links
+  ✓ can set escape markup
+  ✓ can set heading anchors
+  ✓ Can set smartypants
+  ✓ Can set default value
+  ✓ Can enable table of contents
+  ✓ Can define parser
+
+   PASS  Tests\Unit\Fields\NavsTest
+  ✓ it can render to a array                                                                                                                                                                         0.01s  
+  ✓ Can set max items
+  ✓ Can set mode
+
+   PASS  Tests\Unit\Fields\RadioTest
+  ✓ it can render to a array
+  ✓ it can have options
+  ✓ it can be inline
+  ✓ it can cast booleans
+
+   PASS  Tests\Unit\Fields\RangeTest
+  ✓ it can render to a array
+  ✓ can have a min
+  ✓ can have a max
+  ✓ can have a step
+  ✓ can have a prepend
+  ✓ can have a append
+
+   PASS  Tests\Unit\Fields\RelationshipTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\ReplicatorTest
+  ✓ it can render to a array
+  ✓ it can have sets
+  ✓ it can render the same output
+  ✓ can set collapse to false
+  ✓ can set collapse to true
+  ✓ can set collapse to accordion
+
+   PASS  Tests\Unit\Fields\RevealerTest
+  ✓ it can render to a array
+  ✓ it can have a ui mode
+  ✓ it can have a input_label
+
+   PASS  Tests\Unit\Fields\SectionFieldTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\SectionTest
+  ✓ Section can be rendered
+
+   PASS  Tests\Unit\Fields\SelectTest
+  ✓ it can render to a array
+  ✓ it can set taggable
+  ✓ it can set push tags
+  ✓ it can set placeholder
+  ✓ it can set multiple
+  ✓ it can set max items
+  ✓ it can set clearable
+  ✓ it can set searchable
+  ✓ it can set cast booleans
+
+   PASS  Tests\Unit\Fields\SetGroupTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\SetTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\SitesTest
+  ✓ it can render to a array
+  ✓ Can set max items
+  ✓ Can set mode
+
+   PASS  Tests\Unit\Fields\SlugTest
+  ✓ it can render to a array
+  ✓ it can set from
+  ✓ it can set generate
+  ✓ it can show regenerate
+
+   PASS  Tests\Unit\Fields\SpacerTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\StructuresTest
+  ✓ it can render to a array
+  ✓ it can set max_items
+  ✓ it can set mode
+
+   PASS  Tests\Unit\Fields\TabTest
+  ✓ Tab can be rendered
+
+   PASS  Tests\Unit\Fields\TableTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\TaggableTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\TaggebleTest
+  ✓ it can render to a array
+
+   PASS  Tests\Unit\Fields\TaxonomiesTest
+  ✓ it can render to a array
+  ✓ Can set max items
+  ✓ Can set mode
+
+   PASS  Tests\Unit\Fields\TemplateTest
+  ✓ it can render to a array
+  ✓ it can hide partials
+  ✓ it can set blueprint
+  ✓ it can set folder
+
+   PASS  Tests\Unit\Fields\TermsTest
+  ✓ Terms field renders
+  ✓ You can set max items
+  ✓ Terms field renders with multiple taxonomies
+  ✓ Terms field renders with multiple taxonomies and mode
+  ✓ Terms field renders with create option
+  ✓ can have query scopes
+
+   PASS  Tests\Unit\Fields\TextTest
+  ✓ it can render to a array
+  ✓ Renders expected array data
+  ✓ Can set input type to email
+  ✓ Can set input type to number
+  ✓ Can add a placeholder
+  ✓ Can add a default value
+  ✓ Can add a character limit
+  ✓ Can add autocomplete options
+  ✓ Can add prepend text
+  ✓ Can add append text
+
+   PASS  Tests\Unit\Fields\TextareaTest
+  ✓ it can render to a array
+  ✓ it can have a character limit
+  ✓ it can have a placeholder
+  ✓ it can have a default value
+
+   PASS  Tests\Unit\Fields\TimeTest
+  ✓ it can render to a array
+  ✓ it can have seconds enabled
+
+   PASS  Tests\Unit\Fields\ToggleTest
+  ✓ it can render to a array
+  ✓ it can have inline label
+  ✓ it can have inline label when true
+
+   PASS  Tests\Unit\Fields\UserGroupsTest
+  ✓ it can render to a array
+  ✓ Can set max items
+  ✓ Can set mode
+
+   PASS  Tests\Unit\Fields\UserRolesTest
+  ✓ it can render to a array
+  ✓ it can have max items
+  ✓ it can have a mode
+
+   PASS  Tests\Unit\Fields\UsersTest
+  ✓ it can render to a array
+  ✓ can have max items
+  ✓ can have query scopes
+  ✓ can have mode
+
+   PASS  Tests\Unit\Fields\VideoTest
+  ✓ it can render to a array
+  ✓ it can have a default
+  ✓ it can have a placeholder
+
+   PASS  Tests\Unit\Fields\WidthTest
+  ✓ it can render to a array
+  ✓ it can have options
+  ✓ it can have a default
+
+   PASS  Tests\Unit\Fields\YamlTest
+  ✓ it can render to a array
+  ✓ it can have a default
+
+   PASS  Tests\Unit\FieldsetRepositoryTest
+  ✓ ::all includes builder-registered fieldsets                                                                                                                                                      0.03s  
+  ✓ ::find finds builder-registered fieldset                                                                                                                                                         0.02s  
+  ✓ ::save does not save builder-registered fieldset                                                                                                                                                 0.02s  
+
+   PASS  Tests\Unit\GlobalRepositoryTest
+  ✓ ::find does not throw when no result is found                                                                                                                                                    0.03s  
+  ✓ ::find returns null for nonexistent handles                                                                                                                                                      0.03s  
+  ✓ ::findByHandle finds builder-registered global                                                                                                                                                   0.03s  
+  ✓ ::all includes builder-registered globals                                                                                                                                                        0.02s  
+  ✓ ::all includes globals from blueprints                                                                                                                                                           0.03s  
+
+   PASS  Tests\Unit\GlobalSetTest
+  ✓ Has a handle
+  ✓ Has a title
+  ✓ Has sites
+
+   PASS  Tests\Unit\MakeBlueprintCommandTest
+  ✓ it can create a blueprint                                                                                                                                                                        0.06s  
+
+   PASS  Tests\Unit\MakeCollectionCommandTest
+  ✓ it can create a collection                                                                                                                                                                       0.03s  
+
+   PASS  Tests\Unit\MakeFieldsetCommandTest
+  ✓ it can create a fieldset                                                                                                                                                                         0.03s  
+
+   PASS  Tests\Unit\MakeGlobalSetCommandTest
+  ✓ it can generate a global set class                                                                                                                                                               0.03s  
+
+   PASS  Tests\Unit\MakeNavigationCommandTest
+  ✓ it can generate a navigation class                                                                                                                                                               0.03s  
+
+   PASS  Tests\Unit\MakeSiteCommandTest
+  ✓ it can create a site                                                                                                                                                                             0.03s  
+
+   PASS  Tests\Unit\MakeTaxonomyCommandTest
+  ✓ it can create a taxonomy                                                                                                                                                                         0.03s  
+
+   PASS  Tests\Unit\NavigationRepositoryTest
+  ✓ ::find does not throw when no result is found                                                                                                                                                    0.03s  
+  ✓ ::find returns null for nonexistent handles                                                                                                                                                      0.02s  
+  ✓ ::findByHandle finds builder-registered navigation                                                                                                                                               0.03s  
+  ✓ ::all includes builder-registered navigations                                                                                                                                                    0.03s  
+
+   PASS  Tests\Unit\NavigationTest
+  ✓ Has a handle
+  ✓ Has a title
+  ✓ Has default collections
+  ✓ Has default sites
+  ✓ Has default expectsRoot
+  ✓ Has default maxDepth
+
+   PASS  Tests\Unit\ServiceProviderTest
+  ✓ it binds the navigation repository contract                                                                                                                                                      0.03s  
+  ✓ it binds the global repository contract                                                                                                                                                          0.02s  
+  ✓ it binds the asset container repository contract                                                                                                                                                 0.02s  
+  ✓ it binds the eloquent navigation repository when driver is eloquent                                                                                                                              0.02s  
+  ✓ it binds the eloquent global repository when driver is eloquent                                                                                                                                  0.03s  
+
+   PASS  Tests\Unit\SiteTest
+  ✓ Has a name
+  ✓ Has a handle
+  ✓ Has a url
+  ✓ Has a locale
+  ✓ Has extra attributes
+  ✓ Can convert to array
+
+   PASS  Tests\Unit\TaxonomyBlueprintTest
+  ✓ taxonomy blueprints can be edited                                                                                                                                                                0.05s  
+
+   PASS  Tests\Unit\TaxonomyRepositoryTest
+  ✓ ::all includes builder-registered taxonomies                                                                                                                                                     0.03s  
+  ✓ ::findByHandle finds builder-registered taxonomy                                                                                                                                                 0.02s  
+
+  Tests:    305 passed (697 assertions)
+  Duration: 1.82s
+
+  BaseCollection [90m.........................................................................................................................................................................[39m [33m14..124[39m[33m [39m[90m/[39m[33m 53.1%[39m  
+  BaseGlobalSet [90m...........................................................................................................................................................................[39m [33m14..19[39m[33m [39m[90m/[39m[33m 75.0%[39m  
+  BaseNavigation [90m..............................................................................................................................................................................[39m [33m14[39m[33m [39m[90m/[39m[33m 91.7%[39m  
+  BaseSite [90m........................................................................................................................................................................................[39m [32m100.0%[39m  
+  BaseTaxonomy [90m....................................................................................................................................................................................[39m [32m100.0%[39m  
+  Blueprint [90m...............................................................................................................................................................................[39m [33m45, 53[39m[33m [39m[90m/[39m[33m 92.3%[39m  
+  Console/Export [90m....................................................................................................................................................................................[39m [31m0.0%[39m  
+  Console/ImportBlueprints [90m........................................................................................................................................................................[39m [32m100.0%[39m  
+  Console/MakeBlueprintCommand [90m....................................................................................................................................................................[39m [32m100.0%[39m  
+  Console/MakeCollectionCommand [90m...................................................................................................................................................................[39m [32m100.0%[39m  
+  Console/MakeFieldsetCommand [90m.....................................................................................................................................................................[39m [32m100.0%[39m  
+  Console/MakeGlobalSetCommand [90m....................................................................................................................................................................[39m [32m100.0%[39m  
+  Console/MakeNavigationCommand [90m...................................................................................................................................................................[39m [32m100.0%[39m  
+  Console/MakeSiteCommand [90m.........................................................................................................................................................................[39m [32m100.0%[39m  
+  Console/MakeTaxonomyCommand [90m.....................................................................................................................................................................[39m [32m100.0%[39m  
+  Contracts/Append [90m................................................................................................................................................................................[39m [32m100.0%[39m  
+  Contracts/Blueprint [90m.............................................................................................................................................................................[39m [32m100.0%[39m  
+  Contracts/ConditionalLogic [90m......................................................................................................................................................................[39m [32m100.0%[39m  
+  Contracts/DefaultValue [90m..........................................................................................................................................................................[39m [32m100.0%[39m  
+  Contracts/Fullscreen [90m............................................................................................................................................................................[39m [32m100.0%[39m  
+  Contracts/Makeble [90m...............................................................................................................................................................................[39m [32m100.0%[39m  
+  Contracts/MaxItems [90m..............................................................................................................................................................................[39m [32m100.0%[39m  
+  Contracts/Prepend [90m...............................................................................................................................................................................[39m [32m100.0%[39m  
+  Contracts/QueryScopes [90m...........................................................................................................................................................................[39m [32m100.0%[39m  
+  Contracts/Renderable [90m............................................................................................................................................................................[39m [32m100.0%[39m  
+  Contracts/UISelectMode [90m..........................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/ArrayModeOption [90m...........................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/AssetsUIModeOption [90m........................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/AutocompleteOption [90m........................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/BardButton [90m................................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/BardInlineOption [90m..........................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/BardToolbarMode [90m...........................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/CodeIndentTypeOption [90m......................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/CodeKeyMapOption [90m..........................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/CodeModeOption [90m............................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/CollapseOption [90m............................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/DateModeOption [90m............................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/DynamicFolderOption [90m.......................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/GridModeOption [90m............................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/Icon [90m......................................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/InputTypeOption [90m...........................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/ListableOption [90m............................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/MarkdownButtonOption [90m......................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/OperatorOption [90m............................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/RevealerModeUI [90m............................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/UIModeOption [90m..............................................................................................................................................................................[39m [32m100.0%[39m  
+  Enums/VisibilityOption [90m..........................................................................................................................................................................[39m [32m100.0%[39m  
+  Exceptions/BlueprintRenderException [90m.............................................................................................................................................................[39m [32m100.0%[39m  
+  FieldTypes/Arr [90m....................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Assets [90m.................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Bard [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/ButtonGroup [90m............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Checkboxes [90m.............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Code [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Collections [90m..........................................................................................................................................................................[39m [32m100.0%[39m  
+  FieldTypes/Collor [90m.................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Date [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Dictionary [90m.............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Entries [90m................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Field [90m.......................................................................................................................................................[39m [33m129, 199, 218..227, 312[39m[33m [39m[90m/[39m[33m 92.7%[39m  
+  FieldTypes/FloatVal [90m...............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/ForeignField [90m...........................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/ForeignFieldset [90m........................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Form [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Grid [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Group [90m..................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Html [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Icon [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Integer [90m................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Link [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Lists [90m..................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Markdown [90m...............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Navs [90m.................................................................................................................................................................................[39m [32m100.0%[39m  
+  FieldTypes/Radio [90m..................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Range [90m..................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Relationship [90m.........................................................................................................................................................................[39m [32m100.0%[39m  
+  FieldTypes/Replicator [90m.............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Revealer [90m...............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Section [90m................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/SectionField [90m.........................................................................................................................................................................[39m [32m100.0%[39m  
+  FieldTypes/Select [90m.................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Set [90m....................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/SetGroup [90m...............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Sites [90m................................................................................................................................................................................[39m [32m100.0%[39m  
+  FieldTypes/Slug [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Spacer [90m.................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Structures [90m...........................................................................................................................................................................[39m [32m100.0%[39m  
+  FieldTypes/Tab [90m....................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Table [90m................................................................................................................................................................................[39m [32m100.0%[39m  
+  FieldTypes/Taggable [90m...............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Taggeble [90m...............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Taxonomies [90m...........................................................................................................................................................................[39m [32m100.0%[39m  
+  FieldTypes/Template [90m...............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Terms [90m..................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Text [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Textarea [90m...............................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Time [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Toggle [90m.................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/UserGroups [90m...........................................................................................................................................................................[39m [32m100.0%[39m  
+  FieldTypes/UserRoles [90m............................................................................................................................................................................[39m [32m100.0%[39m  
+  FieldTypes/Users [90m..................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Video [90m..................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Width [90m..................................................................................................................................................................................[39m [31m0.0%[39m  
+  FieldTypes/Yaml [90m...................................................................................................................................................................................[39m [31m0.0%[39m  
+  Fieldset [90m................................................................................................................................................................................[39m [33m78..92[39m[33m [39m[90m/[39m[33m 80.6%[39m  
+  Helpers/FieldParser [90m.............................................................................................................................................................................[39m [32m100.0%[39m  
+  Http/Controllers/AssetContainerBlueprintController [90m................................................................................................................................................[39m [31m0.0%[39m  
+  Http/Controllers/CollectionBlueprintsController [90m...................................................................................................................................................[39m [31m0.0%[39m  
+  Http/Controllers/CollectionsController [90m............................................................................................................................................................[39m [31m0.0%[39m  
+  Http/Controllers/FieldsetController [90m...............................................................................................................................................................[39m [31m0.0%[39m  
+  Http/Controllers/GlobalsBlueprintsController [90m......................................................................................................................................................[39m [31m0.0%[39m  
+  Http/Controllers/GlobalsController [90m................................................................................................................................................................[39m [31m0.0%[39m  
+  Http/Controllers/NavigationBlueprintController [90m....................................................................................................................................................[39m [31m0.0%[39m  
+  Http/Controllers/NavigationController [90m.............................................................................................................................................................[39m [31m0.0%[39m  
+  Http/Controllers/TaxonomiesController [90m.............................................................................................................................................................[39m [31m0.0%[39m  
+  Http/Controllers/TaxonomyBlueprintsController [90m.......................................................................................................................................[39m [33m17..22, 23[39m[33m [39m[90m/[39m[33m 40.0%[39m  
+  Http/Controllers/UserBlueprintController [90m..........................................................................................................................................................[39m [31m0.0%[39m  
+  Importer [90m........................................................................................................................................................................................[39m [32m100.0%[39m  
+  Repositories/AssetContainerRepository [90m...........................................................................................................................................................[39m [32m100.0%[39m  
+  Repositories/BlueprintRepository [90m..................................................................................................[39m [33m25..53, 63..69, 82, 86..87, 96..105, 130..153, 164..174, 134[39m[33m [39m[90m/[39m[33m 29.9%[39m  
+  Repositories/CollectionRepository [90m...........................................................................................................................................................[39m [33m46[39m[33m [39m[90m/[39m[33m 94.7%[39m  
+  Repositories/EloquentGlobalRepository [90m..................................................................................................................................[39m [33m30..65, 75..76, 83..100[39m[33m [39m[90m/[39m[33m 16.2%[39m  
+  Repositories/EloquentNavigationRepository [90m.......................................................................................................................................[39m [33m31..32, 40..76[39m[33m [39m[90m/[39m[33m 20.7%[39m  
+  Repositories/FieldsetRepository [90m.............................................................................................................................................[39m [33m17, 33, 37, 45, 74[39m[33m [39m[90m/[39m[33m 85.3%[39m  
+  Repositories/GlobalRepository [90m..................................................................................................................................................[39m [33m54, 63, 90..101[39m[33m [39m[90m/[39m[33m 81.1%[39m  
+  Repositories/NavigationRepository [90m...........................................................................................................................................[39m [33m43, 53..64, 81..87[39m[33m [39m[90m/[39m[33m 62.5%[39m  
+  Repositories/TaxonomyRepository [90m.........................................................................................................................................................[39m [33m40..46[39m[33m [39m[90m/[39m[33m 78.9%[39m  
+  ServiceProvider [90m...............................................................................................[39m [33m31, 35, 39, 43, 47, 51..52, 57, 61..63, 68..70, 75..77, 82..84, 116, 129, 53..85[39m[33m [39m[90m/[39m[33m 76.1%[39m  
+  Sites/Sites [90m.............................................................................................................................................................................[39m [33m18..27[39m[33m [39m[90m/[39m[33m 27.3%[39m  
+  Stache/Stores/CollectionsStore [90m..............................................................................................................................................................[39m [33m22[39m[33m [39m[90m/[39m[33m 92.9%[39m  
+  Stache/Stores/GlobalsStore [90m..................................................................................................................................................................[39m [33m22[39m[33m [39m[90m/[39m[33m 92.9%[39m  
+  Stache/Stores/NavigationStore [90m...............................................................................................................................................................[39m [33m22[39m[33m [39m[90m/[39m[33m 92.9%[39m  
+  Stache/Stores/TaxonomiesStore [90m...............................................................................................................................................................[39m [33m22[39m[33m [39m[90m/[39m[33m 92.9%[39m  
+  [90m────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────[39m  
+                                                                                                                                                                                             [1mTotal: 36.1 %[22m  
+
