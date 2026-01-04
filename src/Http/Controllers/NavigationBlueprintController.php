@@ -9,10 +9,10 @@ class NavigationBlueprintController extends StatamicNavigationBlueprintControlle
 {
     public function edit($navHandle)
     {
-        $navBlueprint = BlueprintRepository::findBlueprint('navigations', $navHandle);
+        $navBlueprint = BlueprintRepository::findBlueprint('navigation', $navHandle);
 
         if ($navBlueprint) {
-            $blueprintPath = BlueprintRepository::findBlueprintPath('navigations', $navHandle);
+            $blueprintPath = BlueprintRepository::findBlueprintPath('navigation', $navHandle);
 
             return view('statamic-builder::not-editable', [
                 'type' => 'Blueprint',

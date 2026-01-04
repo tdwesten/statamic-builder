@@ -75,4 +75,15 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
     {
         return $this->find($handle);
     }
+
+    public function getNavigationByHandle($handle): ?\Tdwesten\StatamicBuilder\BaseNavigation
+    {
+        $navigation = $this->navigations->get($handle, null);
+
+        if ($navigation) {
+            return new $navigation;
+        }
+
+        return null;
+    }
 }
