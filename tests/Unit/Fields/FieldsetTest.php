@@ -19,6 +19,34 @@ it('can be registered', function (): void {
     expect($fields)->toBeArray();
 });
 
+test('getPrefix returns null when no prefix is set', function (): void {
+    $fieldset = TestFieldset::make();
+
+    expect($fieldset->getPrefix())->toBeNull();
+});
+
+test('getPrefix returns prefix when set in constructor', function (): void {
+    $fieldset = TestFieldset::make('my_prefix');
+
+    expect($fieldset->getPrefix())->toBe('my_prefix');
+});
+
+test('prefix method sets prefix and returns instance for chaining', function (): void {
+    $fieldset = TestFieldset::make();
+    $result = $fieldset->prefix('new_prefix');
+
+    expect($result)->toBe($fieldset)
+        ->and($fieldset->getPrefix())->toBe('new_prefix');
+});
+
+test('getFields returns collection of fields with prefix applied', function (): void {
+    $fieldset = TestFieldset::make('test_prefix');
+    $fields = $fieldset->getFields();
+
+    expect($fields)->toBeInstanceOf(\Illuminate\Support\Collection::class)
+        ->and($fields->count())->toBeGreaterThan(0);
+});
+
 it('can be converted to an array', function (): void {
     $fieldset = TestFieldset::make('test');
     $fields = $fieldset->toArray();

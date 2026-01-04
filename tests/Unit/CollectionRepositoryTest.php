@@ -44,3 +44,12 @@ test('::all includes builder-registered collections', function (): void {
 
     expect($collections->has('shows'))->toBeTrue();
 });
+
+test('getCollectionByHandle returns null for non-existent collection', function (): void {
+    config(['statamic.builder.collections' => []]);
+
+    $repository = new \Tdwesten\StatamicBuilder\Repositories\CollectionRepository(app('stache'));
+    $result = $repository->getCollectionByHandle('non-existent');
+
+    expect($result)->toBeNull();
+});

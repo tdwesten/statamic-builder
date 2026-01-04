@@ -14,3 +14,14 @@ test('it can create a blueprint', function (): void {
 
     File::delete($path);
 });
+
+test('it shows registration reminder when auto_registration is false', function (): void {
+    config(['statamic.builder.auto_registration' => false]);
+
+    $this->artisan('make:blueprint', ['name' => 'AnotherBlueprint'])
+        ->expectsOutput('Remember to register your new Blueprint in config/statamic/builder.php')
+        ->assertExitCode(0);
+
+    $path = app_path('Blueprints/AnotherBlueprint.php');
+    File::delete($path);
+});
