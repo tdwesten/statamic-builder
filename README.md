@@ -19,6 +19,7 @@ compared to writing YAML files.
 - **Multi-site Support**: Define and manage multiple sites through PHP classes.
 - **Artisan Commands**: Generate blueprints, fieldsets, collections, and more with dedicated commands.
 - **YAML Export**: Export your PHP-defined components to standard Statamic YAML files.
+- **Eloquent Support**: Full support for Statamic Eloquent Driver for Global Sets and Navigations.
 
 ## Installation
 
@@ -191,10 +192,74 @@ php artisan make:taxonomy Categories
 
 ### Global Sets
 
-Generate a global set:
+Global sets can be defined as PHP classes. This allows you to manage global variables and their localization through PHP
+classes.
 
-```bash
-php artisan make:global-set SiteSettings
+1. Generate a global set:
+   ```bash
+   php artisan make:global-set SiteSettings
+   ```
+
+2. Configure your global set:
+
+```php
+namespace App\Globals;
+
+use Tdwesten\StatamicBuilder\BaseGlobalSet;
+
+class SiteSettings extends BaseGlobalSet
+{
+    public static function handle(): string
+    {
+        return 'site_settings';
+    }
+
+    public function title(): string
+    {
+        return 'Site Settings';
+    }
+}
+```
+
+By default, the global set will use the default site. You can override the `sites()` method to support multiple sites.
+
+#### Blueprint for Global Sets
+
+To define fields for your global set, create a blueprint with the same handle in the `globals` namespace:
+
+```php
+namespace App\Blueprints\Globals;
+
+use Tdwesten\StatamicBuilder\Blueprint;
+use Tdwesten\StatamicBuilder\FieldTypes\Section;
+use Tdwesten\StatamicBuilder\FieldTypes\Text;
+use Tdwesten\StatamicBuilder\FieldTypes\Tab;
+
+class SiteSettingsBlueprint extends Blueprint
+{
+    public static function handle(): string
+    {
+        return 'site_settings';
+    }
+
+    public static function blueprintNamespace(): string
+    {
+        return 'globals';
+    }
+
+    public function registerTabs(): array
+    {
+        return [
+            Tab::make('General', [
+                Section::make('General', [
+                    Text::make('site_name')
+                        ->displayName('Site Name')
+                        ->required()
+                ]),
+            ]),
+        ];
+    }
+}
 ```
 
 ## Asset Containers
@@ -385,7 +450,7 @@ If you need to generate standard Statamic YAML files from your PHP definitions:
 php artisan statamic-builder:export
 ```
 
-## Breaking Changes
+## Changes
 
 ### Version 1.1.0 (Refactoring & Auto-discovery)
 
@@ -395,3 +460,12 @@ php artisan statamic-builder:export
 - **Search Index**: `BaseCollection::searchIndex()` return type is now nullable (`?string`).
 - **Blueprints**: Blueprints now prefer static `handle()` and `blueprintNamespace()` methods for better auto-discovery
   support.
+
+### Version 1.2.0 (Enhanced Components & Commands)
+
+- **Global Sets & Navigations**: Fully integrated with Statamic repositories, allowing for saving and better multi-site
+  support.
+- **New Commands**: Added `make:site` and `make:asset-container` for faster development.
+- **Generator Refactoring**: Unified logic for all generator commands.
+- **Field Types**: Added several new field types including `Color`, `Hidden`, `Money`, `Number`, `Password`, `Rating`,
+  `Time`, and `Video`.

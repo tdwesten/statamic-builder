@@ -1,22 +1,22 @@
 
    PASS  Tests\Feature\AssetContainerRegistrationTest
-  ✓ registered asset containers are found by the repository              0.23s
+  ✓ registered asset containers are found by the repository              0.24s
   ✓ all includes registered asset containers                             0.01s
    PASS  Tests\Feature\AutoDiscoveryTest
-  ✓ it can auto discover asset containers                                0.02s
+  ✓ it can auto discover asset containers                                0.03s
    PASS  Tests\Feature\CollectionRegistrationTest
   ✓ registered collections can be found by handle                        0.02s
-  ✓ register method properly configures collection with all settings     0.01s
+  ✓ register method properly configures collection with all settings     0.02s
    PASS  Tests\Feature\GlobalSaveTest
-  ✓ it can save global variables                                         0.02s
+  ✓ it can save global variables                                         0.03s
   ✓ it can save global variables for blueprint-based globals             0.02s
    PASS  Tests\Feature\Http\Controllers\AssetContainerControllerTest
-  ✓ it shows not editable view for builder defined asset container       0.42s
-  ✓ it shows not editable view for builder defined asset container blue… 0.49s
+  ✓ it shows not editable view for builder defined asset container       0.33s
+  ✓ it shows not editable view for builder defined asset container blue… 0.24s
    PASS  Tests\Feature\Http\Controllers\NavigationControllerTest
-  ✓ it shows the not editable view when editing a builder defined navig… 0.22s
-  ✓ it shows the not editable view when editing a builder defined navig… 0.23s
-  ✓ it shows the not editable view when editing a builder defined navig… 0.22s
+  ✓ it shows the not editable view when editing a builder defined navig… 0.24s
+  ✓ it shows the not editable view when editing a builder defined navig… 0.53s
+  ✓ it shows the not editable view when editing a builder defined navig… 0.26s
    PASS  Tests\Unit\AssetContainerRepositoryTest
   ✓ ::all includes builder-registered asset containers                   0.02s
   ✓ can find by handle                                                   0.01s
@@ -40,7 +40,7 @@
   ✓ ::find does not throw when no result is found                        0.02s
   ✓ ::find returns null for nonexistent handles                          0.01s
   ✓ ::findByHandle finds builder-registered collection                   0.01s
-  ✓ ::all includes builder-registered collections                        0.02s
+  ✓ ::all includes builder-registered collections                        0.01s
   ✓ getCollectionByHandle returns null for non-existent collection       0.01s
    PASS  Tests\Unit\CollectionTest
   ✓ Has a title                                                          0.01s
@@ -67,7 +67,7 @@
   ✓ Can set duplicate                                                    0.01s
   ✓ Can set hide display                                                 0.01s
   ✓ Can set localizable                                                  0.01s
-  ✓ Can set validation to sometimes                                      0.01s
+  ✓ Can set validation to sometimes                                      0.02s
   ✓ can set multiple validation rules                                    0.01s
   ✓ Can set a custom icon                                                0.01s
   ✓ Can create a thirth-party field                                      0.01s
@@ -87,7 +87,7 @@
   ✓ it can show filename                                                 0.01s
   ✓ it can show set alt                                                  0.01s
   ✓ it can set query_scopes                                              0.01s
-  ✓ it can set dynamic folder                                            0.01s
+  ✓ it can set dynamic folder                                            0.02s
    PASS  Tests\Unit\Fields\BardTest
   ✓ it can render to a array                                             0.02s
   ✓ you can add multiple buttons                                         0.01s
@@ -107,7 +107,7 @@
   ✓ it can render to a array with default value                          0.01s
   ✓ it can render to a array with inline                                 0.01s
    PASS  Tests\Unit\Fields\CodeTest
-  ✓ it can render to a array                                             0.01s
+  ✓ it can render to a array                                             0.02s
   ✓ you can set the mode                                                 0.01s
   ✓ you can set the mode selectable                                      0.01s
   ✓ you can set the indent type                                          0.01s
@@ -126,11 +126,11 @@
   ✓ you can set the swatches                                             0.01s
   ✓ you can set the default value                                        0.01s
    PASS  Tests\Unit\Fields\ConditionalLogicTest
-  ✓ Can set conditional logic if                                         0.02s
+  ✓ Can set conditional logic if                                         0.01s
   ✓ Can set conditional logic if with multiple conditions                0.01s
   ✓ Can set conditional logic if any                                     0.01s
   ✓ Can set conditional logic with custom if                             0.01s
-  ✓ Can set conditional logic with custom if_any                         0.02s
+  ✓ Can set conditional logic with custom if_any                         0.01s
   ✓ Can set conditional logic unless                                     0.01s
   ✓ Can set conditional logic unless with multiple conditions            0.01s
   ✓ Can set conditional logic with custom unless                         0.01s
@@ -153,7 +153,7 @@
   ✓ it can set placeholder                                               0.01s
   ✓ it can set max items                                                 0.01s
    PASS  Tests\Unit\Fields\EntriesTest
-  ✓ it can render to a array                                             0.01s
+  ✓ it can render to a array                                             0.02s
   ✓ it can render to a array with max items                              0.01s
   ✓ it can render to a array with mode                                   0.01s
   ✓ it can render to a array with collections                            0.01s
@@ -189,7 +189,7 @@
   ✓ it can render to a array with mode                                   0.01s
   ✓ it can render to a array with fields                                 0.01s
    PASS  Tests\Unit\Fields\GroupTest
-  ✓ Renders a group to array                                             0.02s
+  ✓ Renders a group to array                                             0.01s
   ✓ A group can have a group                                             0.01s
   ✓ Can set to fullscreen                                                0.01s
    PASS  Tests\Unit\Fields\HiddenTest
@@ -213,7 +213,7 @@
   ✓ it can render to a array                                             0.01s
   ✓ it can render to a array with options                                0.01s
    PASS  Tests\Unit\Fields\MarkdownTest
-  ✓ it can render to a array                                             0.01s
+  ✓ it can render to a array                                             0.02s
   ✓ it can render to a array with buttons                                0.01s
   ✓ it can render a array with buttons as string                         0.01s
   ✓ Can set a asset container                                            0.01s
@@ -245,12 +245,12 @@
    PASS  Tests\Unit\Fields\RangeTest
   ✓ it can render to a array                                             0.01s
   ✓ can have a min                                                       0.01s
-  ✓ can have a max                                                       0.01s
+  ✓ can have a max                                                       0.02s
   ✓ can have a step                                                      0.02s
-  ✓ can have a prepend                                                   0.01s
-  ✓ can have a append                                                    0.01s
+  ✓ can have a prepend                                                   0.02s
+  ✓ can have a append                                                    0.02s
    PASS  Tests\Unit\Fields\RatingTest
-  ✓ it can render to a array                                             0.01s
+  ✓ it can render to a array                                             0.02s
    PASS  Tests\Unit\Fields\RelationshipTest
   ✓ it can render to a array                                             0.01s
    PASS  Tests\Unit\Fields\ReplicatorTest
@@ -265,7 +265,7 @@
   ✓ it can have a ui mode                                                0.01s
   ✓ it can have a input_label                                            0.01s
    PASS  Tests\Unit\Fields\SectionFieldTest
-  ✓ it can render to a array                                             0.02s
+  ✓ it can render to a array                                             0.01s
    PASS  Tests\Unit\Fields\SectionTest
   ✓ Section can be rendered                                              0.02s
    PASS  Tests\Unit\Fields\SelectTest
@@ -281,39 +281,39 @@
    PASS  Tests\Unit\Fields\SetGroupTest
   ✓ it can render to a array                                             0.02s
    PASS  Tests\Unit\Fields\SetTest
-  ✓ it can render to a array                                             0.01s
+  ✓ it can render to a array                                             0.02s
    PASS  Tests\Unit\Fields\SitesTest
-  ✓ it can render to a array                                             0.01s
+  ✓ it can render to a array                                             0.02s
   ✓ Can set max items                                                    0.01s
-  ✓ Can set mode                                                         0.01s
+  ✓ Can set mode                                                         0.02s
    PASS  Tests\Unit\Fields\SlugTest
   ✓ it can render to a array                                             0.02s
   ✓ it can set from                                                      0.01s
   ✓ it can set generate                                                  0.01s
-  ✓ it can show regenerate                                               0.01s
+  ✓ it can show regenerate                                               0.02s
    PASS  Tests\Unit\Fields\SpacerTest
-  ✓ it can render to a array                                             0.01s
+  ✓ it can render to a array                                             0.02s
    PASS  Tests\Unit\Fields\StructuresTest
-  ✓ it can render to a array                                             0.01s
+  ✓ it can render to a array                                             0.02s
   ✓ it can set max_items                                                 0.01s
   ✓ it can set mode                                                      0.01s
    PASS  Tests\Unit\Fields\TabTest
   ✓ Tab can be rendered                                                  0.02s
    PASS  Tests\Unit\Fields\TableTest
-  ✓ it can render to a array                                             0.01s
+  ✓ it can render to a array                                             0.02s
    PASS  Tests\Unit\Fields\TaggableTest
   ✓ it can render to a array                                             0.01s
    PASS  Tests\Unit\Fields\TaxonomiesTest
-  ✓ it can render to a array                                             0.01s
-  ✓ Can set max items                                                    0.01s
-  ✓ Can set mode                                                         0.01s
+  ✓ it can render to a array                                             0.02s
+  ✓ Can set max items                                                    0.02s
+  ✓ Can set mode                                                         0.02s
    PASS  Tests\Unit\Fields\TemplateTest
-  ✓ it can render to a array                                             0.01s
-  ✓ it can hide partials                                                 0.01s
+  ✓ it can render to a array                                             0.02s
+  ✓ it can hide partials                                                 0.02s
   ✓ it can set blueprint                                                 0.01s
-  ✓ it can set folder                                                    0.01s
+  ✓ it can set folder                                                    0.02s
    PASS  Tests\Unit\Fields\TermsTest
-  ✓ Terms field renders                                                  0.01s
+  ✓ Terms field renders                                                  0.02s
   ✓ You can set max items                                                0.01s
   ✓ Terms field renders with multiple taxonomies                         0.01s
   ✓ Terms field renders with multiple taxonomies and mode                0.01s
@@ -351,7 +351,7 @@
   ✓ it can have max items                                                0.01s
   ✓ it can have a mode                                                   0.01s
    PASS  Tests\Unit\Fields\UsersTest
-  ✓ it can render to a array                                             0.02s
+  ✓ it can render to a array                                             0.01s
   ✓ can have max items                                                   0.01s
   ✓ can have query scopes                                                0.01s
   ✓ can have mode                                                        0.01s
@@ -386,10 +386,10 @@
   ✓ it shows registration reminder when auto_registration is false       0.02s
    PASS  Tests\Unit\MakeCollectionCommandTest
   ✓ it can create a collection                                           0.02s
-  ✓ it shows registration reminder when auto_registration is false       0.01s
+  ✓ it shows registration reminder when auto_registration is false       0.02s
    PASS  Tests\Unit\MakeFieldsetCommandTest
   ✓ it can create a fieldset                                             0.02s
-  ✓ it shows registration reminder when auto_registration is false       0.02s
+  ✓ it shows registration reminder when auto_registration is false       0.01s
    PASS  Tests\Unit\MakeGlobalSetCommandTest
   ✓ it can generate a global set class                                   0.02s
   ✓ it shows registration reminder when auto_registration is false       0.02s
@@ -398,7 +398,7 @@
   ✓ it shows registration reminder when auto_registration is false       0.02s
    PASS  Tests\Unit\MakeSiteCommandTest
   ✓ it can create a site                                                 0.02s
-  ✓ it shows registration reminder when auto_registration is false       0.01s
+  ✓ it shows registration reminder when auto_registration is false       0.02s
    PASS  Tests\Unit\MakeTaxonomyCommandTest
   ✓ it can create a taxonomy                                             0.02s
   ✓ it shows registration reminder when auto_registration is false       0.02s
@@ -406,11 +406,11 @@
   ✓ ::find does not throw when no result is found                        0.01s
   ✓ ::find returns null for nonexistent handles                          0.01s
   ✓ ::findByHandle finds builder-registered navigation                   0.01s
-  ✓ ::all includes builder-registered navigations                        0.02s
+  ✓ ::all includes builder-registered navigations                        0.01s
    PASS  Tests\Unit\NavigationTest
-  ✓ Has a handle                                                         0.02s
+  ✓ Has a handle                                                         0.01s
   ✓ Has a title                                                          0.01s
-  ✓ Has default collections                                              0.02s
+  ✓ Has default collections                                              0.01s
   ✓ Has default sites                                                    0.01s
   ✓ Has default expectsRoot                                              0.01s
   ✓ Has default maxDepth                                                 0.01s
@@ -435,9 +435,9 @@
    PASS  Tests\Unit\TaxonomyBlueprintTest
   ✓ taxonomy blueprints can be edited                                    0.02s
    PASS  Tests\Unit\TaxonomyRepositoryTest
-  ✓ ::all includes builder-registered taxonomies                         0.02s
+  ✓ ::all includes builder-registered taxonomies                         0.01s
   ✓ ::findByHandle finds builder-registered taxonomy                     0.01s
   ✓ getTaxonomyByHandle returns null for non-existent taxonomy           0.01s
   ✓ getTaxonomyByHandle returns taxonomy instance for valid handle       0.01s
   Tests:    349 passed (798 assertions)
-  Duration: 6.79s
+  Duration: 6.95s
