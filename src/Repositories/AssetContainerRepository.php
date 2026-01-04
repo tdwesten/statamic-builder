@@ -53,4 +53,15 @@ class AssetContainerRepository extends StatamicAssetContainerRepository
             return $this->findByHandle($key);
         })->filter();
     }
+
+    public function getAssetContainerByHandle($handle): ?\Tdwesten\StatamicBuilder\BaseAssetContainer
+    {
+        $container = $this->assetContainers->get($handle, null);
+
+        if ($container) {
+            return new $container;
+        }
+
+        return null;
+    }
 }

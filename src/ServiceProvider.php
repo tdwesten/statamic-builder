@@ -55,6 +55,12 @@ class ServiceProvider extends AddonServiceProvider
             );
         });
 
+        $this->app->bind(\Statamic\Http\Controllers\CP\Assets\AssetContainersController::class, function () {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\AssetContainersController(
+                app('request')
+            );
+        });
+
         $this->app->bind(\Statamic\Http\Controllers\CP\Users\UserBlueprintController::class, function () {
             return new \Tdwesten\StatamicBuilder\Http\Controllers\UserBlueprintController;
         });
