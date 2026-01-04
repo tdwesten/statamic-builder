@@ -19,3 +19,13 @@ test('it can generate a navigation class', function (): void {
 
     File::deleteDirectory(app_path('Navigations'));
 });
+
+test('it shows registration reminder when auto_registration is false', function (): void {
+    config(['statamic.builder.auto_registration' => false]);
+
+    $this->artisan('make:navigation', ['name' => 'FooterNavigation'])
+        ->expectsOutput('Remember to register your new Navigation in config/statamic/builder.php')
+        ->assertExitCode(0);
+
+    File::deleteDirectory(app_path('Navigations'));
+});

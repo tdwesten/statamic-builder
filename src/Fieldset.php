@@ -87,7 +87,7 @@ class Fieldset
         return $this;
     }
 
-    public function getPrefix(): string
+    public function getPrefix(): ?string
     {
         return $this->prefix;
     }

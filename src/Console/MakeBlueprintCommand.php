@@ -2,9 +2,7 @@
 
 namespace Tdwesten\StatamicBuilder\Console;
 
-use Illuminate\Console\GeneratorCommand as BaseGeneratorCommand;
-
-class MakeBlueprintCommand extends BaseGeneratorCommand
+class MakeBlueprintCommand extends GeneratorCommand
 {
     /**
      * @var string
@@ -24,33 +22,9 @@ class MakeBlueprintCommand extends BaseGeneratorCommand
     /**
      * {@inheritDoc}
      */
-    public function handle()
-    {
-        if (parent::handle() === false) {
-            return false;
-        }
-
-        if (! config('statamic.builder.auto_registration', false)) {
-            $this->info('Remember to register your new Blueprint in config/statamic/builder.php');
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     protected function getStub()
     {
         return __DIR__.'/../../stubs/blueprint.stub';
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function getNameInput()
-    {
-        $input = trim($this->argument('name'));
-
-        return \Illuminate\Support\Str::studly($input);
     }
 
     /**

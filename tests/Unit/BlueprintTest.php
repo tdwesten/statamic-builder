@@ -82,3 +82,53 @@ test('you can get the handle', function (): void {
 
     expect($blueprint->getHandle())->toBe('test_blueprint');
 });
+
+test('base blueprint static handle returns empty string by default', function (): void {
+    $blueprint = new class extends \Tdwesten\StatamicBuilder\Blueprint
+    {
+        public function registerTabs(): array
+        {
+            return [];
+        }
+    };
+
+    expect($blueprint::handle())->toBe('');
+});
+
+test('static blueprintNamespace returns empty string by default', function (): void {
+    $blueprint = new class extends \Tdwesten\StatamicBuilder\Blueprint
+    {
+        public function registerTabs(): array
+        {
+            return [];
+        }
+    };
+
+    expect($blueprint::blueprintNamespace())->toBe('');
+});
+
+test('blueprint with empty tabs returns empty array', function (): void {
+    $blueprint = new class extends \Tdwesten\StatamicBuilder\Blueprint
+    {
+        public function registerTabs(): array
+        {
+            return [];
+        }
+    };
+
+    expect($blueprint->toArray()['tabs'])->toBe([]);
+});
+
+test('blueprint throws exception when non-tab field is in registerTabs', function (): void {
+    $blueprint = new class extends \Tdwesten\StatamicBuilder\Blueprint
+    {
+        public function registerTabs(): array
+        {
+            return [
+                \Tdwesten\StatamicBuilder\FieldTypes\Text::make('title'),
+            ];
+        }
+    };
+
+    $blueprint->toArray();
+})->throws(\Tdwesten\StatamicBuilder\Exceptions\BlueprintRenderException::class, 'Only tabs are allowed in the register function of a blueprint');

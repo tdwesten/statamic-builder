@@ -2,9 +2,7 @@
 
 namespace Tdwesten\StatamicBuilder\Console;
 
-use Illuminate\Console\GeneratorCommand as BaseGeneratorCommand;
-
-class MakeFieldsetCommand extends BaseGeneratorCommand
+class MakeFieldsetCommand extends GeneratorCommand
 {
     /**
      * @var string
@@ -24,33 +22,9 @@ class MakeFieldsetCommand extends BaseGeneratorCommand
     /**
      * {@inheritDoc}
      */
-    public function handle()
-    {
-        if (parent::handle() === false) {
-            return false;
-        }
-
-        if (! config('statamic.builder.auto_registration', false)) {
-            $this->info('Remember to register your new Fieldset in config/statamic/builder.php');
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     protected function getStub()
     {
         return __DIR__.'/../../stubs/Fieldset.stub';
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function getNameInput()
-    {
-        $input = trim($this->argument('name'));
-
-        return \Illuminate\Support\Str::studly($input);
     }
 
     /**
