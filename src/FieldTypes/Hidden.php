@@ -3,13 +3,15 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
+use Tdwesten\StatamicBuilder\Contracts\DefaultValue;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 
-class Taggeble extends Field
+class Hidden extends Field
 {
+    use DefaultValue;
     use Makeble;
 
-    protected $type = '__type__';
+    protected $type = 'hidden';
 
     public function __construct(string $handle)
     {
@@ -18,6 +20,8 @@ class Taggeble extends Field
 
     public function fieldToArray(): Collection
     {
-        return collect([]);
+        return collect([
+            'default' => $this->default,
+        ]);
     }
 }

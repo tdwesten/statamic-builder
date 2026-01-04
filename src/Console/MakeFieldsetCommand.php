@@ -2,9 +2,7 @@
 
 namespace Tdwesten\StatamicBuilder\Console;
 
-use Illuminate\Console\GeneratorCommand as BaseGeneratorCommand;
-
-class MakeFieldsetCommand extends BaseGeneratorCommand
+class MakeFieldsetCommand extends GeneratorCommand
 {
     /**
      * @var string

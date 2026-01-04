@@ -36,8 +36,8 @@ class TaxonomiesStore extends StatamicTaxonomiesStore
     {
         $this->handleFileChanges();
 
-        return collect($keys)->map(function ($key) use ($taxonomies) {
-            return $this->getItem($key, $taxonomies);
+        return collect($keys)->mapWithKeys(function ($key) use ($taxonomies) {
+            return [$key => $this->getItem($key, $taxonomies)];
         });
     }
 }

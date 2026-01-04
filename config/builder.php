@@ -102,4 +102,62 @@ return [
     'sites' => [
         // App\Sites\Blog::class,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Register Asset Containers
+    |--------------------------------------------------------------------------
+    |
+    | Here you can register the asset containers that you want to use in your
+    | Statamic site.
+    |
+    */
+    'asset_containers' => [
+        // App\AssetContainers\Main::class,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Register Navigations
+    |--------------------------------------------------------------------------
+    |
+    | Here you can register the navigations that you want to use in your
+    | Statamic site.
+    |
+    */
+    'navigations' => [
+        // App\Navigations\Main::class,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Auto Registration
+    |--------------------------------------------------------------------------
+    |
+    | Here you can enable auto registration of your blueprints, fieldsets,
+    | collections, taxonomies, globals, sites, and navigations.
+    |
+    */
+    'auto_registration' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Auto Discovery Paths
+    |--------------------------------------------------------------------------
+    |
+    | Here you can define the paths that will be used to auto discover your
+    | blueprints, fieldsets, collections, taxonomies, globals, sites, and
+    | navigations.
+    |
+    */
+    'auto_discovery' => [
+        'blueprints' => app_path('Blueprints'),
+        'fieldsets' => app_path('Fieldsets'),
+        'collections' => app_path('Collections'),
+        'taxonomies' => app_path('Taxonomies'),
+        'globals' => app_path('Globals'),
+        'navigations' => app_path('Navigations'),
+        'asset_containers' => app_path('AssetContainers'),
+        'sites' => app_path('Sites'),
+    ],
 ];

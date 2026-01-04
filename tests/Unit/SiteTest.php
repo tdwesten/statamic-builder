@@ -41,3 +41,17 @@ test('Has extra attributes', function (): void {
         'extra' => 'attributes',
     ]);
 });
+
+test('Can convert to array', function (): void {
+    $site = new TestSite;
+
+    $array = $site->toArray();
+
+    expect($array)->toBeArray()
+        ->and($array['name'])->toBe('Blog')
+        ->and($array['url'])->toBe('http://blog.test')
+        ->and($array['locale'])->toBe('en_US')
+        ->and($array['attributes'])->toBe([
+            'extra' => 'attributes',
+        ]);
+});

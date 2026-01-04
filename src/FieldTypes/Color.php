@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Tdwesten\StatamicBuilder\Contracts\DefaultValue;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 
-class Collor extends Field
+class Color extends Field
 {
     use DefaultValue;
     use Makeble;

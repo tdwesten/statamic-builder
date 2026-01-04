@@ -30,6 +30,16 @@ class {{ class }} extends Blueprint
      */
     public $hidden = false;
 
+    public static function handle(): string
+    {
+        return '{{ handle }}';
+    }
+
+    public static function blueprintNamespace(): string
+    {
+        return '';
+    }
+
     public function registerTabs(): Array
     {
         return [

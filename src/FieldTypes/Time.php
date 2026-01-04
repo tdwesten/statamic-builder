@@ -3,10 +3,12 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
+use Tdwesten\StatamicBuilder\Contracts\DefaultValue;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 
 class Time extends Field
 {
+    use DefaultValue;
     use Makeble;
 
     protected $type = 'time';
@@ -22,6 +24,7 @@ class Time extends Field
     {
         return collect([
             'seconds_enabled' => $this->secondsEnabled,
+            'default' => $this->default,
         ]);
     }
 

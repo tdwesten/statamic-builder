@@ -1,18 +1,92 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tdwesten/statamic-builder.svg?style=flat-square)](https://packagist.org/packages/tdwesten/statamic-builder)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/tdwesten/statamic-builder/ci.yml?branch=main&label=tests&style=flat-square)](https://github.com/tdwesten/statamic-builder/actions/workflows/ci.yml)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/tdwesten/statamic-builder/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/tdwesten/statamic-builder/actions/workflows/tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/tdwesten/statamic-builder.svg?style=flat-square)](https://packagist.org/packages/tdwesten/statamic-builder)
 
 ![Github](https://github.com/tdwesten/statamic-builder/assets/224501/fb3da5da-6035-4ca4-9d70-3509c8b626c6)
 
 # Statamic Builder
 
-The Statamic Builder speeds up building Statamic sites. It offers a clear method to define sites, blueprints, fieldsets, collections, naviations and taxonomies using PHP classes. This approach enhances code readability and maintainability compared to writing YAML files.
+The Statamic Builder speeds up building Statamic sites. It offers a clear method to define sites, blueprints, fieldsets,
+collections, navigations and taxonomies using PHP classes. This approach enhances code readability and maintainability
+compared to writing YAML files.
 
-For example, you can define a collection blueprint as follows:
+## Features
+
+- **Fluent API**: Define Statamic components using a clean, chainable PHP API.
+- **Auto-discovery**: Automatically discover and register your components from the filesystem.
+- **Navigation Support**: Easily define and manage Statamic Navigations in PHP.
+- **Global Sets & Taxonomies**: Full support for Global Sets and Taxonomies.
+- **Multi-site Support**: Define and manage multiple sites through PHP classes.
+- **Artisan Commands**: Generate blueprints, fieldsets, collections, and more with dedicated commands.
+- **YAML Export**: Export your PHP-defined components to standard Statamic YAML files.
+- **Eloquent Support**: Full support for Statamic Eloquent Driver for Global Sets and Navigations.
+
+## Installation
+
+You can install this addon with composer:
+
+```bash
+composer require tdwesten/statamic-builder
+```
+
+## Requirements
+
+- PHP 8.2+
+- Statamic 5.4+
+- Laravel 11 or 12
+
+## Configuration
+
+You can publish the configuration file using:
+
+```bash
+php artisan vendor:publish --tag=statamic
+```
+
+The configuration file allows you to manually register components or enable auto-discovery.
+
+### Options
+
+| Option              | Description                                                    |
+|---------------------|----------------------------------------------------------------|
+| `blueprints`        | Manual registration of blueprints, grouped by namespace.       |
+| `fieldsets`         | Manual registration of fieldsets.                              |
+| `collections`       | Manual registration of collections.                            |
+| `taxonomies`        | Manual registration of taxonomies.                             |
+| `globals`           | Manual registration of global sets.                            |
+| `sites`             | Manual registration of sites.                                  |
+| `navigations`       | Manual registration of navigations.                            |
+| `asset_containers`  | Manual registration of asset containers.                       |
+| `auto_registration` | Enable or disable auto-discovery of components.                |
+| `auto_discovery`    | Define custom paths for auto-discovery of each component type. |
+
+## Auto Registration & Discovery
+
+Enable `auto_registration` in `config/statamic/builder.php` to automatically find components in your `app/` directory.
 
 ```php
-<?php
+'auto_registration' => true,
+```
 
+### Discovery Requirements
+
+For components to be auto-discovered, they must implement certain static methods:
+
+- **Blueprints**: Must implement `static function handle()` and `static function blueprintNamespace()`.
+- **Collections, Taxonomies, Globals, Navigations, Asset Containers**: Must implement `static function handle()`.
+- **Sites**: Must implement `function handle()`.
+
+## Blueprints and Fieldsets
+
+### Creating a Blueprint
+
+1. Generate a blueprint:
+   ```bash
+   php artisan make:blueprint PageBlueprint
+   ```
+2. Define your fields in the `registerTabs` method:
+
+```php
 namespace App\Blueprints;
 
 use Tdwesten\StatamicBuilder\Blueprint;
@@ -22,13 +96,17 @@ use Tdwesten\StatamicBuilder\FieldTypes\Tab;
 
 class PageBlueprint extends Blueprint
 {
-    public $title = 'Page';
+    public static function handle(): string
+    {
+        return 'page';
+    }
 
-    public $handle = 'page';
+    public static function blueprintNamespace(): string
+    {
+        return 'collections.pages';
+    }
 
-    public $hidden = false;
-
-    public function registerTabs(): Array
+    public function registerTabs(): array
     {
         return [
             Tab::make('General', [
@@ -45,451 +123,349 @@ class PageBlueprint extends Blueprint
 }
 ```
 
-## Installation
+### Creating a Fieldset
 
-You can install this addon with composer. Run the following command in your terminal to install the addon.
-
-```bash
-composer require tdwesten/statamic-builder
-```
-
-## Blueprints and Fieldsets
-
-This addon allows you to create blueprints and fieldsets in a fluent way. This makes it easier to define and maintain your blueprints and fieldsets.
-
-### How to create a blueprint
-
-1. Create a new blueprint by running the following command for a page blueprint for example:
-
-   ```bash
-   php artisan make:blueprint PageBlueprint
-   ```
-
-2. Define your blueprint in the generated file. For example:
-
-   ```php
-   <?php
-
-   namespace App\Blueprints;
-
-   use Tdwesten\StatamicBuilder\Blueprint;
-   use Tdwesten\StatamicBuilder\FieldTypes\Assets;
-   use Tdwesten\StatamicBuilder\FieldTypes\Section;
-   use Tdwesten\StatamicBuilder\FieldTypes\Text;
-   use Tdwesten\StatamicBuilder\FieldTypes\Tab;
-
-   class PageBlueprint extends Blueprint
-   {
-       public $title = 'Page';
-
-       public $handle = 'page';
-
-       public $hidden = false;
-
-       public function registerTabs(): Array
-       {
-           return [
-               Tab::make('General', [
-                   Section::make('General', [
-                       Text::make('title')
-                           ->displayName('Title')
-                           ->instructions('The title of the page')
-                           ->required(),
-                       Assets::make('image')
-                           ->displayName('Image')
-                           ->maxItems(1)
-                           ->instructions('The image of the page')
-                           ->required(),
-                   ]),
-               ]),
-           ];
-       }
-   }
-   ```
-
-3. Register the blueprint in your `config/statamic/builder.php` file:
-
-   ```php
-   <?php
-       return [
-           'blueprints' => [
-               'collections.pages' => [
-                   'page' => \App\Blueprints\PageBlueprint::class,
-               ],
-           ],
-       ];
-   ```
-
-4. That's it! You can now use your blueprint in your Statamic application.
-
-### How to create a fieldset
-
-1. Create a new fieldset by running the following command for a hero fieldset for example:
-
+1. Generate a fieldset:
    ```bash
    php artisan make:fieldset HeroFieldset
    ```
-
-2. Define your fieldset in the generated file. For example add a title and image field to the hero fieldset:
-
-   ```php
-   <?php
-
-   namespace App\Fieldsets;
-
-   use Tdwesten\StatamicBuilder\Fieldset;
-   use Tdwesten\StatamicBuilder\FieldTypes\Assets;
-   use Tdwesten\StatamicBuilder\FieldTypes\Text;
-
-   class HeroFieldset extends Fieldset
-   {
-       public function registerFields(): array
-       {
-           return [
-               Text::make('title')
-                   ->displayName('Title')
-                   ->instructions('The title of the hero')
-                   ->required(),
-               Assets::make('image')
-                   ->displayName('Image')
-                   ->maxItems(1)
-                   ->instructions('The image of the hero')
-                   ->required(),
-           ];
-       }
-   }
-   ```
-
-3. Register the fieldset in your `config/statamic/builder.php` file:
-
-   ```php
-   <?php
-       return [
-           'blueprints' => [
-               'collections.pages' => [
-                   'page' => \App\Blueprints\PageBlueprint::class,
-               ],
-           ],
-           'fieldsets' => [
-               \App\Fieldsets\HeroFieldset::class,
-           ],
-       ];
-   ```
-
-4. Now you can use your fieldset in your blueprints. For example:
-
-   ```php
-   <?php
-
-   namespace App\Blueprints;
-
-   use App\Fieldsets\HeroFieldset;
-   use Tdwesten\StatamicBuilder\Blueprint;
-
-   class PageBlueprint extends Blueprint
-   {
-       public $title = 'Page';
-
-       public $handle = 'page';
-
-       public $hidden = false;
-
-       public function registerTabs(): Array
-       {
-           return [
-               Tab::make('General', [
-                   Section::make('General', [
-                       HeroFieldset::make('hero'),
-                   ]),
-               ]),
-           ];
-       }
-   }
-   ```
-### Working with foreign fieldset
-When working with a mixed Codebase or while using other Statamic plugins you can use their provided Fieldsets with the `ForeignFieldset` and `ForeignField` class which implement similar to the Statamic Standard Import.
+2. Define fields:
 
 ```php
-   <?php
+namespace App\Fieldsets;
 
-   namespace App\Blueprints;
+use Tdwesten\StatamicBuilder\Fieldset;
+use Tdwesten\StatamicBuilder\FieldTypes\Assets;
+use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
-   use Tdwesten\StatamicBuilder\Blueprint;
-   use Tdwesten\StatamicBuilder\FieldTypes\ForeignField;
-   use Tdwesten\StatamicBuilder\FieldTypes\ForeignFieldset;
-
-   class PageBlueprint extends Blueprint
-   {
-       public $title = 'Page';
-
-       public $handle = 'page';
-
-       public $hidden = false;
-
-       public function registerTabs(): Array
-       {
-           return [
-               Tab::make('General', [
-                   Section::make('General', [
-                        ForeignFieldset::make('statamic-peak-seo::seo_basic')
-                            ->prefix('myseo_')
-                        ForeignField::make('mytext','foreign_fields.bard')
-                            ->config([
-                                'width'=>'25',
-                                'display' => "My bard Field"
-                                'validate' => 'required|string|max:3',
-                            ])
-                   ]),
-               ]),
-           ];
-       }
-   }
-```
-
-### Supported Fieldtypes
-
-All default Statamic field types are supported. You can create custom field types by utilizing the `Field` class. For example to create a custom field type you can use the following code:
-
-```php
-Field::make('custom_field')
-    ->withAttributes([
-        'type' => 'custom_type',
-        'display' => 'Custom Field',
-        'instructions' => 'This is a custom field',
-        'required' => true,
-        'options' => [
-            'option1' => 'Option 1',
-            'option2' => 'Option 2',
-        ],
-        // Add more attributes here...
-    ]);
-```
-
-## How to register Collections and Taxonomies
-
-This addon enables you to define collections and taxonomies in PHP classes, simplifying the process of defining and managing them.
-
-### How to register a collection
-
-1. Generate a new collection blueprint, for example for an articles collection blueprint run the following command:
-
-   ```bash
-   php artisan make:collection Articles
-   ```
-
-2. Define your Articles collection blueprint in the generated file. For example, the file has all options available to define a collection blueprint. For example:
-
-   ```php
-   <?php
-
-   namespace App\Collections;
-
-   use Statamic\Facades\Site;
-   use Tdwesten\StatamicBuilder\BaseCollection;
-
-   class Articles extends BaseCollection
-   {
-       /**
-        * Return the handle for the collection
-        *
-        * Example: return 'blog';
-        */
-       public static function handle(): string
-       {
-           return 'articles';
-       }
-
-       /**
-        * Return the title for the collection
-        *
-        * Example: return 'Blog';
-        */
-       public function title(): string
-       {
-           return 'Articles';
-       }
-
-       // Add more options here...
-   }
-   ```
-
-3. Add the collection to the `config/statamic/builder.php` file:
-
-   ```php
-   <?php
-       return [
-           'collections' => [
-               \App\Collections\Articles::class,
-           ],
-       ];
-   ```
-
-### How to register a taxonomy
-
-1. Generate a new taxonomy blueprint, for example for a categories taxonomy blueprint run the following command:
-
-   ```bash
-   php artisan make:taxonomy Categories
-   ```
-
-2. Define your taxonomy in the generated file. For example, the file has all options available to define a taxonomy. For example:
-
-   ```php
-   <?php
-
-   namespace App\Taxonomies;
-
-   use Statamic\Facades\Site;
-   use Tdwesten\StatamicBuilder\BaseTaxonomy;
-
-   class Categories extends BaseTaxonomy
-   {
-       /**
-        * Return the handle for the taxonomy
-        *
-        * Example: return 'tags';
-        */
-       public static function handle(): string
-       {
-           // TODO: Change to your taxonomy handle
-
-           return 'categories';
-       }
-
-       /**
-        * Return the title for the taxonomy
-        *
-        * Example: return 'Tags';
-        */
-       public function title(): string
-       {
-           // TODO: Change to your taxonomy title
-
-           return 'Categories';
-       }
-
-       // Add more options here...
-   }
-   ```
-
-3. Add the taxonomy to the `config/statamic/builder.php` file:
-
-   ```php
-   <?php
-       return [
-           'taxonomies' => [
-               \App\Taxonomies\Categories::class,
-           ],
-       ];
-   ```
-
-
-       public function title(): string
-       {
-           return 'Site Settings';
-       }
-
-       // Add more options here...
-   }
-   ```
-
-3. Add the global set to the `config/statamic/builder.php` file:
-
-   ```php
-   <?php
-       return [
-           'globals' => [
-               \App\Globals\SiteSettings::class,
-           ],
-       ];
-   ```
-
-### How to create a Site
-
-> [!WARNING]  
-The sites are cached forever. When adding a site, you need to clear the cache.
-
-1. Create a new site by running the following command:
-
-   ```bash
-   php artisan make:site Blog
-   ```
-
-2. Define your site in the generated file. For example:
-
-    ```php
-    <?php
-
-    namespace App\Sites;
-
-    use Tdwesten\StatamicBuilder\BaseSite;
-
-    class Blog extends BaseSite
+class HeroFieldset extends Fieldset
+{
+    public function registerFields(): array
     {
-        /**
-         * Return the handle for the site
-         *
-         * Example: return 'default';
-         */
-        public function handle(): string
-        {
-            return 'blog';
-        }
-
-        /**
-         * Return the handle for the site
-         *
-         * Example: return 'Default';
-         */
-        public function name(): string
-        {
-            return 'Blog';
-        }
-
-        /**
-         * Return the base url for the site
-         *
-         * Example: return '/';
-         */
-        public function url(): string
-        {
-            return '/blog';
-        }
-
-        /**
-         * Return the locale of the site
-         *
-         * Example: return '/';
-         */
-        public function locale(): string
-        {
-            return 'en_US';
-        }
-
-        /**
-         * Return the array of extra attributes for the site
-         *
-         * Example: return ['foo' => 'bar'];
-         */
-        public function attributes(): array
-        {
-            return [];
-        }
-    }
-    ```
-
-3. Register the Site in your `config/statamic/builder.php` file:
-
-    ```php
-    <?php
         return [
-            'sites' => [
-                \App\Sites\Blog::class
-            ],
+            Text::make('title')->displayName('Title')->required(),
+            Assets::make('image')->displayName('Image')->maxItems(1),
         ];
-    ```
-
-4. Clear the cache:
-```bash
-   php artisan cache:clear
+    }
+}
 ```
+
+## Collections, Taxonomies, and Globals
+
+### Collections
+
+Generate a collection:
+
+```bash
+php artisan make:collection Articles
+```
+
+```php
+namespace App\Collections;
+
+use Tdwesten\StatamicBuilder\BaseCollection;
+
+class Articles extends BaseCollection
+{
+    public static function handle(): string
+    {
+        return 'articles';
+    }
+
+    public function title(): string
+    {
+        return 'Articles';
+    }
+}
+```
+
+Most methods in `BaseCollection` now have default implementations, so you only need to override what you want to
+change (e.g., `route()`, `sites()`, `template()`).
+
+### Taxonomies
+
+Generate a taxonomy:
+
+```bash
+php artisan make:taxonomy Categories
+```
+
+### Global Sets
+
+Global sets can be defined as PHP classes. This allows you to manage global variables and their localization through PHP
+classes.
+
+1. Generate a global set:
+   ```bash
+   php artisan make:global-set SiteSettings
+   ```
+
+2. Configure your global set:
+
+```php
+namespace App\Globals;
+
+use Tdwesten\StatamicBuilder\BaseGlobalSet;
+
+class SiteSettings extends BaseGlobalSet
+{
+    public static function handle(): string
+    {
+        return 'site_settings';
+    }
+
+    public function title(): string
+    {
+        return 'Site Settings';
+    }
+}
+```
+
+By default, the global set will use the default site. You can override the `sites()` method to support multiple sites.
+
+#### Blueprint for Global Sets
+
+To define fields for your global set, create a blueprint with the same handle in the `globals` namespace:
+
+```php
+namespace App\Blueprints\Globals;
+
+use Tdwesten\StatamicBuilder\Blueprint;
+use Tdwesten\StatamicBuilder\FieldTypes\Section;
+use Tdwesten\StatamicBuilder\FieldTypes\Text;
+use Tdwesten\StatamicBuilder\FieldTypes\Tab;
+
+class SiteSettingsBlueprint extends Blueprint
+{
+    public static function handle(): string
+    {
+        return 'site_settings';
+    }
+
+    public static function blueprintNamespace(): string
+    {
+        return 'globals';
+    }
+
+    public function registerTabs(): array
+    {
+        return [
+            Tab::make('General', [
+                Section::make('General', [
+                    Text::make('site_name')
+                        ->displayName('Site Name')
+                        ->required()
+                ]),
+            ]),
+        ];
+    }
+}
+```
+
+## Asset Containers
+
+Generate an asset container:
+
+```bash
+php artisan make:asset-container Main
+```
+
+```php
+namespace App\AssetContainers;
+
+use Tdwesten\StatamicBuilder\BaseAssetContainer;
+
+class Main extends BaseAssetContainer
+{
+    public static function handle(): string
+    {
+        return 'main';
+    }
+
+    public function title(): string
+    {
+        return 'Main Assets';
+    }
+
+    public function disk(): string
+    {
+        return 'public';
+    }
+}
+```
+
+Most methods in `BaseAssetContainer` have default implementations, so you only need to override what you want to
+change (e.g., `disk()`, `allowUploads()`, `createFolders()`).
+
+## Navigations
+
+Generate a navigation:
+
+```bash
+php artisan make:navigation Main
+```
+
+```php
+namespace App\Navigations;
+
+use Tdwesten\StatamicBuilder\BaseNavigation;
+
+class Main extends BaseNavigation
+{
+    public static function handle(): string
+    {
+        return 'main';
+    }
+
+    public function collections(): array
+    {
+        return ['pages'];
+    }
+
+    public function maxDepth(): ?int
+    {
+        return 3;
+    }
+}
+```
+
+## Multi-site Support
+
+Generate a site:
+
+```bash
+php artisan make:site Blog
+```
+
+### Working with Foreign Fieldsets
+
+When working with a mixed codebase or utilizing other Statamic addons, you can import their fieldsets using
+`ForeignFieldset` and `ForeignField`.
+
+```php
+use Tdwesten\StatamicBuilder\FieldTypes\ForeignField;
+use Tdwesten\StatamicBuilder\FieldTypes\ForeignFieldset;
+
+// In your registerTabs() method:
+Section::make('External', [
+    ForeignFieldset::make('statamic-peak-seo::seo_basic')
+        ->prefix('myseo_'),
+        
+    ForeignField::make('mytext', 'foreign_fields.bard')
+        ->config([
+            'width' => '25',
+            'display' => "My Bard Field",
+            'validate' => 'required',
+        ])
+]),
+```
+
+## Supported Field Types
+
+Statamic Builder supports all core Statamic field types. Use the `make($handle)` method to instantiate them.
+
+| Field Type | Class |
+| --- | --- |
+| Array | `Arr` |
+| Assets | `Assets` |
+| Bard | `Bard` |
+| Button Group | `ButtonGroup` |
+| Checkboxes | `Checkboxes` |
+| Code | `Code` |
+| Collections | `Collections` |
+| Color | `Color` |
+| Date | `Date` |
+| Dictionary | `Dictionary` |
+| Entries | `Entries` |
+| Float | `FloatVal` |
+| Form | `Form` |
+| Grid | `Grid` |
+| Group | `Group` |
+| Hidden | `Hidden` |
+| HTML | `Html` |
+| Icon | `Icon` |
+| Integer | `Integer` |
+| Link | `Link` |
+| Lists | `Lists` |
+| Markdown | `Markdown` |
+| Money | `Money` |
+| Navs | `Navs` |
+| Number | `Number` |
+| Password | `Password` |
+| Radio | `Radio` |
+| Range | `Range` |
+| Rating | `Rating` |
+| Replicator | `Replicator` |
+| Reveal | `Revealer` |
+| Section | `Section` |
+| Select | `Select` |
+| Sites | `Sites` |
+| Slug | `Slug` |
+| Spacer | `Spacer` |
+| Structures | `Structures` |
+| Table | `Table` |
+| Taggable | `Taggable` |
+| Taxonomies | `Taxonomies` |
+| Template | `Template` |
+| Terms | `Terms` |
+| Text | `Text` |
+| Textarea | `Textarea` |
+| Time | `Time` |
+| Toggle | `Toggle` |
+| User Groups | `UserGroups` |
+| User Roles | `UserRoles` |
+| Users | `Users` |
+| Video | `Video` |
+| Width | `Width` |
+| YAML | `Yaml` |
+| ... and many more. | |
+
+### Custom Fields
+
+You can create a custom field by extending the `Field` class or using the generator:
+
+```bash
+composer generate-field MyField
+```
+
+## Artisan Commands
+
+| Command                   | Description                         |
+|---------------------------|-------------------------------------|
+| `make:blueprint`          | Create a new Blueprint class.       |
+| `make:fieldset`           | Create a new Fieldset class.        |
+| `make:collection`         | Create a new Collection class.      |
+| `make:taxonomy`           | Create a new Taxonomy class.        |
+| `make:global-set`         | Create a new Global Set class.      |
+| `make:navigation`         | Create a new Navigation class.      |
+| `make:asset-container`    | Create a new Asset Container class. |
+| `make:site`               | Create a new Site class.            |
+| `statamic-builder:export` | Export definitions to YAML.         |
+
+## Exporting to YAML
+
+If you need to generate standard Statamic YAML files from your PHP definitions:
+
+```bash
+php artisan statamic-builder:export
+```
+
+## Changes
+
+### Version 1.1.0 (Refactoring & Auto-discovery)
+
+- **Base Classes**: `BaseCollection`, `BaseGlobalSet`, and `BaseNavigation` now provide default implementations for
+  several methods that were previously abstract. While this simplifies new components, ensure your existing components
+  still behave as expected if they were relying on the previous abstract structure.
+- **Search Index**: `BaseCollection::searchIndex()` return type is now nullable (`?string`).
+- **Blueprints**: Blueprints now prefer static `handle()` and `blueprintNamespace()` methods for better auto-discovery
+  support.
+
+### Version 1.2.0 (Enhanced Components & Commands)
+
+- **Global Sets & Navigations**: Fully integrated with Statamic repositories, allowing for saving and better multi-site
+  support.
+- **New Commands**: Added `make:site` and `make:asset-container` for faster development.
+- **Generator Refactoring**: Unified logic for all generator commands.
+- **Field Types**: Added several new field types including `Color`, `Hidden`, `Money`, `Number`, `Password`, `Rating`,
+  `Time`, and `Video`.

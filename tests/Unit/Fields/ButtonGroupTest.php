@@ -49,3 +49,10 @@ it('can render to a array with default value', function (): void {
 
     expect($field->toArray()['field']['default'])->toBe('option1');
 });
+
+it('can set default value using defaultValue method', function (): void {
+    $field = new \Tdwesten\StatamicBuilder\FieldTypes\ButtonGroup('title');
+    $field->defaultValue('option2');
+
+    expect($field->toArray()['field']['default'])->toBe('option2');
+});

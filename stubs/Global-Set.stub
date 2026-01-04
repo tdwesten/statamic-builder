@@ -2,43 +2,22 @@
 
 namespace {{ namespace }};
 
-use Statamic\Facades\Site;
 use Tdwesten\StatamicBuilder\BaseGlobalSet;
 
 class {{ class }} extends BaseGlobalSet
 {
-    /**
-     * The handle for this global set
-     *
-     * Example: return 'footer';
-     */
     public static function handle(): string
     {
-        // TODO: Change to the correct global set handle
-
-        return 'footer';
+        return '{{ handle }}';
     }
 
-    /**
-     * The title for this global set
-     *
-     * Example: return 'Footer';
-     */
     public function title(): string
     {
-        // TODO: Change to the correct title
-
-        return 'Footer';
+        return '{{ class }}';
     }
 
-    /**
-     * The sites for this global set
-     *
-     * Example: return ['default'] or ['default', 'en', 'de'];
-     */
     public function sites(): array
     {
         return ['default'];
     }
-
 }

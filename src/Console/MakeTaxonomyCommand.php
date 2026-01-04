@@ -2,9 +2,7 @@
 
 namespace Tdwesten\StatamicBuilder\Console;
 
-use Illuminate\Console\GeneratorCommand as BaseGeneratorCommand;
-
-class MakeTaxonomyCommand extends BaseGeneratorCommand
+class MakeTaxonomyCommand extends GeneratorCommand
 {
     /**
      * @var string

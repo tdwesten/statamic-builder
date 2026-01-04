@@ -115,3 +115,24 @@ it('can render the same output', function (): void {
 
     expect($field->toArray())->toBe($output);
 });
+
+test('can set collapse to false', function (): void {
+    $field = Replicator::make('replicator', [])
+        ->collapse(\Tdwesten\StatamicBuilder\Enums\CollapseOption::False);
+
+    expect($field->toArray()['field']['collapse'])->toBe(false);
+});
+
+test('can set collapse to true', function (): void {
+    $field = Replicator::make('replicator', [])
+        ->collapse(\Tdwesten\StatamicBuilder\Enums\CollapseOption::True);
+
+    expect($field->toArray()['field']['collapse'])->toBe(true);
+});
+
+test('can set collapse to accordion', function (): void {
+    $field = Replicator::make('replicator', [])
+        ->collapse(\Tdwesten\StatamicBuilder\Enums\CollapseOption::Accordion);
+
+    expect($field->toArray()['field']['collapse'])->toBe('accordion');
+});

@@ -5,7 +5,6 @@ namespace Tdwesten\StatamicBuilder\Stache\Stores;
 use Illuminate\Support\Collection;
 use Statamic\Stache\Stores\GlobalsStore as StatamicGlobalsStore;
 use Tdwesten\StatamicBuilder\BaseGlobalSet;
-use Tdwesten\StatamicBuilder\BaseTaxonomy;
 
 class GlobalsStore extends StatamicGlobalsStore
 {
@@ -15,12 +14,12 @@ class GlobalsStore extends StatamicGlobalsStore
         $globals = $globals ?? collect([]);
 
         if ($globals->has($key)) {
-            /** @var BaseTaxonomy */
+            /** @var BaseGlobalSet */
             $globalSet = $globals->get($key);
-            $globalSet = new $globalSet($key);
+            $globalSet = new $globalSet;
 
             if (! $globalSet instanceof BaseGlobalSet) {
-                throw new \Exception("Collection [{$key}] must extend [Tdwesten\StatamicBuilder\BaseGlobalSet]");
+                throw new \Exception("Global Set [{$key}] must extend [Tdwesten\StatamicBuilder\BaseGlobalSet]");
             }
 
             $item = $globalSet->register();
@@ -37,8 +36,8 @@ class GlobalsStore extends StatamicGlobalsStore
     {
         $this->handleFileChanges();
 
-        return collect($keys)->map(function ($key) use ($globals) {
-            return $this->getItem($key, $globals);
+        return collect($keys)->mapWithKeys(function ($key) use ($globals) {
+            return [$key => $this->getItem($key, $globals)];
         });
     }
 }

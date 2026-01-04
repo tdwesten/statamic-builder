@@ -16,16 +16,25 @@ abstract class Blueprint implements BlueprintInterface
 
     protected $hidden = false;
 
-    public function __construct(string $handle)
+    public function __construct(?string $handle = null)
     {
-        $this->handle = $handle;
+        $this->handle = $handle ?? static::handle();
         $this->tabs = collect($this->registerTabs());
     }
 
-    public static function make(string $handle)
+    public static function handle(): string
+    {
+        return '';
+    }
+
+    public static function blueprintNamespace(): string
+    {
+        return '';
+    }
+
+    public static function make(?string $handle = null)
     {
         return new static($handle);
-
     }
 
     public function toArray()

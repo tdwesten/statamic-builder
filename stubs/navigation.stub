@@ -2,56 +2,32 @@
 
 namespace {{ namespace }};
 
-use Tdwesten\StatamicBuilder\Blueprint;
-use Tdwesten\StatamicBuilder\FieldTypes\Section;
-use Tdwesten\StatamicBuilder\FieldTypes\Text;
-use Tdwesten\StatamicBuilder\FieldTypes\Tab;
+use Tdwesten\StatamicBuilder\BaseNavigation;
 
-class {{ class }} extends Blueprint
+class {{ class }} extends BaseNavigation
 {
-    /**
-     * The blueprint title.
-     *
-     * @var string
-     */
-    public $title = '';
-
-    /**
-     * The blueprint handle.
-     *
-     * @var string
-     */
-    public $handle = '';
-
-    /**
-     * Hide the blueprint from the blueprint dropdown.
-     *
-     * @var bool
-     */
-    public $hidden = false;
-
-    public function registerTabs(): Array
+    public static function handle(): string
     {
-        return [
-            Tab::make('General', [
-                Section::make('General', [
-                    Text::make('title')
-                        ->displayName('Title')
-                        ->required()
-                ]),
-            ]),
-        ];
+        return '{{ handle }}';
     }
 
-    public function toArray()
+    public function title(): string
     {
-        $blueprint = [
-            'title' => $this->title,
-            'hide' => $this->hidden,
-            'tabs' => $this->tabsToArray(),
-            'handle' => $this->handle
-        ];
+        return '{{ class }}';
+    }
 
-        return $blueprint;
+    public function collections(): array
+    {
+        return [];
+    }
+
+    public function expectsRoot(): bool
+    {
+        return false;
+    }
+
+    public function maxDepth(): ?int
+    {
+        return null;
     }
 }

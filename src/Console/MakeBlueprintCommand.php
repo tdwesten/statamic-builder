@@ -2,9 +2,7 @@
 
 namespace Tdwesten\StatamicBuilder\Console;
 
-use Illuminate\Console\GeneratorCommand as BaseGeneratorCommand;
-
-class MakeBlueprintCommand extends BaseGeneratorCommand
+class MakeBlueprintCommand extends GeneratorCommand
 {
     /**
      * @var string

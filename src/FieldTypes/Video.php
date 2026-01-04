@@ -3,10 +3,12 @@
 namespace Tdwesten\StatamicBuilder\FieldTypes;
 
 use Illuminate\Support\Collection;
+use Tdwesten\StatamicBuilder\Contracts\DefaultValue;
 use Tdwesten\StatamicBuilder\Contracts\Makeble;
 
 class Video extends Field
 {
+    use DefaultValue;
     use Makeble;
 
     protected $type = 'video';
@@ -22,6 +24,7 @@ class Video extends Field
     {
         return collect([
             'placeholder' => $this->placeholder,
+            'default' => $this->default,
         ]);
     }
 

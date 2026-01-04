@@ -51,3 +51,32 @@ test('Has slugs', function (): void {
 
     expect($collection->slugs())->toBeTrue();
 });
+
+test('Has default values for optional methods', function (): void {
+    $collection = new TestCollection;
+
+    expect($collection->titleFormat())->toBeNull()
+        ->and($collection->mount())->toBeNull()
+        ->and($collection->date())->toBeFalse()
+        ->and($collection->template())->toBeNull()
+        ->and($collection->layout())->toBeNull()
+        ->and($collection->inject())->toBe([])
+        ->and($collection->searchIndex())->toBe('search_index')  // TestCollection overrides this
+        ->and($collection->revisionsEnabled())->toBeFalse()
+        ->and($collection->defaultPublishState())->toBeTrue()
+        ->and($collection->originBehavior())->toBe('select')
+        ->and($collection->structure())->toBe([  // TestCollection overrides this
+            'root' => false,
+            'slugs' => false,
+            'max_depth' => null,
+        ])
+        ->and($collection->sortBy())->toBeNull()
+        ->and($collection->sortDir())->toBeNull()
+        ->and($collection->taxonomies())->toBe([])
+        ->and($collection->propagate())->toBeNull()
+        ->and($collection->previewTargets())->toBe([])
+        ->and($collection->autosave())->toBeNull()
+        ->and($collection->futureDateBehavior())->toBeNull()
+        ->and($collection->pastDateBehavior())->toBeNull()
+        ->and($collection->visible())->toBeTrue();
+});

@@ -9,7 +9,9 @@ class ServiceProvider extends AddonServiceProvider
 {
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/builder.php', 'builder');
+        $this->mergeConfigFrom(__DIR__.'/../config/builder.php', 'statamic.builder');
+
+        (new Discovery)->discover();
 
         $this->bindRepositories();
 
@@ -49,6 +51,12 @@ class ServiceProvider extends AddonServiceProvider
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Assets\AssetContainerBlueprintController::class, function () {
             return new \Tdwesten\StatamicBuilder\Http\Controllers\AssetContainerBlueprintController(
+                app('request')
+            );
+        });
+
+        $this->app->bind(\Statamic\Http\Controllers\CP\Assets\AssetContainersController::class, function () {
+            return new \Tdwesten\StatamicBuilder\Http\Controllers\AssetContainersController(
                 app('request')
             );
         });
@@ -99,15 +107,23 @@ class ServiceProvider extends AddonServiceProvider
         $this->app->singleton(\Statamic\Stache\Stores\GlobalsStore::class, function () {
             return new \Tdwesten\StatamicBuilder\Stache\Stores\GlobalsStore(app('stache'));
         });
+
+        $this->app->singleton(\Statamic\Stache\Stores\NavigationStore::class, function () {
+            return new \Tdwesten\StatamicBuilder\Stache\Stores\NavigationStore(app('stache'));
+        });
     }
 
     protected function bindRepositories()
     {
-        $this->app->singleton(\Statamic\Stache\Repositories\AssetContainerRepository::class, function () {
+        $this->app->singleton(\Statamic\Contracts\Assets\AssetContainerRepository::class, function () {
             return new \Tdwesten\StatamicBuilder\Repositories\AssetContainerRepository(app('stache'));
         });
 
-        $this->app->singleton(\Statamic\Stache\Repositories\GlobalRepository::class, function () {
+        $this->app->singleton(\Statamic\Contracts\Globals\GlobalRepository::class, function () {
+            if (config('statamic.eloquent-driver.globals.driver') === 'eloquent') {
+                return new \Tdwesten\StatamicBuilder\Repositories\EloquentGlobalRepository(app('stache'));
+            }
+
             return new \Tdwesten\StatamicBuilder\Repositories\GlobalRepository(app('stache'));
         });
 
@@ -116,7 +132,7 @@ class ServiceProvider extends AddonServiceProvider
                 ->setDirectory(resource_path('fieldsets'));
         });
 
-        $this->app->singleton(\Statamic\Stache\Repositories\NavigationRepository::class, function () {
+        $this->app->singleton(\Statamic\Contracts\Structures\NavigationRepository::class, function () {
             if (config('statamic.eloquent-driver.navigations.driver') === 'eloquent') {
                 return new \Tdwesten\StatamicBuilder\Repositories\EloquentNavigationRepository(app('stache'));
             }
@@ -161,6 +177,7 @@ class ServiceProvider extends AddonServiceProvider
                 Console\Export::class,
                 Console\MakeNavigationCommand::class,
                 Console\MakeSiteCommand::class,
+                Console\MakeAssetContainerCommand::class,
             ]);
         }
 

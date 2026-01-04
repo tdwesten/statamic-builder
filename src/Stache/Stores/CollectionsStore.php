@@ -36,8 +36,8 @@ class CollectionsStore extends StatamicCollectionsStore
     {
         $this->handleFileChanges();
 
-        return collect($keys)->map(function ($key) use ($collections) {
-            return $this->getItem($key, $collections);
+        return collect($keys)->mapWithKeys(function ($key) use ($collections) {
+            return [$key => $this->getItem($key, $collections)];
         });
     }
 }
