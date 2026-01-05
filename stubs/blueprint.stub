@@ -40,7 +40,7 @@ class {{ class }} extends Blueprint
         return '';
     }
 
-    public function registerTabs(): Array
+    public function registerTabs(): array
     {
         return [
             Tab::make('General', [
