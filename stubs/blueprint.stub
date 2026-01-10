@@ -3,6 +3,7 @@
 namespace {{ namespace }};
 
 use Tdwesten\StatamicBuilder\Blueprint;
+use Tdwesten\StatamicBuilder\Enums\ListableOption;
 use Tdwesten\StatamicBuilder\FieldTypes\Section;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 use Tdwesten\StatamicBuilder\FieldTypes\Tab;
@@ -47,6 +48,7 @@ class {{ class }} extends Blueprint
                 Section::make('General', [
                     Text::make('title')
                         ->displayName('Title')
+                        ->listable(ListableOption::True)
                         ->required()
                 ]),
             ]),
