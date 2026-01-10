@@ -19,7 +19,7 @@ compared to writing YAML files.
 - **Multi-site Support**: Define and manage multiple sites through PHP classes.
 - **Artisan Commands**: Generate blueprints, fieldsets, collections, and more with dedicated commands.
 - **YAML Export**: Export your PHP-defined components to standard Statamic YAML files.
-- **Eloquent Support**: Full support for Statamic Eloquent Driver for Global Sets and Navigations.
+- **Eloquent Support**: Full support for Statamic Eloquent Driver for Global Sets, Navigations and Collections (mount).
 
 ## Installation
 

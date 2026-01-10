@@ -5,6 +5,7 @@ namespace Tdwesten\StatamicBuilder\Console;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Statamic\Facades\YAML;
+use Tdwesten\StatamicBuilder\BaseCollection;
 
 class Export extends Command
 {
@@ -16,6 +17,8 @@ class Export extends Command
 
     public function handle()
     {
+        BaseCollection::$isExporting = true;
+
         $this->line('Exporting blueprints and fieldsets...');
 
         $this->newLine();

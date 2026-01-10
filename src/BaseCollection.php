@@ -7,6 +7,8 @@ use Statamic\Facades\Site;
 
 abstract class BaseCollection
 {
+    public static $isExporting = false;
+
     abstract public static function handle(): string;
 
     public function title(): string
@@ -32,6 +34,25 @@ abstract class BaseCollection
     public function mount(): ?string
     {
         return null;
+    }
+
+    public function resolveMount(): ?string
+    {
+        $mount = $this->mount();
+
+        if (self::$isExporting) {
+            return $mount;
+        }
+
+        if (config('statamic.eloquent-driver.entries.driver') === 'eloquent' && $mount) {
+            $entry = \Statamic\Facades\Entry::findByUri($mount);
+
+            if ($entry) {
+                return $entry->id();
+            }
+        }
+
+        return $mount;
     }
 
     public function date(): bool
@@ -137,7 +158,7 @@ abstract class BaseCollection
             ->routes($this->route())
             ->requiresSlugs($this->slugs())
             ->titleFormats($this->titleFormat())
-            ->mount($this->mount())
+            ->mount($this->resolveMount())
             ->dated($this->date())
             ->sites($this->sites())
             ->template($this->template())
