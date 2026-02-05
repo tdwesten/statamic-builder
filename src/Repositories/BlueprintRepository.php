@@ -74,6 +74,10 @@ class BlueprintRepository extends StatamicBlueprintRepository
 
     public static function findBlueprint($namespace, $handle): ?Blueprint
     {
+        if ($namespace === null) {
+            return null;
+        }
+
         $registeredBlueprints = config('statamic.builder.blueprints', []);
 
         $namespace = str_replace('/', '.', $namespace);
