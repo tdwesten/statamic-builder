@@ -48,11 +48,23 @@ abstract class BaseAssetContainer
         $container = StatamicAssetContainer::make($this->handle())
             ->title($this->title())
             ->disk($this->disk())
-            ->allowUploads($this->allowUploads())
-            ->allowMoving($this->allowMoving())
-            ->allowRenaming($this->allowRenaming())
-            ->createFolders($this->createFolders())
             ->searchIndex($this->searchIndex());
+
+        if (method_exists($container, 'allowUploads')) {
+            $container->allowUploads($this->allowUploads());
+        }
+
+        if (method_exists($container, 'allowMoving')) {
+            $container->allowMoving($this->allowMoving());
+        }
+
+        if (method_exists($container, 'allowRenaming')) {
+            $container->allowRenaming($this->allowRenaming());
+        }
+
+        if (method_exists($container, 'createFolders')) {
+            $container->createFolders($this->createFolders());
+        }
 
         return $container;
     }

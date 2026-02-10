@@ -7,7 +7,7 @@ use Tdwesten\StatamicBuilder\Repositories\NavigationRepository;
 use Tests\Helpers\TestNavigation;
 use Tests\Helpers\TestNavigationBlueprint;
 
-test('it shows the not editable view when editing a builder defined navigation', function () {
+test('it shows the not editable view when editing a builder defined navigation', function (): void {
     config(['app.key' => 'base64:m97Vl6m1xj5qVyXWjXWjXWjXWjXWjXWjXWjXWjXWjXU=']);
     config(['statamic.builder.navigations' => [TestNavigation::class]]);
 
@@ -25,7 +25,7 @@ test('it shows the not editable view when editing a builder defined navigation',
         ->assertViewHas('type', 'Navigation');
 });
 
-test('it shows the not editable view when editing a builder defined navigation blueprint', function () {
+test('it shows the not editable view when editing a builder defined navigation blueprint', function (): void {
     config(['app.key' => 'base64:m97Vl6m1xj5qVyXWjXWjXWjXWjXWjXWjXWjXWjXWjXU=']);
     config(['statamic.builder.blueprints' => [
         'navigation' => [
@@ -36,13 +36,13 @@ test('it shows the not editable view when editing a builder defined navigation b
     $user = User::make()->makeSuper()->save();
 
     $this->actingAs($user)
-        ->get(cp_route('navigation.blueprint.edit', 'test_navigation'))
+        ->get(cp_route('blueprints.navigation.edit', 'test_navigation'))
         ->assertStatus(200)
         ->assertViewIs('statamic-builder::not-editable')
         ->assertViewHas('type', 'Blueprint');
 });
 
-test('it shows the not editable view when editing a builder defined navigation with eloquent repository', function () {
+test('it shows the not editable view when editing a builder defined navigation with eloquent repository', function (): void {
     config(['app.key' => 'base64:m97Vl6m1xj5qVyXWjXWjXWjXWjXWjXWjXWjXWjXWjXU=']);
     config(['statamic.builder.navigations' => [TestNavigation::class]]);
     config(['statamic.eloquent-driver.navigations.driver' => 'eloquent']);

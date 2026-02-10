@@ -8,7 +8,7 @@ The Statamic Builder speeds up building Statamic sites by providing a fluent, PH
 This project is a Statamic addon that integrates deeply with Statamic's core systems and provides a fluent API for
 building blueprints and fieldsets.
 
-- **Requirements**: PHP 8.2+, Statamic 5.4+, Laravel 10/11/12.
+- **Requirements**: PHP 8.4+, Statamic 6.0+, Laravel 12.
 - **Installation**:
   ```bash
   composer install

@@ -18,7 +18,7 @@ class TestCollectionWithMount extends BaseCollection
     }
 }
 
-test('it resolves mount handle to UUID when eloquent driver is used', function () {
+test('it resolves mount handle to UUID when eloquent driver is used', function (): void {
     // 1. Mock the config to use eloquent driver
     config(['statamic.eloquent-driver.entries.driver' => 'eloquent']);
 
@@ -36,7 +36,7 @@ test('it resolves mount handle to UUID when eloquent driver is used', function (
     expect($resolvedMount)->toBe('uuid-1234');
 });
 
-test('it uses handle for mount when stache driver is used', function () {
+test('it uses handle for mount when stache driver is used', function (): void {
     // 1. Mock the config to use stache driver (default)
     config(['statamic.eloquent-driver.entries.driver' => 'file']);
 
@@ -46,7 +46,7 @@ test('it uses handle for mount when stache driver is used', function () {
     expect($resolvedMount)->toBe('mount-page');
 });
 
-test('it uses handle for mount when exporting', function () {
+test('it uses handle for mount when exporting', function (): void {
     // 1. Mock the config to use eloquent driver
     config(['statamic.eloquent-driver.entries.driver' => 'eloquent']);
 

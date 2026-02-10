@@ -31,9 +31,9 @@ composer require tdwesten/statamic-builder
 
 ## Requirements
 
-- PHP 8.2+
-- Statamic 5.4+
-- Laravel 11 or 12
+- PHP 8.4+
+- Statamic 6.0+
+- Laravel 12
 
 ## Configuration
 

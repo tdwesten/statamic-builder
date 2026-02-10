@@ -36,8 +36,11 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
 
     public function all(): Collection
     {
-        // Get database navigations
-        $databaseNavigations = parent::all();
+        $databaseNavigations = collect();
+
+        if (app()->bound('statamic.eloquent.navigations.model')) {
+            $databaseNavigations = parent::all();
+        }
 
         // Get builder-registered navigation instances from classes, keyed by handle
         $customNavigations = $this->navigations->map(function ($navigation) {
@@ -60,7 +63,6 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
                 return $nav;
             });
 
-        // Combine all - builder classes take highest precedence
         return $databaseNavigations->merge($builderKeys)->merge($customNavigations);
     }
 
