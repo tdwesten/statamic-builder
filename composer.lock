@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff45d295b9a91f893b9db652cc6cbcd9",
+    "content-hash": "9002f6323d874ab456cac1c19346d8fd",
     "packages": [
         {
             "name": "ajthinking/archetype",
@@ -5071,16 +5071,16 @@
         },
         {
             "name": "statamic/cms",
-            "version": "v6.0.0-beta.1",
+            "version": "v6.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/statamic/cms.git",
-                "reference": "166497eb2c56e948a13a8697a9f2afac1b30db59"
+                "reference": "9eae8f957a9ccfcce19d9e61f4b667eb8712342a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/statamic/cms/zipball/166497eb2c56e948a13a8697a9f2afac1b30db59",
-                "reference": "166497eb2c56e948a13a8697a9f2afac1b30db59",
+                "url": "https://api.github.com/repos/statamic/cms/zipball/9eae8f957a9ccfcce19d9e61f4b667eb8712342a",
+                "reference": "9eae8f957a9ccfcce19d9e61f4b667eb8712342a",
                 "shasum": ""
             },
             "require": {
@@ -5113,7 +5113,7 @@
                 "symfony/yaml": "^7.0.3",
                 "ueberdosis/tiptap-php": "^2.0",
                 "voku/portable-ascii": "^2.0.2",
-                "web-auth/webauthn-lib": "^5.2",
+                "web-auth/webauthn-lib": "~5.2.0",
                 "wilderborn/partyline": "^1.0"
             },
             "conflict": {
@@ -5192,7 +5192,7 @@
             ],
             "support": {
                 "issues": "https://github.com/statamic/cms/issues",
-                "source": "https://github.com/statamic/cms/tree/v6.0.0-beta.1"
+                "source": "https://github.com/statamic/cms/tree/v6.2.4"
             },
             "funding": [
                 {
@@ -5200,7 +5200,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-12T19:44:17+00:00"
+            "time": "2026-02-06T01:32:06+00:00"
         },
         {
             "name": "statamic/stringy",
@@ -12796,7 +12796,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "statamic/cms": 10,
         "statamic/eloquent-driver": 20
     },
     "prefer-stable": false,
