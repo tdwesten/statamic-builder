@@ -1,55 +1,55 @@
 {
-    "name": "tdwesten/statamic-builder",
-    "description": "A fluent blueprint and fieldset builder for Statamic.",
+  "name": "tdwesten/statamic-builder",
+  "description": "A fluent blueprint and fieldset builder for Statamic.",
   "version": "v2.0.0",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Tdwesten\\StatamicBuilder\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests"
-        }
-    },
-    "extra": {
-        "statamic": {
-            "name": "Statamic Builder",
-            "description": "Statamic Builder addon"
-        },
-        "laravel": {
-            "providers": [
-                "Tdwesten\\StatamicBuilder\\ServiceProvider"
-            ]
-        }
-    },
-    "scripts": {
-        "test": [
-            "./vendor/bin/pest && ./vendor/bin/rector"
-        ],
-        "generate-field": [
-            "php field-generator/Generator.php"
-        ]
-    },
-    "require": {
-        "php": "^8.2",
-      "illuminate/support": "^11.0|^12.0",
-      "laravel/framework": "^11.0|^12.0",
-        "statamic/cms": "^5.4"
-    },
-    "require-dev": {
-        "pestphp/pest": "*",
-        "laravel/pint": "^1.2",
-        "orchestra/testbench": "^9.0",
-        "pestphp/pest-plugin-laravel": "*",
-        "statamic/eloquent-driver": "^4.16",
-        "rector/rector": "^2.0"
-    },
-    "config": {
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "pixelfear/composer-dist-plugin": true
-        }
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Tdwesten\\StatamicBuilder\\": "src"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "statamic": {
+      "name": "Statamic Builder",
+      "description": "Statamic Builder addon"
+    },
+    "laravel": {
+      "providers": [
+        "Tdwesten\\StatamicBuilder\\ServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "test": [
+      "./vendor/bin/pest && ./vendor/bin/rector"
+    ],
+    "generate-field": [
+      "php field-generator/Generator.php"
+    ]
+  },
+  "require": {
+    "php": "^8.3",
+    "illuminate/support": "^12.0",
+    "laravel/framework": "^12.0",
+    "statamic/cms": "v6.0.0-beta.1"
+  },
+  "require-dev": {
+    "pestphp/pest": "^4.1",
+    "laravel/pint": "^1.2",
+    "orchestra/testbench": "^10.0",
+    "pestphp/pest-plugin-laravel": "*",
+    "statamic/eloquent-driver": "dev-master",
+    "rector/rector": "^2.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "pixelfear/composer-dist-plugin": true
+    }
+  }
 }

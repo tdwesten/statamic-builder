@@ -25,6 +25,8 @@ class Bard extends Field
 
     protected $inline;
 
+    protected $inline_hard_breaks = false;
+
     protected $toolbar_mode;
 
     protected $reading_time = false;
@@ -76,6 +78,7 @@ class Bard extends Field
             'fullscreen' => $this->fullscreen,
             'save_html' => $this->save_html,
             'inline' => $this->inline?->toArray(),
+            'inline_hard_breaks' => $this->inline_hard_breaks,
             'toolbar_mode' => $this->toolbar_mode?->value(),
             'reading_time' => $this->reading_time,
             'word_count' => $this->word_count,
@@ -160,6 +163,13 @@ class Bard extends Field
     public function inline(BardInlineOption $inline)
     {
         $this->inline = $inline;
+
+        return $this;
+    }
+
+    public function inlineHardBreaks(bool $inline_hard_breaks = true)
+    {
+        $this->inline_hard_breaks = $inline_hard_breaks;
 
         return $this;
     }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Cache;
 use Tdwesten\StatamicBuilder\Sites\Sites;
 use Tests\Helpers\TestSite;
 
-beforeEach(function () {
+beforeEach(function (): void {
     Cache::forget('statamic.builder.sites');
 });
 

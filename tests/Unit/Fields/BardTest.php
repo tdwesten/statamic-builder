@@ -67,9 +67,11 @@ test('you can set inline to false', function (): void {
     expect($field->toArray()['field']['inline'])->toBe(false);
 });
 
-test('you can set inline to break (accordion)', function (): void {
+test('you can set inline with hard breaks', function (): void {
     $field = new \Tdwesten\StatamicBuilder\FieldTypes\Bard('title');
-    $field->inline(BardInlineOption::Break);
+    $field->inline(BardInlineOption::True)
+        ->inlineHardBreaks(true);
 
-    expect($field->toArray()['field']['inline'])->toBe('accordion');
+    expect($field->toArray()['field']['inline'])->toBe(true);
+    expect($field->toArray()['field']['inline_hard_breaks'])->toBe(true);
 });
