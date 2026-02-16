@@ -34,15 +34,15 @@
   },
   "require": {
     "php": "^8.3",
-    "illuminate/support": "^12.0",
-    "laravel/framework": "^12.0",
+    "illuminate/support": "^11.0|^12.0",
+    "laravel/framework": "^11.0|^12.0",
     "statamic/cms": "^6.0"
   },
   "require-dev": {
     "pestphp/pest": "^4.1",
     "laravel/pint": "^1.2",
-    "orchestra/testbench": "^10.0",
-    "pestphp/pest-plugin-laravel": "*",
+    "orchestra/testbench": "^9.0|^10.0",
+    "pestphp/pest-plugin-laravel": "^4.0",
     "statamic/eloquent-driver": "dev-master",
     "rector/rector": "^2.0"
   },

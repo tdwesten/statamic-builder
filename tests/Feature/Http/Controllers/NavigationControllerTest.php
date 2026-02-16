@@ -36,7 +36,7 @@ test('it shows the not editable view when editing a builder defined navigation b
     $user = User::make()->makeSuper()->save();
 
     $this->actingAs($user)
-        ->get(cp_route('navigation.blueprint.edit', 'test_navigation'))
+        ->get(cp_route('blueprints.navigation.edit', 'test_navigation'))
         ->assertStatus(200)
         ->assertViewIs('statamic-builder::not-editable')
         ->assertViewHas('type', 'Blueprint');
@@ -46,6 +46,11 @@ test('it shows the not editable view when editing a builder defined navigation w
     config(['app.key' => 'base64:m97Vl6m1xj5qVyXWjXWjXWjXWjXWjXWjXWjXWjXWjXU=']);
     config(['statamic.builder.navigations' => [TestNavigation::class]]);
     config(['statamic.eloquent-driver.navigations.driver' => 'eloquent']);
+    config(['statamic.eloquent-driver.navigations.model' => \Statamic\Eloquent\Structures\NavModel::class]);
+
+    app()->bind('statamic.eloquent.navigations.model', function () {
+        return config('statamic.eloquent-driver.navigations.model');
+    });
 
     // Re-initialize the repository with the new config
     app()->singleton(\Statamic\Contracts\Structures\NavigationRepository::class, function () {
