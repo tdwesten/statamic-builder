@@ -36,8 +36,12 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
 
     public function all(): Collection
     {
-        // Get database navigations
-        $databaseNavigations = parent::all();
+        // Get database navigations, gracefully handling missing table
+        try {
+            $databaseNavigations = parent::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            $databaseNavigations = collect();
+        }
 
         // Get builder-registered navigation instances from classes, keyed by handle
         $customNavigations = $this->navigations->map(function ($navigation) {

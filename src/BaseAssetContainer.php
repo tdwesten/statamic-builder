@@ -18,26 +18,6 @@ abstract class BaseAssetContainer
         return config('filesystems.default');
     }
 
-    public function allowUploads(): bool
-    {
-        return true;
-    }
-
-    public function allowMoving(): bool
-    {
-        return true;
-    }
-
-    public function allowRenaming(): bool
-    {
-        return true;
-    }
-
-    public function createFolders(): bool
-    {
-        return true;
-    }
-
     public function searchIndex(): ?string
     {
         return null;
@@ -48,10 +28,6 @@ abstract class BaseAssetContainer
         $container = StatamicAssetContainer::make($this->handle())
             ->title($this->title())
             ->disk($this->disk())
-            ->allowUploads($this->allowUploads())
-            ->allowMoving($this->allowMoving())
-            ->allowRenaming($this->allowRenaming())
-            ->createFolders($this->createFolders())
             ->searchIndex($this->searchIndex());
 
         return $container;
