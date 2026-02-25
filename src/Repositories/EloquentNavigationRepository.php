@@ -64,15 +64,20 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
                 return $nav;
             });
 
-        // Combine all - builder classes take highest precedence
-        return $databaseNavigations->merge($builderKeys)->merge($customNavigations);
+        // Ensure the collection is keyed by navigation handle so find/findByHandle work.
+        return $databaseNavigations
+            ->merge($builderKeys)
+            ->merge($customNavigations)
+            ->keyBy(function ($nav) {
+                return method_exists($nav, 'handle') ? $nav->handle() : null;
+            })
+            ->filter();
     }
 
     public function find($id): ?NavContract
     {
-        return $this->all()->filter(function ($value, $key) use ($id) {
-            return $key === $id;
-        })->first();
+         // `all()` is keyed by handle.
+        return $this->all()->get($id);
     }
 
     public function findByHandle($handle): ?NavContract
