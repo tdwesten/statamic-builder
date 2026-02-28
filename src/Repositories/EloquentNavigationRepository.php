@@ -44,9 +44,9 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
         }
 
         // Get builder-registered navigation instances from classes, keyed by handle
-        $customNavigations = $this->navigations->map(function ($navigation) {
-            return (new $navigation)->register();
-        });
+        $customNavigations = $this->navigations
+            ->map(fn ($navigation) => (new $navigation)->register())
+            ->keyBy(fn ($nav) => $nav->handle());
 
         $blueprints = BlueprintRepository::findBlueprintInNamespace('navigation');
 
@@ -64,15 +64,18 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
                 return $nav;
             });
 
-        // Combine all - builder classes take highest precedence
-        return $databaseNavigations->merge($builderKeys)->merge($customNavigations);
+        // Combine all - builder classes take highest precedence.
+        // Ensure the collection is keyed by navigation handle so find/findByHandle work.
+        return $databaseNavigations
+            ->merge($builderKeys)
+            ->merge($customNavigations)
+            ->keyBy(fn ($nav) => $nav->handle());
     }
 
     public function find($id): ?NavContract
     {
-        return $this->all()->filter(function ($value, $key) use ($id) {
-            return $key === $id;
-        })->first();
+        // `all()` is keyed by handle.
+        return $this->all()->get($id);
     }
 
     public function findByHandle($handle): ?NavContract
