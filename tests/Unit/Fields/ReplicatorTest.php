@@ -1,5 +1,6 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Enums\CollapseOption;
 use Tdwesten\StatamicBuilder\Enums\Icon;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
 use Tdwesten\StatamicBuilder\FieldTypes\Replicator;
@@ -8,7 +9,7 @@ use Tdwesten\StatamicBuilder\FieldTypes\SetGroup;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Replicator('title');
+    $field = new Replicator('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -36,7 +37,7 @@ it('can render to a array', function (): void {
 });
 
 it('can have sets', function (): void {
-    $field = \Tdwesten\StatamicBuilder\FieldTypes\Replicator::make('replicator_veld', [
+    $field = Replicator::make('replicator_veld', [
         SetGroup::make('nieuwe_set_groep', [
             Set::make('set_group_handel', [
                 Text::make('text_veld')->displayName('Tekst Veld'),
@@ -118,21 +119,21 @@ it('can render the same output', function (): void {
 
 test('can set collapse to false', function (): void {
     $field = Replicator::make('replicator', [])
-        ->collapse(\Tdwesten\StatamicBuilder\Enums\CollapseOption::False);
+        ->collapse(CollapseOption::False);
 
     expect($field->toArray()['field']['collapse'])->toBe(false);
 });
 
 test('can set collapse to true', function (): void {
     $field = Replicator::make('replicator', [])
-        ->collapse(\Tdwesten\StatamicBuilder\Enums\CollapseOption::True);
+        ->collapse(CollapseOption::True);
 
     expect($field->toArray()['field']['collapse'])->toBe(true);
 });
 
 test('can set collapse to accordion', function (): void {
     $field = Replicator::make('replicator', [])
-        ->collapse(\Tdwesten\StatamicBuilder\Enums\CollapseOption::Accordion);
+        ->collapse(CollapseOption::Accordion);
 
     expect($field->toArray()['field']['collapse'])->toBe('accordion');
 });

@@ -2,10 +2,14 @@
 
 namespace Tdwesten\StatamicBuilder\Repositories;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Collection;
 use Statamic\Contracts\Structures\Nav as NavContract;
 use Statamic\Eloquent\Structures\NavigationRepository as StatamicNavigationRepository;
+use Statamic\Facades\Nav;
+use Statamic\Facades\Site;
 use Statamic\Stache\Stache;
+use Tdwesten\StatamicBuilder\BaseNavigation;
 
 class EloquentNavigationRepository extends StatamicNavigationRepository
 {
@@ -39,7 +43,7 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
         // Get database navigations, gracefully handling missing table
         try {
             $databaseNavigations = parent::all();
-        } catch (\Illuminate\Database\QueryException $e) {
+        } catch (QueryException $e) {
             $databaseNavigations = collect();
         }
 
@@ -56,10 +60,10 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
             })
             ->map(function ($value) {
                 $contents = $value->toArray();
-                $nav = \Statamic\Facades\Nav::make($value->getHandle())
+                $nav = Nav::make($value->getHandle())
                     ->title($contents['title'] ?? null);
 
-                $nav->sites(\Statamic\Facades\Site::all()->map->handle()->all());
+                $nav->sites(Site::all()->map->handle()->all());
 
                 return $nav;
             });
@@ -83,7 +87,7 @@ class EloquentNavigationRepository extends StatamicNavigationRepository
         return $this->find($handle);
     }
 
-    public function getNavigationByHandle($handle): ?\Tdwesten\StatamicBuilder\BaseNavigation
+    public function getNavigationByHandle($handle): ?BaseNavigation
     {
         $navigation = $this->navigations->get($handle, null);
 

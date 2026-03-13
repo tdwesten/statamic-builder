@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use Illuminate\Support\Facades\Route;
 use Statamic\Facades\AssetContainer;
 use Statamic\Facades\User;
 use Tdwesten\StatamicBuilder\BaseAssetContainer;
@@ -33,7 +34,7 @@ test('it shows not editable view for builder defined asset container blueprint',
     $container = AssetContainer::make('test_assets')->save();
 
     // Skip test if route doesn't exist in Statamic v6
-    if (! \Illuminate\Support\Facades\Route::has('statamic.cp.asset-containers.blueprint.edit')) {
+    if (! Route::has('statamic.cp.asset-containers.blueprint.edit')) {
         $this->markTestSkipped('Route statamic.cp.asset-containers.blueprint.edit does not exist in Statamic v6');
     }
 

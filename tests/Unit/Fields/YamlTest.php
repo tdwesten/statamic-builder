@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Yaml;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Yaml('title');
+    $field = new Yaml('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,7 +32,7 @@ it('can render to a array', function (): void {
 });
 
 it('can have a default', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Yaml('title');
+    $field = new Yaml('title');
     $field->default('
         key: value
     ');

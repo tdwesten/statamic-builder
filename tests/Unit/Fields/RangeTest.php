@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Range;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Range('title');
+    $field = new Range('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,35 +32,35 @@ it('can render to a array', function (): void {
 });
 
 test('can have a min', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Range('title');
+    $field = new Range('title');
     $field->min(10);
 
     expect($field->toArray()['field']['min'])->toBe(10);
 });
 
 test('can have a max', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Range('title');
+    $field = new Range('title');
     $field->max(100);
 
     expect($field->toArray()['field']['max'])->toBe(100);
 });
 
 test('can have a step', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Range('title');
+    $field = new Range('title');
     $field->step(5);
 
     expect($field->toArray()['field']['step'])->toBe(5);
 });
 
 test('can have a prepend', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Range('title');
+    $field = new Range('title');
     $field->prepend('Prepend');
 
     expect($field->toArray()['field']['prepend'])->toBe('Prepend');
 });
 
 test('can have a append', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Range('title');
+    $field = new Range('title');
     $field->append('Append');
 
     expect($field->toArray()['field']['append'])->toBe('Append');

@@ -1,6 +1,8 @@
 <?php
 
+use Statamic\Contracts\Structures\NavigationRepository;
 use Statamic\Facades\Nav;
+use Tdwesten\StatamicBuilder\Repositories\NavigationRepository as BuilderNavigationRepository;
 use Tests\Helpers\TestNavigation;
 
 beforeEach(function (): void {
@@ -21,8 +23,8 @@ test('::findByHandle finds builder-registered navigation', function (): void {
     config(['statamic.builder.navigations' => [TestNavigation::class]]);
 
     // Re-initialize the repository with the new config
-    app()->singleton(\Statamic\Contracts\Structures\NavigationRepository::class, function () {
-        return new \Tdwesten\StatamicBuilder\Repositories\NavigationRepository(app('stache'));
+    app()->singleton(NavigationRepository::class, function () {
+        return new BuilderNavigationRepository(app('stache'));
     });
 
     $navigation = Nav::findByHandle('test_navigation');
@@ -36,8 +38,8 @@ test('::all includes builder-registered navigations', function (): void {
     config(['statamic.builder.navigations' => [TestNavigation::class]]);
 
     // Re-initialize the repository with the new config
-    app()->singleton(\Statamic\Contracts\Structures\NavigationRepository::class, function () {
-        return new \Tdwesten\StatamicBuilder\Repositories\NavigationRepository(app('stache'));
+    app()->singleton(NavigationRepository::class, function () {
+        return new BuilderNavigationRepository(app('stache'));
     });
 
     $navigations = Nav::all();

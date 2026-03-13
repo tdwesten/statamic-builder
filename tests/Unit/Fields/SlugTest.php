@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Slug;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Slug('title');
+    $field = new Slug('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,21 +32,21 @@ it('can render to a array', function (): void {
 });
 
 test('it can set from', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Slug('title');
+    $field = new Slug('title');
     $field->from('from');
 
     expect($field->toArray()['field']['from'])->toBe('from');
 });
 
 test('it can set generate', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Slug('title');
+    $field = new Slug('title');
     $field->generate();
 
     expect($field->toArray()['field']['generate'])->toBe(true);
 });
 
 test('it can show regenerate', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Slug('title');
+    $field = new Slug('title');
     $field->showRegenerate();
 
     expect($field->toArray()['field']['show_regenerate'])->toBe(true);

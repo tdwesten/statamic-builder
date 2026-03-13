@@ -2,8 +2,11 @@
 
 namespace Tdwesten\StatamicBuilder;
 
+use Statamic\Entries\Collection;
 use Statamic\Facades\Collection as StatamicCollection;
+use Statamic\Facades\Entry;
 use Statamic\Facades\Site;
+use Statamic\Support\Str;
 
 abstract class BaseCollection
 {
@@ -13,7 +16,7 @@ abstract class BaseCollection
 
     public function title(): string
     {
-        return (string) \Statamic\Support\Str::of(static::handle())->title()->replace('_', ' ');
+        return (string) Str::of(static::handle())->title()->replace('_', ' ');
     }
 
     public function route(): null|string|array
@@ -45,7 +48,7 @@ abstract class BaseCollection
         }
 
         if (config('statamic.eloquent-driver.entries.driver') === 'eloquent' && $mount) {
-            $entry = \Statamic\Facades\Entry::findByUri($mount);
+            $entry = Entry::findByUri($mount);
 
             if ($entry) {
                 return $entry->id();
@@ -152,7 +155,7 @@ abstract class BaseCollection
 
     public function register()
     {
-        /** @var \Statamic\Entries\Collection */
+        /** @var Collection */
         $collection = StatamicCollection::make($this->handle())
             ->title($this->title())
             ->routes($this->route())

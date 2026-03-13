@@ -3,6 +3,7 @@
 namespace Tdwesten\StatamicBuilder;
 
 use Statamic\Facades\AssetContainer as StatamicAssetContainer;
+use Statamic\Support\Str;
 
 abstract class BaseAssetContainer
 {
@@ -10,7 +11,7 @@ abstract class BaseAssetContainer
 
     public function title(): string
     {
-        return (string) \Statamic\Support\Str::of(static::handle())->title()->replace('_', ' ');
+        return (string) Str::of(static::handle())->title()->replace('_', ' ');
     }
 
     public function disk(): string

@@ -1,8 +1,11 @@
 <?php
 
+use Tdwesten\StatamicBuilder\FieldTypes\Set;
+use Tdwesten\StatamicBuilder\FieldTypes\Text;
+
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Set('title', [
-        new \Tdwesten\StatamicBuilder\FieldTypes\Text('title'),
+    $field = new Set('title', [
+        new Text('title'),
     ]);
     $field->displayName('Display Name')
         ->instructions('Enter the title');

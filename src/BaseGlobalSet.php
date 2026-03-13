@@ -4,6 +4,7 @@ namespace Tdwesten\StatamicBuilder;
 
 use Statamic\Facades\GlobalSet as StatamicGlobalSet;
 use Statamic\Facades\Site;
+use Statamic\Support\Str;
 
 abstract class BaseGlobalSet
 {
@@ -11,7 +12,7 @@ abstract class BaseGlobalSet
 
     public function title(): string
     {
-        return (string) \Statamic\Support\Str::of(static::handle())->title()->replace('_', ' ');
+        return (string) Str::of(static::handle())->title()->replace('_', ' ');
     }
 
     public function sites(): array
@@ -25,7 +26,7 @@ abstract class BaseGlobalSet
         $global = StatamicGlobalSet::make($this->handle())
             ->title($this->title());
 
-        $sites = $this->sites() ?? [\Statamic\Facades\Site::default()->handle()];
+        $sites = $this->sites() ?? [Site::default()->handle()];
 
         foreach ($sites as $site) {
             if (! $global->in($site)) {

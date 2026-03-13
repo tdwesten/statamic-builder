@@ -1,6 +1,8 @@
 <?php
 
 use Statamic\Assets\AssetContainer as StatamicAssetContainer;
+use Statamic\Stache\Stache;
+use Statamic\Stache\Stores\AssetContainerStore;
 use Tdwesten\StatamicBuilder\Repositories\AssetContainerRepository;
 use Tests\Helpers\TestAssetContainer;
 
@@ -9,10 +11,10 @@ test('::all includes builder-registered asset containers', function (): void {
         TestAssetContainer::class,
     ]]);
 
-    $store = Mockery::mock(\Statamic\Stache\Stores\AssetContainerStore::class);
+    $store = Mockery::mock(AssetContainerStore::class);
     $store->shouldReceive('paths')->andReturn(collect());
 
-    $stache = Mockery::mock(\Statamic\Stache\Stache::class);
+    $stache = Mockery::mock(Stache::class);
     $stache->shouldReceive('store')->with('asset-containers')->andReturn($store);
 
     $repository = new AssetContainerRepository($stache);
@@ -26,8 +28,8 @@ test('can find by handle', function (): void {
         TestAssetContainer::class,
     ]]);
 
-    $stache = Mockery::mock(\Statamic\Stache\Stache::class);
-    $stache->shouldReceive('store')->with('asset-containers')->andReturn(Mockery::mock(\Statamic\Stache\Stores\AssetContainerStore::class));
+    $stache = Mockery::mock(Stache::class);
+    $stache->shouldReceive('store')->with('asset-containers')->andReturn(Mockery::mock(AssetContainerStore::class));
 
     $repository = new AssetContainerRepository($stache);
     $container = $repository->findByHandle('main_assets');

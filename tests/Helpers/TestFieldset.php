@@ -2,10 +2,11 @@
 
 namespace Tests\Helpers;
 
+use Tdwesten\StatamicBuilder\Fieldset;
 use Tdwesten\StatamicBuilder\FieldTypes\Link;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
-class TestFieldset extends \Tdwesten\StatamicBuilder\Fieldset
+class TestFieldset extends Fieldset
 {
     public function registerFields(): array
     {

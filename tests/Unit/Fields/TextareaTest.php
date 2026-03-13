@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Textarea;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Textarea('title');
+    $field = new Textarea('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,21 +32,21 @@ it('can render to a array', function (): void {
 });
 
 it('can have a character limit', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Textarea('title');
+    $field = new Textarea('title');
     $field->characterLimit(100);
 
     expect($field->toArray()['field']['character_limit'])->toBe(100);
 });
 
 it('can have a placeholder', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Textarea('title');
+    $field = new Textarea('title');
     $field->placeholder('Enter the title');
 
     expect($field->toArray()['field']['placeholder'])->toBe('Enter the title');
 });
 
 it('can have a default value', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Textarea('title');
+    $field = new Textarea('title');
     $field->default('Default value');
 
     expect($field->toArray()['field']['default'])->toBe('Default value');

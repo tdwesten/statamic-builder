@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Width;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Width('title');
+    $field = new Width('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,7 +32,7 @@ it('can render to a array', function (): void {
 });
 
 it('can have options', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Width('title');
+    $field = new Width('title');
     $field->options([
         25,
         33,
@@ -45,7 +46,7 @@ it('can have options', function (): void {
 });
 
 it('can have a default', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Width('title');
+    $field = new Width('title');
     $field->default(100);
 
     expect($field->toArray()['field']['default'])->toBe(100);

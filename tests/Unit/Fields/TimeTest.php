@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Time;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Time('title');
+    $field = new Time('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,7 +32,7 @@ it('can render to a array', function (): void {
 });
 
 it('can have seconds enabled', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Time('title');
+    $field = new Time('title');
     $field->secondsEnabled();
 
     expect($field->toArray()['field']['seconds_enabled'])->toBe(true);

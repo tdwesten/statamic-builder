@@ -4,6 +4,8 @@ namespace Tdwesten\StatamicBuilder;
 
 use Statamic\Facades\Nav as StatamicNav;
 use Statamic\Facades\Site;
+use Statamic\Structures\Nav;
+use Statamic\Support\Str;
 
 abstract class BaseNavigation
 {
@@ -11,7 +13,7 @@ abstract class BaseNavigation
 
     public function title(): string
     {
-        return (string) \Statamic\Support\Str::of(static::handle())->title()->replace('_', ' ');
+        return (string) Str::of(static::handle())->title()->replace('_', ' ');
     }
 
     public function collections(): array
@@ -36,7 +38,7 @@ abstract class BaseNavigation
 
     public function register()
     {
-        /** @var \Statamic\Structures\Nav */
+        /** @var Nav */
         $nav = StatamicNav::make($this->handle())
             ->title($this->title())
             ->collections($this->collections())

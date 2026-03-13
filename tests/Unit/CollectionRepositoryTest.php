@@ -1,6 +1,7 @@
 <?php
 
 use Statamic\Facades\Collection;
+use Statamic\Stache\Repositories\CollectionRepository;
 use Tests\Helpers\TestCollection;
 
 beforeEach(function (): void {
@@ -21,8 +22,8 @@ test('::findByHandle finds builder-registered collection', function (): void {
     config(['statamic.builder.collections' => [TestCollection::class]]);
 
     // Re-initialize the repository with the new config
-    app()->singleton(\Statamic\Stache\Repositories\CollectionRepository::class, function () {
-        return new \Tdwesten\StatamicBuilder\Repositories\CollectionRepository(app('stache'));
+    app()->singleton(CollectionRepository::class, function () {
+        return new Tdwesten\StatamicBuilder\Repositories\CollectionRepository(app('stache'));
     });
 
     $collection = Collection::findByHandle('shows');
@@ -36,8 +37,8 @@ test('::all includes builder-registered collections', function (): void {
     config(['statamic.builder.collections' => [TestCollection::class]]);
 
     // Re-initialize the repository with the new config
-    app()->singleton(\Statamic\Stache\Repositories\CollectionRepository::class, function () {
-        return new \Tdwesten\StatamicBuilder\Repositories\CollectionRepository(app('stache'));
+    app()->singleton(CollectionRepository::class, function () {
+        return new Tdwesten\StatamicBuilder\Repositories\CollectionRepository(app('stache'));
     });
 
     $collections = Collection::all();
@@ -48,7 +49,7 @@ test('::all includes builder-registered collections', function (): void {
 test('getCollectionByHandle returns null for non-existent collection', function (): void {
     config(['statamic.builder.collections' => []]);
 
-    $repository = new \Tdwesten\StatamicBuilder\Repositories\CollectionRepository(app('stache'));
+    $repository = new Tdwesten\StatamicBuilder\Repositories\CollectionRepository(app('stache'));
     $result = $repository->getCollectionByHandle('non-existent');
 
     expect($result)->toBeNull();

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Collection;
+use Tdwesten\StatamicBuilder\Fieldset;
 use Tdwesten\StatamicBuilder\FieldTypes\Group;
 use Tdwesten\StatamicBuilder\FieldTypes\Section;
 use Tdwesten\StatamicBuilder\FieldTypes\Tab;
@@ -8,12 +10,12 @@ use Tests\Helpers\EmptyTestBlueprint;
 use Tests\Helpers\TestFieldset;
 
 it('can be instantiated', function (): void {
-    $fieldset = new \Tdwesten\StatamicBuilder\Fieldset('test');
-    expect($fieldset)->toBeInstanceOf(\Tdwesten\StatamicBuilder\Fieldset::class);
+    $fieldset = new Fieldset('test');
+    expect($fieldset)->toBeInstanceOf(Fieldset::class);
 });
 
 it('can be registered', function (): void {
-    $fieldset = new \Tdwesten\StatamicBuilder\Fieldset('test');
+    $fieldset = new Fieldset('test');
     $fields = $fieldset->toArray();
 
     expect($fields)->toBeArray();
@@ -43,7 +45,7 @@ test('getFields returns collection of fields with prefix applied', function (): 
     $fieldset = TestFieldset::make('test_prefix');
     $fields = $fieldset->getFields();
 
-    expect($fields)->toBeInstanceOf(\Illuminate\Support\Collection::class)
+    expect($fields)->toBeInstanceOf(Collection::class)
         ->and($fields->count())->toBeGreaterThan(0);
 });
 

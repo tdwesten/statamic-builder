@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\OperatorOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Field;
 
 test('Can set conditional logic if', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
+    $field = new Field('title');
     $field
         ->type('text')
         ->if('title', OperatorOption::Equals, 'red');
@@ -14,7 +15,7 @@ test('Can set conditional logic if', function (): void {
 });
 
 test('Can set conditional logic if with multiple conditions', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
+    $field = new Field('title');
     $field
         ->type('text')
         ->if('title', OperatorOption::Equals, 'red')
@@ -27,7 +28,7 @@ test('Can set conditional logic if with multiple conditions', function (): void 
 });
 
 test('Can set conditional logic if any', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
+    $field = new Field('title');
     $field
         ->type('text')
         ->ifAny('title', OperatorOption::Equals, 'red');
@@ -38,7 +39,7 @@ test('Can set conditional logic if any', function (): void {
 });
 
 test('Can set conditional logic with custom if', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
+    $field = new Field('title');
     $field
         ->type('text')
         ->ifCustom('show_title === true && color === "red"');
@@ -49,7 +50,7 @@ test('Can set conditional logic with custom if', function (): void {
 });
 
 test('Can set conditional logic with custom if_any', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
+    $field = new Field('title');
     $field
         ->type('text')
         ->ifAnyCustom('show_title === true || color === "red"');
@@ -60,7 +61,7 @@ test('Can set conditional logic with custom if_any', function (): void {
 });
 
 test('Can set conditional logic unless', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
+    $field = new Field('title');
     $field
         ->type('text')
         ->unless('hide_title', OperatorOption::Equals, 'true');
@@ -71,7 +72,7 @@ test('Can set conditional logic unless', function (): void {
 });
 
 test('Can set conditional logic unless with multiple conditions', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
+    $field = new Field('title');
     $field
         ->type('text')
         ->unless('hide_title', OperatorOption::Equals, 'true')
@@ -84,7 +85,7 @@ test('Can set conditional logic unless with multiple conditions', function (): v
 });
 
 test('Can set conditional logic with custom unless', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Field('title');
+    $field = new Field('title');
     $field
         ->type('text')
         ->unlessCustom('hide_title === true');

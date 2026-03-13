@@ -2,9 +2,10 @@
 
 use Tdwesten\StatamicBuilder\Enums\UIModeOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\UserRoles;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\UserRoles('title');
+    $field = new UserRoles('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -32,14 +33,14 @@ it('can render to a array', function (): void {
 });
 
 it('can have max items', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\UserRoles('title');
+    $field = new UserRoles('title');
     $field->maxItems(5);
 
     expect($field->toArray()['field']['max_items'])->toBe(5);
 });
 
 it('can have a mode', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\UserRoles('title');
+    $field = new UserRoles('title');
     $field->mode(UIModeOption::Select);
 
     expect($field->toArray()['field']['mode'])->toBe(UIModeOption::Select->value);

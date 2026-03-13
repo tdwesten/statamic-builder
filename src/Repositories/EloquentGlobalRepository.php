@@ -5,6 +5,7 @@ namespace Tdwesten\StatamicBuilder\Repositories;
 use Illuminate\Support\Collection as IlluminateCollection;
 use Statamic\Eloquent\Globals\GlobalRepository as StatamicEloquentGlobalRepository;
 use Statamic\Facades\GlobalSet as StatamicGlobalSet;
+use Statamic\Facades\Site;
 use Statamic\Globals\GlobalCollection;
 use Statamic\Globals\GlobalSet;
 use Statamic\Stache\Stache;
@@ -45,7 +46,7 @@ class EloquentGlobalRepository extends StatamicEloquentGlobalRepository
                 $global = StatamicGlobalSet::make($value->getHandle())
                     ->title($contents['title'] ?? null);
 
-                foreach (\Statamic\Facades\Site::all() as $site) {
+                foreach (Site::all() as $site) {
                     if (! $global->in($site->handle())) {
                         $global->addLocalization($global->makeLocalization($site->handle()));
                     }
@@ -81,10 +82,10 @@ class EloquentGlobalRepository extends StatamicEloquentGlobalRepository
             return null;
         }
 
-        $global = \Statamic\Facades\GlobalSet::make($handle)
+        $global = StatamicGlobalSet::make($handle)
             ->title($blueprint->toArray()['title'] ?? null);
 
-        foreach (\Statamic\Facades\Site::all() as $site) {
+        foreach (Site::all() as $site) {
             if (! $global->in($site->handle())) {
                 $global->addLocalization($global->makeLocalization($site->handle()));
             }
