@@ -1,10 +1,11 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Repositories\TaxonomyRepository;
+use Tests\Helpers\TestTaxonomy;
 
 test('::all includes builder-registered taxonomies', function (): void {
     config(['statamic.builder.taxonomies' => [
-        \Tests\Helpers\TestTaxonomy::class,
+        TestTaxonomy::class,
     ]]);
 
     $repository = new TaxonomyRepository(app('stache'));
@@ -15,7 +16,7 @@ test('::all includes builder-registered taxonomies', function (): void {
 
 test('::findByHandle finds builder-registered taxonomy', function (): void {
     config(['statamic.builder.taxonomies' => [
-        \Tests\Helpers\TestTaxonomy::class,
+        TestTaxonomy::class,
     ]]);
 
     $repository = new TaxonomyRepository(app('stache'));
@@ -36,12 +37,12 @@ test('getTaxonomyByHandle returns null for non-existent taxonomy', function (): 
 
 test('getTaxonomyByHandle returns taxonomy instance for valid handle', function (): void {
     config(['statamic.builder.taxonomies' => [
-        \Tests\Helpers\TestTaxonomy::class,
+        TestTaxonomy::class,
     ]]);
 
     $repository = new TaxonomyRepository(app('stache'));
     $result = $repository->getTaxonomyByHandle('test_taxonomy');
 
     expect($result)->not()->toBeNull()
-        ->and($result)->toBeInstanceOf(\Tests\Helpers\TestTaxonomy::class);
+        ->and($result)->toBeInstanceOf(TestTaxonomy::class);
 });

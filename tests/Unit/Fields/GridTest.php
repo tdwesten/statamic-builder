@@ -2,9 +2,11 @@
 
 use Tdwesten\StatamicBuilder\Enums\GridModeOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Grid;
+use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Grid('title');
+    $field = new Grid('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -32,43 +34,43 @@ it('can render to a array', function (): void {
 });
 
 test('it can render to a array with reorderable', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Grid('title');
+    $field = new Grid('title');
     $field->reorderable(false);
 
     expect($field->toArray()['field']['reorderable'])->toBe(false);
 });
 
 test('it can render to a array with add row', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Grid('title');
+    $field = new Grid('title');
     $field->addRow('Add Row');
 
     expect($field->toArray()['field']['add_row'])->toBe('Add Row');
 });
 
 test('it can render to a array with max rows', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Grid('title');
+    $field = new Grid('title');
     $field->maxRows(5);
 
     expect($field->toArray()['field']['max_rows'])->toBe(5);
 });
 
 test('it can render to a array with min rows', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Grid('title');
+    $field = new Grid('title');
     $field->minRows(5);
 
     expect($field->toArray()['field']['min_rows'])->toBe(5);
 });
 
 test('it can render to a array with mode', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Grid('title');
+    $field = new Grid('title');
     $field->mode(GridModeOption::Table);
 
-    expect($field->toArray()['field']['mode'])->toBe(\Tdwesten\StatamicBuilder\Enums\GridModeOption::Table->value);
+    expect($field->toArray()['field']['mode'])->toBe(GridModeOption::Table->value);
 });
 
 it('can render to a array with fields', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Grid('grid', [
-        new \Tdwesten\StatamicBuilder\FieldTypes\Text('title'),
+    $field = new Grid('grid', [
+        new Text('title'),
     ]);
 
     expect($field->toArray()['field']['fields'][0]['field']['type'])->toBe('text');

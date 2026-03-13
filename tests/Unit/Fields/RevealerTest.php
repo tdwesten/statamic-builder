@@ -2,9 +2,10 @@
 
 use Tdwesten\StatamicBuilder\Enums\RevealerModeUI;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Revealer;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Revealer('title');
+    $field = new Revealer('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -32,14 +33,14 @@ it('can render to a array', function (): void {
 });
 
 it('can have a ui mode', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Revealer('title');
+    $field = new Revealer('title');
     $field->mode(RevealerModeUI::Button);
 
     expect($field->toArray()['field']['mode'])->toBe(RevealerModeUI::Button);
 });
 
 it('can have a input_label', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Revealer('title');
+    $field = new Revealer('title');
     $field->inputLabel('Enter the title');
 
     expect($field->toArray()['field']['input_label'])->toBe('Enter the title');

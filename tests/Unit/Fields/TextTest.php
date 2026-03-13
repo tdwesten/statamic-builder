@@ -3,6 +3,7 @@
 use Tdwesten\StatamicBuilder\Enums\AutocompleteOption;
 use Tdwesten\StatamicBuilder\Enums\InputTypeOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Group;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
 
 it('can render to a array', function (): void {
@@ -22,7 +23,7 @@ it('can render to a array', function (): void {
         ->append('.com')
         ->toArray();
 
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Group('title');
+    $field = new Group('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -50,7 +51,7 @@ it('can render to a array', function (): void {
 });
 
 test('Renders expected array data', function (): void {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Text('title');
+    $text = new Text('title');
     $text->displayName('Name')
         ->required()
         ->instructions('The name of the county')
@@ -84,56 +85,56 @@ test('Renders expected array data', function (): void {
 });
 
 test('Can set input type to email', function (): void {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Text('title');
+    $text = new Text('title');
     $text->inputType(InputTypeOption::Email);
 
     expect($text->toArray()['field']['input_type'])->toBe('email');
 });
 
 test('Can set input type to number', function (): void {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Text('title');
+    $text = new Text('title');
     $text->inputType(InputTypeOption::Number);
 
     expect($text->toArray()['field']['input_type'])->toBe('number');
 });
 
 test('Can add a placeholder', function (): void {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Text('title');
+    $text = new Text('title');
     $text->placeholder('Enter a title');
 
     expect($text->toArray()['field']['placeholder'])->toBe('Enter a title');
 });
 
 test('Can add a default value', function (): void {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Text('title');
+    $text = new Text('title');
     $text->default('Default value');
 
     expect($text->toArray()['field']['default'])->toBe('Default value');
 });
 
 test('Can add a character limit', function (): void {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Text('title');
+    $text = new Text('title');
     $text->characterLimit(100);
 
     expect($text->toArray()['field']['character_limit'])->toBe(100);
 });
 
 test('Can add autocomplete options', function (): void {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Text('title');
+    $text = new Text('title');
     $text->autocomplete(AutocompleteOption::BdayDay);
 
     expect($text->toArray()['field']['autocomplete'])->toBe('bday-day');
 });
 
 test('Can add prepend text', function (): void {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Text('title');
+    $text = new Text('title');
     $text->prepend('https://');
 
     expect($text->toArray()['field']['prepend'])->toBe('https://');
 });
 
 test('Can add append text', function (): void {
-    $text = new \Tdwesten\StatamicBuilder\FieldTypes\Text('title');
+    $text = new Text('title');
     $text->append('.com');
 
     expect($text->toArray()['field']['append'])->toBe('.com');

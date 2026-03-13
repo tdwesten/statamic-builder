@@ -50,12 +50,12 @@ test('it uses handle for mount when exporting', function (): void {
     // 1. Mock the config to use eloquent driver
     config(['statamic.eloquent-driver.entries.driver' => 'eloquent']);
 
-    \Tdwesten\StatamicBuilder\BaseCollection::$isExporting = true;
+    BaseCollection::$isExporting = true;
 
     $collection = new TestCollectionWithMount;
     $resolvedMount = $collection->resolveMount();
 
     expect($resolvedMount)->toBe('mount-page');
 
-    \Tdwesten\StatamicBuilder\BaseCollection::$isExporting = false;
+    BaseCollection::$isExporting = false;
 });

@@ -2,7 +2,9 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use Statamic\Eloquent\Structures\NavModel;
 use Statamic\Facades\User;
+use Tdwesten\StatamicBuilder\Repositories\EloquentNavigationRepository;
 use Tdwesten\StatamicBuilder\Repositories\NavigationRepository;
 use Tests\Helpers\TestNavigation;
 use Tests\Helpers\TestNavigationBlueprint;
@@ -46,7 +48,7 @@ test('it shows the not editable view when editing a builder defined navigation w
     config(['app.key' => 'base64:m97Vl6m1xj5qVyXWjXWjXWjXWjXWjXWjXWjXWjXWjXU=']);
     config(['statamic.builder.navigations' => [TestNavigation::class]]);
     config(['statamic.eloquent-driver.navigations.driver' => 'eloquent']);
-    config(['statamic.eloquent-driver.navigations.model' => \Statamic\Eloquent\Structures\NavModel::class]);
+    config(['statamic.eloquent-driver.navigations.model' => NavModel::class]);
 
     app()->bind('statamic.eloquent.navigations.model', function () {
         return config('statamic.eloquent-driver.navigations.model');
@@ -54,7 +56,7 @@ test('it shows the not editable view when editing a builder defined navigation w
 
     // Re-initialize the repository with the new config
     app()->singleton(\Statamic\Contracts\Structures\NavigationRepository::class, function () {
-        return new \Tdwesten\StatamicBuilder\Repositories\EloquentNavigationRepository(app('stache'));
+        return new EloquentNavigationRepository(app('stache'));
     });
 
     $user = User::make()->makeSuper()->save();

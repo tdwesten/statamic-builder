@@ -4,6 +4,7 @@ namespace Tdwesten\StatamicBuilder\Repositories;
 
 use Illuminate\Support\Collection;
 use Statamic\Contracts\Structures\Nav;
+use Statamic\Facades\Site;
 use Statamic\Stache\Repositories\NavigationRepository as StatamicNavigationRepository;
 use Statamic\Stache\Stache;
 use Tdwesten\StatamicBuilder\BaseNavigation;
@@ -56,7 +57,7 @@ class NavigationRepository extends StatamicNavigationRepository
                 $nav = \Statamic\Facades\Nav::make($key)
                     ->title($blueprint->toArray()['title'] ?? null);
 
-                $nav->sites(\Statamic\Facades\Site::all()->map->handle()->all());
+                $nav->sites(Site::all()->map->handle()->all());
 
                 return $nav;
             }
@@ -110,7 +111,7 @@ class NavigationRepository extends StatamicNavigationRepository
         $nav = \Statamic\Facades\Nav::make($handle)
             ->title($blueprint->toArray()['title'] ?? null);
 
-        $nav->sites(\Statamic\Facades\Site::all()->map->handle()->all());
+        $nav->sites(Site::all()->map->handle()->all());
 
         return $nav;
     }

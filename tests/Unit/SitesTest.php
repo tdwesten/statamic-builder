@@ -36,7 +36,7 @@ test('getSavedSites caches result', function (): void {
 
     Cache::shouldReceive('rememberForever')
         ->once()
-        ->with('statamic.builder.sites', \Mockery::type('Closure'))
+        ->with('statamic.builder.sites', Mockery::type('Closure'))
         ->andReturnUsing(function ($key, $callback) {
             return $callback();
         });

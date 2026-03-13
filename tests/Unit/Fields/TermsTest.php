@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\UIModeOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Terms;
 
 test('Terms field renders', function (): void {
-    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+    $terms = new Terms('counties');
     $terms->displayName('Counties')
         ->required()
         ->instructions('The counties of the school')
@@ -39,7 +40,7 @@ test('Terms field renders', function (): void {
 });
 
 test('You can set max items', function (): void {
-    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+    $terms = new Terms('counties');
     $terms->displayName('Counties')
         ->required()
         ->instructions('The counties of the school')
@@ -77,7 +78,7 @@ test('You can set max items', function (): void {
 });
 
 test('Terms field renders with multiple taxonomies', function (): void {
-    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+    $terms = new Terms('counties');
     $terms->displayName('Counties')
         ->required()
         ->instructions('The counties of the school')
@@ -114,7 +115,7 @@ test('Terms field renders with multiple taxonomies', function (): void {
 });
 
 test('Terms field renders with multiple taxonomies and mode', function (): void {
-    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+    $terms = new Terms('counties');
     $terms->displayName('Counties')
         ->required()
         ->instructions('The counties of the school')
@@ -152,7 +153,7 @@ test('Terms field renders with multiple taxonomies and mode', function (): void 
 });
 
 test('Terms field renders with create option', function (): void {
-    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+    $terms = new Terms('counties');
     $terms->displayName('Counties')
         ->required()
         ->instructions('The counties of the school')
@@ -191,7 +192,7 @@ test('Terms field renders with create option', function (): void {
 });
 
 test('can have query scopes', function (): void {
-    $terms = new \Tdwesten\StatamicBuilder\FieldTypes\Terms('counties');
+    $terms = new Terms('counties');
 
     $terms->queryScopes([
         'featured', 'published',

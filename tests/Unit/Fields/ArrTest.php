@@ -1,9 +1,11 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Enums\ArrayModeOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Arr;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Arr('title');
+    $field = new Arr('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -33,14 +35,14 @@ it('can render to a array', function (): void {
 });
 
 it('can render to a array with mode', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Arr('title');
-    $field->mode(\Tdwesten\StatamicBuilder\Enums\ArrayModeOption::Dynamic);
+    $field = new Arr('title');
+    $field->mode(ArrayModeOption::Dynamic);
 
     expect($field->toArray()['field']['mode'])->toBe('dynamic');
 });
 
 it('can render to a array with keys', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Arr('title');
+    $field = new Arr('title');
     $field->keys([
         'country' => 'United States',
         'city' => 'New York',

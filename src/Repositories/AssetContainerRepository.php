@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Statamic\Assets\AssetContainer as StatamicAssetContainer;
 use Statamic\Stache\Repositories\AssetContainerRepository as StatamicAssetContainerRepository;
 use Statamic\Stache\Stache;
+use Tdwesten\StatamicBuilder\BaseAssetContainer;
 
 class AssetContainerRepository extends StatamicAssetContainerRepository
 {
@@ -54,7 +55,7 @@ class AssetContainerRepository extends StatamicAssetContainerRepository
         })->filter();
     }
 
-    public function getAssetContainerByHandle($handle): ?\Tdwesten\StatamicBuilder\BaseAssetContainer
+    public function getAssetContainerByHandle($handle): ?BaseAssetContainer
     {
         $container = $this->assetContainers->get($handle, null);
 

@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Lists;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Lists('title');
+    $field = new Lists('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,7 +32,7 @@ it('can render to a array', function (): void {
 });
 
 test('it can render to a array with options', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Lists('title');
+    $field = new Lists('title');
     $field->default(['one', 'two', 'three']);
 
     expect($field->toArray()['field']['default'])->toBe(['one', 'two', 'three']);

@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Integer;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Integer('title');
+    $field = new Integer('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,14 +32,14 @@ it('can render to a array', function (): void {
 });
 
 it('can have a prepend', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Integer('title');
+    $field = new Integer('title');
     $field->prepend('£');
 
     expect($field->toArray()['field']['prepend'])->toBe('£');
 });
 
 it('can have a append', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Integer('title');
+    $field = new Integer('title');
     $field->append('£');
 
     expect($field->toArray()['field']['append'])->toBe('£');

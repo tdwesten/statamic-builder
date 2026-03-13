@@ -1,14 +1,16 @@
 <?php
 
+use Statamic\Contracts\Globals\GlobalRepository;
 use Statamic\Facades\GlobalSet;
+use Tests\Helpers\TestBlueprint;
 use Tests\Helpers\TestGlobalSet;
 
 beforeEach(function (): void {
     config(['statamic.builder.globals' => [TestGlobalSet::class]]);
 
     // Re-initialize the repository with the new config
-    app()->singleton(\Statamic\Contracts\Globals\GlobalRepository::class, function () {
-        return new \Tdwesten\StatamicBuilder\Repositories\GlobalRepository(app('stache'));
+    app()->singleton(GlobalRepository::class, function () {
+        return new Tdwesten\StatamicBuilder\Repositories\GlobalRepository(app('stache'));
     });
 });
 
@@ -30,12 +32,12 @@ test('it can save global variables', function (): void {
 
 test('it can save global variables for blueprint-based globals', function (): void {
     config(['statamic.builder.blueprints.globals' => [
-        'blueprint_global' => \Tests\Helpers\TestBlueprint::class,
+        'blueprint_global' => TestBlueprint::class,
     ]]);
 
     // Re-initialize the repository with the new config
-    app()->singleton(\Statamic\Contracts\Globals\GlobalRepository::class, function () {
-        return new \Tdwesten\StatamicBuilder\Repositories\GlobalRepository(app('stache'));
+    app()->singleton(GlobalRepository::class, function () {
+        return new Tdwesten\StatamicBuilder\Repositories\GlobalRepository(app('stache'));
     });
 
     $globalSet = GlobalSet::findByHandle('blueprint_global');

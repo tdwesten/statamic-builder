@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Radio;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Radio('title');
+    $field = new Radio('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,7 +32,7 @@ it('can render to a array', function (): void {
 });
 
 it('can have options', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Radio('title');
+    $field = new Radio('title');
     $field->options([
         'one' => 'One',
         'two' => 'Two',
@@ -41,14 +42,14 @@ it('can have options', function (): void {
 });
 
 it('can be inline', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Radio('title');
+    $field = new Radio('title');
     $field->inline();
 
     expect($field->toArray()['field']['inline'])->toBe(true);
 });
 
 it('can cast booleans', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Radio('title');
+    $field = new Radio('title');
     $field->castBooleans();
 
     expect($field->toArray()['field']['cast_booleans'])->toBe(true);

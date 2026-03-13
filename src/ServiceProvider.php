@@ -3,7 +3,35 @@
 namespace Tdwesten\StatamicBuilder;
 
 use Illuminate\Http\Request;
+use Statamic\Contracts\Assets\AssetContainerRepository;
+use Statamic\Contracts\Structures\NavigationRepository;
+use Statamic\Facades\Blueprint;
+use Statamic\Fields\BlueprintRepository;
+use Statamic\Fields\FieldsetRepository;
+use Statamic\Http\Controllers\CP\Globals\GlobalsBlueprintController;
 use Statamic\Providers\AddonServiceProvider;
+use Statamic\Sites\Sites;
+use Statamic\Stache\Stores\CollectionsStore;
+use Statamic\Stache\Stores\GlobalsStore;
+use Statamic\Stache\Stores\NavigationStore;
+use Statamic\Stache\Stores\TaxonomiesStore;
+use Tdwesten\StatamicBuilder\Http\Controllers\AssetContainerBlueprintController;
+use Tdwesten\StatamicBuilder\Http\Controllers\AssetContainersController;
+use Tdwesten\StatamicBuilder\Http\Controllers\CollectionBlueprintsController;
+use Tdwesten\StatamicBuilder\Http\Controllers\CollectionsController;
+use Tdwesten\StatamicBuilder\Http\Controllers\FieldsetController;
+use Tdwesten\StatamicBuilder\Http\Controllers\GlobalsBlueprintsController;
+use Tdwesten\StatamicBuilder\Http\Controllers\GlobalsController;
+use Tdwesten\StatamicBuilder\Http\Controllers\NavigationBlueprintController;
+use Tdwesten\StatamicBuilder\Http\Controllers\NavigationController;
+use Tdwesten\StatamicBuilder\Http\Controllers\TaxonomiesController;
+use Tdwesten\StatamicBuilder\Http\Controllers\TaxonomyBlueprintsController;
+use Tdwesten\StatamicBuilder\Http\Controllers\UserBlueprintController;
+use Tdwesten\StatamicBuilder\Repositories\CollectionRepository;
+use Tdwesten\StatamicBuilder\Repositories\EloquentGlobalRepository;
+use Tdwesten\StatamicBuilder\Repositories\EloquentNavigationRepository;
+use Tdwesten\StatamicBuilder\Repositories\GlobalRepository;
+use Tdwesten\StatamicBuilder\Repositories\TaxonomyRepository;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -24,135 +52,135 @@ class ServiceProvider extends AddonServiceProvider
 
     protected function bindSites()
     {
-        $this->app->bind(\Statamic\Sites\Sites::class, fn () => new \Tdwesten\StatamicBuilder\Sites\Sites);
+        $this->app->bind(Sites::class, fn () => new \Tdwesten\StatamicBuilder\Sites\Sites);
     }
 
     protected function registerControllers()
     {
         $this->app->bind(\Statamic\Http\Controllers\CP\Collections\CollectionBlueprintsController::class, function () {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\CollectionBlueprintsController;
+            return new CollectionBlueprintsController;
         });
 
-        $this->app->bind(\Statamic\Http\Controllers\CP\Globals\GlobalsBlueprintController::class, function () {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\GlobalsBlueprintsController;
+        $this->app->bind(GlobalsBlueprintController::class, function () {
+            return new GlobalsBlueprintsController;
         });
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Taxonomies\TaxonomyBlueprintsController::class, function () {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\TaxonomyBlueprintsController;
+            return new TaxonomyBlueprintsController;
         });
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Navigation\NavigationBlueprintController::class, function () {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\NavigationBlueprintController;
+            return new NavigationBlueprintController;
         });
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Navigation\NavigationController::class, function ($app) {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\NavigationController($app->make(Request::class));
+            return new NavigationController($app->make(Request::class));
         });
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Assets\AssetContainerBlueprintController::class, function () {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\AssetContainerBlueprintController(
+            return new AssetContainerBlueprintController(
                 app('request')
             );
         });
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Assets\AssetContainersController::class, function () {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\AssetContainersController(
+            return new AssetContainersController(
                 app('request')
             );
         });
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Users\UserBlueprintController::class, function () {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\UserBlueprintController;
+            return new UserBlueprintController;
         });
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Collections\CollectionsController::class, function ($app) {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\CollectionsController(
+            return new CollectionsController(
                 $app->make(Request::class),
-                $app->make(\Tdwesten\StatamicBuilder\Repositories\CollectionRepository::class)
+                $app->make(CollectionRepository::class)
             );
         });
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Taxonomies\TaxonomiesController::class, function ($app) {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\TaxonomiesController(
+            return new TaxonomiesController(
                 $app->make(Request::class),
-                $app->make(\Tdwesten\StatamicBuilder\Repositories\TaxonomyRepository::class)
+                $app->make(TaxonomyRepository::class)
             );
         });
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Globals\GlobalsController::class, function ($app) {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\GlobalsController(
+            return new GlobalsController(
                 $app->make(Request::class),
-                $app->make(\Tdwesten\StatamicBuilder\Repositories\GlobalRepository::class)
+                $app->make(GlobalRepository::class)
             );
         });
 
         $this->app->bind(\Statamic\Http\Controllers\CP\Fields\FieldsetController::class, function ($app) {
-            return new \Tdwesten\StatamicBuilder\Http\Controllers\FieldsetController(
+            return new FieldsetController(
                 $app->make(Request::class),
-                $app->make(\Tdwesten\StatamicBuilder\Repositories\FieldsetRepository::class)
+                $app->make(Repositories\FieldsetRepository::class)
             );
         });
     }
 
     protected function bindStores()
     {
-        $this->app->singleton(\Statamic\Stache\Stores\CollectionsStore::class, function () {
-            return new \Tdwesten\StatamicBuilder\Stache\Stores\CollectionsStore(app('stache'));
+        $this->app->singleton(CollectionsStore::class, function () {
+            return new Stache\Stores\CollectionsStore(app('stache'));
         });
 
-        $this->app->singleton(\Statamic\Stache\Stores\TaxonomiesStore::class, function () {
-            return new \Tdwesten\StatamicBuilder\Stache\Stores\TaxonomiesStore(app('stache'));
+        $this->app->singleton(TaxonomiesStore::class, function () {
+            return new Stache\Stores\TaxonomiesStore(app('stache'));
         });
 
-        $this->app->singleton(\Statamic\Stache\Stores\GlobalsStore::class, function () {
-            return new \Tdwesten\StatamicBuilder\Stache\Stores\GlobalsStore(app('stache'));
+        $this->app->singleton(GlobalsStore::class, function () {
+            return new Stache\Stores\GlobalsStore(app('stache'));
         });
 
-        $this->app->singleton(\Statamic\Stache\Stores\NavigationStore::class, function () {
-            return new \Tdwesten\StatamicBuilder\Stache\Stores\NavigationStore(app('stache'));
+        $this->app->singleton(NavigationStore::class, function () {
+            return new Stache\Stores\NavigationStore(app('stache'));
         });
     }
 
     protected function bindRepositories()
     {
-        $this->app->singleton(\Statamic\Contracts\Assets\AssetContainerRepository::class, function () {
-            return new \Tdwesten\StatamicBuilder\Repositories\AssetContainerRepository(app('stache'));
+        $this->app->singleton(AssetContainerRepository::class, function () {
+            return new Repositories\AssetContainerRepository(app('stache'));
         });
 
         $this->app->singleton(\Statamic\Contracts\Globals\GlobalRepository::class, function () {
             if (config('statamic.eloquent-driver.globals.driver') === 'eloquent') {
-                return new \Tdwesten\StatamicBuilder\Repositories\EloquentGlobalRepository(app('stache'));
+                return new EloquentGlobalRepository(app('stache'));
             }
 
-            return new \Tdwesten\StatamicBuilder\Repositories\GlobalRepository(app('stache'));
+            return new GlobalRepository(app('stache'));
         });
 
-        $this->app->singleton(\Statamic\Fields\FieldsetRepository::class, function () {
-            return (new \Tdwesten\StatamicBuilder\Repositories\FieldsetRepository)
+        $this->app->singleton(FieldsetRepository::class, function () {
+            return (new Repositories\FieldsetRepository)
                 ->setDirectory(resource_path('fieldsets'));
         });
 
-        $this->app->singleton(\Statamic\Contracts\Structures\NavigationRepository::class, function () {
+        $this->app->singleton(NavigationRepository::class, function () {
             if (config('statamic.eloquent-driver.navigations.driver') === 'eloquent') {
-                return new \Tdwesten\StatamicBuilder\Repositories\EloquentNavigationRepository(app('stache'));
+                return new EloquentNavigationRepository(app('stache'));
             }
 
-            return new \Tdwesten\StatamicBuilder\Repositories\NavigationRepository(app('stache'));
+            return new Repositories\NavigationRepository(app('stache'));
         });
 
         $this->app->singleton(\Statamic\Contracts\Entries\CollectionRepository::class, function () {
-            return new \Tdwesten\StatamicBuilder\Repositories\CollectionRepository(app('stache'));
+            return new CollectionRepository(app('stache'));
         });
 
         $this->app->singleton(\Statamic\Contracts\Taxonomies\TaxonomyRepository::class, function () {
-            return new \Tdwesten\StatamicBuilder\Repositories\TaxonomyRepository(app('stache'));
+            return new TaxonomyRepository(app('stache'));
         });
 
-        $this->app->singleton(\Statamic\Fields\BlueprintRepository::class, function () {
-            return (new \Tdwesten\StatamicBuilder\Repositories\BlueprintRepository)
+        $this->app->singleton(BlueprintRepository::class, function () {
+            return (new Repositories\BlueprintRepository)
                 ->setDirectory(resource_path('blueprints'))
                 ->setFallback('default', function () {
-                    return \Statamic\Facades\Blueprint::makeFromFields([
+                    return Blueprint::makeFromFields([
                         'title' => ['type' => 'text', 'localizable' => true],
                     ]);
                 });

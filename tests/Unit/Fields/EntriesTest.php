@@ -2,9 +2,10 @@
 
 use Tdwesten\StatamicBuilder\Enums\UIModeOption;
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Entries;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
+    $field = new Entries('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -32,35 +33,35 @@ it('can render to a array', function (): void {
 });
 
 test('it can render to a array with max items', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
+    $field = new Entries('title');
     $field->maxItems(5);
 
     expect($field->toArray()['field']['max_items'])->toBe(5);
 });
 
 test('it can render to a array with mode', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
+    $field = new Entries('title');
     $field->mode(UIModeOption::Select);
 
     expect($field->toArray()['field']['mode'])->toBe(UIModeOption::Select->value);
 });
 
 test('it can render to a array with collections', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
+    $field = new Entries('title');
     $field->collections(['blog', 'news']);
 
     expect($field->toArray()['field']['collections'])->toBe(['blog', 'news']);
 });
 
 test('it can render to a array with search index', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
+    $field = new Entries('title');
     $field->searchIndex('title');
 
     expect($field->toArray()['field']['search_index'])->toBe('title');
 });
 
 test('it can render the queryScopes to the array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Entries('title');
+    $field = new Entries('title');
     $field->queryScopes(['scope1', 'scope2']);
 
     expect($field->toArray()['field']['query_scopes'])->toBe(['scope1', 'scope2']);

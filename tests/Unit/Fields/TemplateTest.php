@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Template;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Template('title');
+    $field = new Template('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,21 +32,21 @@ it('can render to a array', function (): void {
 });
 
 test('it can hide partials', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Template('title');
+    $field = new Template('title');
     $field->hidePartials();
 
     expect($field->toArray()['field']['hide_partials'])->toBe(true);
 });
 
 test('it can set blueprint', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Template('title');
+    $field = new Template('title');
     $field->blueprint();
 
     expect($field->toArray()['field']['blueprint'])->toBe(true);
 });
 
 test('it can set folder', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Template('title');
+    $field = new Template('title');
     $field->folder('folder');
 
     expect($field->toArray()['field']['folder'])->toBe('folder');

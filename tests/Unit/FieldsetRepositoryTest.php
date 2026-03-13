@@ -2,10 +2,11 @@
 
 use Statamic\Fields\Fieldset as StatamicFieldset;
 use Tdwesten\StatamicBuilder\Repositories\FieldsetRepository;
+use Tests\Helpers\TestFieldset;
 
 test('::all includes builder-registered fieldsets', function (): void {
     config(['statamic.builder.fieldsets' => [
-        \Tests\Helpers\TestFieldset::class,
+        TestFieldset::class,
     ]]);
 
     $repository = Mockery::mock(FieldsetRepository::class)->makePartial()->shouldAllowMockingProtectedMethods();
@@ -20,7 +21,7 @@ test('::all includes builder-registered fieldsets', function (): void {
 
 test('::find finds builder-registered fieldset', function (): void {
     config(['statamic.builder.fieldsets' => [
-        \Tests\Helpers\TestFieldset::class,
+        TestFieldset::class,
     ]]);
 
     $repository = new FieldsetRepository;
@@ -32,7 +33,7 @@ test('::find finds builder-registered fieldset', function (): void {
 
 test('::save does not save builder-registered fieldset', function (): void {
     config(['statamic.builder.fieldsets' => [
-        \Tests\Helpers\TestFieldset::class,
+        TestFieldset::class,
     ]]);
 
     $repository = Mockery::mock(FieldsetRepository::class)->makePartial()->shouldAllowMockingProtectedMethods();

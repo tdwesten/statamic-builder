@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Statamic\Facades\AssetContainer;
+use Tdwesten\StatamicBuilder\Discovery;
 
 beforeEach(function (): void {
     // Create a temporary directory for discovery
@@ -44,7 +45,7 @@ PHP;
     require_once base_path('app/AssetContainers/DiscoverableAssetContainer.php');
 
     // 3. Trigger discovery
-    (new \Tdwesten\StatamicBuilder\Discovery)->discover();
+    (new Discovery)->discover();
 
     // 4. Verify it's in the config
     $registeredInStatamic = config('statamic.builder.asset_containers', []);

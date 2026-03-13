@@ -1,5 +1,6 @@
 <?php
 
+use Tdwesten\StatamicBuilder\Blueprint;
 use Tdwesten\StatamicBuilder\Exceptions\BlueprintRenderException;
 use Tdwesten\StatamicBuilder\FieldTypes\Tab;
 use Tdwesten\StatamicBuilder\FieldTypes\Text;
@@ -84,7 +85,7 @@ test('you can get the handle', function (): void {
 });
 
 test('base blueprint static handle returns empty string by default', function (): void {
-    $blueprint = new class extends \Tdwesten\StatamicBuilder\Blueprint
+    $blueprint = new class extends Blueprint
     {
         public function registerTabs(): array
         {
@@ -96,7 +97,7 @@ test('base blueprint static handle returns empty string by default', function ()
 });
 
 test('static blueprintNamespace returns empty string by default', function (): void {
-    $blueprint = new class extends \Tdwesten\StatamicBuilder\Blueprint
+    $blueprint = new class extends Blueprint
     {
         public function registerTabs(): array
         {
@@ -108,7 +109,7 @@ test('static blueprintNamespace returns empty string by default', function (): v
 });
 
 test('blueprint with empty tabs returns empty array', function (): void {
-    $blueprint = new class extends \Tdwesten\StatamicBuilder\Blueprint
+    $blueprint = new class extends Blueprint
     {
         public function registerTabs(): array
         {
@@ -120,15 +121,15 @@ test('blueprint with empty tabs returns empty array', function (): void {
 });
 
 test('blueprint throws exception when non-tab field is in registerTabs', function (): void {
-    $blueprint = new class extends \Tdwesten\StatamicBuilder\Blueprint
+    $blueprint = new class extends Blueprint
     {
         public function registerTabs(): array
         {
             return [
-                \Tdwesten\StatamicBuilder\FieldTypes\Text::make('title'),
+                Text::make('title'),
             ];
         }
     };
 
     $blueprint->toArray();
-})->throws(\Tdwesten\StatamicBuilder\Exceptions\BlueprintRenderException::class, 'Only tabs are allowed in the register function of a blueprint');
+})->throws(BlueprintRenderException::class, 'Only tabs are allowed in the register function of a blueprint');

@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\Link;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Link('title');
+    $field = new Link('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,7 +32,7 @@ it('can render to a array', function (): void {
 });
 
 it('can render to a array with collections', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Link('title');
+    $field = new Link('title');
     $field->collections(['blog', 'news'])
         ->container('assets');
 
@@ -39,7 +40,7 @@ it('can render to a array with collections', function (): void {
 });
 
 it('can render to a array with container', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\Link('title');
+    $field = new Link('title');
     $field->container('assets');
 
     expect($field->toArray()['field']['container'])->toBe('assets');

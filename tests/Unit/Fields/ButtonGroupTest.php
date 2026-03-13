@@ -1,9 +1,10 @@
 <?php
 
 use Tdwesten\StatamicBuilder\Enums\VisibilityOption;
+use Tdwesten\StatamicBuilder\FieldTypes\ButtonGroup;
 
 it('can render to a array', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\ButtonGroup('title');
+    $field = new ButtonGroup('title');
     $field->displayName('Display Name')
         ->instructions('Enter the title')
         ->visibility(VisibilityOption::Hidden)
@@ -31,7 +32,7 @@ it('can render to a array', function (): void {
 });
 
 it('can render to a array with options', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\ButtonGroup('title');
+    $field = new ButtonGroup('title');
     $field->options([
         'option1' => 'Option 1',
         'option2' => 'Option 2',
@@ -44,14 +45,14 @@ it('can render to a array with options', function (): void {
 });
 
 it('can render to a array with default value', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\ButtonGroup('title');
+    $field = new ButtonGroup('title');
     $field->default('option1');
 
     expect($field->toArray()['field']['default'])->toBe('option1');
 });
 
 it('can set default value using defaultValue method', function (): void {
-    $field = new \Tdwesten\StatamicBuilder\FieldTypes\ButtonGroup('title');
+    $field = new ButtonGroup('title');
     $field->defaultValue('option2');
 
     expect($field->toArray()['field']['default'])->toBe('option2');
