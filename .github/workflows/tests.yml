@@ -21,7 +21,7 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Execute PHP Linting via Pint
         run: ./vendor/bin/pint --bail
