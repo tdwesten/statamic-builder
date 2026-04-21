@@ -33,7 +33,7 @@ composer require tdwesten/statamic-builder
 
 - PHP 8.3+
 - Statamic 6.0+
-- Laravel 12
+- Laravel 12+
 
 ## Configuration
 
