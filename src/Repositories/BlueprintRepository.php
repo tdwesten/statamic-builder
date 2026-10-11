@@ -133,6 +133,11 @@ class BlueprintRepository extends StatamicBlueprintRepository
         // Support both old (directory) and new (directories) property names for Statamic v5.67.0+ compatibility
         $directory = $this->getDirectory();
 
+        // A blueprint of an addon namespace lives outside the default directory and keeps the namespace it was found in.
+        if (! Str::startsWith($path, $directory.'/')) {
+            return parent::makeBlueprintFromFile($path, $namespace);
+        }
+
         [$namespace, $handle] = $this->getNamespaceAndHandle(
             Str::after(Str::before($path, '.yaml'), $directory.'/')
         );
