@@ -45,16 +45,7 @@ test('it binds the eloquent navigation repository when driver is eloquent', func
 });
 
 test('it binds the eloquent global repository when driver is eloquent', function (): void {
-    config(['statamic.eloquent-driver.globals.driver' => 'eloquent']);
-
-    // Re-register the service provider or just the binding
-    app()->singleton(GlobalRepository::class, function () {
-        if (config('statamic.eloquent-driver.globals.driver') === 'eloquent') {
-            return new EloquentGlobalRepository(app('stache'));
-        }
-
-        return new BuilderGlobalRepository(app('stache'));
-    });
+    config(['statamic.eloquent-driver.global_sets.driver' => 'eloquent']);
 
     $repository = app(GlobalRepository::class);
 
