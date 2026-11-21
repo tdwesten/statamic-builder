@@ -39,7 +39,11 @@ class EloquentGlobalRepository extends StatamicEloquentGlobalRepository
 
         $builderKeys = $blueprints
             ->reject(function ($value, $handle) use ($databaseGlobals, $builderGlobals) {
-                return $databaseGlobals->has($handle) || $builderGlobals->has($handle);
+                $existsInDatabase = $databaseGlobals->contains(function ($global) use ($handle) {
+                    return $global->handle() === $handle;
+                });
+
+                return $existsInDatabase || $builderGlobals->has($handle);
             })
             ->map(function ($value) {
                 $contents = $value->toArray();
